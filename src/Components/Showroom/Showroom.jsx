@@ -10,7 +10,7 @@ const Showroom = () => {
             title: 'Luxury Showroom Space',
             imageUrl: '/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg',
             price: '22.00',
-            location: 'HinjeWadi, Pune',
+            location: 'HinjeWadi phase1, Pune',
             rentalYield: '7.5',
             monthlyRental: '8.00',
         },
