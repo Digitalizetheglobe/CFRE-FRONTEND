@@ -21,7 +21,7 @@ const ShowroomCard = ({ property }) => {
 
             <div className="relative">
                 <img className="w-full h-48 object-cover" src={property.imageUrl} alt="Showroom" />
-                <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded bg-blue-500 hover:bg-blue-700">
+                <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded  hover:scale-[1.08]">
                     More Images
                 </button>
             </div>

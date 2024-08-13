@@ -1,10 +1,9 @@
 import React from 'react';
 import ShowroomCard from './ShowroomCard';
-import Image from './showroom1.jpeg'; // Import your image
+import ShowroomVideo from './showroomvideo.mp4'; // Import your video file
 
 const Showroom = () => {
     const showroomProperties = [
-        // Example properties
         {
             id: 1,
             title: 'Luxury Showroom Space',
@@ -27,19 +26,27 @@ const Showroom = () => {
     ];
 
     return (
-        <div className="container mx-auto p-4">
-            <div
-                className="relative h-60 bg-cover bg-center"
-                style={{ backgroundImage: `url(${Image})` }}
-            >
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <h1 className="text-4xl text-white">Showroom Properties</h1>
+        <div className="relative overflow-hidden">
+            <div  className="absolute inset-0 w-full h-[75vh] overflow-hidden ">
+                <video
+                    className="w-full h-full object-cover"
+                    src={ShowroomVideo}
+                    autoPlay
+                    loop
+                    muted
+                />
+                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                    <h1 className="text-6xl text-white">Showroom Properties</h1>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+
+             {/* Main content */}
+             <div className="relative container mx-auto p-4 mt-[80vh]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {showroomProperties.map(property => (
                     <ShowroomCard key={property.id} property={property} />
                 ))}
+            </div>
             </div>
         </div>
     );

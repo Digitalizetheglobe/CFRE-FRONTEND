@@ -10,6 +10,8 @@ const ContactForm = ({ onSubmit }) => {
         message: '',
     });
 
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -17,8 +19,13 @@ const ContactForm = ({ onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Call the onSubmit function passed as a prop
-        onSubmit(formData);
+        // onSubmit(formData);
+        setIsSubmitted(true); // Show the thank you message
+    };
+
+    const handleClose = () => {
+        setIsSubmitted(false);
+        window.location.href = '/';
     };
 
     return (
@@ -28,6 +35,7 @@ const ContactForm = ({ onSubmit }) => {
             </Link>
 
             <h1 className='text-center text-2xl font-semibold mb-6'>Post Your Requirement</h1>
+
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
@@ -78,15 +86,31 @@ const ContactForm = ({ onSubmit }) => {
                     />
                 </div>
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
-                    Enquire Now
+                    Submit 
                 </button>
             </form>
+
             {/* Close Button Inside Form */}
             <button
                 onClick={() => window.location.href = '/'}
                 className="absolute top-2 right-2 text-red-500 hover:text-red-700">
                 Close
             </button>
+
+            {/* Thank You Message Popup */}
+            {isSubmitted && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm mx-auto text-center">
+                        <h2 className="text-xl font-semibold mb-4">Thank You!</h2>
+                        <p className="mb-4">Thank you for posting your requirement. We will connect with you soon!</p>
+                        <button
+                            onClick={handleClose}
+                            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
