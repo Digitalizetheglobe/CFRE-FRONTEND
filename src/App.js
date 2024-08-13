@@ -11,6 +11,8 @@ import Invest from './Components/Invest/Invest';
 import Rent from './Components/Rent/rent';
 import Office from './Components/Office/office';
 import Showroom from './Components/Showroom/Showroom';
+import AddProperty from './AdminDashboard/PropertyPages/AddProperty';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
       <Header />
       <MainContent />
       <Footer />
+      
     </Router>
   );
 }
@@ -37,6 +40,7 @@ function MainContent() {
         <Route path="/rent" element={<Rent />} />
         <Route path="/office" element={<Office/>} />
         <Route path="/showroom" element={<Showroom />} />
+        <Route path='/addproperty' element={<AddProperty />} />
       </Routes>
       {isHomePage && <CategoryCarousel />}
     </main>
