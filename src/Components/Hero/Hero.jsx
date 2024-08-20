@@ -1,5 +1,6 @@
 import { Search } from 'lucide-react';
 import BannerVideo from './bannerVideo.mp4'; // Import your video
+// import { LuSearchSlash } from 'react-icons/lu';
 // import BannerVideo1 from './bannerVideo1.mp4';
 
 function Hero() {
@@ -55,6 +56,7 @@ function Hero() {
 }
 
 export default Hero;
+
 
 
 // import { Search } from 'lucide-react';
