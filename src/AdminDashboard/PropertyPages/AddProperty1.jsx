@@ -452,271 +452,283 @@ function AddProperty1() {
             )}
 
 
-            {/* Step 4: Area and Pricing */}
+
+
+            {/* Step 4: Area Pricing */}
             {step === 4 && (
-    <div className="mt-4 w-full flex flex-col items-center">
-        <h2 className="text-lg font-semibold mb-4">Area and Pricing Information</h2>
-        <div className="w-full max-w-md">
-            {/* Area */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Area</label>
-                <div className="flex">
-                    <input
-                        type="number"
-                        name="area"
-                        value={formData.area}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter area"
-                    />
-                    <select
-                        name="areaUnit"
-                        value={formData.areaUnit}
-                        onChange={handleInputChange}
-                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    >
-                        <option value="sqft">Sq.ft</option>
-                        <option value="sqm">Sq.Mt</option>
-                    </select>
-                </div>
-            </div>
+                <div className="mt-4 w-full flex flex-col items-center">
+                    <h2 className="text-lg font-semibold mb-4">Area and Pricing Information</h2>
+                    <div className="w-full max-w-md">
+                        {/* Area */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Area</label>
+                            <div className="flex">
+                                <input
+                                    type="number"
+                                    name="area"
+                                    value={formData.area}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Enter area"
+                                />
+                                <select
+                                    name="areaUnit"
+                                    value={formData.areaUnit}
+                                    onChange={handleInputChange}
+                                    className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                >
+                                    <option value="sqft">Sq.ft</option>
+                                    <option value="sqm">Sq.Mt</option>
+                                </select>
+                            </div>
+                        </div>
 
-            {/* Built-up Area */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Built-up Area</label>
-                <div className="flex">
-                    <input
-                        type="number"
-                        name="builtUpArea"
-                        value={formData.builtUpArea}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter built-up area"
-                    />
-                    <select
-                        name="builtUpAreaUnit"
-                        value={formData.builtUpAreaUnit}
-                        onChange={handleInputChange}
-                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    >
-                        <option value="sqft">Sq.ft</option>
-                        <option value="sqm">Sq.Mt</option>
-                    </select>
-                </div>
-            </div>
+                        {/* Built-up Area */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Built-up Area</label>
+                            <div className="flex">
+                                <input
+                                    type="number"
+                                    name="builtUpArea"
+                                    value={formData.builtUpArea}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Enter built-up area"
+                                />
+                                <select
+                                    name="builtUpAreaUnit"
+                                    value={formData.builtUpAreaUnit}
+                                    onChange={handleInputChange}
+                                    className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                >
+                                    <option value="sqft">Sq.ft</option>
+                                    <option value="sqm">Sq.Mt</option>
+                                </select>
+                            </div>
+                        </div>
 
-            {/* Carpet Area */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Carpet Area</label>
-                <div className="flex">
-                    <input
-                        type="number"
-                        name="carpetArea"
-                        value={formData.carpetArea}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter carpet area"
-                    />
-                    <select
-                        name="carpetAreaUnit"
-                        value={formData.carpetAreaUnit}
-                        onChange={handleInputChange}
-                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    >
-                        <option value="sqft">Sq.ft</option>
-                        <option value="sqm">Sq.Mt</option>
-                    </select>
-                </div>
-            </div>
+                        {/* Carpet Area */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Carpet Area</label>
+                            <div className="flex">
+                                <input
+                                    type="number"
+                                    name="carpetArea"
+                                    value={formData.carpetArea}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Enter carpet area"
+                                />
+                                <select
+                                    name="carpetAreaUnit"
+                                    value={formData.carpetAreaUnit}
+                                    onChange={handleInputChange}
+                                    className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                >
+                                    <option value="sqft">Sq.ft</option>
+                                    <option value="sqm">Sq.Mt</option>
+                                </select>
+                            </div>
+                        </div>
 
-            {/* Terrace Area */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Terrace Area</label>
-                <div className="flex">
-                    <input
-                        type="number"
-                        name="terraceArea"
-                        value={formData.terraceArea}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter terrace area"
-                    />
-                    <select
-                        name="terraceAreaUnit"
-                        value={formData.terraceAreaUnit}
-                        onChange={handleInputChange}
-                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    >
-                        <option value="sqft">Sq.ft</option>
-                        <option value="sqm">Sq.Mt</option>
-                    </select>
-                </div>
-            </div>
+                        {/* Terrace Area */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Terrace Area</label>
+                            <div className="flex">
+                                <input
+                                    type="number"
+                                    name="terraceArea"
+                                    value={formData.terraceArea}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Enter terrace area"
+                                />
+                                <select
+                                    name="terraceAreaUnit"
+                                    value={formData.terraceAreaUnit}
+                                    onChange={handleInputChange}
+                                    className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                >
+                                    <option value="sqft">Sq.ft</option>
+                                    <option value="sqm">Sq.Mt</option>
+                                </select>
+                            </div>
+                        </div>
 
-            {/* Area Range */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Area Range</label>
-                <div className="flex gap-4">
-                    <input
-                        type="number"
-                        name="areaRangeFrom"
-                        value={formData.areaRangeFrom}
-                        onChange={handleInputChange}
-                        placeholder="From"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-                    <input
-                        type="number"
-                        name="areaRangeTo"
-                        value={formData.areaRangeTo}
-                        onChange={handleInputChange}
-                        placeholder="To"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    />
-                </div>
-                <select
-                    name="areaRangeUnit"
-                    value={formData.areaRangeUnit}
-                    onChange={handleInputChange}
-                    className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                >
-                    <option value="sqft">Sq.ft</option>
-                    <option value="sqm">Sq.Mt</option>
-                </select>
-            </div>
+                        {/* Area Range */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Area Range</label>
+                            <div className="flex gap-4">
+                                <input
+                                    type="number"
+                                    name="areaRangeFrom"
+                                    value={formData.areaRangeFrom}
+                                    onChange={handleInputChange}
+                                    placeholder="From"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                />
+                                <input
+                                    type="number"
+                                    name="areaRangeTo"
+                                    value={formData.areaRangeTo}
+                                    onChange={handleInputChange}
+                                    placeholder="To"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                />
+                            </div>
+                            <select
+                                name="areaRangeUnit"
+                                value={formData.areaRangeUnit}
+                                onChange={handleInputChange}
+                                className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            >
+                                <option value="sqft">Sq.ft</option>
+                                <option value="sqm">Sq.Mt</option>
+                            </select>
+                        </div>
 
-            {/* Plot Area */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Plot Area</label>
-                <div className="flex">
-                    <input
-                        type="number"
-                        name="plotArea"
-                        value={formData.plotArea}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter plot area"
-                    />
-                    <select
-                        name="plotAreaUnit"
-                        value={formData.plotAreaUnit}
-                        onChange={handleInputChange}
-                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    >
-                        <option value="sqft">Sq.ft</option>
-                        <option value="sqm">Sq.Mt</option>
-                    </select>
-                </div>
-            </div>
+                        {/* Plot Area */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Plot Area</label>
+                            <div className="flex">
+                                <input
+                                    type="number"
+                                    name="plotArea"
+                                    value={formData.plotArea}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Enter plot area"
+                                />
+                                <select
+                                    name="plotAreaUnit"
+                                    value={formData.plotAreaUnit}
+                                    onChange={handleInputChange}
+                                    className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                >
+                                    <option value="sqft">Sq.ft</option>
+                                    <option value="sqm">Sq.Mt</option>
+                                </select>
+                            </div>
+                        </div>
 
-            {/* Plot Dimension */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Plot Dimension</label>
-                <div className="flex">
-                    <input
-                        type="number"
-                        name="plotDimension"
-                        value={formData.plotDimension}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="Enter plot dimension"
-                    />
-                    <select
-                        name="plotDimensionUnit"
-                        value={formData.plotDimensionUnit}
-                        onChange={handleInputChange}
-                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    >
-                        <option value="sqft">Sq.ft</option>
-                        <option value="sqm">Sq.Mt</option>
-                    </select>
-                </div>
-            </div>
+                        {/* Plot Dimension */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Plot Dimension</label>
+                            <div className="flex">
+                                <input
+                                    type="number"
+                                    name="plotDimension"
+                                    value={formData.plotDimension}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Enter plot dimension"
+                                />
+                                <select
+                                    name="plotDimensionUnit"
+                                    value={formData.plotDimensionUnit}
+                                    onChange={handleInputChange}
+                                    className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                >
+                                    <option value="sqft">Sq.ft</option>
+                                    <option value="sqm">Sq.Mt</option>
+                                </select>
+                            </div>
+                        </div>
 
-            {/* Property Dimension */}
-            <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Property Dimension</label>
-                <div className="flex flex-col gap-4">
-                    <div className="flex">
-                        <input
-                            type="number"
-                            name="propertyHeight"
-                            value={formData.propertyHeight}
-                            onChange={handleInputChange}
-                            placeholder="Height"
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        />
-                        <select
-                            name="propertyHeightUnit"
-                            value={formData.propertyHeightUnit}
-                            onChange={handleInputChange}
-                            className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                            <option value="ft">Ft</option>
-                            <option value="m">M</option>
-                        </select>
+                        {/* Property Dimension */}
+                        <div className="mb-4">
+                            <label className="block text-sm font-medium text-gray-700">Property Dimension</label>
+                            <div className="flex flex-col gap-4">
+                                <div className="flex">
+                                    <input
+                                        type="number"
+                                        name="propertyHeight"
+                                        value={formData.propertyHeight}
+                                        onChange={handleInputChange}
+                                        placeholder="Height"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    />
+                                    <select
+                                        name="propertyHeightUnit"
+                                        value={formData.propertyHeightUnit}
+                                        onChange={handleInputChange}
+                                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    >
+                                        <option value="ft">Ft</option>
+                                        <option value="m">M</option>
+                                    </select>
+                                </div>
+
+                                <div className="flex">
+                                    <input
+                                        type="number"
+                                        name="propertyWidth"
+                                        value={formData.propertyWidth}
+                                        onChange={handleInputChange}
+                                        placeholder="Width"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    />
+                                    <select
+                                        name="propertyWidthUnit"
+                                        value={formData.propertyWidthUnit}
+                                        onChange={handleInputChange}
+                                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    >
+                                        <option value="ft">Ft</option>
+                                        <option value="m">M</option>
+                                    </select>
+                                </div>
+
+                                <div className="flex">
+                                    <input
+                                        type="number"
+                                        name="propertyDepth"
+                                        value={formData.propertyDepth}
+                                        onChange={handleInputChange}
+                                        placeholder="Depth"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    />
+                                    <select
+                                        name="propertyDepthUnit"
+                                        value={formData.propertyDepthUnit}
+                                        onChange={handleInputChange}
+                                        className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    >
+                                        <option value="ft">Ft</option>
+                                        <option value="m">M</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div className="flex justify-between mt-4">
+                            <button
+                                onClick={prevStep}
+                                className="bg-gray-500 text-white py-2 px-4 rounded-md"
+                            >
+                                Previous
+                            </button>
+                            <button
+                                onClick={nextStep}
+                                className="bg-green-500 text-white py-2 px-4 rounded-md"
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
-
-                    <div className="flex">
-                        <input
-                            type="number"
-                            name="propertyWidth"
-                            value={formData.propertyWidth}
-                            onChange={handleInputChange}
-                            placeholder="Width"
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        />
-                        <select
-                            name="propertyWidthUnit"
-                            value={formData.propertyWidthUnit}
-                            onChange={handleInputChange}
-                            className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                            <option value="ft">Ft</option>
-                            <option value="m">M</option>
-                        </select>
-                    </div>
-
-                    <div className="flex">
-                        <input
-                            type="number"
-                            name="propertyDepth"
-                            value={formData.propertyDepth}
-                            onChange={handleInputChange}
-                            placeholder="Depth"
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        />
-                        <select
-                            name="propertyDepthUnit"
-                            value={formData.propertyDepthUnit}
-                            onChange={handleInputChange}
-                            className="ml-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                            <option value="ft">Ft</option>
-                            <option value="m">M</option>
-                        </select>
-                    </div>
                 </div>
-            </div>
+            )}
 
-            <div className="flex justify-between mt-4">
-                <button
-                    onClick={prevStep}
-                    className="bg-gray-500 text-white py-2 px-4 rounded-md"
-                >
-                    Previous
-                </button>
-                <button
-                    onClick={nextStep}
-                    className="bg-green-500 text-white py-2 px-4 rounded-md"
-                >
-                    Next
-                </button>
-            </div>
-        </div>
-    </div>
-)}
+            {/* Step 4: Other Details */}
+            {step === 5 && (
+                <div className="mt-4 w-full flex flex-col items-center">
+                    <h2 className="text-lg font-semibold mb-4">Other Detail</h2>
 
+                </div>
+            )}
         </div>
     );
 }

@@ -3,6 +3,7 @@ import BannerVideo from './bannerVideo.mp4'; // Import your video
 // import { LuSearchSlash } from 'react-icons/lu';
 // import BannerVideo1 from './bannerVideo1.mp4';
 
+
 function Hero() {
     return (
         <div className="flex justify-center items-center my-8 mx-4">
@@ -56,6 +57,131 @@ function Hero() {
 }
 
 export default Hero;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { Search } from 'lucide-react';
+// import BannerVideo from './bannerVideo.mp4';
+
+// function Hero() {
+//     const [properties, setProperties] = useState([]);
+//     const [filteredProperties, setFilteredProperties] = useState([]);
+//     const [city, setCity] = useState('Pune');
+//     const [searchQuery, setSearchQuery] = useState('');
+
+//     // Fetch properties from the API
+//     useEffect(() => {
+//         const fetchProperties = async () => {
+//             try {
+//                 const response = await axios.get('http://192.168.0.105:8000/properties');
+//                 setProperties(response.data);
+//             } catch (error) {
+//                 console.error('Error fetching properties:', error);
+//             }
+//         };
+
+//         fetchProperties();
+//     }, []);
+
+//     // Filter properties based on city and search query
+//     useEffect(() => {
+//         const filtered = properties.filter((property) => 
+//             property.city.toLowerCase() === city.toLowerCase() &&
+//             property.location.toLowerCase().includes(searchQuery.toLowerCase())
+//         );
+//         setFilteredProperties(filtered);
+//     }, [city, searchQuery, properties]);
+
+//     return (
+//         <div className="flex justify-center items-center my-8 mx-4">
+//             <div className="relative w-full h-[75vh] rounded-lg overflow-hidden">
+//                 <video
+//                     className="absolute inset-0 w-full h-full object-cover bg-black bg-opacity-50"
+//                     autoPlay
+//                     loop
+//                     muted
+//                 >
+//                     <source src={BannerVideo} type="video/mp4" />
+//                     Your browser does not support the video tag.
+//                 </video>
+//                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
+//                     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-2 text-center">
+//                         End-to-End Commercial Real Estate Platform
+//                     </h1>
+//                     <p className="hidden md:flex text-lg sm:text-xl md:text-2xl lg:text-xl text-white mb-6 text-center">
+//                         Invest, Sell and Rent Commercial Real Estate backed by verified data.
+//                     </p>
+//                     <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-2/3 space-y-4 sm:space-y-0">
+//                         <div className="flex items-center space-x-2 w-full sm:w-auto">
+//                             <label htmlFor="city" className="text-sm sm:text-base lg:text-lg">
+//                                 City
+//                             </label>
+//                             <select
+//                                 id="city"
+//                                 value={city}
+//                                 onChange={(e) => setCity(e.target.value)}
+//                                 className="border p-2 rounded w-full sm:w-auto flex-1 sm:flex-none"
+//                             >
+//                                 <option value="Pune">Pune</option>
+//                                 <option value="Mumbai">Mumbai</option>
+//                                 <option value="Bangalore">Bangalore</option>
+//                                 <option value="Hyderabad">Hyderabad</option>
+//                                 {/* Add other city options here */}
+//                             </select>
+//                         </div>
+//                         <input
+//                             type="text"
+//                             placeholder="What locations do you prefer?"
+//                             value={searchQuery}
+//                             onChange={(e) => setSearchQuery(e.target.value)}
+//                             className="border p-2 rounded w-full flex-1"
+//                         />
+//                         <button className="p-2 rounded border border-gray-500 w-full sm:w-auto flex justify-center items-center">
+//                             <Search size={20} />
+//                         </button>
+//                     </div>
+//                     <div className="mt-4 w-full sm:w-2/3 md:w-3/4 lg:w-2/3 text-white">
+//                         {filteredProperties.length > 0 ? (
+//                             filteredProperties.map((property) => (
+//                                 <div key={property.id} className="border-b border-gray-500 py-2">
+//                                     <h3 className="text-lg font-semibold">{property.location}</h3>
+//                                     <p>{property.description}</p>
+//                                 </div>
+//                             ))
+//                         ) : (
+//                             <p>No properties found for the selected criteria.</p>
+//                         )}
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default Hero;
+
 
 
 

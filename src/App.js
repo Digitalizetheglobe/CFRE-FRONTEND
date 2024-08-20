@@ -13,7 +13,9 @@ import Office from './Components/Office/office';
 import Showroom from './Components/Showroom/Showroom';
 import AddProperty from './AdminDashboard/PropertyPages/AddProperty';
 import AddProperty1 from './AdminDashboard/PropertyPages/AddProperty1';
+import AddProperty2 from './AdminDashboard/PropertyPages/AddProperty2';
 
+import UserContext from './Components/Context/UserContext';
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function MainContent() {
         <Route path="/showroom" element={<Showroom />} />
         <Route path='/addproperty' element={<AddProperty />} />
         <Route path='/addproperty1' element={<AddProperty1 />} />
+        <Route path='/addproperty2' element={<AddProperty2 />} />
       </Routes>
       {isHomePage && <CategoryCarousel />}
     </main>
