@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { FaWhatsapp } from 'react-icons/fa';
 import { MdOutlinePinDrop } from 'react-icons/md';
 import { RiProgress2Line } from "react-icons/ri";
-import { AiFillDatabase } from "react-icons/ai";
-import { AiFillRead } from "react-icons/ai";
+import { AiFillDatabase, AiFillRead } from "react-icons/ai";
 
-
-const PropertyDetail = () => {
+const PropertyDetailInRent = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -18,106 +17,24 @@ const PropertyDetail = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        phone: ''
+        mobile: ''
     });
 
-    // Updated properties array with additional properties
-    const properties = [
-        {
-            id: '1',
-            image: '/ATP-Ongoing.jpg',
-            price: 9,
-            location: 'Baner',
-            yield: 8.33,
-            rental: 7.09,
-            name: 'Baner Business Center',
-            description: 'Spacious office space located in the heart of Baner. Ideal for startups and established businesses.',
-            builtUpArea: '2000 sq ft',
-            carpetArea: '1500 sq ft',
-            seats: '50',
-            buildingType: 'Commercial',
-            status: 'Available',
-            configuration: 'Open Plan',
-            amenities: [
-                'High-Speed Internet',
-                '24/7 Security',
-                'Conference Rooms',
-                'Parking',
-                'Air Conditioning',
-                'CCTV Surveillance',
-                'Power Backup',
-                'Elevators',
-                'Fire Safety',
-                'Cleaning Services'
-            ],
-            moreInfo: 'This property is designed with state-of-the-art facilities that cater to both startups and established businesses. The location offers easy access to public transportation and local amenities.',
-            nearby: ['Hinjewadi IT Park', 'Balewadi Sports Complex', 'Westend Mall']
-        },
-        {
-            id: '2',
-            image: '/ATP-Ongoing.jpg',
-            price: 12,
-            location: 'Hinjewadi',
-            yield: 7.75,
-            rental: 5.50,
-            name: 'Hinjewadi IT Park',
-            description: 'Modern office space with excellent connectivity and infrastructure.',
-            builtUpArea: '2500 sq ft',
-            carpetArea: '1800 sq ft',
-            seats: '60',
-            buildingType: 'Commercial',
-            status: 'Available',
-            configuration: 'Private Offices',
-            amenities: [
-                'High-Speed Internet',
-                'Gym',
-                'Cafeteria',
-                'Parking',
-                '24/7 Security',
-                'Power Backup',
-                'Fire Safety',
-                'Recreational Zones',
-                'Elevators',
-                'CCTV Surveillance'
-            ],
-            moreInfo: 'The IT Park offers world-class facilities with various food courts and recreational zones. It is well connected to major highways and the city center.',
-            nearby: ['Pune University', 'Rajiv Gandhi IT Park', 'Blue Ridge']
-        },
-        {
-            id: '3',
-            image: '/ATP-Ongoing.jpg',
-            price: 15,
-            location: 'Viman Nagar',
-            yield: 9.00,
-            rental: 8.20,
-            name: 'Viman Nagar Business Hub',
-            description: 'Prime office space with great visibility and accessibility.',
-            builtUpArea: '3000 sq ft',
-            carpetArea: '2200 sq ft',
-            seats: '80',
-            buildingType: 'Commercial',
-            status: 'Occupied',
-            configuration: 'Open Plan',
-            amenities: [
-                'High-Speed Internet',
-                'Reception',
-                'Meeting Rooms',
-                'Parking',
-                'Air Conditioning',
-                '24/7 Security',
-                'CCTV Surveillance',
-                'Power Backup',
-                'Fire Safety',
-                'Elevators'
-            ],
-            moreInfo: 'Located in a bustling commercial district, this hub offers proximity to retail centers and dining options, making it an ideal location for business operations.',
-            nearby: ['Phoenix Market City', 'Kalyani Nagar', 'Aga Khan Palace']
-        },
-        // Additional properties...
-    ];
+    // State to manage the property data
+    const [property, setProperty] = useState(null);
 
+    useEffect(() => {
+        const fetchProperty = async () => {
+            try {
+                const response = await axios.get(`http://192.168.0.105:8000/addproperty/${id}`);
+                setProperty(response.data);
+            } catch (error) {
+                console.error('Error fetching property:', error);
+            }
+        };
 
-    const property = properties.find(prop => prop.id === id);
+        fetchProperty();
+    }, [id]);
 
     if (!property) return <p>Property not found</p>;
 
@@ -131,17 +48,34 @@ const PropertyDetail = () => {
     };
 
     // Function to handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('Form submitted', formData);
-        // Close modal after submission
-        setIsModalOpen(false);
+        
+        try {
+            // Send a POST request with the form data
+            const response = await axios.post('http://192.168.0.105:8000/inquire', formData);
+            
+            // Log the response for debugging
+            console.log('Form submitted successfully', response.data);
+            
+            // You can also handle the response if needed, e.g., show a success message
+            alert('Your inquiry has been submitted successfully!');
+            
+            // Close modal after successful submission
+            setIsModalOpen(false);
+        } catch (error) {
+            // Handle errors if the request fails
+            console.error('Error submitting form:', error);
+            
+            // Optionally, show an error message to the user
+            alert('There was an error submitting your inquiry. Please try again.');
+        }
     };
 
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
+
     return (
         <div className="bg-white py-8 px-4 sm:px-10">
             <div className="max-w-8xl mx-auto">
@@ -159,10 +93,13 @@ const PropertyDetail = () => {
                     <div className="flex flex-col lg:flex-row gap-8">
                         {/* Photo Section */}
                         <div className="relative flex-none w-full lg:w-3/5">
-                            <div
-                                className="relative w-full h-96 bg-cover bg-center"
-                                style={{ backgroundImage: `url(${property.image})` }}
-                            >
+                            {/* Image Section */}
+                            <div className="relative w-full h-96">
+                                <img
+                                    className="w-full h-full object-cover"
+                                    src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg"
+                                    alt="Property"
+                                />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
                                 {/* View All Images Button */}
                                 <button
@@ -174,29 +111,30 @@ const PropertyDetail = () => {
                             </div>
                         </div>
 
+
                         {/* Details Section */}
                         <div className="flex-1 w-full lg:w-2/5 mt-11">
                             <div className="bg-white border border-gray-500 shadow-md shadow-slate-700 rounded-lg overflow-hidden p-4">
                                 {/* Building Name */}
-                                <h2 className="text-3xl font-bold mb-4">{property.name}</h2>
+                                <h2 className="text-3xl font-bold mb-4">{property.buildingName}</h2>
 
                                 {/* Price and Location Section */}
                                 <div className="flex flex-col mb-4">
-                                    <h3 className="text-2xl font-bold">₹{property.price} Cr</h3>
+                                    <h3 className="text-2xl font-bold">₹{property.cost} Lac</h3>
                                     <div className="flex items-center mt-1">
                                         <MdOutlinePinDrop className="text-gray-500 mr-1" />
-                                        <p className="text-gray-500">{property.location}</p>
+                                        <p className="text-gray-500">{property.location},{property.city}</p>
                                     </div>
                                 </div>
 
                                 <div className="flex justify-between mb-4">
                                     <div className="p-2 border border-gray-500 rounded-md text-right">
                                         <p className="text-gray-500 text-xs">Avg. Rental Yield:</p>
-                                        <p className="text-lg font-semibold">{property.yield}%</p>
+                                        <p className="text-lg font-semibold">{property.yield}10%</p>
                                     </div>
                                     <div className="p-2 border border-gray-500 rounded-md text-right">
                                         <p className="text-gray-500 text-xs">Monthly Rental:</p>
-                                        <p className="text-lg font-semibold">₹{property.rental} L</p>
+                                        <p className="text-lg font-semibold">₹{property.rental} 4.5L</p>
                                     </div>
                                 </div>
 
@@ -219,13 +157,12 @@ const PropertyDetail = () => {
                     </div>
                 </div>
 
-
                 {/* Additional Details and Amenities Section */}
                 <div className="w-full bg-white border border-gray-500 shadow-md rounded-lg overflow-hidden p-6 ">
                     {/* Description Section */}
                     <div className="mb-20">
                         <h4 className="text-xl font-semibold mb-2">About Property</h4>
-                        <p className="text-gray-700">{property.description}</p>
+                        <p className="text-gray-700">The property benefits from [additional features, e.g., ample parking, proximity to major highways/public transport, high foot traffic area], making it a strategic location for businesses looking to [business goals, e.g., expand operations, enhance brand visibility].</p>
                     </div>
 
                     {/* Property Insight Table */}
@@ -237,37 +174,73 @@ const PropertyDetail = () => {
                         <div className="flex flex-wrap gap-4">
                             <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
                                 <p className="text-gray-500 text-xs font-semibold">Builtup Area:</p>
-                                <p className="text-lg font-medium">{property.builtUpArea}</p>
+                                <p className="text-lg font-medium">{property.buArea}</p>
                             </div>
                             <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
                                 <p className="text-gray-500 text-xs font-semibold">Carpet Area:</p>
                                 <p className="text-lg font-medium">{property.carpetArea}</p>
                             </div>
                             <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
-                                <p className="text-gray-500 text-xs font-semibold">Available Seats:</p>
-                                <p className="text-lg font-medium">{property.seats}</p>
+                                <p className="text-gray-500 text-xs font-semibold">Furnishing:</p>
+                                <p className="text-lg font-medium">{property.furnishing}</p>
                             </div>
                             <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
                                 <p className="text-gray-500 text-xs font-semibold">Building Type:</p>
-                                <p className="text-lg font-medium">{property.buildingType}</p>
+                                <p className="text-lg font-medium">{property.propertyType}</p>
                             </div>
                             <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
                                 <p className="text-gray-500 text-xs font-semibold">Current Status:</p>
-                                <p className="text-lg font-medium">{property.status}</p>
+                                <p className="text-lg font-medium">{property.purpose}</p>
                             </div>
-                            <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                            {/* <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
                                 <p className="text-gray-500 text-xs font-semibold">Building Configuration:</p>
                                 <p className="text-lg font-medium">{property.configuration}</p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
+
 
                     <div className="mb-20">
                         <div className="flex items-center mb-4">
                             <AiFillDatabase className="text-xl text-[#d84a48] mr-2" />
-                            <h4 className="text-xl font-semibold">Amenities</h4>
+                            <h4 className="text-xl font-semibold">Amenites</h4>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="flex flex-wrap gap-4">
+                            <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                                <p className="text-gray-500 text-xs font-semibold">Bike Parking:</p>
+                                <p className="text-lg font-medium">{property.bikeParking}</p>
+                            </div>
+                            <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                                <p className="text-gray-500 text-xs font-semibold">Car Parking
+                                    :</p>
+                                <p className="text-lg font-medium">{property.carParking
+                                }</p>
+                            </div>
+                            <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                                <p className="text-gray-500 text-xs font-semibold">Cafeteria:</p>
+                                <p className="text-lg font-medium">{property.cafeteria} Available</p>
+                            </div>
+                            {/*  <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                                <p className="text-gray-500 text-xs font-semibold">Building Type:</p>
+                                <p className="text-lg font-medium">{property.propertyType}</p>
+                            </div>
+                            <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                                <p className="text-gray-500 text-xs font-semibold">Current Status:</p>
+                                <p className="text-lg font-medium">{property.purpose}</p>
+                            </div>
+                            <div className="flex-1 min-w-[150px] p-2 border border-gray-400 rounded-md">
+                                <p className="text-gray-500 text-xs font-semibold">Building Configuration:</p>
+                                <p className="text-lg font-medium">{property.configuration}</p>
+                            </div> */}
+                        </div>
+                    </div>
+
+                    <div className="mb-20">
+                        {/* <div className="flex items-center mb-4">
+                            <AiFillDatabase className="text-xl text-[#d84a48] mr-2" />
+                            <h4 className="text-xl font-semibold">Amenities</h4>
+                        </div> */}
+                        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             {property.amenities.map((amenity, index) => (
                                 <div
                                     key={index}
@@ -277,84 +250,60 @@ const PropertyDetail = () => {
                                     <p className="text-gray-700">{amenity}</p>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
-
-                    <div className="mb-20">
-                        <div className="flex items-center mb-4">
-                            <AiFillDatabase className="text-xl text-[#d84a48] mr-2" />
-                            <h4 className="text-xl font-semibold">Nearby Properties</h4>
-                        </div>
-                        <div className="grid  grid-flow-col gap-4">
-                            {property.nearby.map((place, index) => (
-                                <div
-                                    key={index}
-                                    className="flex-1 min-w-auto p-2  rounded-md flex items-center"
-                                >
-                                    <MdOutlinePinDrop className="text-gray-500 text-lg mr-2" />
-                                    <p className="text-gray-700">{place}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-
-                    {/* More About Property Section */}
-                    <div className="mb-20">
-                        <div className='flex item-centre mb-4'>
-                            <AiFillRead className=' text-xl text-[#d84a48] mr-2' />
-                            <h4 className="text-xl font-semibold ">More About Property</h4>
-                        </div>
-                        <p className="text-gray-700">{property.moreInfo}</p>
-                    </div>
-
                 </div>
+            </div>
 
-                {/* Modal for Contact Form */}
-                {isModalOpen && (<div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg p-8 shadow-lg w-full max-w-md">
-                        <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                                <label htmlFor="name" className="block text-gray-700 font-medium mb-1">Name</label>
+            {/* Contact Form Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                        <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
                                 <input
                                     type="text"
+                                    id="name"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md"
                                     required
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="email" className="block text-gray-700 font-medium mb-1">Email</label>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
                                 <input
                                     type="email"
+                                    id="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md"
                                     required
                                 />
                             </div>
-                            <div>
-                                <label htmlFor="phone" className="block text-gray-700 font-medium mb-1">Phone</label>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 mb-2" htmlFor="phone">Phone</label>
                                 <input
-                                    type="text"
+                                    type="tel"
+                                    id="phone"
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md"
                                     required
                                 />
                             </div>
-                            <div className="flex justify-end space-x-2">
+                            <div className="flex justify-between">
                                 <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-400"
+                                    className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
                                 >
-                                    Cancel
+                                    Close
                                 </button>
                                 <button
                                     type="submit"
@@ -366,10 +315,9 @@ const PropertyDetail = () => {
                         </form>
                     </div>
                 </div>
-                )}
-            </div>
+            )}
         </div>
     );
 };
 
-export default PropertyDetail;
+export default PropertyDetailInRent;
