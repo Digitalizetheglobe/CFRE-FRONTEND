@@ -258,63 +258,64 @@ const PropertyDetailInRent = () => {
             {/* Contact Form Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
-                        <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2" htmlFor="phone">Phone</label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div className="flex justify-between">
-                                <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                    className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-800"
-                                >
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4">Contact Us</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 mb-2 text-sm sm:text-base" htmlFor="name">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                className="w-full p-2 border border-gray-300 rounded-md text-sm sm:text-base"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 mb-2 text-sm sm:text-base" htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                className="w-full p-2 border border-gray-300 rounded-md text-sm sm:text-base"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 mb-2 text-sm sm:text-base" htmlFor="phone">Phone</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                                className="w-full p-2 border border-gray-300 rounded-md text-sm sm:text-base"
+                                required
+                            />
+                        </div>
+                        <div className="flex flex-col sm:flex-row justify-between">
+                            <button
+                                type="button"
+                                onClick={() => setIsModalOpen(false)}
+                                className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 mb-2 sm:mb-0 sm:mr-2"
+                            >
+                                Close
+                            </button>
+                            <button
+                                type="submit"
+                                className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-800"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
                 </div>
+            </div>
+            
             )}
         </div>
     );

@@ -22,8 +22,7 @@ import Unlease from './Components/Invest/Unlease';
 import PropertyDetailInRent from './Components/Rent/PropertyDetailsInRent';
 import PropertyDetailInInvest from './Components/Invest/PropertyDetailInInvest';
 import UserContext from './Components/Context/UserContext';
-
-
+import PropertyList from './Components/Hero/Propertylist';
 
 function App() {
   return (
@@ -49,6 +48,7 @@ function MainContent() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/invest" element={<Invest />} />
         <Route path="/rent" element={<Rent />} />
+        <Route path='/propertyList' element={<PropertyList />} />
         <Route path="/office" element={<Office />} />
         <Route path="/showroom" element={<Showroom />} />
         <Route path='/addproperty' element={<AddProperty />} />

@@ -207,6 +207,33 @@ function Header() {
         navigate('/profile');
     };
 
+    useEffect(() => {
+        const toggleOpen = document.getElementById('toggleOpen');
+        const toggleClose = document.getElementById('toggleClose');
+        const collapseMenu = document.getElementById('collapseMenu');
+
+        function handleClick() {
+            if (collapseMenu.style.display === 'block') {
+                collapseMenu.style.display = 'none';
+            } else {
+                collapseMenu.style.display = 'block';
+            }
+        }
+
+        if (toggleOpen && toggleClose) {
+            toggleOpen.addEventListener('click', handleClick);
+            toggleClose.addEventListener('click', handleClick);
+        }
+
+        // Cleanup function to remove event listeners
+        return () => {
+            if (toggleOpen && toggleClose) {
+                toggleOpen.removeEventListener('click', handleClick);
+                toggleClose.removeEventListener('click', handleClick);
+            }
+        };
+    }, []);
+    
     const toggleInvestDropdown = async () => {
         setInvestDropdownOpen(!isInvestDropdownOpen);
         if (isRentDropdownOpen) setRentDropdownOpen(false); // Close rent dropdown if open
