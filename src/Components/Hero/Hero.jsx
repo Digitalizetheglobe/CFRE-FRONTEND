@@ -77,7 +77,7 @@ function Hero() {
             try {
                 const response = await axios.get('http://192.168.0.105:8000/properties');
                 setProperties(response.data);
-                console.log("7777777===>", response.data);
+                console.log('111111111====>', response.data);
                 
             } catch (error) {
                 console.error('Error fetching properties:', error);
@@ -86,22 +86,26 @@ function Hero() {
 
         fetchProperties();
     }, []);
-    console.log("8888988===>",properties);
-    
 
     useEffect(() => {
         // Filter properties based on city and search query
         const filterProperties = () => {
-            const filtered = properties.filter(property => 
-                (selectedCity ? property.location === selectedCity : true) &&
-                (searchQuery ? property.description.toLowerCase().includes(searchQuery.toLowerCase()) : true)
-            );
+            const filtered = properties.filter(property => {
+                // Check if the selected city is part of the location (ignoring case)
+                const cityMatch = selectedCity ? property.location.toLowerCase().includes(selectedCity.toLowerCase()) : true;
+                // Check if the search query matches the description (ignoring case)
+                const searchMatch = searchQuery ? property.description?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
+
+                return cityMatch && searchMatch;
+            });
             setFilteredProperties(filtered);
         };
 
         filterProperties();
     }, [selectedCity, searchQuery, properties]);
 
+        console.log('222222222====>',filteredProperties);
+        
     const handleSearch = () => {
         navigate('/PropertyList', { state: { properties: filteredProperties } });
     };
@@ -162,6 +166,7 @@ function Hero() {
 }
 
 export default Hero;
+
 
 
 

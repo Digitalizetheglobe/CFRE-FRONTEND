@@ -5,6 +5,8 @@ import PropertyCard from './PropertyCard'; // Import PropertyCard component
 function PropertyList() {
     const location = useLocation();
     const properties = location.state?.properties || [];
+    console.log('444444444==========>',properties);
+    
 
     return (
         <div className="p-4">
