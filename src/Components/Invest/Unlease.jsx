@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
-import { Link } from 'react-router-dom';
+import ContactForm from '../MainBody/ContactForm';
 
 const Unlease = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
+    const [isFormVisible, setFormVisible] = useState(false);
+
+    const handleButtonClick = () => {
+        setFormVisible(true);
+    };
+
+    const handleCloseForm = () => {
+        setFormVisible(false);
+    };
 
     useEffect(() => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('http://192.168.0.105:8000/saleproperty');
                 setProperties(response.data);
+
                 const unleasedProperties = response.data.filter(property => property.propertyType === 'Unleased');
                 setFilteredProperties(unleasedProperties);
             } catch (error) {
@@ -83,12 +93,24 @@ const Unlease = () => {
                     <p>No unleased properties found.</p>
                 ) : (
                     filteredProperties.map(property => (
-                        <Link key={property.id} to={`/property-detail/${property.id}`}>
-                            <PropertyCard property={property} />
-                        </Link>
+                        <PropertyCard 
+                            key={property.id} 
+                            property={property}
+                            onEnquire={handleButtonClick} // Pass the handler
+                        />
                     ))
                 )}
             </div>
+
+            {/* Render ContactForm only if isFormVisible is true */}
+            {isFormVisible && (
+                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
+                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+                        <ContactForm onClose={handleCloseForm} />
+                    </div>
+                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
+                </div>
+            )}
         </div>
     );
 };

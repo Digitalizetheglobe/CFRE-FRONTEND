@@ -116,23 +116,20 @@ function Header() {
         setInvestDropdownOpen(false);
     };
 
+
     return (
         <header className='shadow-md tracking-wide relative z-50'>
-            <section className='hidden md:flex items-center justify-between py-2 bg-[#153b63] text-white px-10'>
-                <p className='text-sm'>
-                    <strong className="mx-3">Address:</strong>320, HBC, Hirabaug Chowk, Tilak Road Pune- 411002
-                    <button className="mx-3" onClick={handlePhoneClick}>Contact No:+91 8149977661 </button>
-                </p>
-                <button
-                    onClick={handleButtonClick}
-                    className='px-4 py-2 text-sm rounded-full hover:text-white text-white border-2 border-transparent hover:bg-[#d84a48] transition-all ease-in-out duration-300'>
-                    Enquire Now
-                </button>
-            </section>
 
             <div className='flex flex-wrap items-center justify-between gap-5 w-full'>
                 <Link to="/">
-                    <img src={logo} alt="logo" className='w-14 mx-10 mt-1' />
+                    <Link to="/">
+                        <img
+                            src={logo}
+                            alt="logo"
+                            className="w-20 mx-10 mt-1  transition-transform duration-300 ease-in-out transform  shadow-lg"
+                        />
+                    </Link>
+
                 </Link>
 
                 <div id="collapseMenu"
@@ -158,11 +155,11 @@ function Header() {
                         <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3 relative'>
                             <button
                                 onClick={toggleRentDropdown}
-                                className='hover:text-[#d84a48] text-gray-800 block text-[18px] focus:outline-none'>
+                                className='hover:text-[#d84a48] text-gray-800 block text-[18px] focus:outline-none cursor-pointer'>
                                 Rent
                             </button>
                             {isRentDropdownOpen && (
-                                <ul className='absolute left-0 bg-white shadow-lg mt-2 rounded-md z-50 border border-gray-200 w-96'>
+                                <ul className='absolute left-0 bg-white shadow-lg mt-2 rounded-md z-50 border border-gray-200 w-96 cursor-pointer'>
                                     <li className='py-2 px-4 hover:bg-gray-200' onClick={() => handleDropdownClick('Furnished')}>
                                         Furnished
                                     </li>
@@ -182,7 +179,7 @@ function Header() {
                                 Invest
                             </button>
                             {isInvestDropdownOpen && (
-                                <ul className='absolute left-0 bg-white shadow-lg mt-2 rounded-md z-50 border border-gray-200 w-36'>
+                                <ul className='absolute left-0 bg-white shadow-lg mt-2 rounded-md z-50 border border-gray-200 w-36 cursor-pointer'>
                                     <li className='py-2 px-4 hover:bg-gray-200' onClick={handleInvestOptionClick}>
                                         <Link to='/preleased'>Pre-Leased</Link>
                                     </li>
@@ -193,7 +190,7 @@ function Header() {
                             )}
                         </li>
                         <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <Link to='/projects' className='hover:text-[#d84a48] text-gray-800 block text-[18px]'>
+                            <Link to='/projectproperty' className='hover:text-[#d84a48] text-gray-800 block text-[18px]'>
                                 Projects
                             </Link>
                         </li>
@@ -214,11 +211,6 @@ function Header() {
                         </svg>
                     </button>
 
-                    {/* <button
-                        onClick={handleProfileClick}
-                        className='px-5 py-3 bg-[#153b63] text-white rounded-full shadow-md'>
-                        Profile
-                    </button> */}
                 </div>
             </div>
 
@@ -237,3 +229,23 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
+{/* <button
+    onClick={handleProfileClick}
+    className='px-5 py-3 bg-[#153b63] text-white rounded-full shadow-md'>
+    Profile
+    </button> */}
+{/* <section className='hidden md:flex items-center justify-between py-2 bg-[#153b63] text-white px-10'>
+        <p className='text-sm'>
+        <strong className="mx-3">Address:</strong>320, HBC, Hirabaug Chowk, Tilak Road Pune- 411002
+        <button className="mx-3" onClick={handlePhoneClick}>Contact No:+91 8149977661 </button>
+        </p>
+        <button
+                onClick={handleButtonClick}
+                className='px-4 py-2 text-sm rounded-full hover:text-white text-white border-2 border-transparent hover:bg-[#d84a48] transition-all ease-in-out duration-300'>
+                Enquire Now
+                </button>
+                </section> */}

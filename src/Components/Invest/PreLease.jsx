@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
+import ContactForm from '../MainBody/ContactForm';
 
 const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
+    const [isFormVisible, setFormVisible] = useState(false);
+
+    const handleButtonClick = () => {
+        setFormVisible(true);
+    };
+
+    const handleCloseForm = () => {
+        setFormVisible(false);
+    };
 
     useEffect(() => {
         const fetchProperties = async () => {
@@ -16,7 +26,6 @@ const Prelease = () => {
 
                 console.log("Fetched properties:", response.data);
 
-                // Initial filtering based on 'Preleased' property type
                 const preleasedProperties = response.data.filter(property => property.propertyType === 'Preleased');
                 setFilteredProperties(preleasedProperties);
             } catch (error) {
@@ -87,55 +96,26 @@ const Prelease = () => {
                     <p>No pre-leased properties found.</p>
                 ) : (
                     filteredProperties.map(property => (
-                        <PropertyCard key={property.id} property={property} />
+                        <PropertyCard 
+                            key={property.id} 
+                            property={property}
+                            onEnquire={handleButtonClick} // Pass the handler
+                        />
                     ))
                 )}
             </div>
+
+            {/* Render ContactForm only if isFormVisible is true */}
+            {isFormVisible && (
+                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
+                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+                        <ContactForm onClose={handleCloseForm} />
+                    </div>
+                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
+                </div>
+            )}
         </div>
     );
 };
 
 export default Prelease;
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import PropertyCard from './PropertyCard';
-
-// const Prelease = () => {
-//     const [properties, setProperties] = useState([]);
-
-//     useEffect(() => {
-//         const fetchProperties = async () => {
-//             try {
-//                 const response = await axios.get('http://192.168.0.105:8000/saleproperty');
-//                 setProperties(response.data);
-
-//                 console.log("Fetched properties:", response.data);
-//             } catch (error) {
-//                 console.error('Error fetching properties:', error);
-//             }
-//         };
-
-//         fetchProperties();
-//     }, []);
-
-//     return (
-//         <div className="container mx-auto p-4">
-//             <h1 className="text-4xl mb-6">Pre-leased Properties</h1>
-
-//             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-//                 {properties.length === 0 ? (
-//                     <p>No properties found.</p>
-//                 ) : (
-//                     properties.map(property => (
-//                         <PropertyCard key={property.id} property={property} />
-//                     ))
-//                 )}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Prelease;

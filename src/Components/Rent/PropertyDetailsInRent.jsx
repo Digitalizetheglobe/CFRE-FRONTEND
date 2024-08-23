@@ -120,7 +120,7 @@ const PropertyDetailInRent = () => {
 
                                 {/* Price and Location Section */}
                                 <div className="flex flex-col mb-4">
-                                    <h3 className="text-2xl font-bold">₹{property.cost} Lac</h3>
+                                    <h3 className="text-2xl font-bold">₹{property.cost} Lacs</h3>
                                     <div className="flex items-center mt-1">
                                         <MdOutlinePinDrop className="text-gray-500 mr-1" />
                                         <p className="text-gray-500">{property.location},{property.city}</p>

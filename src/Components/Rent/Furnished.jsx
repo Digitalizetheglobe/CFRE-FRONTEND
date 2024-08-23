@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
+import ContactForm from '../MainBody/ContactForm';
 
 const Furnished = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
+    const [isFormVisible, setFormVisible] = useState(false);
+
+    const handleButtonClick = () => {
+        setFormVisible(true);
+    };
+
+    const handleCloseForm = () => {
+        setFormVisible(false);
+    };
 
     useEffect(() => {
         const fetchProperties = async () => {
@@ -77,10 +87,28 @@ const Furnished = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredProperties.map(property => (
-                    <PropertyCard key={property.id} property={property} />
-                ))}
+                {filteredProperties.length === 0 ? (
+                    <p>No fully furnished properties found.</p>
+                ) : (
+                    filteredProperties.map(property => (
+                        <PropertyCard 
+                            key={property.id} 
+                            property={property} 
+                            onEnquire={handleButtonClick} // Pass the handler
+                        />
+                    ))
+                )}
             </div>
+
+            {/* Render ContactForm only if isFormVisible is true */}
+            {isFormVisible && (
+                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
+                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+                        <ContactForm onClose={handleCloseForm} />
+                    </div>
+                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
+                </div>
+            )}
         </div>
     );
 };

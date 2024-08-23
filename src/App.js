@@ -23,7 +23,9 @@ import PropertyDetailInRent from './Components/Rent/PropertyDetailsInRent';
 import PropertyDetailInInvest from './Components/Invest/PropertyDetailInInvest';
 import UserContext from './Components/Context/UserContext';
 import PropertyList from './Components/Hero/Propertylist';
-import Projects from './Components/Projects/projects';
+import ProjectProperty from './Components/Projects/ProjectProperty';
+
+
 
 function App() {
   return (
@@ -48,8 +50,9 @@ function MainContent() {
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/invest" element={<Invest />} />
-        <Route path="/rent" element={<Rent />} />
-        <Route path="projects" element={<Projects />} />
+        <Route path="/rent"  element={<Rent />} />
+        {/* <Route path='/Projects' element={<Projects />} /> */}
+        <Route path='/projectproperty' element={<ProjectProperty />} />
         <Route path='/propertyList' element={<PropertyList />} />
         <Route path="/office" element={<Office />} />
         <Route path="/showroom" element={<Showroom />} />

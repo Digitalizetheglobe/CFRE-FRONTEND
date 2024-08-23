@@ -2,7 +2,7 @@ import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://yourwebsite.com/property/${property.id}`;
     const title = property.buildingName;
 
@@ -42,7 +42,8 @@ const PropertyCard = ({ property }) => {
             </div>
 
             <div className="px-6 pb-4 flex justify-between items-center">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
+                onClick={onEnquire}>
                     Enquire
                 </button>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10">

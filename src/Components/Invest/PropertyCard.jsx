@@ -2,7 +2,7 @@ import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon from react-icons\
 import { Link } from 'react-router-dom'; // Import Link for navigation
 
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property, onEnquire  }) => {
     const shareUrl = `https://yourwebsite.com/property/${property.id}`;
     const title = property.title;
 
@@ -57,7 +57,8 @@ const PropertyCard = ({ property }) => {
                 </p>
             </div> */}
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5"
+                  onClick={onEnquire}>
                     Enquire
                 </button>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded flex items-center h-10 w-10">
