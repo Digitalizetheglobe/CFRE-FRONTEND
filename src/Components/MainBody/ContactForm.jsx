@@ -19,13 +19,26 @@ const ContactForm = ({ onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // onSubmit(formData);
-        setIsSubmitted(true); // Show the thank you message
+        
+        // Log form data to ensure it's being captured correctly
+        console.log("Form Data Submitted:", formData);
+
+        // Ensure that the onSubmit function is being called
+        if (onSubmit) {
+            onSubmit(formData);
+        }
+
+        // Check if the form fields are filled in correctly
+        if (formData.name && formData.number && formData.email && formData.message) {
+            setIsSubmitted(true); // Show the thank you message
+        } else {
+            console.log("Please fill all the fields.");
+        }
     };
 
     const handleClose = () => {
         setIsSubmitted(false);
-        window.location.href = '/';
+        window.location.href = '/'; // Redirect to home or another page
     };
 
     return (
@@ -52,6 +65,7 @@ const ContactForm = ({ onSubmit }) => {
                 <div>
                     <label htmlFor="number" className="block text-sm font-medium text-gray-700">Number</label>
                     <input
+                        type="text"
                         id="number"
                         name="number"
                         value={formData.number}

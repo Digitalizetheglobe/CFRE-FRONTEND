@@ -6,20 +6,23 @@ import { MdOutlinePinDrop } from 'react-icons/md';
 import { RiProgress2Line } from "react-icons/ri";
 import { AiFillDatabase, AiFillRead } from "react-icons/ai";
 import { BiMobile } from 'react-icons/bi';
+import ContactForm from '../MainBody/ContactForm';
 
 const PropertyDetailInRent = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [isFormVisible, setFormVisible] = useState(false);
 
-    // State to manage the modal visibility
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // State to manage form data
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        mobile: ''
-    });
+    const handleButtonClick = () => {
+        setFormVisible(true);
+    };
+
+    const handleCloseForm = () => {
+        setFormVisible(false);
+    };
+
+    
 
     // State to manage the property data
     const [property, setProperty] = useState(null);
@@ -39,39 +42,9 @@ const PropertyDetailInRent = () => {
 
     if (!property) return <p>Property not found</p>;
 
-    // Function to handle form input changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
 
     // Function to handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
-        try {
-            // Send a POST request with the form data
-            const response = await axios.post('http://192.168.0.105:8000/inquire', formData);
-            
-            // Log the response for debugging
-            console.log('Form submitted successfully', response.data);
-            
-            // You can also handle the response if needed, e.g., show a success message
-            alert('Your inquiry has been submitted successfully!');
-            
-            // Close modal after successful submission
-            setIsModalOpen(false);
-        } catch (error) {
-            // Handle errors if the request fails
-            console.error('Error submitting form:', error);
-            
-            // Optionally, show an error message to the user
-            alert('There was an error submitting your inquiry. Please try again.');
-        }
-    };
+   
 
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
@@ -142,7 +115,7 @@ const PropertyDetailInRent = () => {
                                 <div className="flex space-x-2 mb-4">
                                     <button
                                         className="bg-blue-600 text-white flex-1 py-2 px-4 rounded-md text-lg hover:bg-blue-800 transition-colors duration-300"
-                                        onClick={() => setIsModalOpen(true)}
+                                        onClick={() => handleButtonClick()}
                                     >
                                         Contact Us
                                     </button>
@@ -257,66 +230,13 @@ const PropertyDetailInRent = () => {
 
                 </div>
             </div>
-
-            {/* Contact Form Modal */}
-            {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
-                        <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-gray-700 mb-2" htmlFor="phone">Phone</label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div className="flex justify-between">
-                                <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                    className="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600"
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-800"
-                                >
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
+{/* Render ContactForm only if isFormVisible is true */}
+{isFormVisible && (
+                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
+                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+                        <ContactForm onClose={handleCloseForm} />
                     </div>
+                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
                 </div>
             )}
         </div>

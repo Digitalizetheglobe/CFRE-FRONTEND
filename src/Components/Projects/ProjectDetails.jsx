@@ -5,16 +5,23 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { MdOutlinePinDrop } from 'react-icons/md';
 import { RiProgress2Line } from "react-icons/ri";
 import { AiFillDatabase, AiFillRead } from "react-icons/ai";
-import { BiMobile } from 'react-icons/bi';
-
+import Image from './ABZ-1-1.jpg';
+import ContactForm from '../MainBody/ContactForm';
 
 const ProjectDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
-    const [formData, setFormData] = useState({ name: '', email: '', mobile: '' }); // State to manage form data
     const [project, setProject] = useState(null); // State to manage project data
+    const [isFormVisible, setFormVisible] = useState(false);
+
+
+    const handleButtonClick = () => {
+        setFormVisible(true);
+    };
+
+    const handleCloseForm = () => {
+        setFormVisible(false);
+    };
 
     useEffect(() => {
         const fetchProject = async () => {
@@ -31,31 +38,15 @@ const ProjectDetails = () => {
 
     if (!project) return <p>Project not found</p>;
 
-    // Handle form input changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({ ...prevState, [name]: value }));
-    };
-
-    // Handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('http://192.168.0.105:8000/inquire', formData);
-            console.log('Form submitted successfully', response.data);
-            alert('Your inquiry has been submitted successfully!');
-            setIsModalOpen(false);
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('There was an error submitting your inquiry. Please try again.');
-        }
-    };
+   
 
     // Handle WhatsApp button click
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
+
+    // Parse the amenities JSON string
+    const amenities = JSON.parse(project.amenities);
 
     return (
         <div className="bg-white py-8 px-4 sm:px-10">
@@ -76,7 +67,7 @@ const ProjectDetails = () => {
                             <div className="relative w-full h-96">
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={project.imageUrl}
+                                    src={Image}
                                     alt="Project"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
@@ -115,7 +106,7 @@ const ProjectDetails = () => {
                                 <div className="flex space-x-2 mb-4">
                                     <button
                                         className="bg-blue-600 text-white flex-1 py-2 px-4 rounded-md text-lg hover:bg-blue-800 transition-colors duration-300"
-                                        onClick={() => setIsModalOpen(true)}
+                                        onClick={() => handleButtonClick()}
                                     >
                                         Contact Us
                                     </button>
@@ -133,13 +124,24 @@ const ProjectDetails = () => {
 
                 {/* Additional Details and Amenities Section */}
                 <div className="w-full bg-white border border-gray-500 shadow-md rounded-lg overflow-hidden p-6">
-                    <div className="mb-20">
+                    <div className="mb-16">
                         <h4 className="text-xl font-semibold mb-2">About Project</h4>
                         <p className="text-gray-700">
-        This commercial project is designed to meet the dynamic needs of modern businesses. Located in a prime business district, it offers excellent visibility and accessibility.
-    </p>
+                            This commercial project is designed to meet the dynamic needs of modern businesses. Located in a prime business district, it offers excellent visibility and accessibility.
+                        </p>
                     </div>
 
+                    <div className="mb-20">
+                        <h4 className="text-xl font-semibold mb-2">Rera Register No</h4>
+                        <p className="text-gray-700">{project.reraRegdNo}
+                        </p>
+                    </div>
+                    
+                    <div className="mb-20">
+                        <h4 className="text-xl font-semibold mb-2">Approved By:</h4>
+                        <p className="text-gray-700">{project.approvedBy}
+                        </p>
+                    </div>
                     <div className="mb-20">
                         <div className="flex items-center mb-4">
                             <RiProgress2Line className="text-xl text-[#d84a48] mr-2" />
@@ -170,8 +172,8 @@ const ProjectDetails = () => {
                             <AiFillDatabase className="text-xl text-[#d84a48] mr-2" />
                             <h4 className="text-xl font-semibold">Details</h4>
                         </div>
-                            <p className="text-lg font-medium">{project.projectDetails}</p>
-                
+                        <p className="text-lg font-medium">{project.projectDetails}</p>
+
                     </div>
 
                     <div className="mb-20">
@@ -182,9 +184,162 @@ const ProjectDetails = () => {
                         <p className="text-gray-700">{project.description}</p>
                     </div>
 
-                
+                    <div className="mb-20">
+                        <div className="flex items-center mb-4">
+                            <h4 className="text-xl font-semibold">Amenities</h4>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {amenities.map((amenity, index) => (
+                                <div key={index} className="p-4 bg-gray-100 rounded shadow-md">
+                                    {amenity}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+
+                    <div className="mb-20">
+                        <div className="flex items-center mb-4">
+                            <h4 className="text-xl font-semibold">Project Plans</h4>
+                        </div>
+
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white border border-gray-300">
+                                <thead>
+                                    <tr className="bg-gray-100">
+                                        <th className="py-2 px-4 border border-gray-300">Type</th>
+                                        <th className="py-2 px-4 border border-gray-300">Unit Cost</th>
+                                        <th className="py-2 px-4 border border-gray-300">Carpet Area</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {project.projectPlans && project.projectPlans.length > 0 ? (
+                                        project.projectPlans.map((plan, index) => (
+                                            <tr key={index} className="text-center">
+                                                <td className="py-2 px-4 border border-gray-300">{plan.Type}</td>
+                                                <td className="py-2 px-4 border border-gray-300">{plan["Unit Cost"]}</td>
+                                                <td className="py-2 px-4 border border-gray-300">{plan["Carpet Area"]}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="3" className="py-4 px-4 text-center text-gray-700">
+                                                No project plans available
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="mb-20">
+                        <div className="flex items-center mb-4">
+                            <h4 className="text-xl font-semibold">Specifications</h4>
+                        </div>
+
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white border border-gray-300">
+                                <thead>
+                                    <tr className="bg-gray-100">
+                                        <th className="py-2 px-4 border border-gray-300">Category</th>
+                                        <th className="py-2 px-4 border border-gray-300">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/* Electrification & Cabling */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Electrification & Cabling</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>3 Phase MSEB meter with separate MCB & ELCB: Yes</li>
+                                                <li>Distribution Boards-DB with mains from electrical meter to office: Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    {/* Fire Fighting */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Fire Fighting</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>Smoke detector: Yes</li>
+                                                <li>Fire fighting system as per PMC norms: Yes</li>
+                                                <li>Fire assist and public address system (FAPA): Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    {/* Flooring & Dado */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Flooring & Dado</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>Ceramic tiles for toilets: Yes</li>
+                                                <li>Vitrified tiles for office: Yes</li>
+                                                <li>Marble flooring in entrance lobby: Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    {/* Lifts */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Lifts</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>3 High speed lifts: Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    {/* Parking */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Parking</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>Multi-level car parking: Yes</li>
+                                                <li>Ample two-wheeler and visitor parking: Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    {/* Structure */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Structure</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>Earthquake resistant structure: Yes</li>
+                                                <li>Intelligent planned column grids: Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    {/* Toilets */}
+                                    <tr>
+                                        <td className="py-2 px-4 border border-gray-300">Toilets</td>
+                                        <td className="py-2 px-4 border border-gray-300">
+                                            <ul>
+                                                <li>WC with premium fittings: Yes</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            {/* Render ContactForm only if isFormVisible is true */}
+            {isFormVisible && (
+                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
+                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+                        <ContactForm onClose={handleCloseForm} />
+                    </div>
+                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
+                </div>
+            )}
         </div>
     );
 };

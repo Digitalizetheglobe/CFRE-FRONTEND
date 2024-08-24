@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Image from './ABZ-1-1.jpg'
+
 
 const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) return text;
@@ -26,7 +28,7 @@ const ProjectCard = ({ project }) => {
             </div>
 
             <div className="relative">
-                <img className="w-full h-48 object-cover" src={project.imageUrl} alt="Project" />
+                <img className="w-full h-48 object-cover" src={Image} alt="Project" />
                 <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded hover:scale-[1.08]">
                     More Images
                 </button>
