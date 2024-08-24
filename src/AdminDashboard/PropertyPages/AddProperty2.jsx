@@ -28,20 +28,22 @@ const PropertyForm = () => {
         agreementCharges: 'Borne by both parties equally',
     });
 
+    
     const [status, setStatus] = useState(''); // For success/error messages
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
         console.log('0000000000====>', formData);
-
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission
         console.log('Submitting Form Data:', formData);
         try {
-            const response = await fetch('http://192.168.0.105:8000/rent', {
+            const response = await fetch('http://192.168.0.105:8000/addproperty', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,8 +95,9 @@ const PropertyForm = () => {
                         placeholder="Enter building name"
                     />
                 </div>
+
                 <div>
-                    <label className="block text-gray-700 font-medium">unit Number.</label>
+                    <label className="block text-gray-700 font-medium">Unit Number</label>
                     <input
                         type="text"
                         name="unitNumber"
@@ -104,6 +107,7 @@ const PropertyForm = () => {
                         placeholder="Enter unit number"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Floor</label>
                     <input
@@ -115,6 +119,7 @@ const PropertyForm = () => {
                         placeholder="Enter floor"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Location</label>
                     <input
@@ -126,6 +131,7 @@ const PropertyForm = () => {
                         placeholder="Enter location"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Built Up Area</label>
                     <input
@@ -137,6 +143,7 @@ const PropertyForm = () => {
                         placeholder="Enter built up area (sq. ft.)"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Carpet Area</label>
                     <input
@@ -148,6 +155,7 @@ const PropertyForm = () => {
                         placeholder="Enter carpet area (sq. ft.)"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Reserved Car Parking</label>
                     <input
@@ -159,6 +167,7 @@ const PropertyForm = () => {
                         placeholder="Enter details"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Reserved 2 Wheeler Parking</label>
                     <input
@@ -170,6 +179,7 @@ const PropertyForm = () => {
                         placeholder="Enter details"
                     />
                 </div>
+
                     {/* Amenities Field */}
             <div>
                 <label className="block text-gray-700 font-medium">Amenities</label>
@@ -182,6 +192,7 @@ const PropertyForm = () => {
                     rows="4"
                 />
             </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">DG Back-up</label>
                     <input
@@ -193,6 +204,7 @@ const PropertyForm = () => {
                         placeholder="Enter details"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Cafeteria</label>
                     <input
@@ -234,6 +246,7 @@ const PropertyForm = () => {
                             placeholder="Enter number of workstations"
                         />
                     </div>
+
                     <div>
                         <label className="block text-gray-700 font-medium">Cabin</label>
                         <input
@@ -245,6 +258,7 @@ const PropertyForm = () => {
                             placeholder="Enter number of cabins"
                         />
                     </div>
+
                     <div>
                         <label className="block text-gray-700 font-medium">Conference Room</label>
                         <input
@@ -256,6 +270,7 @@ const PropertyForm = () => {
                             placeholder="Enter number of conference rooms"
                         />
                     </div>
+
                     <div>
                         <label className="block text-gray-700 font-medium">Any Other Furniture</label>
                         <input
@@ -285,6 +300,7 @@ const PropertyForm = () => {
                         placeholder="Enter rent per sq. ft."
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Maintenance per sq. ft. on built-up area</label>
                     <input
@@ -296,6 +312,7 @@ const PropertyForm = () => {
                         placeholder="Enter maintenance per sq. ft."
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Deposit</label>
                     <input
@@ -307,6 +324,7 @@ const PropertyForm = () => {
                         placeholder="Enter deposit amount"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Yearly Escalation</label>
                     <input
@@ -318,6 +336,7 @@ const PropertyForm = () => {
                         placeholder="Enter yearly escalation percentage"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Agreement Period</label>
                     <input
@@ -329,6 +348,7 @@ const PropertyForm = () => {
                         placeholder="Enter agreement period"
                     />
                 </div>
+
                 <div>
                     <label className="block text-gray-700 font-medium">Lock-in Period</label>
                     <input
