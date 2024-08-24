@@ -16,6 +16,7 @@ import AddProperty1 from './AdminDashboard/PropertyPages/AddProperty1';
 import AddProperty2 from './AdminDashboard/PropertyPages/AddProperty2';
 
 import UserContext from './Components/Context/UserContext';
+import AddProject from './AdminDashboard/PropertyPages/AddProject';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function MainContent() {
         <Route path='/addproperty' element={<AddProperty />} />
         <Route path='/addproperty1' element={<AddProperty1 />} />
         <Route path='/addproperty2' element={<AddProperty2 />} />
+        <Route path='/addprojectproperty' element={<AddProject/>} />
       </Routes>
       {isHomePage && <CategoryCarousel />}
     </main>
