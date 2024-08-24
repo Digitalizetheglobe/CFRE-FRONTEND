@@ -27,7 +27,7 @@ const Showroom = () => {
 
     return (
         <div className="relative overflow-hidden">
-            <div  className="absolute inset-0 w-full h-[75vh] overflow-hidden ">
+            <div className="absolute inset-0 w-full h-[75vh] overflow-hidden ">
                 <video
                     className="w-full h-full object-cover"
                     src={ShowroomVideo}
@@ -35,18 +35,18 @@ const Showroom = () => {
                     loop
                     muted
                 />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                     <h1 className="text-6xl text-white">Showroom Properties</h1>
                 </div>
             </div>
 
-             {/* Main content */}
-             <div className="relative container mx-auto p-4 mt-[80vh]">
+            {/* Main content */}
+            <div className="relative container mx-auto p-4 mt-[80vh]">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {showroomProperties.map(property => (
-                    <ShowroomCard key={property.id} property={property} />
-                ))}
-            </div>
+                    {showroomProperties.map(property => (
+                        <ShowroomCard key={property.id} property={property} />
+                    ))}
+                </div>
             </div>
         </div>
     );

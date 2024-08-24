@@ -30,7 +30,7 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <div className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-2xl text-gray-800">{property.cost} Lac</div>
+                <div className="font-bold text-2xl text-gray-800">{property.cost} Lacs</div>
                 
                 {/* Property name with link to detailed view */}
                 <Link to={`/property-detail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-blue-600 transition-colors duration-300">

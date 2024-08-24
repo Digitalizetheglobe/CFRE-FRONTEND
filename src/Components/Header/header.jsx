@@ -2,31 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../Header/cfre-logo.png';
-import ContactForm from '../MainBody/ContactForm';
 
 function Header() {
-    const [isFormVisible, setFormVisible] = useState(false);
     const [isInvestDropdownOpen, setInvestDropdownOpen] = useState(false);
     const [isRentDropdownOpen, setRentDropdownOpen] = useState(false);
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
     const navigate = useNavigate();
-
-    const handleButtonClick = () => {
-        setFormVisible(true);
-    };
-
-    const handleCloseForm = () => {
-        setFormVisible(false);
-    };
-
-    const handlePhoneClick = () => {
-        window.location.href = 'tel:+918149977661';
-    };
-
-    const handleProfileClick = () => {
-        navigate('/profile');
-    };
 
     useEffect(() => {
         const toggleOpen = document.getElementById('toggleOpen');
@@ -121,7 +103,7 @@ function Header() {
         <header className='shadow-md tracking-wide relative z-50'>
 
             <div className='flex flex-wrap items-center justify-between gap-5 w-full'>
-                <Link to="/">
+                
                     <Link to="/">
                         <img
                             src={logo}
@@ -129,8 +111,7 @@ function Header() {
                             className="w-20 mx-10 mt-1  transition-transform duration-300 ease-in-out transform  shadow-lg"
                         />
                     </Link>
-
-                </Link>
+                
 
                 <div id="collapseMenu"
                     className='max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50'>
@@ -213,16 +194,6 @@ function Header() {
 
                 </div>
             </div>
-
-            {/* Render ContactForm only if isFormVisible is true */}
-            {isFormVisible && (
-                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
-                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
-                        <ContactForm onClose={handleCloseForm} />
-                    </div>
-                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
-                </div>
-            )}
 
         </header>
     );

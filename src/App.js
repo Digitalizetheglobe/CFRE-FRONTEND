@@ -21,9 +21,12 @@ import PreLease from './Components/Invest/PreLease';
 import Unlease from './Components/Invest/Unlease';
 import PropertyDetailInRent from './Components/Rent/PropertyDetailsInRent';
 import PropertyDetailInInvest from './Components/Invest/PropertyDetailInInvest';
-import UserContext from './Components/Context/UserContext';
+// import UserContext from './Components/Context/UserContext';
 import PropertyList from './Components/Hero/Propertylist';
 import ProjectProperty from './Components/Projects/ProjectProperty';
+import ProjectDetails from './Components/Projects/ProjectDetails';
+// import ProjectCard from './components/ProjectCard';
+
 
 
 
@@ -66,6 +69,7 @@ function MainContent() {
         <Route path='/preleased' element={<PreLease />} />
         <Route path='/unleased' element={<Unlease />} />
         <Route path="/propertydetail/:id" element={<PropertyDetailInInvest />} />
+        <Route path="/project/:id" element={<ProjectDetails />} />
       </Routes>
       {isHomePage && <CategoryCarousel />}
     </main>

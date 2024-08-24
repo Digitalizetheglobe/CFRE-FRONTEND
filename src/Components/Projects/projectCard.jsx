@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) return text;
@@ -32,17 +33,22 @@ const ProjectCard = ({ project }) => {
             </div>
 
             <div className="px-6 py-4">
-                <div className="font-bold text-xl">
-                    {truncateText(project.projectName, 30)} {/* Adjust the maxLength as needed */}
-                </div>
+                {/* Link to Project Details */}
+                <Link to={`/project/${project.id}`}>
+                    <div className="font-bold text-xl hover:underline">
+                        {truncateText(project.projectName, 30)} {/* Adjust the maxLength as needed */}
+                    </div>
+                </Link>
                 <p className="text-gray-700 text-base">RERA REGD :{project.reraRegdNo}</p>
                 <p className="text-gray-700 text-base">{project.location}</p>
             </div>
 
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5">
-                    See Details
-                </button>
+                <Link to={`/project/${project.id}`}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5">
+                        See Details
+                    </button>
+                </Link>
             </div>
         </div>
     );
