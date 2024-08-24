@@ -11,7 +11,7 @@ const PropertyForm = () => {
         carpetArea: '',
         reservedCarParking: '',
         reserved2WheelerParking: '',
-        amenities: '', // Added amenities field
+        amenities: '', 
         dgBackup: '',
         cafeteria: '',
         furnished: 'unfurnished',
