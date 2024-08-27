@@ -30,24 +30,24 @@ const PropertyCard = ({ property }) => {
 
             <div className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-2xl text-gray-800">Rs.{property.totalPrice}</div>
+                {/* <div className="font-bold text-2xl text-gray-800">Rs.{property.totalPrice}</div> */}
                 
                 {/* Property name with link to detailed view */}
-                <Link to={`/propertydetail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-blue-600 transition-colors duration-300">
+                <Link to={`/propertydetail/${property.id}`} className="text-lg text-gray-800 mt-2 block hover:text-[#d84a48] transition-colors duration-300">
                     {property.buildingName}
                 </Link>
                 
                 {/* Location and city */}
-                <div className="text-gray-600 mt-1">{property.location}, {property.city}</div>
-                <div className="text-gray-600 mt-1">Built Up Area: {property.builtUpArea} Sq.Ft</div>
-                <div className="text-gray-600 mt-1">Carpet Area: {property.carpetArea} Sq.Ft</div>
+                <div className="text-gray-800 mt-1">{property.location}, {property.city}</div>
+                <div className="text-gray-800 mt-1">Built Up Area: {property.builtUpArea} Sq.Ft</div>
+                <div className="text-gray-800 mt-1">Carpet Area: {property.carpetArea} Sq.Ft</div>
             </div>
 
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5">
+                <button className="bg-[#d84a48] hover:text-[#d84a48] text-white font-bold py-2 px-8 rounded w-4/5">
                     Enquire
                 </button>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded flex items-center h-10 w-10">
+                <button className="bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-1 rounded flex items-center h-10 w-10">
                     <FaWhatsapp className="ml-2" />
                 </button>
             </div>

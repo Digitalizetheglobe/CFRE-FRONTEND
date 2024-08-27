@@ -21,7 +21,7 @@ const Furnished = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8000/addproperty');
+                const response = await axios.get('http://192.168.0.105:8001/addproperty');
                 setProperties(response.data);
                 setFilteredProperties(response.data.filter(property => property.furnishing === 'FULLY FURNISHED'));
             } catch (error) {
@@ -102,11 +102,16 @@ const Furnished = () => {
 
             {/* Render ContactForm only if isFormVisible is true */}
             {isFormVisible && (
-                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
-                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+                <div 
+                    className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
+                    onClick={handleCloseForm} // Close on overlay click
+                >
+                    <div 
+                        className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
+                        onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
+                    >
                         <ContactForm onClose={handleCloseForm} />
                     </div>
-                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
                 </div>
             )}
         </div>

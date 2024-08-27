@@ -158,7 +158,7 @@
 //         // Fetch properties from the API
 //         const fetchProperties = async () => {
 //             try {
-//                 const response = await axios.get('http://192.168.0.105:8000/addproperty');
+//                 const response = await axios.get('http://192.168.0.105:8001/addproperty');
 //                 setProperties(response.data);
 //                 console.log(response.data);
 
@@ -255,7 +255,7 @@ const Rent = () => {
         // Fetch properties from the API
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8000/addproperty');
+                const response = await axios.get('http://192.168.0.105:8001/addproperty');
                 setProperties(response.data);
                 setFilteredProperties(response.data); // Initialize filtered properties
             } catch (error) {

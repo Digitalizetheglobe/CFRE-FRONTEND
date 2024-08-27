@@ -26,7 +26,7 @@ const ProjectDetails = () => {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const response = await axios.get(`http://192.168.0.105:8000/projects/${id}`);
+                const response = await axios.get(`http://192.168.0.105:8001/projects/${id}`);
                 setProject(response.data);
             } catch (error) {
                 console.error('Error fetching project:', error);
@@ -92,7 +92,7 @@ const ProjectDetails = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex justify-between mb-4">
+                                {/* <div className="flex justify-between mb-4">
                                     <div className="p-2 border border-gray-500 rounded-md text-right">
                                         <p className="text-gray-500 text-xs">Avg. Rental Yield:</p>
                                         <p className="text-lg font-semibold">{project.yield}12%</p>
@@ -101,11 +101,11 @@ const ProjectDetails = () => {
                                         <p className="text-gray-500 text-xs">Monthly Rental:</p>
                                         <p className="text-lg font-semibold">₹{project.rental}3.5 lacs</p>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="flex space-x-2 mb-4">
                                     <button
-                                        className="bg-blue-600 text-white flex-1 py-2 px-4 rounded-md text-lg hover:bg-blue-800 transition-colors duration-300"
+                                        className="bg-[#d84a48] text-white flex-1 py-2 px-4 rounded-md text-lg hover:bg-black-800 transition-colors duration-300"
                                         onClick={() => handleButtonClick()}
                                     >
                                         Contact Us
@@ -131,17 +131,15 @@ const ProjectDetails = () => {
                         </p>
                     </div>
 
-                    <div className="mb-20">
-                        <h4 className="text-xl font-semibold mb-2">Rera Register No</h4>
-                        <p className="text-gray-700">{project.reraRegdNo}
-                        </p>
-                    </div>
+                  
                     
-                    <div className="mb-20">
+                    {/* <div className="mb-20">
+                                                    <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+
                         <h4 className="text-xl font-semibold mb-2">Approved By:</h4>
                         <p className="text-gray-700">{project.approvedBy}
                         </p>
-                    </div>
+                    </div> */}
                     <div className="mb-20">
                         <div className="flex items-center mb-4">
                             <RiProgress2Line className="text-xl text-[#d84a48] mr-2" />
@@ -167,7 +165,7 @@ const ProjectDetails = () => {
                         </div>
                     </div>
 
-                    <div className="mb-20">
+                    {/* <div className="mb-20">
                         <div className="flex items-center mb-4">
                             <AiFillDatabase className="text-xl text-[#d84a48] mr-2" />
                             <h4 className="text-xl font-semibold">Details</h4>
@@ -182,27 +180,17 @@ const ProjectDetails = () => {
                             <h4 className="text-xl font-semibold">Description</h4>
                         </div>
                         <p className="text-gray-700">{project.description}</p>
-                    </div>
+                    </div> */}
 
-                    <div className="mb-20">
-                        <div className="flex items-center mb-4">
-                            <h4 className="text-xl font-semibold">Amenities</h4>
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {amenities.map((amenity, index) => (
-                                <div key={index} className="p-4 bg-gray-100 rounded shadow-md">
-                                    {amenity}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                  
 
 
-                    <div className="mb-20">
-                        <div className="flex items-center mb-4">
-                            <h4 className="text-xl font-semibold">Project Plans</h4>
-                        </div>
+                    <div className="mb-20 justify-center">
+                    <div className="flex items-center mb-4">
+  <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+  <h4 className="text-xl font-semibold">Available Areas</h4>
+</div>
+
 
                         <div className="overflow-x-auto">
                             <table className="min-w-full bg-white border border-gray-300">
@@ -210,7 +198,7 @@ const ProjectDetails = () => {
                                     <tr className="bg-gray-100">
                                         <th className="py-2 px-4 border border-gray-300">Type</th>
                                         <th className="py-2 px-4 border border-gray-300">Unit Cost</th>
-                                        <th className="py-2 px-4 border border-gray-300">Carpet Area</th>
+                                        <th className="py-2 px-4 border border-gray-300">Area</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -234,6 +222,22 @@ const ProjectDetails = () => {
                         </div>
                     </div>
 
+
+                    <div className="mb-20">
+                        <div className="flex items-center mb-4">
+                        <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+
+                            <h4 className="text-xl font-semibold">Amenities</h4>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {amenities.map((amenity, index) => (
+                                <div key={index} className="p-4 bg-gray-100 rounded shadow-md">
+                                    {amenity}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                     <div className="mb-20">
                         <div className="flex items-center mb-4">
                             <h4 className="text-xl font-semibold">Specifications</h4>
@@ -328,16 +332,26 @@ const ProjectDetails = () => {
                             </table>
                         </div>
                     </div>
+                    <div className="mb-20">
+                        <h4 className="text-xl font-semibold mb-2">Rera Register No</h4>
+                        <p className="text-gray-700">{project.reraRegdNo}
+                        </p>
+                    </div>
 
                 </div>
             </div>
             {/* Render ContactForm only if isFormVisible is true */}
-            {isFormVisible && (
-                <div className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'>
-                    <div className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'>
+             {isFormVisible && (
+                <div 
+                    className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
+                    onClick={handleCloseForm} // Close on overlay click
+                >
+                    <div 
+                        className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
+                        onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
+                    >
                         <ContactForm onClose={handleCloseForm} />
                     </div>
-                    <button onClick={handleCloseForm} className='absolute inset-0'></button>
                 </div>
             )}
         </div>

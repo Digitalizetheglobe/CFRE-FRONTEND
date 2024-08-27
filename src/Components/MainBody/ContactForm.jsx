@@ -19,30 +19,17 @@ const ContactForm = ({ onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        // Log form data to ensure it's being captured correctly
-        console.log("Form Data Submitted:", formData);
-
-        // Ensure that the onSubmit function is being called
-        if (onSubmit) {
-            onSubmit(formData);
-        }
-
-        // Check if the form fields are filled in correctly
-        if (formData.name && formData.number && formData.email && formData.message) {
-            setIsSubmitted(true); // Show the thank you message
-        } else {
-            console.log("Please fill all the fields.");
-        }
+        // onSubmit(formData);
+        setIsSubmitted(true); // Show the thank you message
     };
 
     const handleClose = () => {
         setIsSubmitted(false);
-        window.location.href = '/'; // Redirect to home or another page
+        // window.location.href = '/';
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto font-serif relative">
+        <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto  relative">
             <Link to="/" className="flex justify-center mb-4">
                 <img src={logo} alt="logo" className="w-20" />
             </Link>
@@ -58,19 +45,18 @@ const ContactForm = ({ onSubmit }) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2  text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
                 </div>
                 <div>
                     <label htmlFor="number" className="block text-sm font-medium text-gray-700">Number</label>
                     <input
-                        type="text"
                         id="number"
                         name="number"
                         value={formData.number}
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2  text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
                 </div>
@@ -82,20 +68,20 @@ const ContactForm = ({ onSubmit }) => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                    <label htmlFor="message" className="block text-sm text-black font-medium ">Message</label>
                     <textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         rows="4"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300  text-black rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
                 </div>
@@ -107,6 +93,7 @@ const ContactForm = ({ onSubmit }) => {
             {/* Close Button Inside Form */}
             <button
                 onClick={() => window.location.href = '/'}
+                // onClick={handleClose}
                 className="absolute top-2 right-2 text-red-500 hover:text-red-700">
                 Close
             </button>

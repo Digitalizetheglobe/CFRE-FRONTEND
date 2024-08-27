@@ -26,7 +26,7 @@ import PropertyList from './Components/Hero/Propertylist';
 import ProjectProperty from './Components/Projects/ProjectProperty';
 import ProjectDetails from './Components/Projects/ProjectDetails';
 // import ProjectCard from './components/ProjectCard';
-
+import Blogslider from './Components/MainBody/Blogslider.jsx';
 
 
 
@@ -47,15 +47,20 @@ function MainContent() {
 
   return (
     <main>
-      {isHomePage && <Hero />}
+      {isHomePage && (
+        <>
+        <Hero />
+        <Blogslider />
+        </>)}
       <Routes>
-        <Route path="/" element={<PropertyCard />} />
+        {/* <Route path="/" element={<PropertyCard />} /> */}
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/invest" element={<Invest />} />
         <Route path="/rent"  element={<Rent />} />
         {/* <Route path='/Projects' element={<Projects />} /> */}
         <Route path='/projectproperty' element={<ProjectProperty />} />
+        {/* <Route path='/blogslider' element={<Blogslider />} /> */}
         <Route path='/propertyList' element={<PropertyList />} />
         <Route path="/office" element={<Office />} />
         <Route path="/showroom" element={<Showroom />} />
@@ -71,7 +76,12 @@ function MainContent() {
         <Route path="/propertydetail/:id" element={<PropertyDetailInInvest />} />
         <Route path="/project/:id" element={<ProjectDetails />} />
       </Routes>
-      {isHomePage && <CategoryCarousel />}
+      {isHomePage && (
+  <>
+    {/* <Blogslider /> */}
+    <CategoryCarousel />
+  </>
+)}
     </main>
   );
 }

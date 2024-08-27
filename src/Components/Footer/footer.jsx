@@ -52,7 +52,7 @@ const Footer = () => {
                         {/* Contact Information */}
                         <div className="w-full md:w-1/3 mb-6 md:mb-0">
                             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-                            <p className="text-gray-400 mb-2">320, HBC , Hirabaug Chowk, Tilak Road</p>
+                            <p className="text-gray-400 mb-2">320, HBC, Hirabaug Chowk, Tilak Road</p>
                             <p className="text-gray-400 mb-2">Pune- 411002</p>
                             <p className="text-gray-400 mb-2">Phone:  +91 8149977661</p>
                             <p className="text-gray-400">Email: swapnil@cfrerealty.com</p>

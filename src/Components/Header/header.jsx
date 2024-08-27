@@ -44,7 +44,7 @@ function Header() {
         // Fetch properties when the Invest dropdown is opened
         if (!isInvestDropdownOpen) {
             try {
-                const response = await axios.get('http://192.168.0.105:8000/saleproperty');
+                const response = await axios.get('http://192.168.0.105:8001/saleproperty');
                 setProperties(response.data);
                 // const unleasedProperties = response.data.filter(property => property.propertyType === 'Unleased');
                 setFilteredProperties(response.data);
@@ -65,7 +65,7 @@ function Header() {
         // Fetch properties when the Rent dropdown is opened
         if (!isRentDropdownOpen) {
             try {
-                const response = await axios.get('http://192.168.0.105:8000/addproperty');
+                const response = await axios.get('http://192.168.0.105:8001/addproperty');
                 setProperties(response.data);
                 setFilteredProperties(response.data); // Initialize filtered properties
                 console.log(response.data);
@@ -175,11 +175,11 @@ function Header() {
                                 Projects
                             </Link>
                         </li>
-                        <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
+                        {/* <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
                             <Link to='/about-us' className='hover:text-[#d84a48] text-gray-800 block text-[18px]'>
                                 About Us
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 

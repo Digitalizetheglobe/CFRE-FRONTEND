@@ -37,7 +37,7 @@ const ProjectCard = ({ project }) => {
             <div className="px-6 py-4">
                 {/* Link to Project Details */}
                 <Link to={`/project/${project.id}`}>
-                    <div className="font-bold text-xl hover:underline">
+                    <div className="font-bold text-xl hover:text-[#d84a48] hover:underline">
                         {truncateText(project.projectName, 30)} {/* Adjust the maxLength as needed */}
                     </div>
                 </Link>
@@ -47,7 +47,7 @@ const ProjectCard = ({ project }) => {
 
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
                 <Link to={`/project/${project.id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5">
+                    <button className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-8 rounded ">
                         See Details
                     </button>
                 </Link>

@@ -332,10 +332,12 @@ function PropertyList() {
 
     return (
         <div className='my-8 mx-12 '>
-            <div className='flex flex-row'>
+         <div className="flex justify-center">
+  <h1 className="md:text-3xl font-semibold text-center mx-2 mb-5">
+    Trending Commercial Properties
+  </h1>
+</div>
 
-                <h1 className=" md:text-3xl text-semibold mx-2 mb-5">Trending Commercial Properties</h1>
-            </div>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}

@@ -75,7 +75,7 @@ function Hero() {
         // Fetch properties from the API
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8000/properties');
+                const response = await axios.get('http://192.168.0.105:8001/properties');
                 setProperties(response.data);
                 console.log('111111111====>', response.data);
                 
@@ -185,7 +185,7 @@ export default Hero;
 //         // Fetch properties from the API
 //         const fetchProperties = async () => {
 //             try {
-//                 const response = await axios.get('http://192.168.0.105:8000/properties');
+//                 const response = await axios.get('http://192.168.0.105:8001/properties');
 //                 setProperties(response.data);
 //                 console.log('222222=====>',response.data);
                 
@@ -311,7 +311,7 @@ export default Hero;
 //     useEffect(() => {
 //         const fetchProperties = async () => {
 //             try {
-//                 const response = await axios.get('http://192.168.0.105:8000/properties');
+//                 const response = await axios.get('http://192.168.0.105:8001/properties');
 //                 setProperties(response.data);
 //             } catch (error) {
 //                 console.error('Error fetching properties:', error);

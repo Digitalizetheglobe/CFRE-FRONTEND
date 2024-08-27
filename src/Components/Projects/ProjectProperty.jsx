@@ -9,7 +9,7 @@ function ProjectProperty() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8000/projects');
+                const response = await axios.get('http://192.168.0.105:8001/projects');
                 setProjects(response.data);
                 console.log('Fetched projects:', response.data);
                 
