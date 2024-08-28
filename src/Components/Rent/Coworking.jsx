@@ -22,7 +22,7 @@ const Coworking = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/addproperty');
+                const response = await axios.get('http://cfrecpune.com/rentproperties');
                 setProperties(response.data);
                 setFilteredProperties(response.data.filter(property => property.furnishing === 'Coworking'));
             } catch (error) {
@@ -88,10 +88,19 @@ const Coworking = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredProperties.map(property => (
-                    <PropertyCard key={property.id} property={property}  onEnquire={handleButtonClick}/>
-                ))}
-            </div>
+    {filteredProperties.length === 0 ? (
+        <p className="text-center w-full">No Coworking and Managed office properties found.</p>
+    ) : (
+        filteredProperties.map(property => (
+            <PropertyCard 
+                key={property.id} 
+                property={property} 
+                onEnquire={handleButtonClick}  // Pass the handler
+            />
+        ))
+    )}
+</div>
+
 
             {isFormVisible && (
                 <div 

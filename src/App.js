@@ -27,7 +27,7 @@ import ProjectProperty from './Components/Projects/ProjectProperty';
 import ProjectDetails from './Components/Projects/ProjectDetails';
 // import ProjectCard from './components/ProjectCard';
 import Blogslider from './Components/MainBody/Blogslider.jsx';
-
+import Cookies from './Components/MainBody/cookies.jsx';
 
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
     <Router>
       <Header />
       <MainContent />
+      <Cookies />
       <Footer />
 
     </Router>

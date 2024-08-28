@@ -32,7 +32,7 @@ const PropertyDetailInRent = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`http://192.168.0.105:8001/addproperty/${id}`);
+                const response = await axios.get(`http://cfrecpune.com/rentproperties/${id}`);
                 setProperty(response.data);
             } catch (error) {
                 console.error('Error fetching property:', error);
@@ -157,7 +157,7 @@ const PropertyDetailInRent = () => {
                 </tr>
                 <tr>
                     <td className="border px-4 py-2 text-gray-500 text-xs font-semibold">Cafeteria</td>
-                    <td className="border px-4 py-2 text-lg font-bold">{property.cafeteria}</td>
+                    <td className="border px-4 py-2 text-lg font-bold">{property.cafeteria}Available</td>
                 </tr>
                 <tr>
                     <td className="border px-4 py-2 text-gray-500 text-xs font-semibold">DG Backup</td>
@@ -165,11 +165,11 @@ const PropertyDetailInRent = () => {
                 </tr>
                 <tr>
                     <td className="border px-4 py-2 text-gray-500 text-xs font-semibold">Rent per sq. ft. on built-up area</td>
-                    <td className="border px-4 py-2 text-lg font-bold">Sq.Ft</td>
+                    <td className="border px-4 py-2 text-lg font-bold">{property.rate}/Sq.Ft</td>
                 </tr>
                 <tr>
                     <td className="border px-4 py-2 text-gray-500 text-xs font-semibold">Maintenance per sq. ft. on built-up area</td>
-                    <td className="border px-4 py-2 text-lg font-bold">Sq.Ft</td>
+                    <td className="border px-4 py-2 text-lg font-bold">{property.rate}/Sq.Ft</td>
                 </tr>
             </tbody>
         </table>

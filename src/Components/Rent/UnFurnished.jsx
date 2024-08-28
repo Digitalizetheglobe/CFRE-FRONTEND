@@ -10,7 +10,6 @@ const Unfurnished = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
 
-
     const handleButtonClick = () => {
         setFormVisible(true);
     };
@@ -22,23 +21,15 @@ const Unfurnished = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/addproperty');
+                const response = await axios.get('http://cfrecpune.com/rentproperties');
                 setProperties(response.data);
                 setFilteredProperties(response.data.filter(property => property.furnishing === 'Unfurnished'));
             } catch (error) {
-
                 console.error('Error fetching properties:', error);
-
             }
         };
-
         fetchProperties();
     }, []);
-
-
-
-
-
 
     useEffect(() => {
         filterAndSortProperties(searchTerm, sortOrder);
@@ -53,7 +44,7 @@ const Unfurnished = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'UnFurnished');
+        let filtered = properties.filter(property => property.furnishing === 'Unfurnished');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>
@@ -100,8 +91,7 @@ const Unfurnished = () => {
                 ))}
             </div>
 
-             {/* Render ContactForm only if isFormVisible is true */}
-             {isFormVisible && (
+            {isFormVisible && (
                 <div 
                     className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
                     onClick={handleCloseForm} // Close on overlay click
@@ -119,6 +109,7 @@ const Unfurnished = () => {
 };
 
 export default Unfurnished;
+
 
 
 

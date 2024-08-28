@@ -21,8 +21,11 @@ const Furnished = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/addproperty');
+                // const response = await axios.get('http://cfrecpune.com/rentproperties');
+                const response = await axios.get('http://192.168.0.105:8001/rentproperties');
                 setProperties(response.data);
+                console.log("11111111111=====>",response.data);
+                
                 setFilteredProperties(response.data.filter(property => property.furnishing === 'FULLY FURNISHED'));
             } catch (error) {
                 console.error('Error fetching properties:', error);
