@@ -35,6 +35,7 @@ import Template from './Components/MainBody/Template.jsx';
 import sellProperty from './Components/MainBody/sellProperty.jsx';
 import Card from './Components/Cards/Card.jsx';
 import Thirdcards from './Components/MainBody/Thirdcards.jsx';
+import AddNewProperty from './AdminDashboard/PropertyPages/AddNewProperty.jsx';
 import PropertyCardInvest from './Components/MainBody/PropertyCardInvest.jsx'
 
 
@@ -88,6 +89,7 @@ function MainContent() {
         <Route path="/project/:id" element={<ProjectDetails />} />
         <Route path='/cards' element={<Card/>}/>
         <Route path='/third-card' element={<Thirdcards/>}/>
+        <Route path='/addnewproperty' element={<AddNewProperty/>} />
       </Routes>
       {isHomePage && (
   <>
