@@ -1,19 +1,27 @@
 import React from 'react';
 import logo from './ab.jpg';
-
+import Image from './privacyPolicy.webp';
 
 
 function AboutUs() {
     return (
     <>
+      <div
+                className="bg-blue-400 text-black py-16 bg-cover bg-center"
+                style={{ backgroundImage: `url(${Image})` }}
+            >
+                <div className="container mx-auto px-6 md:px-12 lg:px-20">
+                    <h1 className="text-4xl text-white font-bold text-center">About Us</h1>
+                </div>
+            </div>
         <div className="bg-white-500  p-6 bg">
             <div className="grid md:grid-cols-2 items-center gap-10 max-full max-md:max-w-md mx-auto">
-                <div className="md:h-[400px] md:w-[700px] ">
+                <div className="md:h-[400px] md:w-[600px] ">
                     <img src={logo} alt="Company Logo" className="w-full h-full rounded-md object-cover" />
                 </div>
 
                 <div className="max-md:text-center">
-                    <h3 className="text-black font-semibold md:text-3xl text-2xl md:leading-10"> Welcome to COMMERCIAL FIELD REAL ESTATE (CFRE)</h3>
+                    <h3 className="text-black font-semibold md:text-xl text-xl md:leading-10"> Welcome to COMMERCIAL FIELD REAL ESTATE (CFRE)</h3>
                     <p className=" mt-4 text-sm leading-relaxed mb-6 text-gray-700">As a leading service provider in the real estate sector, we are driven by our love to sell and rent spacious corporate offices and retail spaces. We pledge honesty, devotion, and dependability to each and every one of our clients in the hopes that they will experience the same joy that we do. CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound.</p>
                     {/* <button type="button" className="px-5 py-2.5 mt-8 bg-blue-700 hover:bg-blue-800 text-white tracking-wider rounded text-sm outline-none">Explore</button> */}
                 </div>

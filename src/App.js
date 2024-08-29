@@ -7,6 +7,9 @@ import PropertyDetail from './Components/MainBody/PropertyDetail';
 import Footer from './Components/Footer/footer';
 import PropertyCard from './Components/MainBody/PropertyCard.jsx';
 import AboutUs from './Components/AboutUs/AboutUs';
+import Blog from './Components/Blogs/Blogs.jsx';
+import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy.jsx';
+import ContactUs from './Components/ContactUs/ContactUs.jsx';
 import Invest from './Components/Invest/Invest';
 import Rent from './Components/Rent/rent';
 import Office from './Components/Office/office';
@@ -66,9 +69,12 @@ function MainContent() {
         <Route path="/" element={<PropertyCard />} />
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+        <Route path='/contactUs' element={<ContactUs />} />
+        
         <Route path="/invest" element={<Invest />} />
         <Route path="/rent"  element={<Rent />} />
-        {/* <Route path='/Projects' element={<Projects />} /> */}
         <Route path='/projectproperty' element={<ProjectProperty />} />
         {/* <Route path='/blogslider' element={<Blogslider />} /> */}
         <Route path='/propertyList' element={<PropertyList />} />
