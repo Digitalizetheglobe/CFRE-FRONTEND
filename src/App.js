@@ -5,7 +5,7 @@ import Hero from './Components/Hero/Hero';
 import CategoryCarousel from './Components/MainBody/CategoryCarousel';
 import PropertyDetail from './Components/MainBody/PropertyDetail';
 import Footer from './Components/Footer/footer';
-import PropertyCard from './Components/MainBody/PropertyCard';
+import PropertyCard from './Components/MainBody/sliderPropertyCard.jsx';
 import AboutUs from './Components/AboutUs/AboutUs';
 import Invest from './Components/Invest/Invest';
 import Rent from './Components/Rent/rent';
