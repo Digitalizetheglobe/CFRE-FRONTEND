@@ -4,7 +4,7 @@ import Image from './tabline2.png'; // Import the image
 const Tagline = () => {
     return (
         <div 
-            className="p-8 rounded-lg flex justify-between items-center text-white max-w-7xl mx-auto bg-cover bg-center   "
+            className="p-8 rounded-lg flex justify-between items-center text-white max-w-7xl mx-auto bg-cover bg-center  mb-12 "
             style={{
                 backgroundImage: `url(${Image})`,
                 backgroundSize: 'cover', // Ensures the image covers the container
@@ -30,15 +30,15 @@ const Tagline = () => {
                         Save on Brokerage*
                     </li>
                 </ul>
-                <button className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-full inline-flex items-center"> {/* Reduced padding */}
+                <button className="bg-white text-[#d84a48] font-semibold px-4 py-2 rounded-full inline-flex items-center"> {/* Reduced padding */}
                     Get Started Now!
-                    <span className="ml-2 bg-blue-500 text-white px-2 py-1 rounded-full">FREE!</span>
+                    <span className="ml-2 bg-[#d84a48] text-white px-2 py-1 rounded-full">FREE!</span>
                 </button>
             </div>
-            <div className="bg-white p-4 rounded-lg shadow-lg text-blue-500 mr-10"> {/* Adjusted width */}
+            <div className="bg-white p-4 rounded-lg shadow-lg text-[#d84a48] mr-10"> {/* Adjusted width */}
                 <p className="text-sm">Multiple options</p>
                 <h2 className="text-xl font-bold mb-2">3× Faster</h2> {/* Reduced text size */}
-                <div className="bg-green-500 text-white px-4 py-2 rounded-full font-semibold">
+                <div className="bg-[#d84a48] text-white px-4 py-2 rounded-full font-semibold">
                     BETTER DEAL!
                 </div>
             </div>

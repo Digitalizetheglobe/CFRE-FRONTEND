@@ -73,7 +73,7 @@ const categories = [
 ];
 
 const CategoryCard = ({ category }) => (
-    <Link to={category.path} className="block flex-shrink-0  h-full mx-2"> {/* Adjust width and margin here */}
+    <Link to={category.path} className="block flex-shrink-0  h-full mx-2 "> {/* Adjust width and margin here */}
         <div className="bg-white rounded-lg overflow-hidden shadow-md transform transition duration-300 hover:shadow-xl hover:scale-105">
             <img 
                 src={category.imageUrl} 
@@ -90,7 +90,7 @@ const CategoryCard = ({ category }) => (
 
 const CategoryDisplay = () => {
     return (
-        <div className="w-full mx-auto py-10 px-5 ml-10">
+        <div className="w-full mx-auto py-10 px-5 ml-10 mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Commercial Properties</h2>
             <p className="text-base text-gray-700 mb-8">
                 Explore our top categories for smart investments in properties.

@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({ title, description, imageUrl, button1Text, button2Text }) => {
     return (
         <div 
-            className="p-8 rounded-lg flex flex-col justify-between text-white bg-cover bg-center"
+            className="p-8 rounded-lg flex flex-col justify-between text-white bg-cover bg-center mt-10"
             style={{
                 backgroundImage: `url(${imageUrl})`,
                 height: '300px', // Adjust height as needed
@@ -26,7 +26,7 @@ const Card = ({ title, description, imageUrl, button1Text, button2Text }) => {
 };
 const sellProperty = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
             <Card
                 title="Sell your Commercial Property with Zero Hassle"
                 description="Our wide network of investors enables us to find the right buyer for you."

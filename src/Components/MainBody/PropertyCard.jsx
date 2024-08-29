@@ -323,8 +323,8 @@ function PropertyList() {
     const swiperRef = useRef(null);
 
     return (
-        <div className='my-8 mx-12 '>
-            <div className="flex justify-between items-center mb-5">
+        <div className='my-8 mx-12 mb-20 '>
+            <div className="flex justify-between items-center mb-10">
                 <h1 className="md:text-xl font-semibold mx-2">
                     Trending Commercial Properties
                 </h1>
