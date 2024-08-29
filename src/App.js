@@ -5,7 +5,7 @@ import Hero from './Components/Hero/Hero';
 import CategoryCarousel from './Components/MainBody/CategoryCarousel';
 import PropertyDetail from './Components/MainBody/PropertyDetail';
 import Footer from './Components/Footer/footer';
-import PropertyCard from './Components/MainBody/sliderPropertyCard.jsx';
+import PropertyCard from './Components/MainBody/PropertyCard.jsx';
 import AboutUs from './Components/AboutUs/AboutUs';
 import Invest from './Components/Invest/Invest';
 import Rent from './Components/Rent/rent';
@@ -35,7 +35,7 @@ import Template from './Components/MainBody/Template.jsx';
 import sellProperty from './Components/MainBody/sellProperty.jsx';
 import Card from './Components/Cards/Card.jsx';
 import Thirdcards from './Components/MainBody/Thirdcards.jsx';
-
+import PropertyCardInvest from './Components/MainBody/PropertyCardInvest.jsx'
 
 
 function App() {
@@ -92,8 +92,10 @@ function MainContent() {
       {isHomePage && (
   <>
     {/* <Blogslider /> */}
+    {/* <PropertyCardInvest /> */}
     <Card />
     <CategoryCarousel />
+    <PropertyCardInvest /> 
     <Tagline />
     <sellProperty/>
     <Template />
