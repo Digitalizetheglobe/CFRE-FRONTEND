@@ -10,7 +10,7 @@ const truncateText = (text, maxLength) => {
 };
 
 const ProjectCard = ({ project }) => {
-    const shareUrl = `https://yourwebsite.com/project/${project.id}`;
+    const shareUrl = `https://cfrecpune.com/projects/${project.id}`;
     const title = project.title;
 
     return (

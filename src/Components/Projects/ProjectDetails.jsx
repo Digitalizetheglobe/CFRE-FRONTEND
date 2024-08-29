@@ -26,7 +26,7 @@ const ProjectDetails = () => {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const response = await axios.get(`http://cfrecpune.com/projects/${id}`);
+                const response = await axios.get(`https://cfrecpune.com/projects/${id}`);
                 setProject(response.data);
             } catch (error) {
                 console.error('Error fetching project:', error);

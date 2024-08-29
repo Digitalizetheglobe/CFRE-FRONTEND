@@ -9,7 +9,7 @@ function ProjectProperty() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('http://cfrecpune.com/projects');
+                const response = await axios.get('https://cfrecpune.com/projects');
                 setProjects(response.data);
                 console.log('Fetched projects:', response.data);
                 

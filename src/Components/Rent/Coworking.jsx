@@ -22,7 +22,7 @@ const Coworking = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://cfrecpune.com/rentproperties');
+                const response = await axios.get('https://cfrecpune.com/rentproperties');
                 setProperties(response.data);
                 setFilteredProperties(response.data.filter(property => property.furnishing === 'Coworking'));
             } catch (error) {

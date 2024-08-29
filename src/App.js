@@ -28,6 +28,14 @@ import ProjectDetails from './Components/Projects/ProjectDetails';
 // import ProjectCard from './components/ProjectCard';
 import Blogslider from './Components/MainBody/Blogslider.jsx';
 import Cookies from './Components/MainBody/cookies.jsx';
+import ShowroomPropertyDetails from './Components/Showroom/ShowroomPropertyDetails.jsx';
+import PropertyDetails from './Components/Hero/PropertyDetails.jsx'
+import Tagline from './Components/MainBody/Tagline.jsx';
+import Template from './Components/MainBody/Template.jsx';
+import sellProperty from './Components/MainBody/sellProperty.jsx';
+import Card from './Components/Cards/Card.jsx';
+import Thirdcards from './Components/MainBody/Thirdcards.jsx';
+
 
 
 function App() {
@@ -54,7 +62,7 @@ function MainContent() {
         <Blogslider />
         </>)}
       <Routes>
-        {/* <Route path="/" element={<PropertyCard />} /> */}
+        <Route path="/" element={<PropertyCard />} />
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/invest" element={<Invest />} />
@@ -63,8 +71,10 @@ function MainContent() {
         <Route path='/projectproperty' element={<ProjectProperty />} />
         {/* <Route path='/blogslider' element={<Blogslider />} /> */}
         <Route path='/propertyList' element={<PropertyList />} />
+        <Route path="/combinedproperties/:id" element={<PropertyDetails />} />
         <Route path="/office" element={<Office />} />
         <Route path="/showroom" element={<Showroom />} />
+        <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
         <Route path='/addproperty' element={<AddProperty />} />
         <Route path='/addproperty1' element={<AddProperty1 />} />
         <Route path='/addproperty2' element={<AddProperty2 />} />
@@ -76,11 +86,19 @@ function MainContent() {
         <Route path='/unleased' element={<Unlease />} />
         <Route path="/propertydetail/:id" element={<PropertyDetailInInvest />} />
         <Route path="/project/:id" element={<ProjectDetails />} />
+        <Route path='/cards' element={<Card/>}/>
+        <Route path='/third-card' element={<Thirdcards/>}/>
       </Routes>
       {isHomePage && (
   <>
     {/* <Blogslider /> */}
+    <Card />
     <CategoryCarousel />
+    <Tagline />
+    <sellProperty/>
+    <Template />
+    
+    
   </>
 )}
     </main>

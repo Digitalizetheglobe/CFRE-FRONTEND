@@ -3,7 +3,7 @@ import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon
 import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const PropertyCard = ({ property, onEnquire }) => {
-    const shareUrl = `https://yourwebsite.com/property/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/investproperties/${property.id}`;
     const title = property.title;
 
     return (

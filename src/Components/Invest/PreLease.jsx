@@ -21,12 +21,12 @@ const Prelease = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/investproperty');
+                const response = await axios.get('https://cfrecpune.com/investproperties');
                 setProperties(response.data);
 
                 console.log("Fetched properties:", response.data);
 
-                const preleasedProperties = response.data.filter(property => property.propertyType === 'Preleased');
+                const preleasedProperties = response.data.filter(property => property.propertyType === 'PreLeased');
                 setFilteredProperties(preleasedProperties);
             } catch (error) {
                 console.error('Error fetching properties:', error);
@@ -49,7 +49,8 @@ const Prelease = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.propertyType === 'Preleased');
+        // Correct the case for the 'PreLeased' filter
+        let filtered = properties.filter(property => property.propertyType === 'PreLeased');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>

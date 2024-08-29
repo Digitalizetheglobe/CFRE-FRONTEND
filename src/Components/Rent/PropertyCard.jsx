@@ -3,7 +3,7 @@ import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const PropertyCard = ({ property, onEnquire }) => {
-    const shareUrl = `https://yourwebsite.com/property/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/rentproperties/${property.id}`;
     const title = property.buildingName;
 
     return (
@@ -22,8 +22,11 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <div className="relative">
                 {/* Replaced the property image with the provided image */}
-                <img className="w-full h-48 object-cover" src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg" alt="Property" />
-            
+                <Link   to={`/property-detail/${property.id}`} >
+                <img 
+              
+                className="w-full h-48 object-cover" src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg" alt="Property" />
+            </Link>
             </div>
 
             <div className="px-6 py-4">

@@ -75,10 +75,9 @@ function Hero() {
         // Fetch properties from the API
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/properties');
+                const response = await axios.get('https://cfrecpune.com/combinedproperties');
                 setProperties(response.data);
                 console.log('111111111====>', response.data);
-                
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
@@ -92,7 +91,7 @@ function Hero() {
         const filterProperties = () => {
             const filtered = properties.filter(property => {
                 // Check if the selected city is part of the location (ignoring case)
-                const cityMatch = selectedCity ? property.location.toLowerCase().includes(selectedCity.toLowerCase()) : true;
+                const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
                 // Check if the search query matches the description (ignoring case)
                 const searchMatch = searchQuery ? property.description?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
@@ -123,13 +122,13 @@ function Hero() {
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-2 text-center">
+                    <h1 className="text-2xl sm:text-3xl md:text-xl lg:text-3xl text-white font-bold mb-2 text-center">
                         End-to-End Commercial Real Estate Platform
                     </h1>
-                    <p className="hidden md:flex text-lg sm:text-xl md:text-2xl lg:text-xl text-white mb-6 text-center">
+                    <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-base text-white mb-6 text-center">
                         Invest, Sell and Rent Commercial Real Estate backed by verified data.
                     </p>
-                    <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-2/3 space-y-4 sm:space-y-0">
+                    <div className="bg-white p-2 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-1/3 space-y-4 sm:space-y-0">
                         <div className="flex items-center space-x-2 w-full sm:w-auto">
                             <label htmlFor="city" className="text-sm sm:text-base lg:text-lg">
                                 City
@@ -150,7 +149,7 @@ function Hero() {
                         </div>
                         <input
                             type="text"
-                            placeholder="What locations do you prefer?"
+                            placeholder="Search locations.."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="border p-2 rounded w-full flex-1"

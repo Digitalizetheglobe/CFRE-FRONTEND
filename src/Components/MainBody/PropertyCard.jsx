@@ -56,7 +56,7 @@ import 'swiper/swiper-bundle.css';
 import Image from '../assets/ABC.jpeg'; // Ensure you import your image correctly
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
-import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; 
+import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 
 // Sample property data
 const properties = [
@@ -242,79 +242,71 @@ function PropertyCard({ property }) {
 
 
 
-        
+
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
-    {/* Share button */}
-    <div className="absolute top-0 right-0 z-10 p-2">
-        <a
-            href={`https://wa.me/?text=${encodeURIComponent('Check out this property: ' + property.image)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white font-normal py-2 px-2 rounded flex items-center"
-        >
-            <FaShareAlt className="hover:scale-125" size={18} />
-        </a>
-    </div>
+            {/* Share button */}
+            <div className="absolute top-0 right-0 z-10 p-2">
+                <a
+                    href={`https://wa.me/?text=${encodeURIComponent('Check out this property: ' + property.image)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white font-normal py-2 px-2 rounded flex items-center"
+                >
+                    <FaShareAlt className="hover:scale-125" size={18} />
+                </a>
+            </div>
 
-    <div className="relative">
-        <img className="w-full h-48 object-cover" src={property.image} alt="Property" />
-        <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded hover:scale-125">
+            <div className="relative">
+                <img className="w-full h-36 object-cover" src={property.image} alt="Property" />
+                {/* <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded hover:scale-125">
             More Images
-        </button>
-    </div>
+        </button> */}
+            </div>
 
-    <div className="px-6 py-4">
-        <h3 className="font-bold text-xl mb-2">Prelease Property</h3>
-        <div className="text-gray-700 text-base mb-2">
-            <p className="mb-1 flex justify-between">
-                Property Type
-                <span className="font-semibold">{property.propertyType}</span>
-            </p>
-            <p className="mb-1 flex justify-between">
-                Location
-                <span className="font-semibold">{property.location}</span>
-            </p>
-            <p className="mb-1 flex justify-between">
-                Building Type
-                <span className="font-semibold">{property.buildingType}</span>
-            </p>
-            <p className="mb-1 flex justify-between">
-                Area
-                <span className="font-semibold">{property.area}</span>
-            </p>
-            <p className="mb-1 flex justify-between">
-                Rent / Month
-                <span className="font-semibold">{property.rent}</span>
-            </p>
-            <p className="flex justify-between">
-                ROI
-                <span className="font-semibold">{property.roi}</span>
-            </p>
-        </div>
-    </div>
+            <div className="px-6 py-4">
+                <h3 className="font-bold text-base ">Prelease Property</h3>
+                <div className="text-gray-700 text-sm ">
+                    <p className="mb-1 flex justify-between">
+                        Property Type
+                        <span className="font-semibold">{property.propertyType}</span>
+                    </p>
+                    <p className="mb-1 flex justify-between">
+                        Location
+                        <span className="font-semibold">{property.location}</span>
+                    </p>
+                    <p className="mb-1 flex justify-between">
+                        Building Type
+                        <span className="font-semibold">{property.buildingType}</span>
+                    </p>
+                    <p className="mb-1 flex justify-between">
+                        Area
+                        <span className="font-semibold">{property.area}</span>
+                    </p>
+                </div>
+            </div>
 
-    <div className="px-6 pt-1 pb-2 flex justify-between items-center">
-        <button 
-        onClick={handleImageClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
-        Know More
-        </button>
-        <div className="ml-2 flex space-x-2">
-            <button
-                onClick={handleWhatsAppClick}
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded flex items-center"
-            >
-                <FaWhatsapp className="ml-1" />
-            </button>
-            <button
-                onClick={handlePhoneClick}
-                className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded flex items-center"
-            >
-                <FaPhoneAlt className="ml-1" />
-            </button>
+            <div className="px-6  pb-2 flex justify-between items-center">
+                <button
+                    onClick={handleImageClick}
+                    className="bg-[#d84a48]  hover:bg-[#b03b3a] text-white font-bold py-1 px-4 rounded w-full">
+                    Know More
+                </button>
+                <div className="ml-2 flex space-x-2">
+                    <button
+                        onClick={handleWhatsAppClick}
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded flex items-center"
+                    >
+                        <FaWhatsapp className="ml-1" />
+                    </button>
+                    <button
+                        onClick={handlePhoneClick}
+                        className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded flex items-center"
+                    >
+                        <FaPhoneAlt className="ml-1" />
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
     );
 }
@@ -332,11 +324,16 @@ function PropertyList() {
 
     return (
         <div className='my-8 mx-12 '>
-         <div className="flex justify-center">
-  <h1 className="md:text-3xl font-semibold text-center mx-2 mb-5">
-    Trending Commercial Properties
-  </h1>
-</div>
+            <div className="flex justify-between items-center mb-5">
+                <h1 className="md:text-xl font-semibold mx-2">
+                    Trending Commercial Properties
+                </h1>
+                <button className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out">
+  Explore Properties
+</button>
+
+            </div>
+
 
             <Swiper
                 spaceBetween={30}

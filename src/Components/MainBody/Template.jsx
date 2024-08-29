@@ -1,0 +1,48 @@
+import React from 'react'
+
+function Template() {
+    return (
+        <div class="flex flex-col md:flex-row bg-gray-100 p-8 rounded-lg shadow-lg">
+            {/* Left Side - Buttons */}
+            <div class="w-full md:w-1/2 flex flex-col justify-center items-center space-y-4 p-4">
+                <p>TagLine</p>
+                <button class="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg w-full md:w-auto hover:bg-blue-700">
+                    Office Space
+                </button>
+                <button class="bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg w-full md:w-auto hover:bg-purple-700">
+                    Commercial Properties
+                </button>
+            </div>
+
+            {/* Right Side - Form */}
+            <div class="w-full md:w-1/2 bg-[#1C2439] p-8 rounded-lg shadow-md space-y-4">
+                <h2 class="text-2xl font-bold text-white">Hey there,</h2>
+                <p class="text-white">How can we serve you today?</p>
+
+                <div class="space-y-4">
+                    <label class="flex items-center space-x-3">
+                        <input type="radio" name="service" class="h-5 w-5 text-blue-600" />
+                        <span class="text-white">I want to buy/sell a commercial property</span>
+                    </label>
+                    <label class="flex items-center space-x-3">
+                        <input type="radio" name="service" class="h-5 w-5 text-blue-600" />
+                        <span class="text-white">I want to lease my property out</span>
+                    </label>
+                    <label class="flex items-center space-x-3">
+                        <input type="radio" name="service" class="h-5 w-5 text-blue-600" />
+                        <span class="text-white">Something else</span>
+                    </label>
+                </div>
+
+                <textarea class="w-full h-32 p-4 mt-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600" placeholder="Tell us your requirements..."></textarea>
+
+                <button class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700">
+                    Submit
+                </button>
+            </div>
+        </div>
+
+    )
+}
+
+export default Template

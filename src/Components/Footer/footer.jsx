@@ -56,7 +56,7 @@ const Footer = () => {
                             <p className="text-gray-400 mb-2">Pune- 411002</p>
                             <p className="text-gray-400 mb-2">Phone:  +91 8149977661</p>
                             <p className="text-gray-400">Email: swapnil@cfrerealty.com</p>
-                            <p className="text-gray-400 mb-2">RERA:  A52100013991</p>
+                            {/* <p className="text-gray-400 mb-2">RERA:  A52100013991</p> */}
                         </div>
                     </div>
 
