@@ -211,11 +211,11 @@ function PropertyList() {
 
     return (
         <div className='my-8 mx-12 '>
-            <div className="flex justify-between items-center mb-5">
-                <h1 className="md:text-xl font-semibold mx-2">
-                    Trending Rent Properties
+            <div className="flex justify-between items-center mb-5 mr-0">
+                <h1 className="md:text-4xl font-semibold mx-2 mb-2">
+                Office Spaces For Your Business
                 </h1>
-                <button className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out">
+                <button className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out mr-14">
                     Explore Properties
                 </button>
 
@@ -223,7 +223,7 @@ function PropertyList() {
 
 
             <Swiper
-                spaceBetween={30}
+                spaceBetween={20}
                 centeredSlides={true}
                 autoplay={{
                     delay: 2500,

@@ -179,11 +179,11 @@ function PropertyCardInvestList() {
 
     return (
         <div className='my-8 mx-12 '>
-            <div className="flex justify-between items-center mb-5">
-                <h1 className="md:text-xl font-semibold mx-2">
-                    Trending Investment Properties
+            <div className="flex justify-between items-center mb-8">
+                <h1 className="md:text-4xl font-semibold mx-2">
+                    Exclusive Properties in India
                 </h1>
-                <button className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out">
+                <button className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out mr-14">
                     Explore Properties
                 </button>
             </div>

@@ -187,10 +187,21 @@ import React, { useState } from 'react';
 import sell from '../assets/sell-your-property-step-1 (1).avif';
 import sell1 from '../assets/sell-your-property-step-2 (1).avif';
 import sell2 from '../assets/sell-your-property-step-3.avif';
+import ContactForm from './ContactForm';
+
 
 const Thirdcards = () => {
   // State to manage which accordion section is open
   const [openAccordion, setOpenAccordion] = useState(null);
+  const [isFormVisible, setFormVisible] = useState(false);
+
+  const handleButtonClick = () => {
+      setFormVisible(true);
+  };
+
+  const handleCloseForm = () => {
+      setFormVisible(false);
+  };
 
   // Function to toggle the accordion section
   const toggleAccordion = (index) => {
@@ -254,7 +265,8 @@ const Thirdcards = () => {
                 🏢 <br /> Vacant Commercial
               </div>
             </div>
-            <button className="bg-[#d84a48] text-white w-full py-3 rounded-md">
+            <button className="bg-[#d84a48] text-white w-full py-3 rounded-md"
+            onClick={handleButtonClick }>
               Connect With Us!
             </button>
           </div>
@@ -381,6 +393,20 @@ const Thirdcards = () => {
         </div>
         
       </div>
+       {/* Render ContactForm only if isFormVisible is true */}
+       {isFormVisible && (
+                <div 
+                    className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
+                    onClick={handleCloseForm} // Close on overlay click
+                >
+                    <div 
+                        className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
+                        onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
+                    >
+                        <ContactForm onClose={handleCloseForm} />
+                    </div>
+                </div>
+            )}
     </div>
   );
 };

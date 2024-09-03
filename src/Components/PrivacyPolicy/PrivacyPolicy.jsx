@@ -5,8 +5,7 @@ import Image from './privacyPolicy.webp'
 
 function PrivacyPolicy() {
     return (
-        <div className="bg-gray-50 py-10">
-            {/* Banner Section */}
+        <>
             <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}
@@ -15,7 +14,9 @@ function PrivacyPolicy() {
                     <h1 className="text-4xl text-white font-bold text-center">Privacy Policy</h1>
                 </div>
             </div>
-            <div className="container mx-auto px-6 md:px-12 lg:px-20 mt-10">
+        <div className="bg-gray-50 py-10">
+            {/* Banner Section */}
+            <div className="container mx-auto px-6 md:px-12 lg:px-20 ">
                 <h1 className="text-xl font-extrabold text-gray-800 mb-6">Privacy Policy</h1>
                 <p className="text-sm text-gray-700 leading-relaxed mb-8">
                     This privacy policy ("Policy") describes how we collect, protect, and use the personally identifiable information ("Personal Information") you ("User", "you", or "your") provide on the http://www.cfrerealty.com website and any of its products or services (collectively, "Website" or "Services"). It also describes the choices available to you regarding our use of your personal information and how you can access and update this information. This Policy does not apply to the practices of companies that we do not own or control, or to individuals that we do not employ or manage.
@@ -77,6 +78,7 @@ function PrivacyPolicy() {
                 </p>
             </div>
         </div>
+        </>
     );
 }
 

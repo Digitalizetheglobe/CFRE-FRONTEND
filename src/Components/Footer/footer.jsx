@@ -1,6 +1,8 @@
-import { React, useState} from 'react';
+import { React, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import ContactForm from '../MainBody/ContactForm';
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
     const [isFormVisible, setFormVisible] = useState(false);
@@ -21,33 +23,34 @@ const Footer = () => {
                         Looking To Sell Or Rent Your Property?
                     </h6>
                     <button
-                        type="button"
-                        onClick={handleButtonClick}
-                        className="sm:px-4 max-sm:px-2 py-2 sm:text-sm max-sm:text-xs rounded-full text-[#d84a48] bg-white mt-2 sm:mt-0 sm:ml-auto"
-                    >
-                        Enquire Now
-                    </button>
+    type="button"
+    onClick={handleButtonClick}
+    className="sm:px-4 max-sm:px-2 py-2 sm:text-sm max-sm:text-xs rounded-full text-[#d84a48] bg-white mt-2 sm:mt-0 sm:ml-auto hover:bg-black hover:text-white transition duration-300"
+>
+    Enquire Now
+</button>
+
                 </div>
                 <div className="container mx-auto px-10 mt-12">
                     <div className="flex flex-wrap justify-between gap-0">
                         {/* About CFRE */}
                         <div className="w-full md:w-1/3 mb-6 md:mb-0">
                             <h4 className="text-lg font-semibold mb-4">About CFRE</h4>
-                            <p className="text-gray-400">
-                                CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound
+                            <p className="text-gray-400 text-justify">
+                                CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound.
                             </p>
+
                         </div>
 
                         {/* Quick Links */}
                         <div className="w-full md:w-1/3 mb-6 md:mb-0">
-                            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                            <h4 className="text-lg font-semibold mb-4 ml-20">Quick Links</h4>
                             <ul>
-                                <li><a href="/" className="text-gray-400 hover:text-white">Home</a></li>
-                                <li><a href="/blog" className="text-gray-400 hover:text-white">Blog</a></li>
-                                <li><a href="/about-us" className="text-gray-400 hover:text-white">About Us</a></li>
-                                <li><a href="/contactUs" className="text-gray-400 hover:text-white">Contact Us</a></li>
-                                <li><a href="/privacyPolicy" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
-
+                                <li><Link to="/" className="text-gray-400 hover:text-whit ml-20">Home</Link></li>
+                                <li><Link to="/about-us" className="text-gray-400 hover:text-white ml-20">About Us</Link></li>
+                                <li><Link to="/contactUs" className="text-gray-400 hover:text-white ml-20">Contact Us</Link></li>
+                                <li><Link to="/blog" className="text-gray-400 hover:text-white ml-20">Blog</Link></li>
+                                <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white ml-20">Privacy Policy</Link></li>
                             </ul>
                         </div>
 
@@ -81,25 +84,20 @@ const Footer = () => {
 
                 {/* Footer Bottom */}
                 <div className="bg-gray-900 text-center py-2 mt-2">
-    <p className="text-white-500 text-sm">
-        &copy; {new Date().getFullYear()} CFRE. All rights reserved.
-        Carefully Crafted By Digitalize The Globe!
-    </p>
-</div>
+                    <p className="text-white-500 text-sm">
+                        &copy; {new Date().getFullYear()} CFRE. All rights reserved.
+                        Carefully Crafted By Digitalize The Globe!
+                    </p>
+                </div>
 
 
                 {isFormVisible && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                        <ContactForm onSubmit={(data) => { console.log('Form data:', data); handleCloseForm(); }} />
-                        {/* <button
-                            onClick={handleCloseForm}
-                            className="mt-4 text-red-500 hover:text-red-700">
-                            Close
-                        </button> */}
+                    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                            <ContactForm onSubmit={(data) => { console.log('Form data:', data); handleCloseForm(); }} />
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
             </footer>
         </>
     );
