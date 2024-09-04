@@ -40,6 +40,8 @@ import Card from './Components/Cards/Card.jsx';
 import Thirdcards from './Components/MainBody/Thirdcards.jsx';
 import AddNewProperty from './AdminDashboard/PropertyPages/AddNewProperty.jsx';
 import PropertyCardInvest from './Components/MainBody/PropertyCardInvest.jsx'
+import BulkUploadForm from './AdminDashboard/BulkUploadForm.jsx';
+
 import Blog1 from './Components/Blogs/Blog1.jsx';
 import Blog2 from './Components/Blogs/Blog2.jsx';
 import Blog3 from './Components/Blogs/Blog3.jsx';
@@ -108,6 +110,8 @@ function MainContent() {
         <Route path='/cards' element={<Card/>}/>
         <Route path='/third-card' element={<Thirdcards/>}/>
         <Route path='/addnewproperty' element={<AddNewProperty/>} />
+        <Route path ='/bulkproperty' element={<BulkUploadForm/>} />
+        
         <Route path='/commercial-property-in-baner-2' element={<Blog1/>}/>
         <Route path='/commercial-property-in-balewadi' element={<Blog2/>}/>
         <Route path='/coworking-space' element={<Blog3/>}/>
