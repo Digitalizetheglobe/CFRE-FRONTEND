@@ -224,7 +224,7 @@
 
 
 
-            
+
 //         </div>
 
 //     );
@@ -342,7 +342,7 @@ const PropertyDetailInRent = () => {
             </div>
 
             {/* Overview Section */}
-            <div ref={overviewRef} className="border border-gray-300 rounded-lg shadow-sm bg-white p-4 max-w-7xl mx-auto mt-5">
+            <div ref={overviewRef} className="border border-gray-300 rounded-lg shadow-sm bg-white p-4 max-w-8xl mx-auto mt-5">
                 <div className="flex flex-wrap lg:flex-nowrap">
                     {/* Left Section */}
                     <div className="w-full lg:w-1/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
@@ -427,51 +427,51 @@ const PropertyDetailInRent = () => {
             </div>
 
             {/* More Details Section */}
-            <div ref={moreDetailsRef} className="max-w-5xl mt-8 bg-white p-6 rounded-lg shadow-md border border-gray-300 ml-20">
-  <h4 className="text-xl font-semibold mb-6">More Details</h4>
-  <div className="space-y-4 divide-y divide-gray-200">
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Rental Value</span>
-      <span className="col-span-2 font-bold text-gray-900">₹3.1 Lac | ₹20,000 Monthly Maintenance</span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Security Deposit</span>
-      <span className="col-span-2 font-bold text-gray-900">₹10.0 Lac</span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Facilities</span>
-      <span className="col-span-2 font-bold text-gray-900">
-        Power Back Up, Lift, Reserved Parking, Security, Water Storage, Service/Goods Lift, Air Conditioned, Visitor Parking, Intercom Facility, Cafeteria/Food Court, CCTV Camera, Fire Sprinklers, Tea/Coffee, Wheelchair Accessibility
-      </span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Address</span>
-      <span className="col-span-2 font-bold text-gray-900">
-        Senapati Bapat Marg, Lower Parel, Mumbai - South Mumbai, Maharashtra
-      </span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">LEED Certification</span>
-      <span className="col-span-2 font-bold text-gray-900">Not Applicable</span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Lifts</span>
-      <span className="col-span-2 font-bold text-gray-900">10</span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Lock-in period</span>
-      <span className="col-span-2 font-bold text-gray-900">2 Years</span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Water Availability</span>
-      <span className="col-span-2 font-bold text-gray-900">24 Hours Available</span>
-    </div>
-    <div className="grid grid-cols-3 gap-x-4 py-2">
-      <span className="font-semibold text-gray-700">Pre Leased Property</span>
-      <span className="col-span-2 font-bold text-gray-900">No</span>
-    </div>
-  </div>
-</div>
+            <div ref={moreDetailsRef} className="max-w-5xl mt-8 bg-white p-6 rounded-lg shadow-md border border-gray-300 ml-12">
+                <h4 className="text-xl font-semibold mb-6">More Details</h4>
+                <div className="space-y-4 divide-y divide-gray-200">
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Rental Value</span>
+                        <span className="col-span-2 font-bold text-gray-900">₹3.1 Lac | ₹20,000 Monthly Maintenance</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Security Deposit</span>
+                        <span className="col-span-2 font-bold text-gray-900">₹10.0 Lac</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Facilities</span>
+                        <span className="col-span-2 font-bold text-gray-900">
+                            Power Back Up, Lift, Reserved Parking, Security, Water Storage, Service/Goods Lift, Air Conditioned, Visitor Parking, Intercom Facility, Cafeteria/Food Court, CCTV Camera, Fire Sprinklers, Tea/Coffee, Wheelchair Accessibility
+                        </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Address</span>
+                        <span className="col-span-2 font-bold text-gray-900">
+                           {property.location},{property.city}
+                        </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">LEED Certification</span>
+                        <span className="col-span-2 font-bold text-gray-900">Not Applicable</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Lifts</span>
+                        <span className="col-span-2 font-bold text-gray-900">10</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Lock-in period</span>
+                        <span className="col-span-2 font-bold text-gray-900">2 Years</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Water Availability</span>
+                        <span className="col-span-2 font-bold text-gray-900">24 Hours Available</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-x-4 py-2">
+                        <span className="font-semibold text-gray-700">Pre Leased Property</span>
+                        <span className="col-span-2 font-bold text-gray-900">No</span>
+                    </div>
+                </div>
+            </div>
 
 
 
