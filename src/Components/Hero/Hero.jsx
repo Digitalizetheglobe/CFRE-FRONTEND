@@ -124,10 +124,10 @@ function Hero() {
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
                     <h1 className="text-5xl sm:text-3xl md:text-xl lg:text-4xl text-white font-bold mb-2 text-center">
-                        End-to-End Commercial Real Estate Platform
+                        Commercial Real Estate Platform
                     </h1>
                     <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-xl text-white mb-6 text-center">
-                        Invest, Sell and Rent Commercial Real Estate backed by verified data.
+                    Rent, Invest, Sale Commercial Real Estate with Verified Data
                     </p>
                     <SearchBar/>
                     {/* <div className="bg-white p-2 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-1/3 space-y-4 sm:space-y-0">

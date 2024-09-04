@@ -364,7 +364,7 @@ const PropertyDetailInRent = () => {
 
                                 <div className="w-full lg:w-1/2">
                                     <div className="text-2xl font-bold text-gray-900 mb-4">
-                                        ₹7.7 Lac <span className="text-base font-normal">₹65/sqft</span>
+                                        ₹7.7 Lac <span className="text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
                                         <span className="bg-green-100 text-green-800 text-xs font-semibold ml-4 px-2.5 py-0.5 rounded">Verified on Site</span>
                                     </div>
 
@@ -372,12 +372,12 @@ const PropertyDetailInRent = () => {
                                         <div>
                                             <div className="font-semibold">Built-up Area</div>
                                             <div className="font-bold">{property.buArea} sqft</div>
-                                            <div className="text-gray-500">₹65/sqft</div>
+                                            <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
                                         </div>
                                         <div>
                                             <div className="font-semibold">Carpet Area</div>
                                             <div className="font-bold">{property.carpetArea} sqft</div>
-                                            <div className="text-gray-500">₹77/sqft</div>
+                                            <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
                                         </div>
                                         <div>
                                             <div className="font-semibold">Floor</div>
@@ -458,7 +458,7 @@ const PropertyDetailInRent = () => {
                                         className="w-24 h-24 object-cover rounded-md mr-4"
                                     />
                                     <div>
-                                        <div className="text-lg font-bold text-gray-800">{recentProperty.buArea} sq.ft</div>
+                                        <div className="text-lg font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
                                         <div className="text-gray-600">Available in {recentProperty.location}</div>
                                         <div className="text-gray-900 font-semibold mt-2">₹{recentProperty.rentPerMonth}</div>
                                     </div>

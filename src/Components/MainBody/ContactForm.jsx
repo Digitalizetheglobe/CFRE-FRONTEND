@@ -142,7 +142,10 @@ const ContactForm = ({ onClose }) => {
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm mx-auto text-center">
                         <h2 className="text-xl text-black font-semibold mb-4">Thank You!</h2>
-                        <p className="mb-4 text-black">Thank you for posting your requirement. We will connect with you soon!</p>
+                        <p className="mb-4 text-black">
+    Thank you for your requirement. You can call us: 
+    <a href="tel:+918149977661" className="text-blue-500 underline">+91 8149977661</a>
+</p>
                         <button
                             onClick={onClose} // Use the onClose prop here as well
                             className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
