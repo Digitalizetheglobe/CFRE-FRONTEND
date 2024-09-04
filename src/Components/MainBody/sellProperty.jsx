@@ -2,11 +2,13 @@ import React from 'react';
 
 const Card = ({ title, description, imageUrl, button1Text, button2Text }) => {
     return (
-        <div 
-            className="p-8 rounded-lg flex flex-col justify-between text-white bg-cover bg-center mt-10"
+        <div
+            className="p-8 rounded-lg flex flex-col justify-between text-white bg-cover bg-center mt-15"
             style={{
                 backgroundImage: `url(${imageUrl})`,
-                height: '300px', // Adjust height as needed
+                width: '100%', // Adjust width as needed
+                height: '400px', // Adjust height as needed
+                backgroundSize: 'cover', // Ensures the image covers the container
             }}
         >
             <div>
@@ -24,12 +26,12 @@ const Card = ({ title, description, imageUrl, button1Text, button2Text }) => {
         </div>
     );
 };
-const sellProperty = () => {
+
+const SellProperty = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
             <Card
-                title="Sell your Commercial Property with Zero Hassle"
-                description="Our wide network of investors enables us to find the right buyer for you."
+                title="Office Spaces That Work for You"
                 imageUrl="/path-to-your-image1.jpg" // Update the image URL
                 button1Text="List Your Property"
                 button2Text="View Options"
@@ -45,4 +47,4 @@ const sellProperty = () => {
     );
 };
 
-export default sellProperty;
+export default SellProperty;

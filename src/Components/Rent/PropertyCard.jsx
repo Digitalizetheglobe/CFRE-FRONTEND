@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
+import Image from '../assets/ABC.jpeg'
 
-const PropertyCard = ({ property, onEnquire }) => {
-    const shareUrl = `https://cfrecpune.com/rentproperties/${property.id}`;
-    const title = property.buildingName;
+const PropertyCard = ({ property = {}, onEnquire }) => {
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id || ''}`;
+    const title = property.buildingName || 'Property';
 
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] transition-transform duration-300 ease-in-out relative">
@@ -21,38 +22,49 @@ const PropertyCard = ({ property, onEnquire }) => {
             </div>
 
             <div className="relative">
-                {/* Replaced the property image with the provided image */}
-                <Link   to={`/property-detail/${property.id}`} >
+                {/* Property image with a link to detailed view */}
+                <Link to={`/property-detail/${property.id || ''}`}>
                 <img 
-              
-                className="w-full h-48 object-cover" src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg" alt="Property" />
-            </Link>
+  className="w-full h-48 object-cover" 
+  src={Image} // Use a dynamic image source or default image
+  alt={title}
+/>
+
+                </Link>
             </div>
 
             <div className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-2xl text-gray-800">{property.cost} Lacs</div>
+                <div className="font-bold text-2xl text-gray-800">
+  {property.rentPerMonth ? `${property.rentPerMonth} ` : 'N/A'}
+</div>
 
                 {/* Property name with link to detailed view */}
-                <Link to={`/property-detail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300">
-                    {property.buildingName}
+                <Link 
+                    to={`/property-detail/${property.id || ''}`} 
+                    className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300"
+                >
+                    {title}
                 </Link>
 
                 {/* Location and city */}
-                <div className="text-gray-600 mt-1">{property.location}, {property.city}</div>
+                <div className="text-gray-600 mt-1">{property.location || 'Unknown Location'}, {property.city || 'Unknown City'}</div>
             </div>
 
             <div className="px-6 pb-4 flex justify-between items-center">
-                <Link  to={`/property-detail/${property.id}`} className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
-                    // onClick={onEnquire}
-                    >
+                <Link 
+                    to={`/property-detail/${property.id || ''}`} 
+                    className="bg-[#d84a48] hover:bg-[#c74b4a] text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
+                    onClick={onEnquire} // Uncomment if you need onEnquire
+                >
                     See Details
                 </Link>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10">
+                <button 
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10"
+                >
                     <FaWhatsapp className="text-xl" />
                 </button>
             </div>
-            
         </div>
     );
 };

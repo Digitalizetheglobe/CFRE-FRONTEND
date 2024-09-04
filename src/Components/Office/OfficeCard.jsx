@@ -2,7 +2,7 @@ import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon from react-icons
 
 const OfficeCard = ({ property }) => {
-    const shareUrl = `https://yourwebsite.com/property/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
     const title = property.title;
 
     return (

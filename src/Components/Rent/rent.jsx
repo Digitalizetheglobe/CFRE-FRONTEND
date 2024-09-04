@@ -255,7 +255,7 @@ const Rent = () => {
         // Fetch properties from the API
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/rentproperties');
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
                 setFilteredProperties(response.data); // Initialize filtered properties
             } catch (error) {

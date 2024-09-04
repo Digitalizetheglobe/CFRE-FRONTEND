@@ -42,6 +42,13 @@ import AddNewProperty from './AdminDashboard/PropertyPages/AddNewProperty.jsx';
 import PropertyCardInvest from './Components/MainBody/PropertyCardInvest.jsx'
 import BulkUploadForm from './AdminDashboard/BulkUploadForm.jsx';
 
+import Blog1 from './Components/Blogs/Blog1.jsx';
+import Blog2 from './Components/Blogs/Blog2.jsx';
+import Blog3 from './Components/Blogs/Blog3.jsx';
+import Blog4 from './Components/Blogs/blog4.jsx';
+import MainRent from './Components/Rent/MainRent.jsx';
+// import SearchBar from './Components/Hero/Searchbar.jsx';
+import Latestblog from './Components/Blogs/Latestblog.jsx';
 
 
 function App() {
@@ -72,9 +79,10 @@ function MainContent() {
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path='/latestblog' element={<Latestblog />}/>
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path='/contactUs' element={<ContactUs />} />
-        
+        {/* <Route path='/Searchbar' element={<SearchBar/>} /> */}
         <Route path="/invest" element={<Invest />} />
         <Route path="/rent"  element={<Rent />} />
         <Route path='/projectproperty' element={<ProjectProperty />} />
@@ -82,6 +90,7 @@ function MainContent() {
         <Route path='/propertyList' element={<PropertyList />} />
         <Route path="/combinedproperties/:id" element={<PropertyDetails />} />
         <Route path="/office" element={<Office />} />
+        <Route path='/commercial-properties-for-rent' element={<MainRent />} />
         <Route path="/showroom" element={<Showroom />} />
         <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
         <Route path='/addproperty' element={<AddProperty />} />
@@ -100,6 +109,11 @@ function MainContent() {
         <Route path='/addnewproperty' element={<AddNewProperty/>} />
         <Route path ='/bulkproperty' element={<BulkUploadForm/>} />
         
+        <Route path='/commercial-property-in-baner-2' element={<Blog1/>}/>
+        <Route path='/commercial-property-in-balewadi' element={<Blog2/>}/>
+        <Route path='/coworking-space' element={<Blog3/>}/>
+        <Route path='/office-space-for-rent-in-warje-pune' element={<Blog4/>} />
+
       </Routes>
       {isHomePage && (
   <>
@@ -109,7 +123,7 @@ function MainContent() {
     <CategoryCarousel />
     <PropertyCardInvest /> 
     <Tagline />
-    <sellProperty/>
+    {/* <sellProperty/> */}
     <Template />
     
     

@@ -63,6 +63,7 @@ import axios from 'axios';
 import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import BannerVideo from './bannerVideo.mp4'; // Import your video
+import SearchBar from '../../SearchBar';
 
 function Hero() {
     const [properties, setProperties] = useState([]);
@@ -71,20 +72,20 @@ function Hero() {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Fetch properties from the API
-        const fetchProperties = async () => {
-            try {
-                const response = await axios.get('https://cfrecpune.com/combinedproperties');
-                setProperties(response.data);
-                console.log('111111111====>', response.data);
-            } catch (error) {
-                console.error('Error fetching properties:', error);
-            }
-        };
+    // useEffect(() => {
+    //     // Fetch properties from the API
+    //     const fetchProperties = async () => {
+    //         try {
+    //             const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+    //             setProperties(response.data);
+    //             console.log('111111111====>', response.data);
+    //         } catch (error) {
+    //             console.error('Error fetching properties:', error);
+    //         }
+    //     };
 
-        fetchProperties();
-    }, []);
+    //     fetchProperties();
+    // }, []);
 
     useEffect(() => {
         // Filter properties based on city and search query
@@ -122,13 +123,14 @@ function Hero() {
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
-                    <h1 className="text-2xl sm:text-3xl md:text-xl lg:text-3xl text-white font-bold mb-2 text-center">
+                    <h1 className="text-5xl sm:text-3xl md:text-xl lg:text-4xl text-white font-bold mb-2 text-center">
                         End-to-End Commercial Real Estate Platform
                     </h1>
-                    <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-base text-white mb-6 text-center">
+                    <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-xl text-white mb-6 text-center">
                         Invest, Sell and Rent Commercial Real Estate backed by verified data.
                     </p>
-                    <div className="bg-white p-2 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-1/3 space-y-4 sm:space-y-0">
+                    <SearchBar/>
+                    {/* <div className="bg-white p-2 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-1/3 space-y-4 sm:space-y-0">
                         <div className="flex items-center space-x-2 w-full sm:w-auto">
                             <label htmlFor="city" className="text-sm sm:text-base lg:text-lg">
                                 City
@@ -144,7 +146,6 @@ function Hero() {
                                 <option value="Mumbai">Mumbai</option>
                                 <option value="Bangalore">Bangalore</option>
                                 <option value="Hyderabad">Hyderabad</option>
-                                {/* Add other city options here */}
                             </select>
                         </div>
                         <input
@@ -157,7 +158,8 @@ function Hero() {
                         <button onClick={handleSearch} className="p-2 rounded border border-gray-500 w-full sm:w-auto flex justify-center items-center">
                             <Search size={20} />
                         </button>
-                    </div>
+                    </div> */}
+                    
                 </div>
             </div>
         </div>

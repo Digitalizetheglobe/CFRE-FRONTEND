@@ -170,7 +170,7 @@ const Blogslider = () => {
     <div className="overflow-hidden ">
       {/* Content Section */}
       <div className="text-center">
-        <h2 className="text-3xl text-black font-bold mt-4">
+        <h2 className="text-4xl text-black font-bold mt-4">
           Our Clients
         </h2>
       
