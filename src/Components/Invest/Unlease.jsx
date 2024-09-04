@@ -21,7 +21,7 @@ const Unlease = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/investproperties');
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
 
                 console.log("Fetched properties:", response.data);

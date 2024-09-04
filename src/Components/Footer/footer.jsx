@@ -25,7 +25,7 @@ const Footer = () => {
                     <button
     type="button"
     onClick={handleButtonClick}
-    className="sm:px-4 max-sm:px-2 py-2 sm:text-sm max-sm:text-xs rounded-full text-[#d84a48] bg-white mt-2 sm:mt-0 sm:ml-auto hover:bg-black hover:text-white transition duration-300"
+    className="sm:px-4 max-sm:px-2 py-2 sm:text-sm max-sm:text-xs rounded-full text-[#d84a48] bg-black mt-2 sm:mt-0 sm:ml-auto hover:bg-white hover:text-[#d84a48] transition duration-300"
 >
     Enquire Now
 </button>
@@ -49,7 +49,7 @@ const Footer = () => {
                                 <li><Link to="/" className="text-gray-400 hover:text-whit ml-20">Home</Link></li>
                                 <li><Link to="/about-us" className="text-gray-400 hover:text-white ml-20">About Us</Link></li>
                                 <li><Link to="/contactUs" className="text-gray-400 hover:text-white ml-20">Contact Us</Link></li>
-                                <li><Link to="/blog" className="text-gray-400 hover:text-white ml-20">Blog</Link></li>
+                                <li><Link to="/Latestblog" className="text-gray-400 hover:text-white ml-20">Blog</Link></li>
                                 <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white ml-20">Privacy Policy</Link></li>
                             </ul>
                         </div>
@@ -60,7 +60,7 @@ const Footer = () => {
                             <p className="text-gray-400 mb-2">320, HBC, Hirabaug Chowk, Tilak Road</p>
                             <p className="text-gray-400 mb-2">Pune- 411002</p>
                             <p className="text-gray-400 mb-2">Phone:  +91 8149977661</p>
-                            <p className="text-gray-400">Email: swapnil@cfrerealty.com</p>
+                            <p className="text-gray-400">Email: sales@cfrerealty.com</p>
                             {/* <p className="text-gray-400 mb-2">RERA:  A52100013991</p> */}
                         </div>
                     </div>

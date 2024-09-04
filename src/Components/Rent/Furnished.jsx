@@ -21,12 +21,13 @@ const Furnished = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/rentproperties');
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 // const response = await axios.get('http://192.168.0.105:8001/rentproperties');
                 setProperties(response.data);
-                console.log("11111111111=====>",response.data);
+                console.log("11111111111=====>", response.data);
                 
-                setFilteredProperties(response.data.filter(property => property.furnishing === 'FULLY FURNISHED'));
+                // Filter properties initially
+                setFilteredProperties(response.data.filter(property => property.furnishing === 'Furnished'));
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
@@ -48,7 +49,7 @@ const Furnished = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'FULLY FURNISHED');
+        let filtered = properties.filter(property => property.furnishing === 'Furnished');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>
@@ -57,9 +58,9 @@ const Furnished = () => {
         }
 
         if (sortOrder === 'asc') {
-            filtered.sort((a, b) => a.cost - b.cost);
+            filtered.sort((a, b) => a.basePrice - b.basePrice); // Assuming `basePrice` is the correct field for sorting
         } else if (sortOrder === 'desc') {
-            filtered.sort((a, b) => b.cost - a.cost);
+            filtered.sort((a, b) => b.basePrice - a.basePrice);
         }
 
         setFilteredProperties(filtered);

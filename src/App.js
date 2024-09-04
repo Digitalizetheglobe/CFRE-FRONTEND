@@ -45,6 +45,9 @@ import Blog2 from './Components/Blogs/Blog2.jsx';
 import Blog3 from './Components/Blogs/Blog3.jsx';
 import Blog4 from './Components/Blogs/blog4.jsx';
 import MainRent from './Components/Rent/MainRent.jsx';
+// import SearchBar from './Components/Hero/Searchbar.jsx';
+import Latestblog from './Components/Blogs/Latestblog.jsx';
+
 
 function App() {
   return (
@@ -74,9 +77,10 @@ function MainContent() {
         <Route path="/property/:id" element={<PropertyDetail />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path='/latestblog' element={<Latestblog />}/>
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path='/contactUs' element={<ContactUs />} />
-        
+        {/* <Route path='/Searchbar' element={<SearchBar/>} /> */}
         <Route path="/invest" element={<Invest />} />
         <Route path="/rent"  element={<Rent />} />
         <Route path='/projectproperty' element={<ProjectProperty />} />

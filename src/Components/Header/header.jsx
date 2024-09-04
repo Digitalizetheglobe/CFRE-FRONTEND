@@ -44,7 +44,7 @@ function Header() {
         // Fetch properties when the Invest dropdown is opened
         if (!isInvestDropdownOpen) {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/saleproperty');
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
                 // const unleasedProperties = response.data.filter(property => property.propertyType === 'Unleased');
                 setFilteredProperties(response.data);
@@ -65,7 +65,7 @@ function Header() {
         // Fetch properties when the Rent dropdown is opened
         if (!isRentDropdownOpen) {
             try {
-                const response = await axios.get('http://192.168.0.105:8001/addproperty');
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
                 setFilteredProperties(response.data); // Initialize filtered properties
                 console.log(response.data);

@@ -249,7 +249,7 @@ function ContactUs() {
                                     href="mailto:swapnil@cfrerealty.com"
                                     className="text-gray-700 hover:text-blue-500 hover:underline"
                                 >
-                                    swapnil@cfrerealty.com
+                                    sales@cfrerealty.com
                                 </a>
                             </div>
                         </div>

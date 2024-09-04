@@ -56,13 +56,15 @@
 // };
 
 // export default PropertyCard;
+
+
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import OfficeImage from './Office space.jpeg';
 
 const PropertyCard = ({ property }) => {
-    const shareUrl = `https://yourwebsite.com/property/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
     const title = property.title;
 
     return (
@@ -78,20 +80,20 @@ const PropertyCard = ({ property }) => {
                     <FaShareAlt className='hover:scale-125' size={16} />
                 </a>
             </div>
-
+            {/* <Link to={`/propertydetail/${property.id}`}>
+            </Link> */}
             <div className="relative">
-                <img className="w-full h-32 object-cover" src={property.image || OfficeImage} alt="Property" />
+                <img className="w-full h-48 object-cover" src={property.image || OfficeImage} alt="Property" />
             </div>
-
             <div className="px-4 py-2">
                 {/* Property name with link to detailed view */}
-                <Link to={`/propertydetail/${property.id}`} className="text-sm text-bold text-gray-800 mt-1 block hover:text-[#d84a48] transition-colors duration-300">
+                <Link to={`/property-detail/${property.id}`} className="text-sm text-bold text-gray-800 mt-1 block hover:text-[#d84a48] transition-colors duration-300">
                     {property.buildingName}
                 </Link>
                 
                 {/* Location and city */}
                 <div className="text-gray-800 text-xs mt-1">{property.location}, {property.city}</div>
-                <div className="text-gray-800 text-xs mt-1">Built Up Area: {property.builtUpArea} Sq.Ft</div>
+                <div className="text-gray-800 text-xs mt-1"> Built Up Area: {property.buArea} Sq.Ft</div>
                 <div className="text-gray-800 text-xs mt-1">Carpet Area: {property.carpetArea} Sq.Ft</div>
             </div>
 

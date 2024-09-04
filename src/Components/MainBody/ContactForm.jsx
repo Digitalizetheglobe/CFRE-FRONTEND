@@ -3,7 +3,7 @@ import axios from 'axios'; // Install axios if not already installed
 import logo from '../Header/cfre-logo.png';
 import { Link } from 'react-router-dom';
 
-const ContactForm = () => {
+const ContactForm = ( { onClose } ) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -34,10 +34,6 @@ const ContactForm = () => {
         }
     };
 
-    const handleClose = () => {
-        setIsSubmitted(false);
-        window.location.href = '/';
-    };
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto relative">
@@ -101,9 +97,9 @@ const ContactForm = () => {
                 </button>
             </form>
 
-            {/* Close Button Inside Form */}
-            <button
-                onClick={() => window.location.href = '/'}
+           {/* Close Button Inside Form */}
+           <button
+                onClick={onClose} // Use the onClose prop to close the form
                 className="absolute top-2 right-2 text-red-500 hover:text-red-700">
                 Close
             </button>
@@ -115,7 +111,7 @@ const ContactForm = () => {
                         <h2 className="text-xl text-black font-semibold mb-4">Thank You!</h2>
                         <p className="mb-4 text-black">Thank you for posting your requirement. We will connect with you soon!</p>
                         <button
-                            onClick={handleClose}
+                            onClick={onClose} // Use the onClose prop here as well
                             className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
                             Close
                         </button>
