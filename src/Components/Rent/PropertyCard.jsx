@@ -24,11 +24,11 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             <div className="relative">
                 {/* Property image with a link to detailed view */}
                 <Link to={`/property-detail/${property.id || ''}`}>
-                <img 
-  className="w-full h-48 object-cover" 
-  src={Image} // Use a dynamic image source or default image
-  alt={title}
-/>
+                    <img
+                        className="w-full h-48 object-cover"
+                        src={Image} // Use a dynamic image source or default image
+                        alt={title}
+                    />
 
                 </Link>
             </div>
@@ -36,12 +36,12 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             <div className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold text-2xl text-gray-800">
-  {property.rentPerMonth ? `${property.rentPerMonth} ` : 'N/A'}
-</div>
+                    {property.rentPerMonth ? `${property.rentPerMonth} ` : 'N/A'}
+                </div>
 
                 {/* Property name with link to detailed view */}
-                <Link 
-                    to={`/property-detail/${property.id || ''}`} 
+                <Link
+                    to={`/property-detail/${property.id || ''}`}
                     className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300"
                 >
                     {title}
@@ -52,14 +52,14 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             </div>
 
             <div className="px-6 pb-4 flex justify-between items-center">
-                <Link 
-                    to={`/property-detail/${property.id || ''}`} 
+                <Link
+                    to={`/property-detail/${property.id || ''}`}
                     className="bg-[#d84a48] hover:bg-[#c74b4a] text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
                     onClick={onEnquire} // Uncomment if you need onEnquire
                 >
                     See Details
                 </Link>
-                <button 
+                <button
                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10"
                 >
                     <FaWhatsapp className="text-xl" />

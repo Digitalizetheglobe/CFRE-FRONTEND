@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
+import { resolvePath } from 'react-router-dom';
 
 const Unfurnished = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -23,6 +24,8 @@ const Unfurnished = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
+                console.log('222222222====>',response.data);
+                
                 setFilteredProperties(response.data.filter(property => property.furnishing === 'Unfurnished'));
             } catch (error) {
                 console.error('Error fetching properties:', error);

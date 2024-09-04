@@ -19,6 +19,8 @@ const SearchBar = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
+                console.log('11111111=====>',response.data);
+                
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
@@ -33,17 +35,26 @@ const SearchBar = () => {
             const filtered = properties.filter(property => {
                 const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
                 const officeTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
-                const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
+                
+                // Normalize furnishing status for comparison
+                const normalizedFurnishingStatus = furnishingStatus.toLowerCase();
+                const propertyFurnishingStatus = property.furnishing.toLowerCase();
+                const furnishingStatusMatch = normalizedFurnishingStatus === '' ||
+                    (normalizedFurnishingStatus === 'furnished' && (propertyFurnishingStatus === 'furnished' || propertyFurnishingStatus === 'fully furnished')) ||
+                    propertyFurnishingStatus.includes(normalizedFurnishingStatus);
+    
                 const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
-
+    
                 return cityMatch && officeTypeMatch && furnishingStatusMatch && searchMatch;
             });
-
+    
             setFilteredProperties(filtered);
         };
-
+    
         filterProperties();
     }, [selectedCity, officeType, furnishingStatus, searchQuery, properties]);
+    
+    
 
     const handleSearch = () => {
         navigate('/PropertyList', { state: { properties: filteredProperties } });

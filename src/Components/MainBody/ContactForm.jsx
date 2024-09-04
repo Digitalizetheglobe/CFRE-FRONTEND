@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Install axios if not already installed
+import axios from 'axios';
 import logo from '../Header/cfre-logo.png';
 import { Link } from 'react-router-dom';
 
-const ContactForm = ( { onClose } ) => {
+const ContactForm = ({ onClose }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -11,6 +11,7 @@ const ContactForm = ( { onClose } ) => {
         message: '',
     });
 
+    const [errors, setErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleChange = (e) => {
@@ -18,22 +19,49 @@ const ContactForm = ( { onClose } ) => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+        if (!formData.name) newErrors.name = 'Name is required.';
+        if (!formData.email) {
+            newErrors.email = 'Email is required.';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = 'Email is invalid.';
+        }
+        if (!formData.mobileNumber) newErrors.mobileNumber = 'Mobile number is required.';
+        else if (!/^\d{10}$/.test(formData.mobileNumber)) {
+            newErrors.mobileNumber = 'Mobile number must be 10 digits.';
+        }
+        if (!formData.message) newErrors.message = 'Message is required.';
+        return newErrors;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
         try {
-            const response = await axios.post('http://cfrecpune.com/contactform', formData, {
+            const response = await axios.post('https://cfrecpune.com/contactform', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
             console.log('Form submitted successfully:', response.data);
             setIsSubmitted(true); // Show the thank you message
+            setFormData({
+                name: '',
+                email: '',
+                mobileNumber: '',
+                message: '',
+            });
+            setErrors({});
         } catch (error) {
             console.error('Error submitting the form:', error);
         }
     };
-
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto relative">
@@ -55,17 +83,20 @@ const ContactForm = ( { onClose } ) => {
                         className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
+                    {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
                 </div>
                 <div>
-                    <label htmlFor="number" className="block text-sm font-medium text-gray-700">Number</label>
+                    <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-700">Mobile Number</label>
                     <input
-                        id="number"
-                        name="number"
-                        value={formData.number}
+                        type="text"
+                        id="mobileNumber"
+                        name="mobileNumber"
+                        value={formData.mobileNumber}
                         onChange={handleChange}
                         className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
+                    {errors.mobileNumber && <p className="text-red-500 text-xs">{errors.mobileNumber}</p>}
                 </div>
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
@@ -78,10 +109,11 @@ const ContactForm = ( { onClose } ) => {
                         className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
+                    {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
                 </div>
 
                 <div>
-                    <label htmlFor="message" className="block text-sm text-black font-medium">Tell Ur Requirement</label>
+                    <label htmlFor="message" className="block text-sm text-black font-medium">Tell Us Your Requirement</label>
                     <textarea
                         id="message"
                         name="message"
@@ -91,14 +123,15 @@ const ContactForm = ( { onClose } ) => {
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 text-black rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         required
                     />
+                    {errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}
                 </div>
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
-                    Submit 
+                    Submit
                 </button>
             </form>
 
-           {/* Close Button Inside Form */}
-           <button
+            {/* Close Button Inside Form */}
+            <button
                 onClick={onClose} // Use the onClose prop to close the form
                 className="absolute top-2 right-2 text-red-500 hover:text-red-700">
                 Close

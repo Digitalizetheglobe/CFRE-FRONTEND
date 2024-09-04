@@ -47,6 +47,7 @@ import Blog4 from './Components/Blogs/blog4.jsx';
 import MainRent from './Components/Rent/MainRent.jsx';
 // import SearchBar from './Components/Hero/Searchbar.jsx';
 import Latestblog from './Components/Blogs/Latestblog.jsx';
+import UnfurnishedPropertyDetailsInRent from './Components/Rent/UnfurnishedPropertyDetailsInRent.jsx';
 
 
 function App() {
@@ -95,6 +96,8 @@ function MainContent() {
         <Route path='/addproperty1' element={<AddProperty1 />} />
         <Route path='/addproperty2' element={<AddProperty2 />} />
         <Route path="/property-detail/:id" element={<PropertyDetailInRent />} />
+        {/* <Route path="/unfurnished-property-detail/:id" element={< UnfurnishedPropertyDetails />} /> */}
+        <Route path='/unfurnished-property-detail/:id' element={<UnfurnishedPropertyDetailsInRent />} />
         <Route path='/furnished' element={<Furnished />} />
         <Route path='/unfurnished' element={<UnFurnished />} />
         <Route path='/coworking' element={<Coworking />} />

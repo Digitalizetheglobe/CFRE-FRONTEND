@@ -22,19 +22,20 @@ const Furnished = () => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                // const response = await axios.get('http://192.168.0.105:8001/rentproperties');
+                
                 setProperties(response.data);
                 console.log("11111111111=====>", response.data);
                 
                 // Filter properties initially
-                setFilteredProperties(response.data.filter(property => property.furnishing === 'Furnished'));
+                setFilteredProperties(response.data.filter(property => property.furnishing === 'Fully Furnished'));
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
         };
-
+        
         fetchProperties();
     }, []);
+    console.log('filteredProperties',filteredProperties);
 
     useEffect(() => {
         filterAndSortProperties(searchTerm, sortOrder);
@@ -49,7 +50,7 @@ const Furnished = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'Furnished');
+        let filtered = properties.filter(property => property.furnishing === 'Furnished' );
 
         if (searchTerm) {
             filtered = filtered.filter(property =>

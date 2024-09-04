@@ -57,7 +57,7 @@ function AboutUs() {
 
 
 
-            <div class="font-[sans-serif] bg-slate-800">
+            {/* <div class="font-[sans-serif] bg-slate-800">
                 <div class="lg:max-w-6xl max-w-xl mx-auto p-4">
                     <h2 class="text-white text-3xl font-bold text-center">Meet Our Team</h2>
 
@@ -224,7 +224,7 @@ function AboutUs() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
 
