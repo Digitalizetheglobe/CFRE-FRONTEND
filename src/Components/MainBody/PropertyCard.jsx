@@ -1,124 +1,14 @@
-import React, { useRef } from 'react';
-// import ContactForm from './ContactForm';
-import { FaPhoneAlt } from 'react-icons/fa';
-// import { BsWhatsapp } from 'react-icons/bs';
+import React, { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+import { FaPhoneAlt, FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import Image from '../assets/ABC.jpeg'; // Ensure you import your image correctly
+import Image from '../assets/ABC.jpeg'; // Your previously imported image
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
-import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
-
-// Sample property data
-const properties = [
-    {
-        id: 1,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 2,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 3,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 4,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 5,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 1,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 2,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 3,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 4,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    {
-        id: 5,
-        image: Image,
-        propertyType: 'Office Space',
-        location: 'Baner Pune',
-        buildingType: 'A Grade',
-        area: '1180 Sq.Ft',
-        rent: '--',
-        roi: '5.5%'
-    },
-    // Add more properties here
-];
 
 function PropertyCard({ property }) {
-
-    const navigate = useNavigate(); // Initialize useNavigate
-
-
+    const navigate = useNavigate();
 
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
@@ -129,7 +19,7 @@ function PropertyCard({ property }) {
     };
 
     const handleImageClick = () => {
-        navigate(`/property/${property.id}`); // Navigate to the property detail page
+        navigate(`/property-detail/${property.id}`);
     };
 
     return (
@@ -147,7 +37,7 @@ function PropertyCard({ property }) {
             </div>
 
             <div className="relative">
-                <img className="w-full h-52 object-cover" src={property.image} alt="Property" />
+                <img className="w-full h-52 object-cover" src={property.image || Image} alt="Property" />
             </div>
 
             <div className="px-6 py-4">
@@ -162,20 +52,20 @@ function PropertyCard({ property }) {
                         <span className="font-semibold">{property.location}</span>
                     </p>
                     <p className="mb-1 flex justify-between">
-                        Building Type
-                        <span className="font-semibold">{property.buildingType}</span>
+                        Builtup Area
+                        <span className="font-semibold">{property.buArea}</span>
                     </p>
                     <p className="mb-1 flex justify-between">
-                        Area
-                        <span className="font-semibold">{property.area}</span>
+                        Carpet Area
+                        <span className="font-semibold">{property.carpetArea}</span>
                     </p>
                 </div>
             </div>
 
-            <div className="px-6  pb-2 flex justify-between items-center">
+            <div className="px-6 pb-2 flex justify-between items-center">
                 <button
                     onClick={handleImageClick}
-                    className="bg-[#d84a48]  hover:bg-[#b03b3a] text-white font-bold py-1 px-4 rounded w-full">
+                    className="bg-[#d84a48] hover:bg-[#b03b3a] text-white font-bold py-1 px-4 rounded w-full">
                     Know More
                 </button>
                 <div className="ml-2 flex space-x-2">
@@ -194,33 +84,43 @@ function PropertyCard({ property }) {
                 </div>
             </div>
         </div>
-
     );
 }
 
-
-
 function PropertyList() {
-    const handleFormSubmit = (formData) => {
-        console.log('Form submitted:', formData);
-        // Handle form submission, e.g., send data to an API
-    };
-
-    // Ref to access the Swiper instance
+    const [properties, setProperties] = useState([]);
     const swiperRef = useRef(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchProperties = async () => {
+            try {
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                setProperties(response.data);
+            } catch (error) {
+                console.error('Error fetching properties:', error);
+            }
+        };
+        fetchProperties();
+    }, []);
+
+    const handleSearch = () => {
+        navigate('/PropertyList');
+    };
 
     return (
         <div className='my-8 h-full mx-12 '>
             <div className="flex justify-between items-center mb-5 mr-0">
                 <h1 className="md:text-4xl font-semibold mx-2 mb-2">
-                Office Spaces For Your Business
+                    Office Spaces For Your Business
                 </h1>
-                <button className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out mr-14">
+                <button
+                    className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out mr-14"
+                    onClick={handleSearch}
+                >
                     Explore Properties
                 </button>
-
             </div>
-
 
             <Swiper
                 spaceBetween={20}
@@ -234,19 +134,15 @@ function PropertyList() {
                     640: {
                         slidesPerView: 1,
                     },
-
                     768: {
                         slidesPerView: 2,
                     },
-
                     1024: {
                         slidesPerView: 3,
                     },
-
                     1280: {
                         slidesPerView: 3,
                     },
-
                 }}
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
@@ -258,7 +154,6 @@ function PropertyList() {
                         >
                             <PropertyCard
                                 property={property}
-                                onFormSubmit={handleFormSubmit}
                             />
                         </div>
                     </SwiperSlide>
