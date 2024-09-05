@@ -115,7 +115,7 @@ const Furnished = () => {
                     onClick={handleCloseForm} // Close on overlay click
                 >
                     <div 
-                        className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
+                        className='relative bg-white  rounded-lg shadow-lg max-w-[500px] w-full'
                         onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
                     >
                         <ContactForm onClose={handleCloseForm} />

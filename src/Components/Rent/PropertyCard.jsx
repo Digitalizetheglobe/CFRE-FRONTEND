@@ -6,6 +6,9 @@ import Image from '../assets/ABC.jpeg'
 const PropertyCard = ({ property = {}, onEnquire }) => {
     const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id || ''}`;
     const title = property.buildingName || 'Property';
+    const handleWhatsAppClick = () => {
+        window.open('https://wa.me/918149977661', '_blank');
+    };
 
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] transition-transform duration-300 ease-in-out relative">
@@ -61,7 +64,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
                 </Link>
                 <button
                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10"
-                >
+                    onClick={handleWhatsAppClick}>
                     <FaWhatsapp className="text-xl" />
                 </button>
             </div>

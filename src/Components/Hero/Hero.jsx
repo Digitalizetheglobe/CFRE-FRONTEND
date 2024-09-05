@@ -123,7 +123,7 @@ function Hero() {
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
-                    <h1 className="text-5xl sm:text-3xl md:text-xl lg:text-4xl text-white font-bold mb-2 text-center">
+                    <h1 className="text-5xl sm:text-3xl md:text-xl lg:text-5xl text-white font-bold mb-2 text-center">
                         Commercial Real Estate Platform
                     </h1>
                     <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-xl text-white mb-6 text-center">

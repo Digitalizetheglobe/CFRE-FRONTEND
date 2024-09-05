@@ -131,6 +131,8 @@ const SearchBar = () => {
                         <option value="">Select City</option>
                         <option value="Pune">Pune</option>
                         <option value="Mumbai">Mumbai</option>
+                        <option value="Banglore">Banglore</option>
+                        <option value="Hyderabad">Hyderabad</option>
                         {/* Add more cities */}
                     </select>
                 </div>
@@ -170,17 +172,34 @@ const SearchBar = () => {
 
             {activeTab === 'Rent' && (
                 <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                    <div className="flex flex-col">
-                        <select
-                            value={officeType}
-                            onChange={(e) => setOfficeType(e.target.value)}
-                            className="border p-1 rounded focus:outline-none"
-                        >
-                            <option value="">Select Office Type</option>
-                            <option value="OfficeSpace">Office Space</option>
-                            {/* Add more office types */}
-                        </select>
-                    </div>
+<div className="flex flex-col">
+    <select
+        value={officeType}
+        onChange={(e) => setOfficeType(e.target.value)}
+        className="border p-1 rounded focus:outline-none"
+        style={{
+            maxHeight: '200px',  // Set the max height for the dropdown
+            overflowY: 'auto',    // Enable vertical scrolling if options exceed the height
+        }}
+    >
+        <option value="">Select Office Type</option>
+        <option value="Office">Office</option>
+        <option value="Showroom">Showroom Space</option>
+        <option value="Hospital">Hospital</option>
+        <option value="Independent Building">Independent Building</option>
+        <option value="Warehouse / Godown">Warehouse / Godown</option>
+        <option value="Industrial Factory">Industrial Factory</option>
+        <option value="Industrial Lands / Plot">Industrial Lands / Plot</option>
+        <option value="Commercial Lands / Plot">Commercial Lands / Plot</option>
+        <option value="Restaurant Space">Restaurant Space</option>
+        <option value="Banquet Hall">Banquet Hall</option>
+        <option value="Commercial Row House">Commercial Row House</option>
+        <option value="Hotel Resort">Hotel / Resort</option>
+        <option value="Residential Land / Plot">Residential Land / Plot</option>
+        <option value="Fractional Investment">Fractional Investment</option>
+    </select>
+</div>
+
 
                     <div className="flex flex-col">
                         <select

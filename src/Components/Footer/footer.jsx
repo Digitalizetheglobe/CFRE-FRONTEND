@@ -3,7 +3,6 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/f
 import ContactForm from '../MainBody/ContactForm';
 import { Link } from 'react-router-dom';
 
-
 const Footer = () => {
     const [isFormVisible, setFormVisible] = useState(false);
 
@@ -14,87 +13,92 @@ const Footer = () => {
     const handleCloseForm = () => {
         setFormVisible(false);
     };
+
     return (
         <>
-            <footer className="bg-gray-800 text-white py-8 relative mt-5">
-
-                <div className="hidden md:flex bg-[#d84a48]  rounded-md  flex-col sm:flex-row items-center justify-center sm:px-12 max-sm:px-4 py-4 absolute top-[-6px] w-full ">
-                    <h6 className="text-center text-white sm:text-xl max-sm:text-sm ">
+            <footer className="bg-gray-800 text-white py-8 mt-5 relative">
+                {/* Call to Action */}
+                <div className="flex flex-col md:flex-row items-center justify-between bg-[#d84a48] rounded-md px-4 py-4 absolute top-[-6px] w-full">
+                    <h6 className="text-center text-white text-sm md:text-xl">
                         Looking To Sell Or Rent Your Property?
                     </h6>
                     <button
-    type="button"
-    onClick={handleButtonClick}
-    className="sm:px-4 max-sm:px-2 py-2 sm:text-sm max-sm:text-xs rounded-full text-[#d84a48] bg-black mt-2 sm:mt-0 sm:ml-auto hover:bg-white hover:text-[#d84a48] transition duration-300"
->
-    Enquire Now
-</button>
-
+                        type="button"
+                        onClick={handleButtonClick}
+                        className="px-4 py-2 text-xs md:text-sm rounded-full text-[#d84a48] bg-black mt-2 md:mt-0 md:ml-auto hover:bg-white hover:text-[#d84a48] transition duration-300"
+                    >
+                        Enquire Now
+                    </button>
                 </div>
-                <div className="container mx-auto px-10 mt-12">
-                    <div className="flex flex-wrap justify-between gap-0">
+
+                <div className="container mx-auto px-4 sm:px-10 mt-16">
+                    <div className="flex flex-wrap justify-between gap-y-8 md:gap-y-0">
                         {/* About CFRE */}
-                        <div className="w-full md:w-1/3 mb-6 md:mb-0">
+                        <div className="w-full md:w-1/3">
                             <h4 className="text-lg font-semibold mb-4">About CFRE</h4>
                             <p className="text-gray-400 text-justify">
                                 CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound.
                             </p>
-
                         </div>
 
                         {/* Quick Links */}
-                        <div className="w-full md:w-1/3 mb-6 md:mb-0">
-                            <h4 className="text-lg font-semibold mb-4 ml-20">Quick Links</h4>
-                            <ul>
-                                <li><Link to="/" className="text-gray-400 hover:text-whit ml-20">Home</Link></li>
-                                <li><Link to="/about-us" className="text-gray-400 hover:text-white ml-20">About Us</Link></li>
-                                <li><Link to="/contactUs" className="text-gray-400 hover:text-white ml-20">Contact Us</Link></li>
-                                <li><Link to="/Latestblog" className="text-gray-400 hover:text-white ml-20">Blog</Link></li>
-                                <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white ml-20">Privacy Policy</Link></li>
+                        <div className="w-full md:w-1/3">
+                            <h4 className="text-lg font-semibold mb-4 md:ml-20">Quick Links</h4>
+                            <ul className="ml-0 md:ml-20">
+                                <li className="mb-2"><Link to="/" className="text-gray-400 hover:text-white">Home</Link></li>
+                                <li className="mb-2"><Link to="/about-us" className="text-gray-400 hover:text-white">About Us</Link></li>
+                                <li className="mb-2"><Link to="/contactUs" className="text-gray-400 hover:text-white">Contact Us</Link></li>
+                                <li className="mb-2"><Link to="/Latestblog" className="text-gray-400 hover:text-white">Blog</Link></li>
+                                <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
                             </ul>
                         </div>
 
                         {/* Contact Information */}
-                        <div className="w-full md:w-1/3 mb-6 md:mb-0">
+                        <div className="w-full md:w-1/3">
                             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
                             <p className="text-gray-400 mb-2">320, HBC, Hirabaug Chowk, Tilak Road</p>
                             <p className="text-gray-400 mb-2">Pune- 411002</p>
                             <p className="text-gray-400 mb-2">Phone:  +91 8149977661</p>
                             <p className="text-gray-400">Email: sales@cfrerealty.com</p>
-                            {/* <p className="text-gray-400 mb-2">RERA:  A52100013991</p> */}
                         </div>
                     </div>
 
                     {/* Social Media Links */}
-                    <div className="flex justify-center mt-8">
-                        <a href="https://facebook.com" className="mx-2 text-gray-400 hover:text-white" aria-label="Facebook">
+                    <div className="flex justify-center mt-8 space-x-4">
+                        <a href="https://facebook.com" className="text-gray-400 hover:text-white" aria-label="Facebook">
                             <FaFacebookF />
                         </a>
-                        <a href="https://twitter.com" className="mx-2 text-gray-400 hover:text-white" aria-label="Twitter">
+                        <a href="https://twitter.com" className="text-gray-400 hover:text-white" aria-label="Twitter">
                             <FaTwitter />
                         </a>
-                        <a href="https://instagram.com" className="mx-2 text-gray-400 hover:text-white" aria-label="Instagram">
+                        <a href="https://instagram.com" className="text-gray-400 hover:text-white" aria-label="Instagram">
                             <FaInstagram />
                         </a>
-                        <a href="https://linkedin.com" className="mx-2 text-gray-400 hover:text-white" aria-label="LinkedIn">
+                        <a href="https://linkedin.com" className="text-gray-400 hover:text-white" aria-label="LinkedIn">
                             <FaLinkedinIn />
                         </a>
                     </div>
                 </div>
 
                 {/* Footer Bottom */}
-                <div className="bg-gray-900 text-center py-2 mt-2">
+                <div className="bg-gray-900 text-center py-2 mt-4">
                     <p className="text-white-500 text-sm">
                         &copy; {new Date().getFullYear()} CFRE. All rights reserved.
                         Carefully Crafted By Digitalize The Globe!
                     </p>
                 </div>
 
-
+                {/* Contact Form Modal */}
                 {isFormVisible && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-                            <ContactForm onSubmit={(data) => { console.log('Form data:', data); handleCloseForm(); }} />
+                    <div
+                        className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
+                        onClick={handleCloseForm} // Close on overlay click
+                    >
+                        <div
+                            className='relative bg-white rounded-lg shadow-lg max-w-[500px] w-full p-4'
+                            onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
+                        >
+                            <ContactForm onClose={handleCloseForm} />
                         </div>
                     </div>
                 )}
