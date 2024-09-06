@@ -342,12 +342,12 @@ const PropertyDetailInRent = () => {
                     >
                         More Details
                     </button>
-                    <button
+                    {/* <button
                         className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
                         onClick={() => handleScrollTo(nearbyPropertiesRef)}
                     >
                         Nearby Properties
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="border border-gray-300 rounded-lg shadow-sm bg-white p-4 max-w-8xl mx-auto mt-5 flex flex-wrap lg:flex-nowrap">

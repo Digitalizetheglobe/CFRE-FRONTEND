@@ -235,7 +235,7 @@ function ContactUs() {
                                 <p className="font-bold">Office Number</p>
                                 <a
                                     href="tel:+918149977661"
-                                    className="text-gray-700 hover:text-blue-500 hover:underline"
+                                    className="text-gray-700 hover:text-[#d84a48] hover:underline"
                                 >
                                     +91 8149977661
                                 </a>
@@ -247,7 +247,7 @@ function ContactUs() {
                                 <p className="font-bold">Business Email</p>
                                 <a
                                     href="mailto:swapnil@cfrerealty.com"
-                                    className="text-gray-700 hover:text-blue-500 hover:underline"
+                                    className="text-gray-700 hover:text-[#d84a48] hover:underline"
                                 >
                                     sales@cfrerealty.com
                                 </a>

@@ -35,7 +35,7 @@ import ShowroomPropertyDetails from './Components/Showroom/ShowroomPropertyDetai
 import PropertyDetails from './Components/Hero/PropertyDetails.jsx'
 import Tagline from './Components/MainBody/Tagline.jsx';
 import Template from './Components/MainBody/Template.jsx';
-import sellProperty from './Components/MainBody/sellProperty.jsx';
+// import sellProperty from './Components/MainBody/sellProperty.jsx';
 import Card from './Components/Cards/Card.jsx';
 import Thirdcards from './Components/MainBody/Thirdcards.jsx';
 import AddNewProperty from './AdminDashboard/PropertyPages/AddNewProperty.jsx';
@@ -50,6 +50,8 @@ import MainRent from './Components/Rent/MainRent.jsx';
 // import SearchBar from './Components/Hero/Searchbar.jsx';
 import Latestblog from './Components/Blogs/Latestblog.jsx';
 import UnfurnishedPropertyDetailsInRent from './Components/Rent/UnfurnishedPropertyDetailsInRent.jsx';
+import Error from './Components/Error/Error.jsx';
+
 
 
 function App() {
@@ -112,10 +114,12 @@ function MainContent() {
         <Route path='/addnewproperty' element={<AddNewProperty/>} />
         <Route path ='/bulkproperty' element={<BulkUploadForm/>} />
         
+
         <Route path='/commercial-property-in-baner-2' element={<Blog1/>}/>
         <Route path='/commercial-property-in-balewadi' element={<Blog2/>}/>
         <Route path='/coworking-space' element={<Blog3/>}/>
         <Route path='/office-space-for-rent-in-warje-pune' element={<Blog4/>} />
+       <Route path='/Error'  element={<Error />}/>
 
       </Routes>
       {isHomePage && (
