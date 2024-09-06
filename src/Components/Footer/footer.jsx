@@ -58,9 +58,15 @@ const Footer = () => {
                             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
                             <p className="text-gray-400 mb-2">320, HBC, Hirabaug Chowk, Tilak Road</p>
                             <p className="text-gray-400 mb-2">Pune- 411002</p>
-                            <p className="text-gray-400 mb-2">Phone:  +91 8149977661</p>
-                            <p className="text-gray-400">Email: sales@cfrerealty.com</p>
+                            <p className="text-gray-400 mb-2">
+                                Phone: <a href="tel:+918149977661" className="text-white hover:text-[#d84a48] hover:underline">+91 8149977661</a>
+                            </p>
+                            <p className="text-gray-400">
+                                Email: <a href="mailto:sales@cfrerealty.com" className="text-white hover:text-[#d84a48] hover:underline">sales@cfrerealty.com</a>
+                            </p>
                         </div>
+
+
                     </div>
 
                     {/* Social Media Links */}

@@ -10,7 +10,7 @@ function Template() {
                 style={{ backgroundImage: `url(${Image})` }}
             >
                 <p className="text-white font-bold text-lg text-center mb-2">
-                    Find Your Perfect Office Space with Us
+                    Find Your Perfect Office Space With Us !
                 </p>
                 <div className="flex justify-center space-x-4 mt-2">
                     <button className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d] transition duration-300">

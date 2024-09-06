@@ -14,26 +14,28 @@ const Tagline = () => {
         >
             <div className="w-2/3"> {/* Adjusted width */}
                 <h1 className="text-3xl font-bold mb-6"> {/* Increased text size */}
-                    Find the Best Space for Your Business Operations!
+                    Find The Best Space For Your Business Operations With US !
                 </h1>
                 <ul className="space-y-3 mb-6"> {/* Increased spacing */}
                     <li className="flex items-center">
                         <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span> {/* Increased dot size */}
-                        3X Faster Process
+                        Speedy Service
+
                     </li>
                     <li className="flex items-center">
                         <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span> {/* Increased dot size */}
-                        Personal Assistance
+                        Personalized Support
+
                     </li>
                     <li className="flex items-center">
-                        <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span> {/* Increased dot size */}
-                        Save on Brokerage*
+                        <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span> 
+                        Strategic Solutions*
                     </li>
                 </ul>
-                <button className="bg-white text-[#d84a48] font-semibold px-6 py-3 rounded-full inline-flex items-center"> {/* Increased padding */}
+                <div className="bg-white text-[#d84a48] font-semibold px-6 py-3 rounded-full inline-flex items-center"> {/* Increased padding */}
                     Get Started Now!
-                    <span className="ml-3 bg-[#d84a48] text-white px-3 py-1 rounded-full">FREE!</span> {/* Increased padding */}
-                </button>
+                    {/* <span className="ml-3 bg-[#d84a48] text-white px-3 py-1 rounded-full">FREE!</span> Increased padding */}
+                </div>
             </div>
             {/* <div className="bg-white p-6 rounded-lg shadow-lg text-[#d84a48] mr-12">
                 <p className="text-base">Multiple options</p> 

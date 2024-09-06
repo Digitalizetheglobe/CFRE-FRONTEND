@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import primeImage from './tabline2.png';
-import sellImage from './sellProperty.png';
+import primeImage from './img3.png';
+import sellImage from './img2.png';
 import ContactForm from '../MainBody/ContactForm';
 import  { useState } from 'react';
 
@@ -63,7 +63,7 @@ const handleCloseForm = () => {
         >
           <div>
             <h2 className="text-3xl font-bold">Office Spaces That Work for You</h2> {/* Increased font size */}
-            <p className="text-sm leading-relaxed mt-6">
+            <p className="text-lg leading-relaxed mt-6">
             "Explore a curated selection of premium office spaces tailored to elevate your business operations."
             </p>
           </div>

@@ -1,8 +1,111 @@
-import React from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 import Banner from './CFRE BLOG BANNER (72 x 20 in).jpg';
 import Image from './blog4.webp'
+import gifmodal from "../../Components/assets/double-check.gif";
 
 function Blog1() {
+
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    
+      const [errors, setErrors] = useState({});
+      const [isSubmitted, setIsSubmitted] = useState(false);
+    
+      // Handle input changes
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    
+        // Clear the error for the current field when the user starts typing
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+      };
+    
+      // Handle validation on blur
+      const handleBlur = (e) => {
+        const { name, value } = e.target;
+        validateField(name, value);
+      };
+    
+      // Field validation
+      const validateField = (name, value) => {
+        let error = "";
+    
+        if (name === "phone") {
+          const phoneRegex = /^[0-9]{10}$/; // Example: for a 10-digit phone number
+          error = phoneRegex.test(value)
+            ? ""
+            : "Invalid phone number, must be 10 digits.";
+        } else if (name === "email") {
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          error = emailRegex.test(value)
+            ? ""
+            : "Please enter a valid email address.";
+        }
+    
+        // Update the specific field's error
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
+      };
+    
+      // Handle form submission
+      const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        // Validate all fields before submitting
+        let allValid = true;
+        const newErrors = {};
+    
+        Object.keys(formData).forEach((field) => {
+          const value = formData[field];
+          let error = "";
+    
+          if (field === "phone") {
+            const phoneRegex = /^[0-9]{10}$/;
+            error = phoneRegex.test(value)
+              ? ""
+              : "Invalid phone number, must be 10 digits.";
+          } else if (field === "email") {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            error = emailRegex.test(value)
+              ? ""
+              : "Please enter a valid email address.";
+          }
+    
+          if (error) {
+            allValid = false;
+            newErrors[field] = error;
+          }
+        });
+    
+        setErrors(newErrors);
+    
+        if (allValid) {
+          console.log("Form submitted successfully:", formData);
+    
+          // Show success modal
+          setIsSubmitted(true);
+    
+          // Reset form
+          setFormData({
+            name: "",
+            phone: "",
+            email: "",
+            message: "",
+          });
+        } else {
+          console.log("Please correct the errors in the form.");
+        }
+      };
+    
+      // Close the modal
+      const handleCloseModal = () => {
+        setIsSubmitted(false);
+      };
+
     return (
         <>
     <div className="relative mb-8">
@@ -60,6 +163,118 @@ function Blog1() {
             <p className="text-base text-gray-800 mb-6">
             Warje offers a balanced mix of commercial and residential properties. This balance is crucial for creating a thriving community where businesses can flourish, and employees can live comfortably. When evaluating office space for rent in Warje, Pune, consider the surrounding residential areas and their amenities. Proximity to residential neighborhoods can attract businesses looking for convenient office locations for their employees.            </p>
             <h2 className="text-2xl font-semibold mt-8 mb-4">4. Market Trends and Property Rates</h2>
+
+            <div className="max-w-6xl mx-auto px-8 py-4 rounded-xl shadow-xl mt-20 mb-12 relative overflow-hidden">
+      {/* Background Image */}
+      <img
+        src="https://readymadeui.com/cardImg.webp"
+        alt="Banner Image"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-80"></div>
+
+      {/* Content */}
+      <div className="relative max-w-lg mx-auto text-center z-10">
+        <h4 className="text-white text-2xl font-bold mb-2 z-10">
+          Navigating Every Aspect of Commercial Real Estate
+        </h4>
+
+        <form onSubmit={handleSubmit} className="space-y-6 z-10 relative">
+          {/* Grid Layout for Form Fields */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="w-full text-gray-800 bg-white text-sm px-4 py-3 border rounded outline-none"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="w-full text-gray-800 bg-white text-sm px-4 py-3 border rounded outline-none"
+                placeholder="Enter your phone number"
+                required
+              />
+              {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
+            </div>
+            <div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="w-full text-gray-800 bg-white text-sm px-4 py-3 border rounded outline-none"
+                placeholder="Enter your Email"
+                required
+              />
+              {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+            </div>
+            <div>
+              <input
+                id="message"
+                name="message"
+                type="text"
+                value={formData.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="w-full text-gray-800 bg-white text-sm px-4 py-3 border rounded outline-none"
+                placeholder="Message"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <div className="text-center mt-8">
+            <button
+              type="submit"
+              className="px-8 py-3 text-sm font-semibold text-white bg-[#d84a48] rounded hover:bg-gray-400 transition-all"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* Modal for Success Message */}
+      {isSubmitted && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+        >
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center relative z-50">
+            <img
+              src={gifmodal}
+              alt="Verified"
+              className="w-16 h-16 mx-auto mb-4"
+            />
+            <h2 className="text-2xl font-bold mb-2">Success!</h2>
+            <p>Your form has been submitted successfully.</p>
+            <button
+              onClick={handleCloseModal}
+              className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+
             <p className="text-base text-gray-800 mb-6">
             Understanding market trends and property rates is essential for making an informed investment decision. Warje has shown a steady appreciation in property values over the years, making it a promising investment destination. Conduct thorough research on the current market rates for office space for rent in Warje, Pune, and analyze historical data to identify trends. Consulting with local real estate experts can provide valuable insights into the area’s market dynamics.            </p>
             <h2 className="text-2xl font-semibold mt-8 mb-4">5. Rental Yields and Occupancy Rates</h2>

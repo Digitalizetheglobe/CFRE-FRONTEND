@@ -105,7 +105,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col space-y-2 w-full max-w-2xl mx-auto">
+        <div className="bg-white p-4 rounded-xl shadow-lg flex flex-col space-y-2 w-full max-w-2xl mx-auto">
             <div className="flex justify-center space-x-2 mb-2">
                 <button
                     onClick={() => setActiveTab('Rent')}
@@ -224,7 +224,8 @@ const SearchBar = () => {
                             className="border p-1 rounded focus:outline-none"
                         >
                             <option value="">Select Asset Type</option>
-                            <option value="OfficeSpace">Office</option>
+                            <option value="preleased">Pre-Leased</option>
+                            <option value="unleased">Un-Leased</option>
                             {/* Add more asset types */}
                         </select>
                     </div>

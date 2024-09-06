@@ -175,11 +175,6 @@ function Header() {
                                 Projects
                             </Link>
                         </li>
-                        {/* <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <Link to='/about-us' className='hover:text-[#d84a48] text-gray-800 block text-[18px]'>
-                                About Us
-                            </Link>
-                        </li> */}
                     </ul>
                 </div>
 
@@ -200,23 +195,3 @@ function Header() {
 }
 
 export default Header;
-
-
-
-
-{/* <button
-    onClick={handleProfileClick}
-    className='px-5 py-3 bg-[#153b63] text-white rounded-full shadow-md'>
-    Profile
-    </button> */}
-{/* <section className='hidden md:flex items-center justify-between py-2 bg-[#153b63] text-white px-10'>
-        <p className='text-sm'>
-        <strong className="mx-3">Address:</strong>320, HBC, Hirabaug Chowk, Tilak Road Pune- 411002
-        <button className="mx-3" onClick={handlePhoneClick}>Contact No:+91 8149977661 </button>
-        </p>
-        <button
-                onClick={handleButtonClick}
-                className='px-4 py-2 text-sm rounded-full hover:text-white text-white border-2 border-transparent hover:bg-[#d84a48] transition-all ease-in-out duration-300'>
-                Enquire Now
-                </button>
-                </section> */}
