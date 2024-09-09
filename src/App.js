@@ -24,7 +24,6 @@ import PreLease from './Components/Invest/PreLease';
 import Unlease from './Components/Invest/Unlease';
 import PropertyDetailInRent from './Components/Rent/PropertyDetailsInRent';
 import PropertyDetailInInvest from './Components/Invest/PropertyDetailInInvest';
-// import UserContext from './Components/Context/UserContext';
 import PropertyList from './Components/Hero/Propertylist';
 import ProjectProperty from './Components/Projects/ProjectProperty';
 import ProjectDetails from './Components/Projects/ProjectDetails';
@@ -41,7 +40,6 @@ import Thirdcards from './Components/MainBody/Thirdcards.jsx';
 import AddNewProperty from './AdminDashboard/PropertyPages/AddNewProperty.jsx';
 import PropertyCardInvest from './Components/MainBody/PropertyCardInvest.jsx'
 import BulkUploadForm from './AdminDashboard/BulkUploadForm.jsx';
-
 import Blog1 from './Components/Blogs/Blog1.jsx';
 import Blog2 from './Components/Blogs/Blog2.jsx';
 import Blog3 from './Components/Blogs/Blog3.jsx';
@@ -124,13 +122,12 @@ function MainContent() {
       </Routes>
       {isHomePage && (
   <>
-    {/* <Blogslider /> */}
-    {/* <PropertyCardInvest /> */}
+  
     <Card />
     <CategoryCarousel />
     <PropertyCardInvest /> 
     <Tagline />
-    {/* <sellProperty/> */}
+  
     <Template />
     
     
