@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../Header/cfre-logo.png';
+
 
 function Header() {
     const [isInvestDropdownOpen, setInvestDropdownOpen] = useState(false);
@@ -10,32 +11,26 @@ function Header() {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const navigate = useNavigate();
 
+    // Refs for dropdown menus
+    const rentDropdownRef = useRef(null);
+    const investDropdownRef = useRef(null);
+
     useEffect(() => {
-        const toggleOpen = document.getElementById('toggleOpen');
-        const toggleClose = document.getElementById('toggleClose');
-        const collapseMenu = document.getElementById('collapseMenu');
-
-        function handleClick() {
-            if (collapseMenu.style.display === 'block') {
-                collapseMenu.style.display = 'none';
-            } else {
-                collapseMenu.style.display = 'block';
+        // Event listener to handle clicks outside of the dropdown
+        const handleClickOutside = (event) => {
+            if (rentDropdownRef.current && !rentDropdownRef.current.contains(event.target) && isRentDropdownOpen) {
+                setRentDropdownOpen(false);
             }
-        }
-
-        if (toggleOpen && toggleClose) {
-            toggleOpen.addEventListener('click', handleClick);
-            toggleClose.addEventListener('click', handleClick);
-        }
-
-        // Cleanup function to remove event listeners
-        return () => {
-            if (toggleOpen && toggleClose) {
-                toggleOpen.removeEventListener('click', handleClick);
-                toggleClose.removeEventListener('click', handleClick);
+            if (investDropdownRef.current && !investDropdownRef.current.contains(event.target) && isInvestDropdownOpen) {
+                setInvestDropdownOpen(false);
             }
         };
-    }, []);
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isRentDropdownOpen, isInvestDropdownOpen]);
 
     const toggleInvestDropdown = async () => {
         setInvestDropdownOpen(!isInvestDropdownOpen);
@@ -46,16 +41,12 @@ function Header() {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-                // const unleasedProperties = response.data.filter(property => property.propertyType === 'Unleased');
                 setFilteredProperties(response.data);
                 console.log(response.data);
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
         }
-
-
-
     };
 
     const toggleRentDropdown = async () => {
@@ -76,7 +67,7 @@ function Header() {
     };
 
     const handleDropdownClick = (type) => {
-        const filtered = properties.filter(property => property.furnishing === type);
+        const filtered = properties.filter((property) => property.furnishing === type);
         setFilteredProperties(filtered);
 
         // Navigate to the respective component with the filtered properties
@@ -133,7 +124,7 @@ function Header() {
                                 <img src={logo} alt="logo" className='w-14' />
                             </Link>
                         </li>
-                        <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3 relative'>
+                        <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3 relative'  ref={rentDropdownRef}>
                             <button
                                 onClick={toggleRentDropdown}
                                 className='hover:text-[#d84a48] text-gray-800 block text-[18px] focus:outline-none cursor-pointer'>
@@ -153,7 +144,10 @@ function Header() {
                                 </ul>
                             )}
                         </li>
-                        <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3 relative'>
+
+                        <li className='max-lg:border-b border-gray-300 max-lg:py-3 px-3 relative'
+                            ref={investDropdownRef}
+                            >
                             <button
                                 onClick={toggleInvestDropdown}
                                 className='hover:text-[#d84a48] text-gray-800 block text-[18px] focus:outline-none'>
