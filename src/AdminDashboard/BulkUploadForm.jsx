@@ -26,7 +26,7 @@ const BulkUploadForm = () => {
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append('file', file);
-
+//admin bulk upload
     try {
       const response = await axios.post('https://cfrecpune.com/cfreproperties/bulk-upload', formData, {
         headers: {
