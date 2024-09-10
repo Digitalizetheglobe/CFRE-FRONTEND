@@ -38,17 +38,17 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
 
             <div className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-2xl text-gray-800">
-                    {property.rentPerMonth ? `${property.rentPerMonth} ` : 'N/A'}
+                <div className="font-bold text-xl text-gray-800">
+                Commercial Office Space for {property.availableFor} {property.buArea}sq.ft {property.furnishing}
                 </div>
 
                 {/* Property name with link to detailed view */}
-                <Link
+                {/* <Link
                     to={`/property-detail/${property.id || ''}`}
                     className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300"
                 >
                     {title}
-                </Link>
+                </Link> */}
 
                 {/* Location and city */}
                 <div className="text-gray-600 mt-1">{property.location || 'Unknown Location'}, {property.city || 'Unknown City'}</div>

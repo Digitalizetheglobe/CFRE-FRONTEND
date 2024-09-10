@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import ContactForm from '../MainBody/ContactForm';
 import { Link } from 'react-router-dom';
 
@@ -71,16 +71,16 @@ const Footer = () => {
 
                     {/* Social Media Links */}
                     <div className="flex justify-center mt-8 space-x-4">
-                        <a href="https://facebook.com" className="text-gray-400 hover:text-white" aria-label="Facebook">
+                        <a href="https://www.facebook.com/share/V6WUcvRiRnM9AFyU/?mibextid=qi2Omg" className="text-gray-400 hover:text-white" aria-label="Facebook">
                             <FaFacebookF />
                         </a>
-                        <a href="https://twitter.com" className="text-gray-400 hover:text-white" aria-label="Twitter">
-                            <FaTwitter />
+                        <a href="https://youtube.com/@cfrerealty-pune" className="text-gray-400 hover:text-white" aria-label="Twitter">
+                            <FaYoutube />
                         </a>
-                        <a href="https://instagram.com" className="text-gray-400 hover:text-white" aria-label="Instagram">
+                        <a href="https://www.instagram.com/cfrerealty" className="text-gray-400 hover:text-white" aria-label="Instagram">
                             <FaInstagram />
                         </a>
-                        <a href="https://linkedin.com" className="text-gray-400 hover:text-white" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/company/cfre-realty/" className="text-gray-400 hover:text-white" aria-label="LinkedIn">
                             <FaLinkedinIn />
                         </a>
                     </div>

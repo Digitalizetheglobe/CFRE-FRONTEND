@@ -91,7 +91,7 @@ function Header() {
 
 
     return (
-        <header className='shadow-md tracking-wide relative z-50'>
+        <header className='sticky top-0 bg-white shadow-md tracking-wide  z-50'>
 
             <div className='flex  items-center justify-between p-4 w-full ml-2'>
                 

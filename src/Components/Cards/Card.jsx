@@ -32,15 +32,12 @@ const handleCloseForm = () => {
             backgroundImage: `url(${primeImage})`,
             backgroundSize: 'cover', // Ensures the image covers the container
             backgroundPosition: 'center', // Centers the image
-            height: '400px', // Increased height
+            height: '500px', // Increased height
           }}
         >
           <div>
             <h2 className="text-3xl font-bold">"List, sell, relax – we’ll handle the rest."</h2> {/* Increased font size */}
-            {/* <p className="text-sm leading-relaxed mt-6">
-              
-"Our extensive network of investors connects you with the perfect buyer for your property."
-            </p> */}
+            
           </div>
           <button
             type="button"
@@ -58,12 +55,12 @@ const handleCloseForm = () => {
             backgroundImage: `url(${sellImage})`,
             backgroundSize: 'cover', // Ensures the image covers the container
             backgroundPosition: 'center', // Centers the image
-            height: '400px', // Increased height
+            height: '500px', // Increased height
           }}
         >
           <div>
-            <h2 className="text-3xl font-bold">Office Spaces That Work for You</h2> {/* Increased font size */}
-            <p className="text-lg leading-relaxed mt-6">
+            <h2 className="text-3xl font-bold ">Office Spaces That Work for You</h2> {/* Increased font size */}
+            <p className="text-lg leading-relaxed mt-6 sm:text-xs">
             "Explore a curated selection of premium office spaces tailored to elevate your business operations."
             </p>
           </div>

@@ -296,10 +296,10 @@ function ContactUs() {
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">250 +</dd>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">1550 +</dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-gray-900">Workforce</dt>
+                            <dt className="text-2xl leading-7 text-gray-900">Cities</dt>
                             <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">40 +</dd>
                         </div>
                     </dl>

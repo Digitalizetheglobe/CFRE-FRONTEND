@@ -30,7 +30,7 @@ const OfficeCard = ({ property, onEnquireClick }) => {
             </div>
 
             <div className="px-6 py-4">
-                <div className="font-bold text-xl">{property.buArea}Sq.ft {property.propertyType}</div>
+                <div className="font-bold text-xl">Commercial Office Space for {property.availableFor} {property.buArea} Sq.Ft {property.furnishing} </div>
                 <div className='grid grid-flow-col'>
                     <p className="text-gray-700 text-base">
                         {property.location}
@@ -45,7 +45,7 @@ const OfficeCard = ({ property, onEnquireClick }) => {
             </div>
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
                 <button 
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded w-4/5"
+                    className="bg-[#d84a48] hover:bg-[#a33735] text-white font-bold py-2 px-8 rounded w-4/5"
                     onClick={onEnquireClick}
                 >
                     Enquire

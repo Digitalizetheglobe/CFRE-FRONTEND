@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
@@ -106,7 +105,7 @@ const UnfurnishedPropertyDetailsInRent = () => {
                         className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
                         onClick={() => handleScrollTo(moreDetailsRef)}
                     >
-                        More Details
+                    More Details
                     </button>
                     <button
                         className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"

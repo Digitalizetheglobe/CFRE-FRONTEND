@@ -15,7 +15,20 @@ const allAreas = [
     "Bandra", "Khar", "Santacruz", "Vile Parle", "Andheri", "Juhu", "Versova", "Goregaon", "Malad", "Kandivali", "Borivali", "Dahisar",
     "Kurla", "Ghatkopar", "Powai", "Vikhroli", "Bhandup", "Mulund",
     "Vashi", "Nerul", "Belapur", "Kharghar", "Panvel", "Airoli",
-    "Thane West", "Thane East", "Ghodbunder Road", "Kopri", "Vartak Nagar", "Majiwada"
+    "Thane West", "Thane East", "Ghodbunder Road", "Kopri", "Vartak Nagar", "Majiwada","Banjara Hills", "Jubilee Hills", "Madhapur", "Hitech City", "Gachibowli", "Kondapur", "Kukatpally", "Manikonda", 
+    "Begumpet", "Somajiguda", "Punjagutta", "Ameerpet", "Himayatnagar", "Abids", "Nampally", 
+    "Secunderabad", "Trimulgherry", "Alwal", "Malkajgiri", "Sainikpuri", 
+    "Attapur", "Rajendra Nagar", "Mehdipatnam", "Tolichowki", "Masab Tank", 
+    "LB Nagar", "Dilsukhnagar", "Kothapet", "Nagole", "Uppal", 
+    "Miyapur", "Nizampet", "Bachupally", "Chandanagar", "Patancheru", 
+    "Shamshabad", "Shamirpet", "Kompally", "Medchal", "Moinabad", 
+    "Charminar", "Moghalpura", "Falaknuma", "Bahadurpura", "Yakutpura","MG Road", "Brigade Road", "Koramangala", "Indiranagar", "Whitefield", "Marathahalli", "Bellandur", "Sarjapur", 
+    "Electronic City", "HSR Layout", "BTM Layout", "Jayanagar", "JP Nagar", "Banashankari", "Basavanagudi", 
+    "Rajajinagar", "Malleshwaram", "Yeshwanthpur", "Hebbal", "RT Nagar", 
+    "Yelahanka", "Devanahalli", "Thanisandra", "Nagawara", "Hennur", 
+    "KR Puram", "Mahadevapura", "Ramamurthy Nagar", "Kaggadasapura", "Varthur", 
+    "Bannerghatta Road", "Arekere", "Hulimavu", "Begur", "Bommanahalli", 
+    "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road"
 ];
 
 const puneAreas = [
@@ -36,15 +49,37 @@ const mumbaiAreas = [
     "Thane West", "Thane East", "Ghodbunder Road", "Kopri", "Vartak Nagar", "Majiwada"
 ];
 
+const hyderabadAreas = [
+    "Banjara Hills", "Jubilee Hills", "Madhapur", "Hitech City", "Gachibowli", "Kondapur", "Kukatpally", "Manikonda", 
+    "Begumpet", "Somajiguda", "Punjagutta", "Ameerpet", "Himayatnagar", "Abids", "Nampally", 
+    "Secunderabad", "Trimulgherry", "Alwal", "Malkajgiri", "Sainikpuri", 
+    "Attapur", "Rajendra Nagar", "Mehdipatnam", "Tolichowki", "Masab Tank", 
+    "LB Nagar", "Dilsukhnagar", "Kothapet", "Nagole", "Uppal", 
+    "Miyapur", "Nizampet", "Bachupally", "Chandanagar", "Patancheru", 
+    "Shamshabad", "Shamirpet", "Kompally", "Medchal", "Moinabad", 
+    "Charminar", "Moghalpura", "Falaknuma", "Bahadurpura", "Yakutpura"
+];
+
+const bangaloreAreas = [
+    "MG Road", "Brigade Road", "Koramangala", "Indiranagar", "Whitefield", "Marathahalli", "Bellandur", "Sarjapur", 
+    "Electronic City", "HSR Layout", "BTM Layout", "Jayanagar", "JP Nagar", "Banashankari", "Basavanagudi", 
+    "Rajajinagar", "Malleshwaram", "Yeshwanthpur", "Hebbal", "RT Nagar", 
+    "Yelahanka", "Devanahalli", "Thanisandra", "Nagawara", "Hennur", 
+    "KR Puram", "Mahadevapura", "Ramamurthy Nagar", "Kaggadasapura", "Varthur", 
+    "Bannerghatta Road", "Arekere", "Hulimavu", "Begur", "Bommanahalli", 
+    "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road"
+];
+
+
 const SearchBar = () => {
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
-    const [activeTab, setActiveTab] = useState('Rent');
     const [selectedCity, setSelectedCity] = useState('');
     const [officeType, setOfficeType] = useState('');
     const [furnishingStatus, setFurnishingStatus] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [propertyCategory, setPropertyCategory] = useState('Rent'); // New state for category selection
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -63,174 +98,153 @@ const SearchBar = () => {
         const filterProperties = () => {
             const filtered = properties.filter(property => {
                 const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
-                const officeTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
+                const propertyTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
                 const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase().includes(furnishingStatus.toLowerCase()) : true;
                 const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
-                return cityMatch && officeTypeMatch && furnishingStatusMatch && searchMatch;
+                return cityMatch && propertyTypeMatch && (propertyCategory === 'Invest' || furnishingStatusMatch) && searchMatch;
             });
 
             setFilteredProperties(filtered);
         };
+
         filterProperties();
-    }, [selectedCity, officeType, furnishingStatus, searchQuery, properties]);
+    }, [selectedCity, officeType, furnishingStatus, searchQuery, properties, propertyCategory]);
+
 
     const handleCityChange = (e) => {
         const city = e.target.value;
         setSelectedCity(city);
-        setSearchQuery(''); // Reset search query when city changes
-
-        if (city === 'Pune') {
-            setSuggestions(puneAreas);
-        } else if (city === 'Mumbai') {
-            setSuggestions(mumbaiAreas);
+        setSearchQuery('');
+    
+        // Set suggestions based on the selected city
+        if (!city) {
+            setSuggestions(allAreas); // Show all areas when no city is selected
         } else {
-            setSuggestions(allAreas); // If no city is selected, show all areas
+            switch (city) {
+                case 'Pune':
+                    setSuggestions(puneAreas);
+                    break;
+                case 'Mumbai':
+                    setSuggestions(mumbaiAreas);
+                    break;
+                case 'Hyderabad':
+                    setSuggestions(hyderabadAreas);
+                    break;
+                case 'Bangalore':
+                    setSuggestions(bangaloreAreas);
+                    break;
+                default:
+                    setSuggestions(allAreas);
+                    break;
+            }
         }
+    };
+    
+    const handleSearchSuggestionClick = (area) => {
+        setSearchQuery(area);
+        setSuggestions([]);
     };
 
     const handleSearch = () => {
         navigate('/PropertyList', { state: { properties: filteredProperties } });
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    };
-
-    const handleSearchSuggestionClick = (area) => {
-        setSearchQuery(area);
-        setSuggestions([]); // Clear suggestions after selecting an area
-    };
-
     return (
-        <div className="bg-white p-4 rounded-xl shadow-lg flex flex-col space-y-2 w-full max-w-2xl mx-auto">
-            <div className="flex justify-center space-x-2 mb-2">
-                <button
-                    onClick={() => setActiveTab('Rent')}
-                    className={`py-1 px-4 rounded ${activeTab === 'Rent' ? 'bg-[#d84a48] text-white' : 'bg-gray-200 text-black'}`}
-                >
-                    Rent
-                </button>
-                <button
-                    onClick={() => setActiveTab('Invest')}
-                    className={`py-1 px-4 rounded ${activeTab === 'Invest' ? 'bg-[#d84a48] text-white' : 'bg-gray-200 text-black'}`}
-                >
-                    Invest
-                </button>
+        <div className="bg-white p-4 rounded-full shadow-lg flex items-center space-x-2 w-full max-w-5xl mx-auto">
+            {/* Property Category selection */}
+            <select
+                value={propertyCategory}
+                onChange={(e) => setPropertyCategory(e.target.value)}
+                className="border p-2 rounded focus:outline-none w-40"
+            >
+                <option value="Rent">Rent</option>
+                <option value="Invest">Invest</option>
+            </select>
+
+            {/* City selection */}
+            <select
+                value={selectedCity}
+                onChange={handleCityChange}
+                className="border p-2 rounded focus:outline-none w-40"
+            >
+                <option value="">City</option>
+                <option value="Pune">Pune</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select>
+
+            {/* Location search with suggestions */}
+            <div className="relative flex-grow">
+                <input
+                    type="text"
+                    placeholder="Search location..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full p-2 border rounded focus:outline-none"
+                />
+                {searchQuery && suggestions.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 bg-white border rounded shadow-lg mt-1 z-10">
+                        {suggestions
+                            .filter(area => area.toLowerCase().includes(searchQuery.toLowerCase()))
+                            .map(area => (
+                                <div
+                                    key={area}
+                                    onClick={() => handleSearchSuggestionClick(area)}
+                                    className="p-2 cursor-pointer hover:bg-gray-200"
+                                >
+                                    {area}
+                                </div>
+                            ))}
+                    </div>
+                )}
             </div>
 
-            <div className="flex items-center mb-2">
-                <div className="flex-shrink-0 border rounded-md p-1">
-                    <select
-                        value={selectedCity}
-                        onChange={handleCityChange}
-                        className="border-none bg-transparent p-1 focus:outline-none"
-                    >
-                        <option value="">Select City</option>
-                        <option value="Pune">Pune</option>
-                        <option value="Mumbai">Mumbai</option>
-                        <option value="Banglore">Banglore</option>
-                        <option value="Hyderabad">Hyderabad</option>
-                        {/* Add more cities */}
-                    </select>
-                </div>
+            {/* Property type selection */}
+            <select
+                value={officeType}
+                onChange={(e) => setOfficeType(e.target.value)} // Fix here
+                className="border p-2 rounded focus:outline-none w-40"
+            >
+                <option value="">Property Type</option>
+                <option value="Office Space">Office Space</option>
+                <option value="Showroom Space">Showroom Space</option>
+                <option value="Hospital">Hospital</option>
+                <option value="Independent Building">Independent Building</option>
+                <option value="Warehouse / Godown">Warehouse / Godown</option>
+                <option value="Industrial Factory">Industrial Factory</option>
+                <option value="Industrial Lands / Plot">Industrial Lands / Plot</option>
+                <option value="Commercial Lands / Plot">Commercial Lands / Plot</option>
+                <option value="Restaurant Space">Restaurant Space</option>
+                <option value="Banquet Hall">Banquet Hall</option>
+                <option value="Commercial Row House">Commercial Row House</option>
+                <option value="Hotel Resort">Hotel / Resort</option>
+                <option value="Residential Land / Plot">Residential Land / Plot</option>
+                <option value="Fractional Investment">Fractional Investment</option>
 
-                <div className="w-4"></div>
+            </select>
 
-                <div className="flex-grow flex items-center border rounded-md p-1 relative">
-                    <input
-                        type="text"
-                        placeholder="What locations do you prefer?"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        className="w-full p-1 border-none bg-transparent outline-none"
-                    />
-                    <FaSearch
-                        onClick={handleSearch}
-                        className="text-gray-500 ml-2 cursor-pointer"
-                    />
-                    {searchQuery && suggestions.length > 0 && (
-                        <div className="absolute top-full left-0 right-0 bg-white border rounded shadow-lg mt-1 z-10">
-                            {suggestions
-                                .filter(area => area.toLowerCase().includes(searchQuery.toLowerCase()))
-                                .map(area => (
-                                    <div
-                                        key={area}
-                                        onClick={() => handleSearchSuggestionClick(area)}
-                                        className="p-2 cursor-pointer hover:bg-gray-200"
-                                    >
-                                        {area}
-                                    </div>
-                                ))}
-                        </div>
-                    )}
-                </div>
-            </div>
+            {/* Furnishing Status dropdown, shown only when "Rent" is selected */}
+            {propertyCategory === 'Rent' && (
+                <select
+                    value={furnishingStatus}
+                    onChange={(e) => setFurnishingStatus(e.target.value)}
+                    className="border p-2 rounded focus:outline-none w-40"
+                >
+                    <option value="">Furnishing Status</option>
+                    <option value="Furnished">Furnished</option>
+                    <option value="Unfurnished">Unfurnished</option>
 
-            {activeTab === 'Rent' && (
-                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-<div className="flex flex-col">
-    <select
-        value={officeType}
-        onChange={(e) => setOfficeType(e.target.value)}
-        className="border p-1 rounded focus:outline-none"
-        style={{
-            maxHeight: '200px',  // Set the max height for the dropdown
-            overflowY: 'auto',    // Enable vertical scrolling if options exceed the height
-        }}
-    >
-        <option value="">Select Office Type</option>
-        <option value="Office">Office</option>
-        <option value="Showroom">Showroom Space</option>
-        <option value="Hospital">Hospital</option>
-        <option value="Independent Building">Independent Building</option>
-        <option value="Warehouse / Godown">Warehouse / Godown</option>
-        <option value="Industrial Factory">Industrial Factory</option>
-        <option value="Industrial Lands / Plot">Industrial Lands / Plot</option>
-        <option value="Commercial Lands / Plot">Commercial Lands / Plot</option>
-        <option value="Restaurant Space">Restaurant Space</option>
-        <option value="Banquet Hall">Banquet Hall</option>
-        <option value="Commercial Row House">Commercial Row House</option>
-        <option value="Hotel Resort">Hotel / Resort</option>
-        <option value="Residential Land / Plot">Residential Land / Plot</option>
-        <option value="Fractional Investment">Fractional Investment</option>
-    </select>
-</div>
-
-
-                    <div className="flex flex-col">
-                        <select
-                            value={furnishingStatus}
-                            onChange={(e) => setFurnishingStatus(e.target.value)}
-                            className="border p-1 rounded focus:outline-none"
-                        >
-                            <option value="">Furnishing Status</option>
-                            <option value="Furnished">Furnished</option>
-                            <option value="Unfurnished">Unfurnished</option>
-                        </select>
-                    </div>
-                </div>
+                </select>
             )}
 
-            {activeTab === 'Invest' && (
-                <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                    <div className="flex flex-col">
-                        <select
-                            value={officeType}
-                            onChange={(e) => setOfficeType(e.target.value)}
-                            className="border p-1 rounded focus:outline-none"
-                        >
-                            <option value="">Select Asset Type</option>
-                            <option value="preleased">Pre-Leased</option>
-                            <option value="unleased">Un-Leased</option>
-                            {/* Add more asset types */}
-                        </select>
-                    </div>
-                </div>
-            )}
+            <button
+                onClick={handleSearch}
+                className="bg-red-500 text-white p-2 rounded-full flex items-center justify-center w-32"
+            >
+                <FaSearch className="mr-2" /> Search
+            </button>
         </div>
     );
 };

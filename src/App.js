@@ -49,6 +49,7 @@ import MainRent from './Components/Rent/MainRent.jsx';
 import Latestblog from './Components/Blogs/Latestblog.jsx';
 import UnfurnishedPropertyDetailsInRent from './Components/Rent/UnfurnishedPropertyDetailsInRent.jsx';
 import Error from './Components/Error/Error.jsx';
+import BlogHomePage from './Components/Blogs/BlogHomePage.jsx';
 
 
 
@@ -127,7 +128,7 @@ function MainContent() {
     <CategoryCarousel />
     <PropertyCardInvest /> 
     <Tagline />
-  
+    <BlogHomePage />    
     <Template />
     
     

@@ -154,9 +154,9 @@ const firstRow = reviews.slice(0, reviews.length / 1);
 
 const ReviewCard = ({ img }) => {
   return (
-    <figure className="relative w-64 h-40 cursor-pointer overflow-hidden rounded-xl mt-5 mb-6 border border-gray-300 bg-gray-100 hover:bg-gray-200 mx-2 flex flex-col">
+    <figure className="relative w-64 h-28 cursor-pointer overflow-hidden rounded-xl mt-3 mb-5 border border-gray-600 bg-gray-100 hover:bg-gray-200 mx-1 flex flex-col">
       <img
-        className="object-cover w-full h-full"
+        className="object-cover w-full h-full mt-0 mb-0 ml-0 mr-0"
         alt="Client Logo"
         src={img}
       />
@@ -176,7 +176,7 @@ const Blogslider = () => {
       
       </div>
       {/* Blog Slider Section */}
-      <div className="relative h-auto rounded-lg  border-gray-300 p-4">
+      <div className="relative h-auto rounded-lg  border-spacing-y-2 border-black p-4">
         <Marquee pauseOnHover className="[--duration:5s] flex gap-4">
           {firstRow.map((review) => (
             <ReviewCard key={review.username} {...review} />

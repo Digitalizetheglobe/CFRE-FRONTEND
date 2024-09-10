@@ -84,19 +84,19 @@ const ShowroomCard = ({ property }) => {
             <div className="relative">
                 {/* Replaced the property image with the provided image */}
                 <img className="w-full h-48 object-cover" src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg" alt="Property" />
-            
+
             </div>
 
             <div className="px-6 py-4">
                 {/* Showroom Price */}
                 <div className="font-bold text-xl">{property.basicPrice}</div>
-                
-                    {/* Showroom Location */}
-                    <Link to={`/property-detail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300">
+
+                {/* Showroom Location */}
+                <Link to={`/property-detail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300">
                     {property.buildingName}
                 </Link>
                 <div className="text-gray-600 mt-1">{property.location}, {property.city}</div>
-                  
+
             </div>
 
             <div className="px-6 flex text-center items-center">
@@ -107,9 +107,9 @@ const ShowroomCard = ({ property }) => {
             </div>
 
             <div className="px-6 pb-4 flex justify-between items-center">
-                <Link  to={`/property-detail/${property.id}`} className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
-                    
-                    >
+                <Link to={`/property-detail/${property.id}`} className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
+
+                >
                     See Details
                 </Link>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10">

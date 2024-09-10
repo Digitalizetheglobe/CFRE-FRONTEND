@@ -92,7 +92,7 @@ const PropertyCard = ({ property }) => {
             <div className="px-4 py-2">
                 {/* Property name with link to detailed view */}
                 <Link to={`/property-detail/${property.id}`} className="text-sm font-bold text-gray-800 mt-1 block hover:text-[#d84a48] transition-colors duration-300">
-                {property.buArea} Sq.Ft ,{property.location}, {property.city}
+                Commercial Office Space for {property.availableFor} {property.buArea} Sq.Ft {property.furnishing} 
                 </Link>
                 
                 {/* Location and city */}

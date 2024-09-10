@@ -22,14 +22,16 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <div className="relative">
                 <img className="w-full h-48 object-cover" src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg" alt="Property" />
-                <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded  hover:scale-125">
+                {/* <button className="absolute bottom-0 left-0 text-white font-normal py-2 px-4 rounded  hover:scale-125">
                     More Images
-                </button>
+                </button> */}
             </div>
 
             <div className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-2xl text-gray-800">{property.basicPrice}</div>
+                <div className="font-bold text-2xl text-gray-800">
+                Commercial Office Space for {property.availableFor} {property.buArea}sq.ft {property.furnishing}
+                    </div>
 
                 {/* Property name with link to detailed view */}
                 <Link to={`/propertydetail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300">
