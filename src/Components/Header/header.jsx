@@ -96,7 +96,7 @@ function Header() {
         <header className='sticky top-0 bg-white shadow-md tracking-wide z-50'>
             <div className='flex items-center justify-between p-4 w-full'>
                 {/* Left: Logo */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 pl-20">
                     <Link to="/">
                         <img
                             src={logo}
@@ -115,7 +115,7 @@ function Header() {
                         <li className='relative' ref={rentDropdownRef}>
                             <button
                                 onClick={toggleRentDropdown}
-                                className='hover:text-[#d84a48] text-gray-800 block text-[19px] focus:outline-none cursor-pointer'
+                                className='hover:text-[#d84a48] text-gray-800 block text-[19px] focus:outline-none cursor-pointer' style={{fontWeight:'600'}}
                             >
                                 Rent
                             </button>
@@ -137,6 +137,7 @@ function Header() {
                             <button
                                 onClick={toggleInvestDropdown}
                                 className='hover:text-[#d84a48] text-gray-800 block text-[19px] focus:outline-none'
+                                style={{fontWeight:'600'}}
                             >
                                 Invest
                             </button>
@@ -152,17 +153,17 @@ function Header() {
                             )}
                         </li>
                         <li>
-                            <Link to='/projectproperty' className='hover:text-[#d84a48] text-gray-800 block text-[19px]'>
+                            <Link to='/projectproperty' className='hover:text-[#d84a48] text-gray-800 block text-[19px]' style={{fontWeight:'600'}}>
                                 Projects
                             </Link>
                         </li>
                         <li>
-                            <Link to='/Latestblog' className='hover:text-[#d84a48] text-gray-800 block text-[19px]'>
+                            <Link to='/Latestblog' className='hover:text-[#d84a48] text-gray-800 block text-[19px]'style={{fontWeight:'600'}}>
                                 Blogs
                             </Link>
                         </li>
                         <li>
-                            <Link to='/contactUs' className='hover:text-[#d84a48] text-gray-800 block text-[19px]'>
+                            <Link to='/contactUs' className='hover:text-[#d84a48] text-gray-800 block text-[19px]'style={{fontWeight:'600'}}>
                             Contact Us
                             </Link>
                         </li>
@@ -170,16 +171,16 @@ function Header() {
                 </div>
 
                 {/* Right Section: "List Your Property" Button */}
-                <div className='flex items-center space-x-3'>
-                    <Link
+                <div className='flex items-center space-x-3 pr-20'>
+                    <button
                         onClick={handleNavigate}
                         className="bg-[#d84a48] text-white text-sm font-normal   py-2 px-4 rounded-full hover:bg-[#ac3c3a] transition-colors duration-300"
                     >
-                        List Your Property 
+                        List Property 
                         <span className="bg-yellow-300 text-black text-sm  py-1 px-2 rounded-full ml-1">
             FREE!
           </span>
-                    </Link>
+                    </button>
 
                    
                 </div>

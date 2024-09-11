@@ -22,6 +22,9 @@ function PropertyCard({ property }) {
         navigate(`/property-detail/${property.id}`);
     };
 
+ const handleSearch = () => {
+    navigate('/exploreproperty'); 
+};
     return (
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.01] relative">
             {/* Share button */}
@@ -105,7 +108,7 @@ function PropertyList() {
     }, []);
 
     const handleSearch = () => {
-        navigate('/PropertyList');
+        navigate('/exploreproperty');
     };
 
     return (
@@ -116,6 +119,7 @@ function PropertyList() {
                 </h1>
                 <button
                     className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out mr-14"
+                    // onClick={handleSearch}
                     onClick={handleSearch}
                 >
                     Explore Properties

@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from './ab.jpg';
 import Image from './privacyPolicy.webp';
-
+import CountUp from 'react-countup';
 
 function AboutUs() {
     return (
-    <>
-      <div
+        <>
+            <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}
             >
@@ -14,50 +14,50 @@ function AboutUs() {
                     <h1 className="text-4xl text-white font-bold text-center">About Us</h1>
                 </div>
             </div>
-        <div className="bg-white-500  p-6 bg">
-            <div className="grid md:grid-cols-2 items-center gap-10 max-full max-md:max-w-md mx-auto">
-                <div className="md:h-[400px] md:w-[600px] ">
-                    <img src={logo} alt="Company Logo" className="w-full h-full rounded-md object-cover" />
-                </div>
+            <div className="bg-white-500  p-6 bg">
+                <div className="grid md:grid-cols-2 items-center gap-10 max-full max-md:max-w-md mx-auto">
+                    <div className="md:h-[400px] md:w-[600px] ">
+                        <img src={logo} alt="Company Logo" className="w-full h-full rounded-md object-cover" />
+                    </div>
 
-                <div className="max-md:text-center">
-                    <h3 className="text-black font-semibold md:text-xl text-xl md:leading-10"> Welcome to COMMERCIAL FIELD REAL ESTATE (CFRE)</h3>
-                    <p className=" mt-4 text-sm leading-relaxed mb-6 text-gray-700">As a leading service provider in the real estate sector, we are driven by our love to sell and rent spacious corporate offices and retail spaces. We pledge honesty, devotion, and dependability to each and every one of our clients in the hopes that they will experience the same joy that we do. CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound.</p>
-                    {/* <button type="button" className="px-5 py-2.5 mt-8 bg-blue-700 hover:bg-blue-800 text-white tracking-wider rounded text-sm outline-none">Explore</button> */}
-                </div>
-            </div>
-        </div>
-
-
-        <div className=" bg-gray-50 w-full">
-
-            <div className="w-full mx-auto bg-white p-6 md:p-12 shadow-md rounded-lg">
-
-                <div className="bg-slate-800 p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300  hover:scale-[1.02]">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Why Choose Us</h2>
-                    <p className="text-white">
-                        Our goal is to maintain long-term partnerships with clients and provide answers to their problems. We prioritize our relationships with our clients and place a high value on the goals and results they achieve.
-                    </p>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
-                    <p className="text-gray-700">
-                        To be the brand that is most sought after by consumers due to its quality, dependability, innovations, and value! We are able to do this by sticking stringently to a few core principles, the most important of which is to work with the most qualified individuals who have the most expertise. Our dedication to providing first-rate service to each and every one of our customers is at the very heart of the promise we make to them.
-                    </p>
-                </div>
-
-                <div className="bg-slate-800 p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Our Vision</h2>
-                    <p className="text-white">
-                        To establish new standards of excellence while consistently outperforming those standards! You can accomplish your objectives more quickly with the assistance of our object-oriented approach to the suitable products we provide. Our goal is to make Sale and Rent a hassle-free and joyful experience by offering individualized product solutions that are accessible to every prospective customer.
-                    </p>
+                    <div className="max-md:text-center">
+                        <h3 className="text-black font-semibold md:text-xl text-xl md:leading-10"> Welcome to COMMERCIAL FIELD REAL ESTATE (CFRE)</h3>
+                        <p className=" mt-4 text-sm leading-relaxed mb-6 text-gray-700">As a leading service provider in the real estate sector, we are driven by our love to sell and rent spacious corporate offices and retail spaces. We pledge honesty, devotion, and dependability to each and every one of our clients in the hopes that they will experience the same joy that we do. CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound.</p>
+                        {/* <button type="button" className="px-5 py-2.5 mt-8 bg-blue-700 hover:bg-blue-800 text-white tracking-wider rounded text-sm outline-none">Explore</button> */}
+                    </div>
                 </div>
             </div>
 
 
+            <div className=" bg-gray-50 w-full">
 
-            {/* <div class="font-[sans-serif] bg-slate-800">
+                <div className="w-full mx-auto bg-white p-6 md:p-12 shadow-md rounded-lg">
+
+                    <div className="bg-slate-800 p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300  hover:scale-[1.02]">
+                        <h2 className="text-2xl font-semibold text-white mb-4">Why Choose Us</h2>
+                        <p className="text-white">
+                            Our goal is to maintain long-term partnerships with clients and provide answers to their problems. We prioritize our relationships with our clients and place a high value on the goals and results they achieve.
+                        </p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
+                        <p className="text-gray-700">
+                            To be the brand that is most sought after by consumers due to its quality, dependability, innovations, and value! We are able to do this by sticking stringently to a few core principles, the most important of which is to work with the most qualified individuals who have the most expertise. Our dedication to providing first-rate service to each and every one of our customers is at the very heart of the promise we make to them.
+                        </p>
+                    </div>
+
+                    <div className="bg-slate-800 p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
+                        <h2 className="text-2xl font-semibold text-white mb-4">Our Vision</h2>
+                        <p className="text-white">
+                            To establish new standards of excellence while consistently outperforming those standards! You can accomplish your objectives more quickly with the assistance of our object-oriented approach to the suitable products we provide. Our goal is to make Sale and Rent a hassle-free and joyful experience by offering individualized product solutions that are accessible to every prospective customer.
+                        </p>
+                    </div>
+                </div>
+
+
+
+                {/* <div class="font-[sans-serif] bg-slate-800">
                 <div class="lg:max-w-6xl max-w-xl mx-auto p-4">
                     <h2 class="text-white text-3xl font-bold text-center">Meet Our Team</h2>
 
@@ -228,10 +228,41 @@ function AboutUs() {
 
 
 
-            
+                <div
+                    className="py-12 sm:py-16 bg-gray-300 border border-gray-300 ml-16 mr-12 h-60" style={{ borderRadius: '2rem' }}
+                >
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
+                        <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
+                            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                                <dt className="text-2xl leading-7 text-gray-900">Years</dt>
+                                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                    <CountUp end={12} duration={3} /> +
+                                </dd>
+                            </div>
+                            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                                <dt className="text-2xl leading-7 text-gray-900">Sq.Ft <br />Delivered</dt>
+                                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                    <CountUp end={2.5} decimals={3} suffix=" MN" duration={2} />
+                                </dd>
+                            </div>
+                            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                                <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
+                                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                    <CountUp end={1550} duration={2} /> +
+                                </dd>
+                            </div>
+                            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                                <dt className="text-2xl leading-7 text-gray-900">Cities</dt>
+                                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                    <CountUp end={40} duration={3} /> +
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
 
-        </div>
-    </>
+            </div>
+        </>
     );
 }
 

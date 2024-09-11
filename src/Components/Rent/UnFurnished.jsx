@@ -118,6 +118,7 @@ import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
+import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
 
 const Unfurnished = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -126,6 +127,8 @@ const Unfurnished = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
     const [error, setError] = useState(null); // Error state
+    const [page, setPage] = useState(1); // Pagination state
+    const propertiesPerPage = 8; // Number of properties to show per page
 
     const handleButtonClick = () => {
         setFormVisible(true);
@@ -181,6 +184,15 @@ const Unfurnished = () => {
         setFilteredProperties(filtered);
     };
 
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+    // Calculate properties to display based on current page
+    const indexOfLastProperty = page * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
+
     if (error) {
         return <Error />; // Render the Error component if there's an error
     }
@@ -210,13 +222,23 @@ const Unfurnished = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredProperties.length === 0 ? (
+                {currentProperties.length === 0 ? (
                     <p className="text-center w-full">No Unfurnished properties found.</p>
                 ) : (
-                    filteredProperties.map(property => (
+                    currentProperties.map(property => (
                         <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
+            </div>
+
+            <div className="flex justify-center mt-6">
+                <Pagination
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)} // Total number of pages
+                    page={page}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="large"
+                />
             </div>
 
             {isFormVisible && (
@@ -237,6 +259,7 @@ const Unfurnished = () => {
 };
 
 export default Unfurnished;
+
 
 
 // import React, { useState, useEffect } from 'react';

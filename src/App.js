@@ -53,6 +53,7 @@ import BlogHomePage from './Components/Blogs/BlogHomePage.jsx';
 import ScrollToTop from './Components/ScrollToTop.jsx';
 import Testimonials from './Components/Testimonials/Testimonials.jsx';
 import Tagline1 from './Components/Tagline/Tagline1.jsx';
+import ExploreProperty from './Components/Exploreproperty/ExploreProperty.jsx';
 
 
 
@@ -123,6 +124,7 @@ function MainContent() {
         <Route path='/coworking-space' element={<Blog3/>}/>
         <Route path='/office-space-for-rent-in-warje-pune' element={<Blog4/>} />
        <Route path='/Error'  element={<Error />}/>
+       <Route path='/exploreproperty' element={<ExploreProperty/>} />
 
       </Routes>
       {isHomePage && (

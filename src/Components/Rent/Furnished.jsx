@@ -127,12 +127,12 @@
 // };
 
 // export default Furnished;
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
+import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
 
 const Unfurnished = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -141,6 +141,10 @@ const Unfurnished = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
     const [error, setError] = useState(null); // Error state
+
+    // Pagination-related state
+    const [currentPage, setCurrentPage] = useState(1);
+    const propertiesPerPage = 8; // Set how many properties per page you want to show
 
     const handleButtonClick = () => {
         setFormVisible(true);
@@ -196,6 +200,14 @@ const Unfurnished = () => {
         setFilteredProperties(filtered);
     };
 
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
+
+    const indexOfLastProperty = currentPage * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
+
     if (error) {
         return <Error />; // Render the Error component if there's an error
     }
@@ -225,13 +237,24 @@ const Unfurnished = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredProperties.length === 0 ? (
-                    <p className="text-center w-full">No Unfurnished properties found.</p>
+                {currentProperties.length === 0 ? (
+                    <p className="text-center w-full">No Furnished properties found.</p>
                 ) : (
-                    filteredProperties.map(property => (
+                    currentProperties.map(property => (
                         <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
+            </div>
+
+            {/* Add pagination component */}
+            <div className="flex justify-center mt-6">
+                <Pagination
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="large"
+                />
             </div>
 
             {isFormVisible && (

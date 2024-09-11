@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import primeImage from './img3.png';
 import sellImage from './img2.png';
 import ContactForm from '../MainBody/ContactForm';
-import  { useState } from 'react';
+import { useState } from 'react';
 
 const Card = () => {
 
@@ -16,11 +16,11 @@ const Card = () => {
 
   const handleButtonClick = () => {
     setFormVisible(true);
-};
+  };
 
-const handleCloseForm = () => {
+  const handleCloseForm = () => {
     setFormVisible(false);
-};
+  };
 
   return (
     <div className="max-w-8xl mx-auto mb-12 ml-10 mr-5"> {/* Increased max width and margin */}
@@ -38,7 +38,7 @@ const handleCloseForm = () => {
           <div>
             <h2 className="text-3xl font-bold">List, sell, relax – we’ll handle the rest.</h2> {/* Increased font size */}
             <p className="text-lg leading-relaxed mt-6 sm:text-xs">
-            Maximize Exposure, Minimize Effort – List Now!
+              Maximize Exposure, Minimize Effort – List Now!
             </p>
           </div>
           <button
@@ -63,7 +63,7 @@ const handleCloseForm = () => {
           <div>
             <h2 className="text-3xl font-bold ">Office Spaces That Work for You</h2> {/* Increased font size */}
             <p className="text-lg leading-relaxed mt-6 sm:text-xs">
-            Explore a curated selection of premium office spaces tailored to elevate your business operations.
+              Explore a curated selection of premium office spaces tailored to elevate your business operations.
             </p>
           </div>
           <button
@@ -76,18 +76,18 @@ const handleCloseForm = () => {
         </div>
       </div>
       {isFormVisible && (
-                    <div
-                        className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
-                        onClick={handleCloseForm}
-                    >
-                        <div
-                            className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <ContactForm onClose={handleCloseForm} />
-                        </div>
-                    </div>
-                )}
+        <div
+          className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
+          onClick={handleCloseForm}
+        >
+          <div
+            className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ContactForm onClose={handleCloseForm} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

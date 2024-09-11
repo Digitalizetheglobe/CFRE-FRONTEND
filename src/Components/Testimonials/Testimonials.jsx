@@ -21,14 +21,14 @@ function Testimonials() {
             <div className="w-full lg:w-2/3 lg:pl-12 flex flex-col justify-center bg-opacity-90 text-white rounded-lg p-8"> 
                 <div className="flex items-center mb-4">
                     <p className="text-lg lg:text-xl font-light leading-relaxed text-white">
-                        Gravida quam mi erat tortor neque molestie. Auctor aliquet at porttitor a enim nunc suscipit tincidunt nunc. Et non lorem tortor posuere. Nunc eu scelerisque interdum eget tellus non nibh scelerisque bibendum.
+                    CFRE Realty successfully facilitated the transaction for Ashok Leyland's office space at Pyramid Axis, Baner, Pune. Their professional approach ensured a seamless experience from start to finish.
                     </p>
                 </div>
 
                 {/* Person's Info */}
                 <div className="mt-6">
-                    <p className="font-semibold text-lg text-white">Judith Black</p>
-                    <p className="text-gray-400">CEO of Workcation</p>
+                    <p className="font-semibold text-lg text-white">Ashok Leyland's</p>
+                    {/* <p className="text-gray-400">CEO of Workcation</p> */}
                 </div>
             </div>
         </div>

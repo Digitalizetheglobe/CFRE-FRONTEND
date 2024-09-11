@@ -171,7 +171,7 @@ const Footer = ({ handleButtonClick, isFormVisible, handleCloseForm }) => {
                 <ul className="space-y-3">
                     <li><Link to="/about-us" className="text-gray-400 hover:text-white">About Us</Link></li>
                     <li><Link to="/contactUs" className="text-gray-400 hover:text-white">Contact Us</Link></li>
-                    <li><Link to="/Latestblog" className="text-gray-400 hover:text-white">Blog</Link></li>
+                    <li><Link to="/Latestblog" className="text-gray-400 hover:text-white">FAQ's</Link></li>
                     <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
                 </ul>
             </div>
@@ -200,19 +200,20 @@ const Footer = ({ handleButtonClick, isFormVisible, handleCloseForm }) => {
 
                 {/* Social Media Links */}
                 <div className="flex space-x-4 mt-6">
-                    <a href="https://www.facebook.com/share/V6WUcvRiRnM9AFyU/?mibextid=qi2Omg" className="text-gray-400 hover:text-white">
-                        <FaFacebookF size={22} />
-                    </a>
-                    <a href="https://youtube.com/@cfrerealty-pune" className="text-gray-400 hover:text-white">
-                        <FaYoutube size={22} />
-                    </a>
-                    <a href="https://www.instagram.com/cfrerealty" className="text-gray-400 hover:text-white">
-                        <FaInstagram size={22} />
-                    </a>
-                    <a href="https://www.linkedin.com/company/cfre-realty/" className="text-gray-400 hover:text-white">
-                        <FaLinkedinIn size={22} />
-                    </a>
-                </div>
+    <a href="https://www.facebook.com/share/V6WUcvRiRnM9AFyU/?mibextid=qi2Omg" className="text-gray-400 hover:text-white">
+        <img src={require('../assets/icons/facebook.png')} alt="Facebook" width={22} height={22} />
+    </a>
+    <a href="https://youtube.com/@cfrerealty-pune" className="text-gray-400 hover:text-white">
+        <img src={require('../assets/icons/youtube.png')} alt="YouTube" width={22} height={22} />
+    </a>
+    <a href="https://www.instagram.com/cfrerealty" className="text-gray-400 hover:text-white">
+        <img src={require('../assets/icons/instagram.png')} alt="Instagram" width={22} height={22} />
+    </a>
+    <a href="https://www.linkedin.com/company/cfre-realty/" className="text-gray-400 hover:text-white">
+        <img src={require('../assets/icons/linkedin.png')} alt="LinkedIn" width={22} height={22} />
+    </a>
+</div>
+
             </div>
         </div>
     </div>

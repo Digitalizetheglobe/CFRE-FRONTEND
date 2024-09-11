@@ -98,6 +98,7 @@ import Blogslider from '../MainBody/Blogslider';
 import Tagline from './123.png';
 import Image from './ranger-4df6c1b6.png'
 import { Phone, Mail, MapPin, Map } from 'lucide-react'; // Updated import to use MapPin for location
+import CountUp from 'react-countup';
 
 function ContactUs() {
     const [formData, setFormData] = useState({
@@ -281,30 +282,39 @@ function ContactUs() {
 
             <Blogslider />
             <div
-                className="py-24 sm:py-16 bg-cover bg-center"
-                style={{ backgroundImage: `url(${Image})` }}
-            >
-                <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75  rounded-lg p-8">
+                    className="py-12 sm:py-16 bg-gray-300 border border-gray-300 ml-16 mr-12 " style={{ borderRadius: '2rem' }}
+                >
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
                     <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-2xl leading-7 text-gray-900">Years</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">12 +</dd>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                <CountUp end={12} duration={3} /> +
+                            </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-gray-900">Sq.Ft</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">2.5 MN</dd>
+                            <dt className="text-2xl leading-7 text-gray-900">Sq.Ft <br />Delivered</dt>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                <CountUp end={2.5} decimals={3} suffix=" MN" duration={2} />
+                            </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">1550 +</dd>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                <CountUp end={1550} duration={2} /> +
+                            </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-2xl leading-7 text-gray-900">Cities</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">40 +</dd>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                                <CountUp end={40} duration={3} /> +
+                            </dd>
                         </div>
                     </dl>
                 </div>
             </div>
+
+
 
 
             <div className="relative mb-20 mt-10">
