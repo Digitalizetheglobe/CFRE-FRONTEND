@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
 const allAreas = [
     "Shivaji Nagar", "Deccan Gymkhana", "Camp (Pune Cantonment)", "Sadashiv Peth", "Narayan Peth", "Kasba Peth",
@@ -94,6 +95,19 @@ const SearchBar = () => {
         fetchProperties();
     }, []);
 
+
+      // Debounce search query input to reduce lag
+  const debouncedSearchQuery = useMemo(
+    () => debounce((query) => setSearchQuery(query), 300),
+    []
+  );
+
+  useEffect(() => {
+    return () => {
+      debouncedSearchQuery.cancel(); // Cancel debounce on component unmount
+    };
+  }, [debouncedSearchQuery]);
+
     useEffect(() => {
         const filterProperties = () => {
             const filtered = properties.filter(property => {
@@ -181,7 +195,7 @@ const SearchBar = () => {
                     type="text"
                     placeholder="Search location..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => debouncedSearchQuery(e.target.value)}
                     className="w-full p-2 border rounded focus:outline-none"
                 />
                 {searchQuery && suggestions.length > 0 && (

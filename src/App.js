@@ -50,12 +50,16 @@ import Latestblog from './Components/Blogs/Latestblog.jsx';
 import UnfurnishedPropertyDetailsInRent from './Components/Rent/UnfurnishedPropertyDetailsInRent.jsx';
 import Error from './Components/Error/Error.jsx';
 import BlogHomePage from './Components/Blogs/BlogHomePage.jsx';
+import ScrollToTop from './Components/ScrollToTop.jsx';
+import Testimonials from './Components/Testimonials/Testimonials.jsx';
+import Tagline1 from './Components/Tagline/Tagline1.jsx';
 
 
 
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <Header />
       <MainContent />
       <Cookies />
@@ -128,9 +132,10 @@ function MainContent() {
     <CategoryCarousel />
     <PropertyCardInvest /> 
     <Tagline />
-    <BlogHomePage />    
+    <BlogHomePage />  
+    <Testimonials />  
+    {/* <Tagline1 /> */}
     <Template />
-    
     
   </>
 )}

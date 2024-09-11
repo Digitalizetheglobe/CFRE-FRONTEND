@@ -62,7 +62,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-// import BannerVideo from './bannerVideo.mp4'; // Import your video
+import BannerVideo from './bannerVideo.mp4'; // Import your video
 import SearchBar from '../../SearchBar';
 
 function Hero() {
@@ -119,7 +119,7 @@ function Hero() {
                     loop
                     muted
                 >
-                    {/* <source src={BannerVideo} type="video/mp4" /> */}
+                    <source src={BannerVideo} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">

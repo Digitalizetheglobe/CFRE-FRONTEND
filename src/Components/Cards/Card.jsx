@@ -36,8 +36,10 @@ const handleCloseForm = () => {
           }}
         >
           <div>
-            <h2 className="text-3xl font-bold">"List, sell, relax – we’ll handle the rest."</h2> {/* Increased font size */}
-            
+            <h2 className="text-3xl font-bold">List, sell, relax – we’ll handle the rest.</h2> {/* Increased font size */}
+            <p className="text-lg leading-relaxed mt-6 sm:text-xs">
+            Maximize Exposure, Minimize Effort – List Now!
+            </p>
           </div>
           <button
             type="button"
@@ -61,7 +63,7 @@ const handleCloseForm = () => {
           <div>
             <h2 className="text-3xl font-bold ">Office Spaces That Work for You</h2> {/* Increased font size */}
             <p className="text-lg leading-relaxed mt-6 sm:text-xs">
-            "Explore a curated selection of premium office spaces tailored to elevate your business operations."
+            Explore a curated selection of premium office spaces tailored to elevate your business operations.
             </p>
           </div>
           <button

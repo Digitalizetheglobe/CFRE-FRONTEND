@@ -1,14 +1,18 @@
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
+import Error from '../Error/Error'; // Import the Error component
 
-const Unlease = () => {
+const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
+    const [error, setError] = useState(null); // Error state
 
     const handleButtonClick = () => {
         setFormVisible(true);
@@ -23,24 +27,20 @@ const Unlease = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-
-                console.log("Fetched properties:", response.data);
-
-                const unleasedProperties = response.data.filter(property => 
-                    property.propertyType.toLowerCase() === 'unleased'
-                );
-                setFilteredProperties(unleasedProperties);
+                setFilteredProperties(response.data.filter(property => property.availableFor === 'unlesed'));
             } catch (error) {
+                setError('Error fetching properties. Please try again later.'); // Set error message
                 console.error('Error fetching properties:', error);
             }
         };
-
         fetchProperties();
     }, []);
 
     useEffect(() => {
-        filterAndSortProperties(searchTerm, sortOrder);
-    }, [searchTerm, sortOrder, properties]);
+        if (!error) { // Only filter and sort if there's no error
+            filterAndSortProperties(searchTerm, sortOrder);
+        }
+    }, [searchTerm, sortOrder, properties, error]);
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -51,9 +51,7 @@ const Unlease = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => 
-            property.propertyType.toLowerCase() === 'unleased'
-        );
+        let filtered = properties.filter(property => property.availableFor === 'unlesed');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>
@@ -62,18 +60,22 @@ const Unlease = () => {
         }
 
         if (sortOrder === 'asc') {
-            filtered.sort((a, b) => a.basicPrice - b.basicPrice);
+            filtered.sort((a, b) => a.cost - b.cost);
         } else if (sortOrder === 'desc') {
-            filtered.sort((a, b) => b.basicPrice - a.basicPrice);
+            filtered.sort((a, b) => b.cost - a.cost);
         }
 
         setFilteredProperties(filtered);
     };
 
+    if (error) {
+        return <Error />; // Render the Error component if there's an error
+    }
+
     return (
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-                <h1 className="text-4xl">Unleased Properties</h1>
+                <h1 className="text-4xl">Un-Leased Properties</h1>
                 <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
                     <input
                         type="text"
@@ -96,19 +98,14 @@ const Unlease = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {filteredProperties.length === 0 ? (
-                    <p>No unleased properties found.</p>
+                    <p className="text-center w-full">No Unfurnished properties found.</p>
                 ) : (
                     filteredProperties.map(property => (
-                        <PropertyCard 
-                            key={property.id} 
-                            property={property}
-                            onEnquire={handleButtonClick} // Pass the handler
-                        />
+                        <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
             </div>
 
-            {/* Render ContactForm only if isFormVisible is true */}
             {isFormVisible && (
                 <div 
                     className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
@@ -126,4 +123,5 @@ const Unlease = () => {
     );
 };
 
-export default Unlease;
+export default Prelease;
+
