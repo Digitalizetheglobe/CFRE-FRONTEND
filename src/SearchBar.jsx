@@ -170,7 +170,7 @@ const SearchBar = () => {
             <select
                 value={propertyCategory}
                 onChange={(e) => setPropertyCategory(e.target.value)}
-                className="border p-2 rounded focus:outline-none w-40"
+                className="border p-2 rounded focus:outline-none "
             >
                 <option value="Rent">Rent</option>
                 <option value="Invest">Invest</option>
@@ -180,7 +180,7 @@ const SearchBar = () => {
             <select
                 value={selectedCity}
                 onChange={handleCityChange}
-                className="border p-2 rounded focus:outline-none w-40"
+                className="border p-2 rounded focus:outline-none "
             >
                 <option value="">City</option>
                 <option value="Pune">Pune</option>
@@ -219,7 +219,7 @@ const SearchBar = () => {
             <select
                 value={officeType}
                 onChange={(e) => setOfficeType(e.target.value)} // Fix here
-                className="border p-2 rounded focus:outline-none w-40"
+                className="border p-2 rounded focus:outline-none "
             >
                 <option value="">Property Type</option>
                 <option value="Office Space">Office Space</option>
@@ -244,7 +244,7 @@ const SearchBar = () => {
                 <select
                     value={furnishingStatus}
                     onChange={(e) => setFurnishingStatus(e.target.value)}
-                    className="border p-2 rounded focus:outline-none w-40"
+                    className="border p-2 rounded focus:outline-none "
                 >
                     <option value="">Furnishing Status</option>
                     <option value="Furnished">Furnished</option>
@@ -255,7 +255,7 @@ const SearchBar = () => {
 
             <button
                 onClick={handleSearch}
-                className="bg-red-500 text-white p-2 rounded-full flex items-center justify-center w-32"
+                className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 rounded-full flex items-center justify-center w-32"
             >
                 <FaSearch className="mr-2" /> Search
             </button>

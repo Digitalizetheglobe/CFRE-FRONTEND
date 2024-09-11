@@ -59,11 +59,10 @@
 // export default Hero;
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Search } from 'lucide-react';
+
 import { useNavigate } from 'react-router-dom';
-import BannerVideo from './bannerVideo.mp4'; // Import your video
 import SearchBar from '../../SearchBar';
+import Banner from './Banner 5.jpg';
 
 function Hero() {
     const [properties, setProperties] = useState([]);
@@ -87,82 +86,48 @@ function Hero() {
     //     fetchProperties();
     // }, []);
 
-    useEffect(() => {
-        // Filter properties based on city and search query
-        const filterProperties = () => {
-            const filtered = properties.filter(property => {
-                // Check if the selected city is part of the location (ignoring case)
-                const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
-                // Check if the search query matches the description (ignoring case)
-                const searchMatch = searchQuery ? property.description?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
+    // useEffect(() => {
+    //     // Filter properties based on city and search query
+    //     const filterProperties = () => {
+    //         const filtered = properties.filter(property => {
+    //             // Check if the selected city is part of the location (ignoring case)
+    //             const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
+    //             // Check if the search query matches the description (ignoring case)
+    //             const searchMatch = searchQuery ? property.description?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
-                return cityMatch && searchMatch;
-            });
-            setFilteredProperties(filtered);
-        };
+    //             return cityMatch && searchMatch;
+    //         });
+    //         setFilteredProperties(filtered);
+    //     };
 
-        filterProperties();
-    }, [selectedCity, searchQuery, properties]);
+    //     filterProperties();
+    // }, [selectedCity, searchQuery, properties]);
 
-        console.log('222222222====>',filteredProperties);
+    //     console.log('222222222====>',filteredProperties);
         
-    const handleSearch = () => {
-        navigate('/PropertyList', { state: { properties: filteredProperties } });
-    };
+    // const handleSearch = () => {
+    //     navigate('/PropertyList', { state: { properties: filteredProperties } });
+    // };
 
     return (
         <div className="flex justify-center items-center my-8 mx-4">
-            <div className="relative w-full h-[75vh] rounded-lg overflow-hidden">
-                <video
-                    className="absolute inset-0 w-full h-full object-cover bg-black bg-opacity-50"
-                    autoPlay
-                    loop
-                    muted
-                >
-                    <source src={BannerVideo} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
-                    <h1 className="text-5xl sm:text-3xl md:text-xl lg:text-5xl text-white font-bold mb-2 text-center">
-                        Commercial Real Estate Platform
-                    </h1>
-                    <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-xl text-white mb-6 text-center">
+        <div className="relative w-full h-[75vh] rounded-lg overflow-hidden">
+            <img
+                className="absolute inset-0 w-full h-full object-cover"
+                src={Banner}
+                alt="Banner"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center px-4">
+                <h1 className="text-5xl sm:text-3xl md:text-xl lg:text-5xl text-white font-bold mb-2 text-center">
+                    Commercial Real Estate Platform
+                </h1>
+                <p className="hidden md:flex text-lg sm:text-sm md:text-2xl lg:text-xl text-white mb-6 text-center">
                     Rent, Invest, Sale Commercial Real Estate with Verified Data
-                    </p>
-                    <SearchBar/>
-                    {/* <div className="bg-white p-2 rounded-lg shadow-lg flex flex-col sm:flex-row items-center w-full sm:w-2/3 md:w-3/4 lg:w-1/3 space-y-4 sm:space-y-0">
-                        <div className="flex items-center space-x-2 w-full sm:w-auto">
-                            <label htmlFor="city" className="text-sm sm:text-base lg:text-lg">
-                                City
-                            </label>
-                            <select
-                                id="city"
-                                value={selectedCity}
-                                onChange={(e) => setSelectedCity(e.target.value)}
-                                className="border p-2 rounded w-full sm:w-auto flex-1 sm:flex-none"
-                            >
-                                <option value="">Select City</option>
-                                <option value="Pune">Pune</option>
-                                <option value="Mumbai">Mumbai</option>
-                                <option value="Bangalore">Bangalore</option>
-                                <option value="Hyderabad">Hyderabad</option>
-                            </select>
-                        </div>
-                        <input
-                            type="text"
-                            placeholder="Search locations.."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="border p-2 rounded w-full flex-1"
-                        />
-                        <button onClick={handleSearch} className="p-2 rounded border border-gray-500 w-full sm:w-auto flex justify-center items-center">
-                            <Search size={20} />
-                        </button>
-                    </div> */}
-                    
-                </div>
+                </p>
+                <SearchBar/>
             </div>
         </div>
+    </div>
     );
 }
 
