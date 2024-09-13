@@ -229,7 +229,7 @@ function AboutUs() {
 
 
                 <div
-                    className="py-12 sm:py-16 bg-gray-300 border border-gray-300 ml-16 mr-12 h-60" style={{ borderRadius: '2rem' }}
+                    className="py-12 sm:py-16 bg-gray-300 border border-gray-300 ml-16 mr-12 " style={{ borderRadius: '2rem' }}
                 >
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
                         <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
@@ -242,13 +242,13 @@ function AboutUs() {
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Sq.Ft <br />Delivered</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp end={2.5} decimals={3} suffix=" MN" duration={2} />
+                                    <CountUp end={2.5} decimals={1} suffix=" M" duration={2} />
                                 </dd>
                             </div>
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp end={1550} duration={2} /> +
+                                    <CountUp end={500} duration={2} /> +
                                 </dd>
                             </div>
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">

@@ -22,13 +22,13 @@ function BlogHomePage() {
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-2xl leading-7 text-gray-900">Sq.Ft <br />Delivered</dt>
                             <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                <CountUp end={2.5} decimals={3} suffix=" MN" duration={2} />
+                                <CountUp end={2.5} decimals={1} suffix=" M" duration={2} />
                             </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                             <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
                             <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                <CountUp end={1550} duration={2} /> +
+                                <CountUp end={500} duration={2} /> +
                             </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
