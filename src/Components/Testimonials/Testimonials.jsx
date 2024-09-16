@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from './How to Get Started As A Commercial Real Estate Broker in 2023.jpeg';
+import Image from '../assets/listpro.png';
 import BackgroundImage from './Background1.jpg';
 import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
