@@ -73,7 +73,7 @@ function AboutUs() {
                             market and specific sectors
 
                         </p>
-                       
+
                     </div>
 
                     <div className="bg-white p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
@@ -89,9 +89,36 @@ function AboutUs() {
                             To establish new standards of excellence while consistently outperforming those standards! You can accomplish your objectives more quickly with the assistance of our object-oriented approach to the suitable products we provide. Our goal is to make Sale and Rent a hassle-free and joyful experience by offering individualized product solutions that are accessible to every prospective customer.
                         </p>
                     </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Approach</h2>
+                        <p className="text-gray-700">
+                            At CFRE Realty, we understand
+                            that finding the right office space
+                            is crucial for your business's
+                            success and growth, regardless of
+                            your industry.
+                            Our team of experienced
+                            professionals takes a client-centric
+                            approach, focusing on :</p>
+                        <p className="text-gray-700">
+                            1) Understanding your unique business needs, culture,
+                            and industry-specific requirements</p>
+                        <p className="text-gray-700"> 2) Leveraging market insights in Pune, Mumbai,
+                            Bangalore, and Hyderabad to find the best
+                            opportunities</p>
+                        <p className="text-gray-700">
+                            3) Negotiating favourable lease terms considering
+                            industry trends and forecasts
+                        </p>
+                        <p className="text-gray-700">
+                            4)Providing ongoing support throughout
+                            the lease term
+                        </p>
+                    </div>
                 </div>
 
-            
+
 
                 {/* <div class="font-[sans-serif] bg-slate-800">
                 <div class="lg:max-w-6xl max-w-xl mx-auto p-4">
@@ -284,7 +311,7 @@ function AboutUs() {
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp start={1000} end={1500} duration={7} /> +
+                                    <CountUp start={0} end={500} duration={7} /> +
                                 </dd>
                             </div>
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">

@@ -359,7 +359,7 @@ const PropertyDetailInRent = () => {
 
                                 <div className="w-full lg:w-1/2">
                                     <div className="text-2xl font-bold text-gray-900 mb-4">
-                                        ₹7.7 Lac <span className="text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
+                                        <span className="text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
                                         <span className="bg-green-100 text-green-800 text-xs font-semibold ml-4 px-2.5 py-0.5 rounded">Verified on Site</span>
                                     </div>
 
@@ -397,6 +397,10 @@ const PropertyDetailInRent = () => {
                                         <div>
                                             <div className="font-semibold">Car Parking</div>
                                             <div className="font-bold">{property.carParking}</div>
+                                        </div>
+                                        <div>
+                                            <div className="font-semibold">Rent</div>
+                                            <div className="font-bold">{property.rentPerMonth}/m</div>
                                         </div>
                                     </div>
 
