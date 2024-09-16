@@ -22,7 +22,22 @@ function AboutUs() {
 
                     <div className="max-md:text-center">
                         <h3 className="text-black font-semibold md:text-xl text-xl md:leading-10"> Welcome to COMMERCIAL FIELD REAL ESTATE (CFRE)</h3>
-                        <p className=" mt-4 text-sm leading-relaxed mb-6 text-gray-700">As a leading service provider in the real estate sector, we are driven by our love to sell and rent spacious corporate offices and retail spaces. We pledge honesty, devotion, and dependability to each and every one of our clients in the hopes that they will experience the same joy that we do. CFRE has always been committed to providing the highest quality products and services to its clients by taking an open and honest approach that is centered on the needs of the customer and engaging in business operations that are morally sound.</p>
+                        <p className=" mt-4 text-xl leading-relaxed mb-6 text-gray-700"> CFRE Realty is a leading commercial real estate
+                            firm specializing in office space leasing across
+                            major Indian business hubs. </p>
+                        <p className=" mt-4 text-xl leading-relaxed mb-6 text-gray-700">
+                            With 15 years of experience in the industry,
+                            we've established ourselves as trusted advisors
+                            for businesses seeking optimal workspace
+                            solutions in Pune, Mumbai, Bangalore, and
+                            Hyderabad.
+                        </p>
+                        <p className=" mt-4 text-xl leading-relaxed mb-6 text-gray-700">
+                            Our portfolio includes a diverse range of office
+                            properties, from modern high-rises to renovated
+                            historic buildings, catering to businesses of all
+                            sizes across multiple industries
+                        </p>
                         {/* <button type="button" className="px-5 py-2.5 mt-8 bg-blue-700 hover:bg-blue-800 text-white tracking-wider rounded text-sm outline-none">Explore</button> */}
                     </div>
                 </div>
@@ -37,8 +52,28 @@ function AboutUs() {
                     <div className="bg-slate-800 p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300  hover:scale-[1.02]">
                         <h2 className="text-2xl font-semibold text-white mb-4">Why Choose Us</h2>
                         <p className="text-white">
-                            Our goal is to maintain long-term partnerships with clients and provide answers to their problems. We prioritize our relationships with our clients and place a high value on the goals and results they achieve.
+                            15 years of industry expertise and deep market knowledge in key Indian
+                            business hubs
+                            Proven track record: 2.5 million square feet leased and over 500 satisfied
+                            clients
                         </p>
+                        <p className="text-white">
+                            Extensive network of industry connections across Pune, Mumbai, Bangalore,
+                            and Hyderabad
+                        </p>
+                        <p className="text-white">
+                            Diverse portfolio of prime office locations suitable for IT, automobile,
+                            finance, medical, banking, hospitality, and other sectors
+                            Tailored solutions for businesses of all sizes, from startups to large
+                            corporations
+                        </p>
+                        <p className="text-white">
+                            Commitment to long-term client relationships across various industries
+                            Expertise in emerging office trends and technologies relevant to the Indian
+                            market and specific sectors
+
+                        </p>
+                       
                     </div>
 
                     <div className="bg-white p-6 rounded-lg shadow-md shadow-slate-400 mt-8 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02]">
@@ -56,7 +91,7 @@ function AboutUs() {
                     </div>
                 </div>
 
-
+            
 
                 {/* <div class="font-[sans-serif] bg-slate-800">
                 <div class="lg:max-w-6xl max-w-xl mx-auto p-4">
