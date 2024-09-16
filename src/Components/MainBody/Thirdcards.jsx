@@ -194,7 +194,12 @@ const Thirdcards = () => {
   // State to manage which accordion section is open
   const [openAccordion, setOpenAccordion] = useState(null);
   const [isFormVisible, setFormVisible] = useState(false);
+  const [selectedPropertyType, setSelectedPropertyType] = useState('');
 
+  // Handle radio button change
+  const handleRadioChange = (event) => {
+    setSelectedPropertyType(event.target.value);
+  };
   const handleButtonClick = () => {
       setFormVisible(true);
   };
@@ -233,43 +238,72 @@ const Thirdcards = () => {
                 <p className="text-gray-700">Average selling time is 2 weeks</p>
               </div>
             </div>
-            <div className="mt-10 flex space-x-8">
-              <div>
-                <p className="text-2xl font-bold text-gray-800">12 years+</p>
-                <p className="text-gray-600">of real estate experience</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-gray-800">90 Cr+</p>
-                <p className="text-gray-600">Worth of transactions</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-gray-800">2 property</p>
-                <p className="text-gray-600">Visits per day</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-gray-800">1 Property</p>
-                <p className="text-gray-600">Rent every 2 days</p>
-              </div>
-            </div>
+            <div className="mt-10 flex space-x-10">
+  <div className="flex-shrink-0">
+    <p className="text-2xl font-bold text-gray-800">12 years+</p>
+    <p className="text-gray-600">of real estate experience</p>
+  </div>
+  <div className="flex-shrink-0">
+    <p className="text-2xl font-bold text-gray-800">90 CR+</p>
+    <p className="text-gray-600">Worth of transactions</p>
+  </div>
+  <div className="flex-shrink-0">
+    <p className="text-2xl font-bold text-gray-800 whitespace-nowrap">4 Property</p>
+    <p className="text-gray-600">Visits per day</p>
+  </div>
+  <div className="flex-shrink-0">
+    <p className="text-2xl font-bold text-gray-800">3 Property</p>
+    <p className="text-gray-600">Rent every 2 days</p>
+  </div>
+</div>
+
           </div>
           <div className="md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-10 md:mt-0">
-            <h2 className="text-lg font-bold text-gray-800 mb-4">
-              Fill this form to <span className="text-[#d84a48]">Sell your property</span>
-            </h2>
-            <p className="text-gray-600 mb-4">Select type of property to sale</p>
-            <div className="flex justify-between mb-6">
-              <div className="border rounded-lg p-4 w-1/2 text-center mx-1">
-                🏢 <br /> Pre-leased Commercial
-              </div>
-              <div className="border rounded-lg p-4 w-1/2 text-center mx-1">
-                🏢 <br /> Vacant Commercial
-              </div>
-            </div>
-            <button className="bg-[#d84a48] text-white w-full py-3 rounded-md"
-            onClick={handleButtonClick }>
-              Connect With Us!
-            </button>
-          </div>
+  <h2 className="text-lg font-bold text-gray-800 mb-4">
+    Fill this form to <span className="text-[#d84a48]">Sell your property</span>
+  </h2>
+  <p className="text-gray-600 mb-4">Select type of property to sale</p>
+  <div className="flex justify-between mb-6">
+        <label className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer">
+          <input
+            type="radio"
+            name="propertyType"
+            value="pre-leased"
+            className="form-radio text-blue-500 mr-2"
+            checked={selectedPropertyType === 'pre-leased'}
+            onChange={handleRadioChange}
+          />
+          <span className="flex flex-col">
+            🏢 <br />
+            Pre-leased Commercial
+          </span>
+        </label>
+        <label className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer">
+          <input
+            type="radio"
+            name="propertyType"
+            value="vacant"
+            className="form-radio text-blue-500 mr-2"
+            checked={selectedPropertyType === 'vacant'}
+            onChange={handleRadioChange}
+          />
+          <span className="flex flex-col">
+            🏢 <br />
+            Vacant Commercial
+          </span>
+        </label>
+      </div>
+      {selectedPropertyType && (
+        <button
+        className="bg-[#d84a48] text-white w-full py-3 rounded-md"
+        onClick={handleButtonClick}
+      >
+        Connect With Us!
+      </button>
+      )}
+    </div>
+
+
         </div>
       </div>
 

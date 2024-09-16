@@ -29,6 +29,7 @@ function AboutUs() {
             </div>
 
 
+
             <div className=" bg-gray-50 w-full">
 
                 <div className="w-full mx-auto bg-white p-6 md:p-12 shadow-md rounded-lg">
@@ -236,25 +237,25 @@ function AboutUs() {
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Years</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp end={12} duration={3} /> +
+                                    <CountUp start={0} end={12} duration={7} /> +
                                 </dd>
                             </div>
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Sq.Ft <br />Delivered</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp end={2.5} decimals={1} suffix=" M" duration={2} />
+                                    <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} />
                                 </dd>
                             </div>
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp end={500} duration={2} /> +
+                                    <CountUp start={1000} end={1500} duration={7} /> +
                                 </dd>
                             </div>
                             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
                                 <dt className="text-2xl leading-7 text-gray-900">Cities</dt>
                                 <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                    <CountUp end={40} duration={3} /> +
+                                    <CountUp start={0} end={40} duration={7} /> +
                                 </dd>
                             </div>
                         </dl>

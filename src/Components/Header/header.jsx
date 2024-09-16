@@ -35,21 +35,9 @@ function Header() {
         };
     }, [isRentDropdownOpen, isInvestDropdownOpen]);
 
-    const toggleInvestDropdown = async () => {
+    const toggleInvestDropdown = () => {
         setInvestDropdownOpen(!isInvestDropdownOpen);
         if (isRentDropdownOpen) setRentDropdownOpen(false); // Close rent dropdown if open
-
-        // Fetch properties when the Invest dropdown is opened
-        if (!isInvestDropdownOpen) {
-            try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setProperties(response.data);
-                setFilteredProperties(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching properties:', error);
-            }
-        }
     };
 
     const toggleRentDropdown = async () => {

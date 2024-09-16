@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect, useMemo } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import debounce from 'lodash.debounce';
+
 
 const allAreas = [
     "Shivaji Nagar", "Deccan Gymkhana", "Camp (Pune Cantonment)", "Sadashiv Peth", "Narayan Peth", "Kasba Peth", "Koregaon Park", "Kalyani Nagar", "Viman Nagar", "Wadgaon Sheri", "Mundhwa", "Kharadi", "Aundh", "Baner", "Balewadi", "Pashan", "Hinjawadi", "Bavdhan", "Bibwewadi", "Katraj", "Dhankawadi", "Undri", "NIBM Road", "Wanowrie", "Pimpri", "Chinchwad", "Wakad", "Bhosari", "Alandi", "Hadapsar", "Magarpatta City", "Fursungi", "Wagholi", "Manjri", "Sinhagad Road", "Warje", "Kothrud", "Ravet", "Colaba", "Churchgate", "Marine Drive", "Malabar Hill", "Nariman Point", "Cuffe Parade", "Fort", "Ballard Estate", "Byculla", "Worli",
@@ -74,7 +74,7 @@ const SearchBar = () => {
     const [furnishingStatus, setFurnishingStatus] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    const [propertyCategory, setPropertyCategory] = useState('Rent'); // New state for category selection
+    const [propertyCategory, setPropertyCategory] = useState('Rent');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -90,17 +90,10 @@ const SearchBar = () => {
     }, []);
 
 
-    // Debounce search query input to reduce lag
-    const debouncedSearchQuery = useMemo(
-        () => debounce((query) => setSearchQuery(query), 300),
-        []
-    );
-
-    useEffect(() => {
-        return () => {
-            debouncedSearchQuery.cancel(); // Cancel debounce on component unmount
-        };
-    }, [debouncedSearchQuery]);
+    // No debounce: Directly set the search query
+    const handleSearchQueryChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
     useEffect(() => {
         const filterProperties = () => {
@@ -183,29 +176,28 @@ const SearchBar = () => {
                 <option value="Hyderabad">Hyderabad</option>
             </select>
 
-            {/* Location search with suggestions */}
             <div className="relative flex-grow">
                 <input
                     type="text"
                     placeholder="Search location..."
                     value={searchQuery}
-                    onChange={(e) => debouncedSearchQuery(e.target.value)}
+                    onChange={handleSearchQueryChange}
                     className="w-full p-2 border rounded focus:outline-none"
                 />
                 {searchQuery && suggestions.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 bg-white border rounded shadow-lg mt-1 z-10">
+                    <ul className="absolute top-full left-0 right-0 bg-white border rounded shadow-lg mt-1 z-10">
                         {suggestions
                             .filter(area => area.toLowerCase().includes(searchQuery.toLowerCase()))
-                            .map(area => (
-                                <div
-                                    key={area}
+                            .map((area, index) => (
+                                <li
+                                    key={index}
                                     onClick={() => handleSearchSuggestionClick(area)}
                                     className="p-2 cursor-pointer hover:bg-gray-200"
                                 >
                                     {area}
-                                </div>
+                                </li>
                             ))}
-                    </div>
+                    </ul>
                 )}
             </div>
 

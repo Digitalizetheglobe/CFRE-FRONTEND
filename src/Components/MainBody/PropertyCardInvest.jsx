@@ -105,7 +105,7 @@ function PropertyCardInvestList() {
     }, []);
 
     const handleSearch = () => {
-        navigate('/PropertyList');
+        navigate('/exploreproperty');
     };
 
     return (
