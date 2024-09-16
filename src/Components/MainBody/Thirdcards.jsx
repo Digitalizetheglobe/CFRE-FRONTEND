@@ -247,14 +247,7 @@ const Thirdcards = () => {
     <p className="text-2xl font-bold text-gray-800">500 CR+</p>
     <p className="text-gray-600">Worth of transactions</p>
   </div>
-  <div className="flex-shrink-0">
-    <p className="text-2xl font-bold text-gray-800 whitespace-nowrap">4 Property</p>
-    <p className="text-gray-600">Visits per day</p>
-  </div>
-  <div className="flex-shrink-0">
-    <p className="text-2xl font-bold text-gray-800">2 Property</p>
-    <p className="text-gray-600">Rent every 2 days</p>
-  </div>
+ 
 </div>
 
           </div>

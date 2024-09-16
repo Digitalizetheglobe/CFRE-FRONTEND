@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
+import Pagination from '@mui/material/Pagination';
 
 const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -11,6 +12,10 @@ const Prelease = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
     const [error, setError] = useState(null); // Error state
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const propertiesPerPage = 8;
+
 
     const handleButtonClick = () => {
         setFormVisible(true);
@@ -71,6 +76,15 @@ const Prelease = () => {
     };
     console.log("44444444",filteredProperties);
     
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
+
+    const indexOfLastProperty = currentPage * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
+
+
     if (error) {
         return <Error />; // Render the Error component if there's an error
     }
@@ -107,6 +121,16 @@ const Prelease = () => {
                         <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
+            </div>
+
+            <div className='flex justify-center mt-6'>
+                <Pagination
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color='primary'
+                    size='large'
+                />
             </div>
 
             {isFormVisible && (
