@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from './templateImage.jpg';
+import { Link } from 'react-router-dom';
 
 function Template() {
     return (
@@ -10,15 +11,15 @@ function Template() {
                 style={{ backgroundImage: `url(${Image})` }}
             >
                 <p className="text-white font-bold text-lg text-center mb-2">
-                    Find Your Perfect Office Space With Us !
+                    Find Your Perfect Office Space With Us!
                 </p>
                 <div className="flex justify-center space-x-4 mt-2">
-                    <button className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d] transition duration-300">
+                    <Link to='/exploreproperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
                         Rent Properties
-                    </button>
-                    <button className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d] transition duration-300">
+                    </Link>
+                    <Link to='/ExploreInvestProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
                         Invest Properties
-                    </button>
+                    </Link>
                 </div>
             </div>
 
@@ -27,38 +28,22 @@ function Template() {
 
             {/* Right Side - Form */}
             <div className="w-full md:w-1/2 bg-[#1C2439] p-6 rounded-lg shadow-md space-y-4 flex flex-col justify-center">
-                <h2 className="text-xl font-bold text-white text-center">
-                    Hey there,
-                </h2>
-                <p className="text-white text-center">
-                    How can we serve you today?
-                </p>
+                <h2 className="text-xl font-bold text-white">Hey there,</h2>
+                <p className="text-white">How can we serve you today?</p>
 
                 <div className="space-y-3">
                     <label className="flex items-center space-x-3">
-                        <input
-                            type="radio"
-                            name="service"
-                            className="h-4 w-4 text-blue-600"
-                        />
+                        <input type="radio" name="service" className="h-4 w-4" />
                         <span className="text-white text-sm">
                             I want to buy/sell a commercial property
                         </span>
                     </label>
                     <label className="flex items-center space-x-3">
-                        <input
-                            type="radio"
-                            name="service"
-                            className="h-4 w-4 text-blue-600"
-                        />
+                        <input type="radio" name="service" className="h-4 w-4" />
                         <span className="text-white text-sm">I want to lease my property out</span>
                     </label>
                     <label className="flex items-center space-x-3">
-                        <input
-                            type="radio"
-                            name="service"
-                            className="h-4 w-4 text-[#d84a48]"
-                        />
+                        <input type="radio" name="service" className="h-4 w-4" />
                         <span className="text-white text-sm">Something else</span>
                     </label>
                 </div>
@@ -68,7 +53,7 @@ function Template() {
                     placeholder="Tell us your requirements..."
                 ></textarea>
 
-                <button className="w-full bg-[#d84a48] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#9c2f2d] transition duration-300">
+                <button className="w-full bg-[#d84a48] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#9c2f2d]">
                     Submit
                 </button>
             </div>
@@ -77,4 +62,3 @@ function Template() {
 }
 
 export default Template;
- 

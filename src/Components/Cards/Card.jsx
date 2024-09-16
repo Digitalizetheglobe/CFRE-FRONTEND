@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import primeImage from './img3.png';
-import sellImage from '../assets/Administrative Building - modern style.jpeg';
+import sellImage from '../assets/AdministrativeBuilding-modernstyle.jpeg';
 import ContactForm from '../MainBody/ContactForm';
 import { useState } from 'react';
 

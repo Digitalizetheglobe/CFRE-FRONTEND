@@ -41,6 +41,7 @@ import AddNewProperty from './AdminDashboard/PropertyPages/AddNewProperty.jsx';
 import Office from './Components/Office/office';
 import ShowroomPropertyDetails from './Components/Showroom/ShowroomPropertyDetails.jsx';
 import Showroom from './Components/Showroom/Showroom';
+import ExploreInvestProperty from './Components/Exploreproperty/ExpolreInevstProperty.jsx';
 
 
 
@@ -89,6 +90,7 @@ function App() {
           <Route path="/office" element={<Office />} />
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
+          <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
         </Routes>
       </main>
       <Cookies />

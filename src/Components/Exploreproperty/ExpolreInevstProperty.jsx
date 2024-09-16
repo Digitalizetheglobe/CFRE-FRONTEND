@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
-import PropertyCard from '../Rent/PropertyCard';
+import PropertyCard from '../Invest/PropertyCard';
 
-const ExploreProperty = () => {
+const ExploreInvestProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
@@ -122,4 +122,4 @@ const ExploreProperty = () => {
     );
 };
 
-export default ExploreProperty;
+export default ExploreInvestProperty; 

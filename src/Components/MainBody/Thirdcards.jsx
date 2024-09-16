@@ -244,7 +244,7 @@ const Thirdcards = () => {
     <p className="text-gray-600">of real estate experience</p>
   </div>
   <div className="flex-shrink-0">
-    <p className="text-2xl font-bold text-gray-800">90 CR+</p>
+    <p className="text-2xl font-bold text-gray-800">500 CR+</p>
     <p className="text-gray-600">Worth of transactions</p>
   </div>
   <div className="flex-shrink-0">
@@ -252,7 +252,7 @@ const Thirdcards = () => {
     <p className="text-gray-600">Visits per day</p>
   </div>
   <div className="flex-shrink-0">
-    <p className="text-2xl font-bold text-gray-800">3 Property</p>
+    <p className="text-2xl font-bold text-gray-800">2 Property</p>
     <p className="text-gray-600">Rent every 2 days</p>
   </div>
 </div>

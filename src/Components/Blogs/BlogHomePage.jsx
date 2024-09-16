@@ -3,44 +3,11 @@ import { Link } from 'react-router-dom';
 import Blog1 from './blog1.jpg';
 import Blog2 from './Blog2.jpg';
 import Blog3 from './Blog3.jpg';
-import CountUp from 'react-countup';
+
 
 function BlogHomePage() {
     return (
         <>
-            <div
-                className="py-12 sm:py-16 bg-gray-300 border border-gray-300 ml-16 mr-12 " style={{ borderRadius: '2rem' }}
-            >
-                <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
-                    <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
-                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-gray-900">Years</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                <CountUp start={0} end={12} duration={7} /> +
-                            </dd>
-                        </div>
-                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-gray-900">Sq.Ft <br />Delivered</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} />
-                            </dd>
-                        </div>
-                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-gray-900">Clients</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                <CountUp start={1000} end={1500} duration={7} /> +
-                            </dd>
-                        </div>
-                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-gray-900">Cities</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                                <CountUp start={0} end={40} duration={7} /> +
-                            </dd>
-                        </div>
-                    </dl>
-                </div>
-            </div>
-
             <div className="container mx-auto text-center py-10">
                 {/* Heading and View All Blogs Button */}
                 <div className="flex flex-col items-center mb-6 relative">

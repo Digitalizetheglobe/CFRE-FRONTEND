@@ -117,7 +117,7 @@ const SearchBar = () => {
         const city = e.target.value;
         setSelectedCity(city);
         setSearchQuery('');
-
+    
         // Set suggestions based on the selected city
         if (!city) {
             setSuggestions(allAreas); // Show all areas when no city is selected
@@ -141,7 +141,13 @@ const SearchBar = () => {
             }
         }
     };
-
+    
+    // Set Pune as default city on component mount
+    useEffect(() => {
+        setSelectedCity('Pune');
+        setSuggestions(puneAreas);
+    }, []);
+    
     const handleSearchSuggestionClick = (area) => {
         setSearchQuery(area);
         setSuggestions([]);
@@ -169,7 +175,6 @@ const SearchBar = () => {
                 onChange={handleCityChange}
                 className="border p-2 rounded focus:outline-none "
             >
-                <option value="">City</option>
                 <option value="Pune">Pune</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="Banglore">Banglore</option>

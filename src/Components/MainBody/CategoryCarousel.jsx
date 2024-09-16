@@ -1,5 +1,5 @@
 import React from 'react';
-import Office from './officeSpace.jpg';
+import Office from '../assets/download (2).jpeg';
 import { Link } from 'react-router-dom';
 import Showroom from './showroom1.jpg';
 
