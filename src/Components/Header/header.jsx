@@ -44,17 +44,6 @@ function Header() {
         setRentDropdownOpen(!isRentDropdownOpen);
         if (isInvestDropdownOpen) setInvestDropdownOpen(false); // Close invest dropdown if open
 
-        // Fetch properties when the Rent dropdown is opened
-        if (!isRentDropdownOpen) {
-            try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setProperties(response.data);
-                setFilteredProperties(response.data); // Initialize filtered properties
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching properties:', error);
-            }
-        }
     };
 
     const handleDropdownClick = (type) => {
