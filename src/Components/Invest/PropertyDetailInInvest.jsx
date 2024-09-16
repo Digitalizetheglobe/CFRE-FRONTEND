@@ -332,11 +332,6 @@ const PropertyDetailInInvest = () => {
                             <span className="block font-semibold text-sm">Location:</span>
                             <p className="text-base font-medium">{property.location}</p>
                         </div>
-                        <div className="text-gray-600">
-                            <span className="block font-semibold text-sm">Furnishing:</span>
-                            <p className="text-base font-medium">{property.furnishing}</p>
-                        </div>
-                        {/* Additional Details */}
                     </div>
 
                     {/* Contact Section */}
