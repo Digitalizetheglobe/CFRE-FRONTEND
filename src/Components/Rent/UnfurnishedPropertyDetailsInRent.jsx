@@ -148,18 +148,7 @@ const UnfurnishedPropertyDetailsInRent = () => {
                                             <div className="font-semibold">Floor</div>
                                             <div className="font-bold">{property.floor}</div>
                                         </div>
-                                        {/* <div>
-                                            <div className="font-semibold">Conference Room</div>
-                                            <div className="font-bold">{property.conferenceRoom}</div>
-                                        </div> */}
-                                        {/* <div>
-                                            <div className="font-semibold">Cabin</div>
-                                            <div className="font-bold">{property.cabin}</div>
-                                        </div> */}
-                                        {/* <div>
-                                            <div className="font-semibold">Work Station</div>
-                                            <div className="font-bold">{property.ws}</div>
-                                        </div> */}
+                                        
                                         <div>
                                             <div className="font-semibold">Bike Parking</div>
                                             <div className="font-bold">{property.bikeParking}</div>
