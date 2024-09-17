@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
@@ -96,7 +94,7 @@ const PropertyDetailInRent = () => {
     return (
         <>
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto">
-                <div className="sticky top-28 bg-white z-50 shadow-md flex justify-center space-x-4 py-2">
+                <div className="sticky top-28 bg-white  shadow-md flex justify-center space-x-4 py-2">
                     <button
                         className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
                         onClick={() => handleScrollTo(overviewRef)}

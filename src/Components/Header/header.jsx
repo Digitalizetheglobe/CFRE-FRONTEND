@@ -97,7 +97,7 @@ function Header() {
                                 Rent
                             </button>
                             {isRentDropdownOpen && (
-                                <ul className='absolute left-0 bg-white shadow-lg mt-2 rounded-md z-50 border border-gray-200 w-96 cursor-pointer'>
+                                <ul className='absolute left-0 bg-white shadow-lg mt-2 rounded-md  border border-gray-200 w-96 cursor-pointer z-50'>
                                     <li className='py-2 px-4 hover:bg-gray-200' onClick={() => handleDropdownClick('Furnished')}>
                                         Furnished
                                     </li>
