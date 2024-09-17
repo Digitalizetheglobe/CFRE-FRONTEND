@@ -33,7 +33,7 @@ import MainRent from './Components/Rent/MainRent.jsx';
 import PropertyList from './Components/Hero/Propertylist';
 import PropertyDetailInRent from './Components/Rent/PropertyDetailsInRent';
 import UnfurnishedPropertyDetailsInRent from './Components/Rent/UnfurnishedPropertyDetailsInRent.jsx';
-import ExploreProperty from './Components/Exploreproperty/ExploreProperty.jsx';
+import ExploreRentProperty from './Components/Exploreproperty/ExpolreInevstProperty.jsx';
 import BulkUploadForm from './AdminDashboard/BulkUploadForm.jsx';
 import Thirdcards from './Components/MainBody/Thirdcards.jsx';
 import Card from './Components/Cards/Card.jsx';
@@ -42,6 +42,7 @@ import Office from './Components/Office/office';
 import ShowroomPropertyDetails from './Components/Showroom/ShowroomPropertyDetails.jsx';
 import Showroom from './Components/Showroom/Showroom';
 import ExploreInvestProperty from './Components/Exploreproperty/ExpolreInevstProperty.jsx';
+import FAQs from './FAQs.jsx';
 
 
 
@@ -54,7 +55,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/latestblog" element={<Latestblog />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
@@ -84,14 +85,15 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path='/cards' element={<Card/>}/>
           <Route path='/third-card' element={<Thirdcards/>}/>
-          <Route path='/exploreproperty' element={<ExploreProperty/>} />
+          <Route path='/exploreRentProperty' element={<ExploreRentProperty/>} />
           <Route path ='/bulkproperty' element={<BulkUploadForm/>} />
           <Route path='/addnewproperty' element={<AddNewProperty/>} />
           <Route path="/office" element={<Office />} />
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
-        </Routes>
+          <Route path='/faqs' element={<FAQs />}/>
+        </Routes> 
       </main>
       <Cookies />
       <Footer />

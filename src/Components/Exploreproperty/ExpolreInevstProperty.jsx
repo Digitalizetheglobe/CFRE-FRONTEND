@@ -4,6 +4,8 @@ import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import PropertyCard from '../Invest/PropertyCard';
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
+import { Link } from 'react-router-dom';
+
 
 const ExploreInvestProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');

@@ -5,7 +5,7 @@ import Error from '../Error/Error';
 import PropertyCard from '../Rent/PropertyCard';
 import Pagination from '@mui/material/Pagination';
 
-const ExploreProperty = () => {
+const ExploreRentProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
@@ -148,4 +148,4 @@ const ExploreProperty = () => {
     );
 };
 
-export default ExploreProperty;
+export default ExploreRentProperty;

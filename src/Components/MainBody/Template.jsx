@@ -14,7 +14,7 @@ function Template() {
                     Find Your Perfect Office Space With Us!
                 </p>
                 <div className="flex justify-center space-x-4 mt-2">
-                    <Link to='/exploreproperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
+                    <Link to='/ExploreRentProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
                         Rent Properties
                     </Link>
                     <Link to='/ExploreInvestProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
