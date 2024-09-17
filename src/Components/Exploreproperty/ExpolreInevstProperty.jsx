@@ -5,19 +5,18 @@ import Error from '../Error/Error'; // Import the Error component
 import PropertyCard from '../Invest/PropertyCard';
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
 
-
 const ExploreInvestProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
-    const [error, setError] = useState(null); // Error state
-      // Pagination-related state
-      const [currentPage, setCurrentPage] = useState(1);
-      const propertiesPerPage = 8; // Set how many properties per page you want to show
+    const [error, setError] = useState(null); 
 
-      
+    // Pagination-related state
+    const [currentPage, setCurrentPage] = useState(1);
+    const propertiesPerPage = 8; 
+
     const handleButtonClick = () => {
         setFormVisible(true);
     };
@@ -33,7 +32,7 @@ const ExploreInvestProperty = () => {
                 setProperties(response.data);
                 setFilteredProperties(response.data.filter(property => property.availableFor === 'Sale'));
             } catch (error) {
-                setError('Error fetching properties. Please try again later.'); // Set error message
+                setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
             }
         };
@@ -41,7 +40,7 @@ const ExploreInvestProperty = () => {
     }, []);
 
     useEffect(() => {
-        if (!error) { // Only filter and sort if there's no error
+        if (!error) { 
             filterAndSortProperties(searchTerm, sortOrder);
         }
     }, [searchTerm, sortOrder, properties, error]);
@@ -72,11 +71,11 @@ const ExploreInvestProperty = () => {
         setFilteredProperties(filtered);
     };
 
-    
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };
 
+    // Calculate the properties to display on the current page
     const indexOfLastProperty = currentPage * propertiesPerPage;
     const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
     const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
@@ -110,20 +109,19 @@ const ExploreInvestProperty = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredProperties.length === 0 ? (
-                    <p className="text-center w-full">No Unfurnished properties found.</p>
+                {currentProperties.length === 0 ? (
+                    <p className="text-center w-full">No properties found.</p>
                 ) : (
-                    filteredProperties.map(property => (
+                    currentProperties.map(property => (
                         <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
             </div>
 
-                
-            {/* Add pagination component */}
+            {/* Pagination Component */}
             <div className="flex justify-center mt-6">
                 <Pagination
-                    count={Math.ceil(filteredProperties.length / propertiesPerPage)}
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)} // Total page count
                     page={currentPage}
                     onChange={handlePageChange}
                     color="primary"
@@ -148,4 +146,4 @@ const ExploreInvestProperty = () => {
     );
 };
 
-export default ExploreInvestProperty; 
+export default ExploreInvestProperty;
