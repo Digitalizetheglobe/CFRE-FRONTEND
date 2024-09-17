@@ -1,9 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import PropertyCard from '../Invest/PropertyCard';
+import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
+
 
 const ExploreInvestProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,7 +13,11 @@ const ExploreInvestProperty = () => {
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
     const [error, setError] = useState(null); // Error state
+      // Pagination-related state
+      const [currentPage, setCurrentPage] = useState(1);
+      const propertiesPerPage = 8; // Set how many properties per page you want to show
 
+      
     const handleButtonClick = () => {
         setFormVisible(true);
     };
@@ -26,7 +31,7 @@ const ExploreInvestProperty = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-                setFilteredProperties(response.data.filter(property => property.furnishing === 'Fully Furnished'));
+                setFilteredProperties(response.data.filter(property => property.availableFor === 'Sale'));
             } catch (error) {
                 setError('Error fetching properties. Please try again later.'); // Set error message
                 console.error('Error fetching properties:', error);
@@ -50,7 +55,7 @@ const ExploreInvestProperty = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'Fully Furnished');
+        let filtered = properties.filter(property => property.availableFor === 'Sale');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>
@@ -66,6 +71,15 @@ const ExploreInvestProperty = () => {
 
         setFilteredProperties(filtered);
     };
+
+    
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
+
+    const indexOfLastProperty = currentPage * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
 
     if (error) {
         return <Error />; // Render the Error component if there's an error
@@ -103,6 +117,18 @@ const ExploreInvestProperty = () => {
                         <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
+            </div>
+
+                
+            {/* Add pagination component */}
+            <div className="flex justify-center mt-6">
+                <Pagination
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="large"
+                />
             </div>
 
             {isFormVisible && (
