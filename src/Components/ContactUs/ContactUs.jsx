@@ -1,21 +1,22 @@
-
 import React, { useState } from 'react';
+import axios from 'axios'; // Import axios for API requests
 import Banner from './Get Started Now FREE (1).png';
 import Blogslider from '../MainBody/Blogslider';
 import Tagline from './123.png';
-import Image from './ranger-4df6c1b6.png'
-import { Phone, Mail, MapPin, Map } from 'lucide-react'; // Updated import to use MapPin for location
+import Image from './ranger-4df6c1b6.png';
+import { Phone, Mail, MapPin, Map } from 'lucide-react';
 import CountUp from 'react-countup';
-import Bckgrndimg from '../assets/coundown.jpg'
+import Bckgrndimg from '../assets/coundown.jpg';
 
 function ContactUs() {
     const [formData, setFormData] = useState({
         name: '',
-        phone: '',
+        mobileNumber: '',
         email: '',
         message: ''
     });
     const [errors, setErrors] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const validateForm = () => {
         const newErrors = {};
@@ -26,10 +27,10 @@ function ContactUs() {
         }
 
         // Phone validation
-        if (!formData.phone.trim()) {
-            newErrors.phone = "Phone number is required";
-        } else if (!/^\d{10}$/.test(formData.phone)) {
-            newErrors.phone = "Phone number must be exactly 10 digits";
+        if (!formData.mobileNumber.trim()) {
+            newErrors.mobileNumber = "Phone number is required";
+        } else if (!/^\d{10}$/.test(formData.mobileNumber)) {
+            newErrors.mobileNumber = "Phone number must be exactly 10 digits";
         }
 
         // Email validation
@@ -55,12 +56,29 @@ function ContactUs() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateForm()) {
-            // Submit form (you can integrate form submission logic here)
-            console.log("Form submitted", formData);
+            try {
+                const response = await axios.post('https://cfrecpune.com/contactform', formData, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                console.log('Form submitted successfully:', response.data);
+                setIsSubmitted(true);
+                setFormData({
+                    name: '',
+                    mobileNumber: '',
+                    email: '',
+                    message: ''
+                });
+                setErrors({});
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+            }
         }
     };
 
@@ -99,14 +117,14 @@ function ContactUs() {
                             {errors.name && <p className="text-red-500">{errors.name}</p>}
 
                             <input
-                                type="text"
-                                name="phone"
-                                value={formData.phone}
+                                type="number"
+                                name="mobileNumber"
+                                value={formData.mobileNumber}
                                 onChange={handleChange}
                                 placeholder="Phone number ..."
                                 className="p-4 rounded-lg w-full focus:outline-none"
                             />
-                            {errors.phone && <p className="text-red-500">{errors.phone}</p>}
+                            {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber}</p>}
 
                             <input
                                 type="email"
@@ -190,44 +208,43 @@ function ContactUs() {
 
             <Blogslider />
             <div
-    className="py-12 sm:py-16 border ml-16 mr-12"
-    style={{ 
-        borderRadius: '2rem', 
-        backgroundImage: `url(${Bckgrndimg})`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center'
-    }}
->
-    <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
-        <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
-            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dt className="text-2xl leading-7 text-white">Years</dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                    <CountUp start={0} end={12} duration={7} /> +
-                </dd>
+                className="py-12 sm:py-16 border ml-16 mr-12"
+                style={{ 
+                    borderRadius: '2rem', 
+                    backgroundImage: `url(${Bckgrndimg})`, 
+                    backgroundSize: 'cover', 
+                    backgroundPosition: 'center'
+                }}
+            >
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
+                    <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
+                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                            <dt className="text-2xl leading-7 text-white">Years</dt>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                                <CountUp start={0} end={12} duration={7} /> +
+                            </dd>
+                        </div>
+                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                            <dt className="text-2xl leading-7 text-white">Sq.Ft <br />Delivered</dt>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                                <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} />
+                            </dd>
+                        </div>
+                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                            <dt className="text-2xl leading-7 text-white">Clients</dt>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                                <CountUp start={0} end={500} duration={7} /> +
+                            </dd>
+                        </div>
+                        <div className="mx-auto flex max-w-xs flex-col gap-y-4">
+                            <dt className="text-2xl leading-7 text-white">Cities</dt>
+                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                                <CountUp start={0} end={40} duration={7} /> +
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
             </div>
-            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dt className="text-2xl leading-7 text-white">Sq.Ft <br />Delivered</dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                    <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} />
-                </dd>
-            </div>
-            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dt className="text-2xl leading-7 text-white">Clients</dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                    <CountUp start={0} end={500} duration={7} /> +
-                </dd>
-            </div>
-            <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dt className="text-2xl leading-7 text-white">Cities</dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                    <CountUp start={0} end={40} duration={7} /> +
-                </dd>
-            </div>
-        </dl>
-    </div>
-</div>
-
 
             <div className="relative mb-20 mt-10">
                 {/* Banner Image */}

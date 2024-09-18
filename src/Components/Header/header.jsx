@@ -148,19 +148,18 @@ function Header() {
                 </div>
 
                 {/* Right Section: "List Your Property" Button */}
-                <div className='flex items-center space-x-3 pr-20'>
-                    <button
-                        onClick={handleNavigate}
-                        className="bg-[#d84a48] text-white text-sm font-normal   py-2 px-4 rounded-full hover:bg-[#ac3c3a] transition-colors duration-300"
-                    >
-                        List Property 
-                        <span className="bg-yellow-300 text-black text-sm  py-1 px-2 rounded-full ml-1">
+                <div className='flex items-center space-x-3 pr-20 hidden md:flex'>
+    <button
+        onClick={handleNavigate}
+        className="bg-[#d84a48] text-white text-sm font-normal py-2 px-4 rounded-full hover:bg-[#ac3c3a] transition-colors duration-300"
+    >
+        List Property 
+        <span className="bg-yellow-300 text-black text-sm py-1 px-2 rounded-full ml-1">
             FREE!
-          </span>
-                    </button>
+        </span>
+    </button>
+</div>
 
-                
-                </div>
             </div>
         </header>
     );
