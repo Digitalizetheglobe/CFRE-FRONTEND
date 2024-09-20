@@ -21,8 +21,7 @@ function MainRent() {
                 }}
             ></div>
 
-            {/* Overlay to darken background image for readability */}
-            {/* <div className="absolute inset-0 bg-black opacity-30"></div> */}
+         
 
             {/* Content Card */}
             <div className="relative z-5 flex items-center justify-center min-h-screen ">
@@ -43,10 +42,7 @@ function MainRent() {
                             />
                             <span>Office Space</span>
                         </label>
-                        {/* <label className="flex items-center space-x-2">
-                            <input type="radio" name="space" className="form-radio text-blue-600" />
-                            <span>Retail Space</span>
-                        </label> */}
+                        
                     </div>
 
                     {/* Location Search */}

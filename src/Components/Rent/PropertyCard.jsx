@@ -43,12 +43,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
                 </div>
 
                 {/* Property name with link to detailed view */}
-                {/* <Link
-                    to={`/property-detail/${property.id || ''}`}
-                    className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300"
-                >
-                    {title}
-                </Link> */}
+             
 
                 {/* Location and city */}
                 <div className="text-gray-600 mt-1">{property.location || 'Unknown Location'}, {property.city || 'Unknown City'}</div>

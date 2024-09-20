@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import primeImage from './img3.png';
-import sellImage from '../assets/AdministrativeBuilding-modernstyle.jpeg';
+import primeImage from '../assets/out.png';
+import sellImage from '../assets/out1.png';
 import ContactForm from '../MainBody/ContactForm';
 import { useState } from 'react';
 import Header from '../Header/header.jsx'
@@ -39,7 +39,7 @@ const Card = () => {
         >
           <div>
             <h2 className="text-3xl font-bold">List, sell, relax – we’ll handle the rest.</h2> {/* Increased font size */}
-            <p className="text-lg leading-relaxed mt-6 sm:text-xs">
+            <p className="text-xl leading-relaxed mt-6 sm:text-xs">
               Maximize Exposure, Minimize Effort – List Now!
             </p>
           </div>
@@ -64,7 +64,7 @@ const Card = () => {
         >
           <div>
             <h2 className="text-3xl font-bold ">Office Spaces That Work for You</h2> {/* Increased font size */}
-            <p className="text-lg leading-relaxed mt-6 sm:text-xs">
+            <p className="text-xl leading-relaxed mt-6 sm:text-xs">
               Explore a curated selection of premium office spaces tailored to elevate your business operations.
             </p>
           </div>

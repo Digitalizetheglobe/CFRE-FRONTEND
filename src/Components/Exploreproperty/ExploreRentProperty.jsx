@@ -1,17 +1,20 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
-import Error from '../Error/Error'; // Import the Error component
+import Error from '../Error/Error';
 import PropertyCard from '../Rent/PropertyCard';
-import Header from '../Header/header.jsx'
-const ExploreProperty = () => {
+import Pagination from '@mui/material/Pagination';
+
+const ExploreRentProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
-    const [error, setError] = useState(null); // Error state
+    const [error, setError] = useState(null); 
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const propertiesPerPage = 8; 
 
     const handleButtonClick = () => {
         setFormVisible(true);
@@ -26,9 +29,9 @@ const ExploreProperty = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-                setFilteredProperties(response.data.filter(property => property.furnishing === 'Fully Furnished'));
+                setFilteredProperties(response.data.filter(property => property.availableFor === 'Rent'));
             } catch (error) {
-                setError('Error fetching properties. Please try again later.'); // Set error message
+                setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
             }
         };
@@ -36,7 +39,7 @@ const ExploreProperty = () => {
     }, []);
 
     useEffect(() => {
-        if (!error) { // Only filter and sort if there's no error
+        if (!error) {
             filterAndSortProperties(searchTerm, sortOrder);
         }
     }, [searchTerm, sortOrder, properties, error]);
@@ -50,7 +53,7 @@ const ExploreProperty = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'Fully Furnished');
+        let filtered = properties.filter(property => property.availableFor === 'Rent');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>
@@ -67,13 +70,19 @@ const ExploreProperty = () => {
         setFilteredProperties(filtered);
     };
 
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
+
+    const indexOfLastProperty = currentPage * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
+
     if (error) {
-        return <Error />; // Render the Error component if there's an error
+        return <Error />; 
     }
 
     return (
-        <>
-        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Office Spaces Properties</h1>
@@ -98,30 +107,45 @@ const ExploreProperty = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredProperties.length === 0 ? (
-                    <p className="text-center w-full">No Unfurnished properties found.</p>
+                {currentProperties.length === 0 ? (
+                    <p className="text-center w-full">No properties found.</p>
                 ) : (
-                    filteredProperties.map(property => (
-                        <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
+                    currentProperties.map(property => (
+                        <PropertyCard 
+                            key={property.id} 
+                            property={property} 
+                            onEnquire={handleButtonClick} 
+                        />
                     ))
                 )}
+            </div>
+
+            {/* Pagination Component */}
+            <div className="flex justify-center mt-6">
+                <Pagination
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="large"
+                />
             </div>
 
             {isFormVisible && (
                 <div 
                     className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
-                    onClick={handleCloseForm} // Close on overlay click
+                    onClick={handleCloseForm} 
                 >
                     <div 
                         className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
-                        onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
+                        onClick={(e) => e.stopPropagation()} 
                     >
                         <ContactForm onClose={handleCloseForm} />
                     </div>
                 </div>
             )}
-        </div></>
+        </div>
     );
 };
 
-export default ExploreProperty;
+export default ExploreRentProperty;

@@ -59,8 +59,8 @@ const Footer = () => {
                     <div>
                         <h4 className="text-xl font-semibold mb-4 ml-8">Useful Links</h4>
                         <ul className="space-y-3 ml-8">
-                            <li><Link to="/about-us" className="text-gray-400 hover:text-white">Invest</Link></li>
-                            <li><Link to="/contactUs" className="text-gray-400 hover:text-white">Rent</Link></li>
+                            <li><Link to="/exploreInvestProperty" className="text-gray-400 hover:text-white">Invest</Link></li>
+                            <li><Link to="/ExploreRentProperty" className="text-gray-400 hover:text-white">Rent</Link></li>
                             <li><Link to="/projectproperty" className="text-gray-400 hover:text-white">Projects</Link></li>
                             <li><Link to="/Latestblog" className="text-gray-400 hover:text-white">Blog</Link></li>
                         </ul>
@@ -70,9 +70,9 @@ const Footer = () => {
                     <div>
                         <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-3">
-                            <li><Link to="/about-us" className="text-gray-400 hover:text-white">About Us</Link></li>
+                            <li><Link to="/aboutUs" className="text-gray-400 hover:text-white">About Us</Link></li>
                             <li><Link to="/contactUs" className="text-gray-400 hover:text-white">Contact Us</Link></li>
-                            <li><Link to="/Latestblog" className="text-gray-400 hover:text-white">FAQ's</Link></li>
+                            <li><Link to="/faqs" className="text-gray-400 hover:text-white">FAQ's</Link></li>
                             <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
                         </ul>
                     </div>
