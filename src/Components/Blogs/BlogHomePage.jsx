@@ -11,8 +11,8 @@ function BlogHomePage() {
             <div className="container mx-auto text-center py-10">
                 {/* Heading and View All Blogs Button */}
                 <div className="flex flex-col items-center mb-6 relative">
-                    <h1 className="text-3xl font-bold ">Insights from CFRE Realty</h1>
-                    <div className="absolute top-0 right-0 mt-4 mr-4">
+                    <h1 className="md:text-3xl text-2xl font-bold ">Insights from CFRE Realty</h1>
+                    <div className="absolute top-0 right-0 md:mt-4 mt-12 mr-4">
                         <Link
                             to="/Latestblog"
                             className="px-4 py-2 text-sm rounded text-white bg-[#d84a48] hover:bg-[#9c2f2d] transition-colors"
@@ -23,7 +23,7 @@ function BlogHomePage() {
                 </div>
 
                 {/* Paragraph */}
-                <p className="text-lg text-gray-600 mb-8">
+                <p className="text-lg text-gray-600 mb-8 mt-12">
                     Stay updated with the latest articles, insights, and stories from our team.
                 </p>
 

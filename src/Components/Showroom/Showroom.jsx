@@ -38,7 +38,7 @@ const Showroom = () => {
         <>
         <Header />
         <div className="relative overflow-hidden">
-            <div className="absolute inset-0 w-full h-[75vh] overflow-hidden">
+            <div className="absolute inset-0 w-full md:h-[75vh] overflow-hidden">
                 <video
                     className="w-full h-full object-cover"
                     src={ShowroomVideo}
@@ -47,7 +47,7 @@ const Showroom = () => {
                     muted
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <h1 className="text-4xl text-white">Showroom Properties</h1>
+                    <h1 className="text-3xl md:text-4xl text-white">Showroom Properties</h1>
                 </div>
             </div>
 

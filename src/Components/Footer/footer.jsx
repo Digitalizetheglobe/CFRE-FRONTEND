@@ -57,8 +57,8 @@ const Footer = () => {
 
                     {/* Useful Links */}
                     <div>
-                        <h4 className="text-xl font-semibold mb-4 ml-8">Useful Links</h4>
-                        <ul className="space-y-3 ml-8">
+                        <h4 className="text-xl font-semibold mb-4  md:ml-8">Useful Links</h4>
+                        <ul className="space-y-3 md:ml-8">
                             <li><Link to="/exploreInvestProperty" className="text-gray-400 hover:text-white">Invest</Link></li>
                             <li><Link to="/ExploreRentProperty" className="text-gray-400 hover:text-white">Rent</Link></li>
                             <li><Link to="/projectproperty" className="text-gray-400 hover:text-white">Projects</Link></li>

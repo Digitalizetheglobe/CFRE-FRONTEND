@@ -117,7 +117,7 @@ function Blog1() {
         />
         {/* Text on Banner */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-white text-4xl  bg-black bg-opacity-50 px-4 py-2 rounded">
+          <h1 className="text-white md:text-4xl  bg-black bg-opacity-50 px-4 py-2 rounded">
             Investing in Commercial Property
           </h1>
         </div>
@@ -125,7 +125,7 @@ function Blog1() {
 
       <div className="max-w-4xl mx-auto p-6">
         {/* Blog Heading */}
-        <h1 className="text-4xl font-bold mb-4">
+        <h1 className="md:text-4xl font-bold mb-4">
           Investing in Commercial Property in Balewadi: A Smart Choice for 2024
         </h1>
 

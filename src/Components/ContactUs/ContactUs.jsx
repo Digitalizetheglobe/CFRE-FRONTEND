@@ -92,7 +92,7 @@ function ContactUs() {
                 <img
                     src={Banner}
                     alt="Blog Banner"
-                    className="w-11/12 h-72 object-cover rounded-lg shadow-lg ml-16"
+                    className="w-11/12 h-72 object-cover rounded-lg shadow-lg md:ml-16 ml-4"
                 />
                 {/* Text on Banner */}
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -254,7 +254,7 @@ function ContactUs() {
                 <img
                     src={Tagline} // Use src attribute for the image
                     alt="Blog Banner"
-                    className="w-11/12 h-72 object-cover rounded-lg shadow-lg ml-16"
+                    className="w-11/12 h-72 object-cover rounded-lg shadow-lg md:ml-16 ml-4"
                 />
             </div>
         </>
