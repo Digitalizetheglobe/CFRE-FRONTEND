@@ -8,7 +8,7 @@ import { Phone, Mail, MapPin, Map } from 'lucide-react';
 import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
 import Header from '../Header/header.jsx';
-import Bckgrndimg from '../assets/coundown.jpg';
+// import Bckgrndimg from '../assets/coundown.jpg';
 
 function ContactUs() {
     const [formData, setFormData] = useState({
