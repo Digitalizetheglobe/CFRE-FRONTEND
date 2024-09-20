@@ -24,7 +24,7 @@ const Card = () => {
 
   return (
     <>
-    <Header />
+    {/* new  */}
     <div className="max-w-8xl mx-auto mb-12 ml-10 mr-5"> {/* Increased max width and margin */}
       <div className="grid md:grid-cols-2 gap-8 mt-8"> {/* Increased gap and margin */}
         {/* Card 1 with background image */}
