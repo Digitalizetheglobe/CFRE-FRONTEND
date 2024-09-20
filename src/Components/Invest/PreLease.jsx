@@ -4,6 +4,7 @@ import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import Pagination from '@mui/material/Pagination';
+import Header from '../Header/header.jsx';
 
 const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -90,6 +91,8 @@ const Prelease = () => {
     }
 
     return (
+        <>
+        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Pre-Leased Properties</h1>
@@ -146,7 +149,7 @@ const Prelease = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

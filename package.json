@@ -7,7 +7,7 @@
     "@emotion/styled": "^11.13.0",
     "@fontsource/montserrat": "^5.0.19",
     "@heroicons/react": "^2.1.5",
-    "@mui/material": "^6.0.2",
+    "@mui/material": "^6.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -26,6 +26,7 @@
     "react-share": "^5.1.0",
     "react-toastify": "^10.0.5",
     "swiper": "^11.1.10",
+    "use-sound": "^4.0.3",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },

@@ -100,6 +100,8 @@ import Image from './ranger-4df6c1b6.png'
 import { Phone, Mail, MapPin, Map } from 'lucide-react'; // Updated import to use MapPin for location
 import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
+import Header from '../Header/header.jsx';
+
 
 function ContactUs() {
     const [formData, setFormData] = useState({
@@ -159,6 +161,7 @@ function ContactUs() {
 
     return (
         <>
+        <Header />
             <div className="relative mb-10 mt-10">
                 {/* Banner Image */}
                 <img

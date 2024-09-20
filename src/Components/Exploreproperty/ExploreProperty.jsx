@@ -4,7 +4,7 @@ import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import PropertyCard from '../Rent/PropertyCard';
-
+import Header from '../Header/header.jsx'
 const ExploreProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
@@ -72,6 +72,8 @@ const ExploreProperty = () => {
     }
 
     return (
+        <>
+        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Office Spaces Properties</h1>
@@ -118,7 +120,7 @@ const ExploreProperty = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

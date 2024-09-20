@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
-
+import Header from '../Header/header.jsx'
 export default function Error() {
     return (
+        <>
+        <Header />
         <main className="flex flex-col min-h-screen items-center justify-center bg-white px-6 py-24 sm:py-32 lg:px-8">
             <div className="text-center">
 
@@ -42,6 +44,6 @@ export default function Error() {
                     </Link>
                 </div>
             </div>
-        </main>
+        </main></>
     );
 }

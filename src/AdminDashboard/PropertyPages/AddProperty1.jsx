@@ -55,6 +55,8 @@ function AddProperty1() {
     const prevStep = () => setStep(step - 1);
 
     return (
+        <>
+        
         <div className="flex items-center">
             {/* <div className="flex items-start max-md:flex-col gap-y-6 gap-x-3 max-w-screen-sm mx-auto px-4 ">
                 <div className="w-full">
@@ -729,7 +731,7 @@ function AddProperty1() {
 
                 </div>
             )}
-        </div>
+        </div></>
     );
 }
 

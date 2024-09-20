@@ -1,18 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function AddNewProperty() {
-
-
-  // Function to convert a string to camelCase
-  const toCamelCase = (str) => {
-    return str
-      .toLowerCase()
-      .replace(/\b\w/g, (match) => match.toUpperCase());
-  };
-
-
+const AddNewProperty = () => {
   const [formData, setFormData] = useState({
     buildingName: '',
     unitNo: '',
@@ -34,13 +25,12 @@ export default function AddNewProperty() {
     conferenceRoom: '',
     otherFurniture: '',
     furnitureDoneBy: '',
-    propertyImage: '',
     agreementPeriod: '',
     lockInPeriod: '',
     rentStartFrom: '',
     lockingPeriod: '',
     rentPerMonthRsPerSqFt: '',
-    rentPerMonth:'',
+    rentPerMonth: '',
     deposit: '',
     yearlyEscalation: '',
     rentPerSqFtBuiltUpArea: '',
@@ -49,68 +39,58 @@ export default function AddNewProperty() {
     propertyTax: '',
     gstOnRent: '',
     basePrice: '',
-    govermentTaxes: '',
+    governmentTaxes: '',
     slug: '',
     seoKeywords: '',
-    seoDiscription: '',
+    seoDescription: '',
     seoTitle: '',
-    amenities:'',
-    availableFor:'',
+    amenities: '',
+    availableFor: '',
   });
+
+  const [files, setFiles] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Apply camelCase transformation only for the 'buildingName' field
-    if (name === 'buildingName') {
-      setFormData({ ...formData, [name]: toCamelCase(value) });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-
-    // Update the form data
-    setFormData((prevFormData) => {
-      const updatedData = {
-        ...prevFormData,
-        [name]: value,
-      };
-
-      // Parse the values as numbers
-      const buArea = parseFloat(updatedData.buArea) || 0;
-      const rentPerMonthRsPerSqFt = parseFloat(updatedData.rentPerMonthRsPerSqFt) || 0;
-
-      // Calculate rentPerMonth
-      updatedData.rentPerMonth = buArea * rentPerMonthRsPerSqFt;
-
-      return updatedData;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
+
+  const handleFileChange = (e) => {
+    setFiles(e.target.files);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formDataToSend = new FormData();
+
+    // Append form data
+    for (const [key, value] of Object.entries(formData)) {
+      formDataToSend.append(key, value);
+    }
+
+    // Append files
+    for (const file of files) {
+      formDataToSend.append('multiplePropertyImages', file);
+    }
+
     try {
-      const response = await fetch('https://cfrecpune.com/cfreproperties', {
-        method: 'POST',
+      const response = await axios.post('https://cfrecpune.com/cfreproperties', formDataToSend, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
-        body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      console.log('Success:', response.data);
 
-      const result = await response.json();
-      console.log('Success:', result);
-
-      // Show success toast notification
       toast.success('Property added successfully!', {
         position: "top-center",
       });
 
-      // Reset the form
+      // Reset the form and files
       setFormData({
         buildingName: '',
         unitNo: '',
@@ -132,13 +112,12 @@ export default function AddNewProperty() {
         conferenceRoom: '',
         otherFurniture: '',
         furnitureDoneBy: '',
-        propertyImage: '',
         agreementPeriod: '',
         lockInPeriod: '',
         rentStartFrom: '',
         lockingPeriod: '',
         rentPerMonthRsPerSqFt: '',
-        rentPerMonth:'',
+        rentPerMonth: '',
         deposit: '',
         yearlyEscalation: '',
         rentPerSqFtBuiltUpArea: '',
@@ -147,24 +126,33 @@ export default function AddNewProperty() {
         propertyTax: '',
         gstOnRent: '',
         basePrice: '',
-        govermentTaxes: '',
+        governmentTaxes: '',
         slug: '',
         seoKeywords: '',
-        seoDiscription: '',
+        seoDescription: '',
         seoTitle: '',
-        amenities:'',
-        availableFor:'',
+        amenities: '',
+        availableFor: '',
       });
+      setFiles([]);
     } catch (error) {
-      console.error('Error:', error);
-      toast.error('Failed to add property. Please try again.', {
-        position: "top-center",
-      });
+      if (error.response) {
+        console.error('Error:', error.response.data);
+        toast.error(`Failed to add property: ${error.response.data.message}`, {
+          position: "top-center",
+        });
+      } else {
+        console.error('Error:', error.message);
+        toast.error('Failed to add property. Please try again.', {
+          position: "top-center",
+        });
+      }
     }
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
+ 
         <div className="space-y-12 pl-10 pr-10">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900 text-center mt-10">Add New Property</h2>
@@ -183,7 +171,19 @@ export default function AddNewProperty() {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
-
+              <div className="sm:col-span-3">
+                <label htmlFor="propertyImages" className="block text-sm font-medium leading-6 text-gray-900">
+                  Property Images
+                </label>
+                <input
+                  id="propertyImages"
+                  name="propertyImages"
+                  type="file"
+                  multiple
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                />
+              </div>
               <div className="sm:col-span-3">
                 <label htmlFor="unitNo" className="block text-sm font-medium leading-6 text-gray-900">
                   Unit No
@@ -482,7 +482,7 @@ export default function AddNewProperty() {
               </div>
               <div className="sm:col-span-3">
                 <label htmlFor="amenities" className="block text-sm font-medium leading-6 text-gray-900">
-                Other Amenities
+                  Other Amenities
                 </label>
                 <input
                   id="amenities"
@@ -532,7 +532,7 @@ export default function AddNewProperty() {
                   id="rentPerMonth"
                   name="rentPerMonth"
                   type="text"
-                  value={formData.rentPerMonth}  
+                  value={formData.rentPerMonth}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                   readOnly
                 />
@@ -712,18 +712,22 @@ export default function AddNewProperty() {
 
 
               <div className="sm:col-span-3">
-                <label htmlFor="propertyImage" className="block text-sm font-medium leading-6 text-gray-900">
-                  Property Image
-                </label>
-                <input
-                  id="propertyImage"
-                  name="propertyImage"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setFormData({ ...formData, propertyImage: e.target.files[0] })}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
-                />
+              <label htmlFor="multiplePropertyImages" className="block text-sm font-medium leading-6 text-gray-900">
+            Multiple Property Images
+          </label>
+          <input
+            id="multiplePropertyImages"
+            name="multiplePropertyImages"
+            type="file"
+            multiple
+            onChange={handleFileChange}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+          />
               </div>
+              <div>
+            <label >Property Images :</label>
+            <input type="file" name="multiplePropertyImages" multiple onChange={handleFileChange} />
+          </div>
               {/* <h2 className="text-base font-semibold leading-7 text-gray-900 text-center mt-10">Seo Details</h2> */}
 
 
@@ -782,7 +786,7 @@ export default function AddNewProperty() {
             </div>
           </div>
         </div>
-
+      
 
         <div className="mt-6 flex items-center justify-center gap-x-6">
           <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
@@ -796,8 +800,9 @@ export default function AddNewProperty() {
           </button>
         </div>
       </form>
-    
+
       <ToastContainer />
     </>
   );
 }
+export default AddNewProperty;

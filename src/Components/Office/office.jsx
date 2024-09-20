@@ -195,7 +195,7 @@ import axios from 'axios';
 import OfficeCard from './OfficeCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error';
-
+import Header from '../Header/header.jsx'
 const Office = () => {
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
@@ -272,6 +272,8 @@ const Office = () => {
     }, [filters, sortOrder]);
 
     return (
+        <>
+        <Header />
         <div className="relative overflow-hidden">
             {/* Video background */}
             <div className="absolute inset-0 w-full h-[75vh] overflow-hidden">
@@ -377,7 +379,7 @@ const Office = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

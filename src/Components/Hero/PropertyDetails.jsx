@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
+import Header from '../Header/header.jsx';
 
 const PropertyDetails = () => {
     const { id } = useParams();
@@ -77,6 +78,8 @@ const PropertyDetails = () => {
     const displayedDetails = showAllDetails ? allDetails : allDetails.slice(0, 6);
 
     return (
+        <>
+        <Header />
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto">
 
             {/* Sticky Header */}
@@ -179,7 +182,7 @@ const PropertyDetails = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

@@ -110,6 +110,8 @@ function Hero() {
     // };
 
     return (
+        <>
+        
         <div className="flex justify-center items-center my-8 mx-4">
         <div className="relative w-full h-[75vh] rounded-lg overflow-hidden">
             <img
@@ -128,6 +130,7 @@ function Hero() {
             </div>
         </div>
     </div>
+    </>
     );
 }
 

@@ -126,7 +126,7 @@ import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
-
+import Header from '../Header/header.jsx'
 const Coworking = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
@@ -195,6 +195,8 @@ const Coworking = () => {
     }
 
     return (
+        <>
+        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Coworking Spaces</h1>
@@ -245,7 +247,7 @@ const Coworking = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 
