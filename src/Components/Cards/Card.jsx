@@ -4,7 +4,7 @@ import primeImage from '../assets/out.png';
 import sellImage from '../assets/out1.png';
 import ContactForm from '../MainBody/ContactForm';
 import { useState } from 'react';
-
+import Header from '../Header/header.jsx'
 const Card = () => {
 
   const navigate = useNavigate(); // Initialize the navigate hook
@@ -23,6 +23,8 @@ const Card = () => {
   };
 
   return (
+    <>
+    <Header />
     <div className="max-w-8xl mx-auto mb-12 ml-10 mr-5"> {/* Increased max width and margin */}
       <div className="grid md:grid-cols-2 gap-8 mt-8"> {/* Increased gap and margin */}
         {/* Card 1 with background image */}
@@ -88,7 +90,7 @@ const Card = () => {
           </div>
         </div>
       )}
-    </div>
+    </div></>
   );
 };
 

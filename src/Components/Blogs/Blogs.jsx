@@ -5,10 +5,12 @@ import Blog1 from './blog1.jpg';
 import Blog2 from './Blog2.jpg';
 import Blog3 from './Blog3.jpg';
 import Blog4 from './blog4.webp';
+import Header from '../Header/header.jsx';
 
 function Blogs() {
     return (
         <>
+        <Header />
             <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}

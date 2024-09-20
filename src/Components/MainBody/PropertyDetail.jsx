@@ -5,6 +5,7 @@ import { MdOutlinePinDrop } from 'react-icons/md';
 import { RiProgress2Line } from "react-icons/ri";
 import { AiFillDatabase } from "react-icons/ai";
 import { AiFillRead } from "react-icons/ai";
+import Header from '../Header/header.jsx';
 
 
 const PropertyDetail = () => {
@@ -143,6 +144,8 @@ const PropertyDetail = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
     return (
+        <>
+        <Header />
         <div className="bg-white py-8 px-4 sm:px-10">
             <div className="max-w-8xl mx-auto">
                 {/* Photo and Details Section */}
@@ -368,7 +371,7 @@ const PropertyDetail = () => {
                 </div>
                 )}
             </div>
-        </div>
+        </div></>
     );
 };
 

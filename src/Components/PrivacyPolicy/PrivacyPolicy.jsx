@@ -1,11 +1,13 @@
 import React from 'react';
 import Image from './privacyPolicy.webp'
+import Header from '../Header/header.jsx';
 
 
 
 function PrivacyPolicy() {
     return (
         <>
+        <Header />
             <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}

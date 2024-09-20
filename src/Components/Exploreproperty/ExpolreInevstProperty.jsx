@@ -3,6 +3,7 @@ import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import PropertyCard from '../Invest/PropertyCard';
+import Header from '../Header/header.jsx'
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
 import { Link } from 'react-router-dom';
 
@@ -87,6 +88,8 @@ const ExploreInvestProperty = () => {
     }
 
     return (
+        <>
+        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Office Spaces Properties</h1>
@@ -144,7 +147,7 @@ const ExploreInvestProperty = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

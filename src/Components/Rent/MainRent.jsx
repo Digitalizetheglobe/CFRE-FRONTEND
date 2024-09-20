@@ -1,8 +1,11 @@
 import React from 'react';
 import backgroundImage from '../assets/download.jpeg'; // Adjust the path based on your folder structure
+import Header from '../Header/header.jsx';
 
 function MainRent() {
     return (
+        <>
+        <Header />
         <div className="relative min-h-screen bg-white">
             {/* Background Image */}
             <div
@@ -66,7 +69,7 @@ function MainRent() {
                     </p>
                 </div>
             </div>
-        </div>
+        </div></>
     );
 }
 

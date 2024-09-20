@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaWhatsapp } from 'react-icons/fa';
 import { RiProgress2Line } from "react-icons/ri";
 import ContactForm from '../MainBody/ContactForm';
-
+import Header from '../Header/header.jsx'
 const ShowroomPropertyDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -40,6 +40,8 @@ const ShowroomPropertyDetails = () => {
     };
 
     return (
+        <>
+        <Header />
         <div className="bg-white p-6 rounded-lg shadow-lg max-w-full mx-auto">
             {/* Price and Location */}
             <div className="flex flex-col lg:flex-row lg:justify-between items-start mb-6">
@@ -185,7 +187,7 @@ const ShowroomPropertyDetails = () => {
             </div>
 
             {isFormVisible && <ContactForm onClose={handleCloseForm} />}
-        </div>
+        </div></>
     );
 };
 

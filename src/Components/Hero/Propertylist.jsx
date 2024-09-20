@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropertyCard from './PropertyCard'; // Import PropertyCard component
 import Error from '../Error/Error'; // Import Error component
+import Header from '../Header/header.jsx';
 import Pagination from '@mui/material/Pagination';
 
 function PropertyList() {
@@ -25,6 +26,8 @@ function PropertyList() {
     const currentProperties = properties.slice(indexOfFirstProperty, indexOfLastProperty);
 
     return (
+        <>
+        <Header />
         <div>
             {/* Property List Section */}
             <div className="p-4">
@@ -55,6 +58,7 @@ function PropertyList() {
                 </div>
             )}
         </div>
+        </>
     );
 }
 

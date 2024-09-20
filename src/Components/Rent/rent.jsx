@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
+import Header from '../Header/header.jsx';
 
 const Rent = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -71,6 +72,8 @@ const Rent = () => {
     };
 
     return (
+        <>
+        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Properties for Rent</h1>
@@ -118,7 +121,7 @@ const Rent = () => {
                     <PropertyCard key={property.id} property={property} />
                 ))}
             </div> */}
-        </div>
+        </div></>
     );
 };
 

@@ -5,7 +5,7 @@ import ShowroomCard from './ShowroomCard';
 import ContactForm from '../MainBody/ContactForm';
 import ShowroomVideo from './showroomvideo.mp4'; // Import your video file
 import Error from '../Error/Error'; // Import the Error component
-
+import Header from '../Header/header.jsx'
 const Showroom = () => {
     const [properties, setProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
@@ -35,6 +35,8 @@ const Showroom = () => {
     }, []);
 
     return (
+        <>
+        <Header />
         <div className="relative overflow-hidden">
             <div className="absolute inset-0 w-full md:h-[75vh] overflow-hidden">
                 <video
@@ -83,7 +85,7 @@ const Showroom = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </div></>
     );
 };
 

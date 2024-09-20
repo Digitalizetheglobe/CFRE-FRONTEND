@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
 import image from '../assets/RecentProperty.jpg';
+import Header from '../Header/header.jsx';
 
 const PropertyDetailInRent = () => {
     const { id } = useParams();
@@ -93,6 +94,7 @@ const PropertyDetailInRent = () => {
 
     return (
         <>
+        <Header />
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto">
                 <div className="sticky top-28 bg-white  shadow-md flex justify-center space-x-4 py-2">
                     <button

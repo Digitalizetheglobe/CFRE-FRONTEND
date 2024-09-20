@@ -3,10 +3,11 @@ import logo from './ab.jpg';
 import Image from './privacyPolicy.webp';
 import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
-
+import Header from '../Header/header.jsx';
 function AboutUs() {
     return (
         <>
+    <Header/>
             <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}

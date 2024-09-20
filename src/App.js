@@ -42,16 +42,22 @@ import Office from './Components/Office/office';
 import ShowroomPropertyDetails from './Components/Showroom/ShowroomPropertyDetails.jsx';
 import Showroom from './Components/Showroom/Showroom';
 import ExploreInvestProperty from './Components/Exploreproperty/ExpolreInevstProperty.jsx';
+import AdminLogin from './AdminDashboard/AdminLogin.jsx'
+import PrivateRoute from './PrivateRoute.jsx'
+import Dashboard from './AdminDashboard/Dashboard.jsx'
+// Layoutes
+import AdminLayout from './Layout/AdminLayout.jsx'
 import FAQs from './FAQs.jsx';
 
-
-
+import BasicForm from './AdminDashboard/BasicForm.jsx'
+import BasicFormView from './AdminDashboard/BasicFormView.jsx'
+import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Header />
+      {/* <Header /> */}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -69,7 +75,6 @@ function App() {
           <Route path="/property-detail/:id" element={<PropertyDetailInRent />} />
           <Route path='/commercial-properties-for-rent' element={<MainRent />} />
           <Route path='/unfurnished-property-detail/:id' element={<UnfurnishedPropertyDetailsInRent />} />
-          <Route path="/addproperty" element={<AddProperty />} />
           <Route path="/addproperty1" element={<AddProperty1 />} />
           <Route path="/addproperty2" element={<AddProperty2 />} />
           <Route path="/preleased" element={<PreLease />} />
@@ -83,17 +88,14 @@ function App() {
           <Route path="/coworking-space" element={<Blog3 />} />
           <Route path="/office-space-for-rent-in-warje-pune" element={<Blog4 />} />
           <Route path="*" element={<Error />} />
-          <Route path='/cards' element={<Card/>}/>
-          <Route path='/third-card' element={<Thirdcards/>}/>
-          <Route path='/exploreRentProperty' element={<ExploreRentProperty/>} />
-          <Route path ='/bulkproperty' element={<BulkUploadForm/>} />
-          <Route path='/addnewproperty' element={<AddNewProperty/>} />
+          <Route path='/cards' element={<Card />} />
+          <Route path='/third-card' element={<Thirdcards />} />
+          <Route path='/exploreRentProperty' element={<ExploreRentProperty />} />
           <Route path="/office" element={<Office />} />
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
-          <Route path='/faqs' element={<FAQs />}/>
-        </Routes> 
+        </Routes>
       </main>
       <Cookies />
       <Footer />

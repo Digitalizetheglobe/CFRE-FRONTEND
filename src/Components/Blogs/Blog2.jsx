@@ -3,7 +3,7 @@ import axios from "axios";
 import Banner from "./CFRE BLOG BANNER (72 x 20 in).jpg";
 import Image from "./Blog2.jpg";
 import gifmodal from "../../Components/assets/double-check.gif";
-
+import Header from '../Header/header.jsx'
 function Blog1() {
   const [formData, setFormData] = useState({
     name: "",
@@ -107,6 +107,7 @@ function Blog1() {
 
   return (
     <>
+    <Header />
       <div className="relative mb-8">
         {/* Banner Image */}
         <img

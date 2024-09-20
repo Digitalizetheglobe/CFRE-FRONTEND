@@ -8,10 +8,12 @@ import Testimonials from '../Testimonials/Testimonials.jsx';
 import Template from '../MainBody/Template.jsx';
 import Hero from '../Hero/Hero.jsx';
 import Blogslider from '../MainBody/Blogslider.jsx';
+import Header from '../Header/header.jsx';
 
 const Home = () => {
   return (
     <>
+    <Header/>
       <Hero />
       <Blogslider />
       <Card />

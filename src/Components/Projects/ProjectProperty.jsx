@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProjectCard from './projectCard';
 import BannerImage from './1.png'; // Replace with your actual image path
 import Error from '../Error/Error'; // Import the Error component
+import Header from '../Header/header.jsx';
 
 function ProjectProperty() {
     const [projects, setProjects] = useState([]);
@@ -25,6 +26,8 @@ function ProjectProperty() {
     }, []);
 
     return (
+        <>
+        <Header />
         <div className="relative overflow-hidden">
             {/* Banner Image */}
             <div className="relative">
@@ -53,6 +56,7 @@ function ProjectProperty() {
                 )}
             </div>
         </div>
+        </>
     );
 }
 

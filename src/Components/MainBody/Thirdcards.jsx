@@ -4,7 +4,7 @@ import sell from '../assets/sell-your-property-step-1 (1).avif';
 import sell1 from '../assets/sell-your-property-step-2 (1).avif';
 import sell2 from '../assets/sell-your-property-step-3.avif';
 import ContactForm from './ContactForm';
-
+import Header from '../Header/header.jsx'
 
 const Thirdcards = () => {
   // State to manage which accordion section is open
@@ -30,6 +30,8 @@ const Thirdcards = () => {
   };
 
   return (
+    <>
+    <Header />
     <div>
       <div className="bg-gray-100 py-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
@@ -250,7 +252,7 @@ const Thirdcards = () => {
                     </div>
                 </div>
             )}
-    </div>
+    </div></>
   );
 };
 

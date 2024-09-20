@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropertyCard from './PropertyCard'; // Import the PropertyCard component
+import Header from '../Header/header.jsx';
 
 const Invest = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -101,6 +102,8 @@ const Invest = () => {
     };
 
     return (
+        <>
+        <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="text-4xl">Properties for Invest</h1>
@@ -137,6 +140,7 @@ const Invest = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 

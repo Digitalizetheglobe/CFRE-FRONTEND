@@ -6,10 +6,11 @@ import Image2 from "../Blogs/Blog3.jpg";
 import Image3 from "../Blogs/blog4.webp";
 import Image5 from "../Blogs/blog5.jpg";
 import Image6 from "../Blogs/blog6.jpg";
-
+import Header from '../Header/header.jsx'
 const Latestblog = () => {
     return (
         <>
+        <Header />
             {/* Background Section */}
             <div className="relative before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-70 before:z-10">
                 {/* Background Image */}
