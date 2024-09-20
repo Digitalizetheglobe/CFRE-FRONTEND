@@ -52,11 +52,25 @@ const AddNewProperty = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+  
+    // Update the form data
+    setFormData((prevFormData) => {
+      const updatedData = {
+        ...prevFormData,
+        [name]: value,
+      };
+  
+      // Parse the values as numbers
+      const buArea = parseFloat(updatedData.buArea) || 0;
+      const rentPerMonthRsPerSqFt = parseFloat(updatedData.rentPerMonthRsPerSqFt) || 0;
+  
+      // Calculate rentPerMonth
+      updatedData.rentPerMonth = buArea * rentPerMonthRsPerSqFt;
+  
+      return updatedData;
     });
   };
+  
 
   const handleFileChange = (e) => {
     setFiles(e.target.files);
