@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useSound from 'use-sound'; // Import useSound
-
+import AdminNavbar from '../AdminNavbar'
 import notificationSound from '../../Components/assets/ringtone/notification.mp3'; // Import your notification sound
 
 const EnquiryDetails = () => {
@@ -36,6 +36,8 @@ const EnquiryDetails = () => {
   if (error) return <p className="text-center text-red-600">{error}</p>;
 
   return (
+    <>
+    <AdminNavbar />
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold text-center text-indigo-600 mb-8">Enquiry Details</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -58,6 +60,7 @@ const EnquiryDetails = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

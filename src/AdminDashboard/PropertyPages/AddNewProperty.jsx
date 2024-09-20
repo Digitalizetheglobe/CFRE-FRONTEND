@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+// import AdminNavbar from '../AdminNavbar';
 const AddNewProperty = () => {
   const [formData, setFormData] = useState({
     buildingName: '',
@@ -151,6 +151,7 @@ const AddNewProperty = () => {
   };
   return (
     <>
+    {/* <AdminNavbar /> */}
       <form onSubmit={handleSubmit}>
  
         <div className="space-y-12 pl-10 pr-10">

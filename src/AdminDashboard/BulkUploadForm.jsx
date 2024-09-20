@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
-
+import AdminNavbar from '../AdminDashboard/AdminNavbar'
 const BulkUploadForm = () => {
   const [file, setFile] = useState(null);
   const [data, setData] = useState([]);
@@ -40,6 +40,8 @@ const BulkUploadForm = () => {
   };
 
   return (
+    <>
+    <AdminNavbar />
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-6 px-4">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-7xl">
         <h1 className="text-2xl font-bold mb-4 text-center text-gray-700">Bulk Property Upload</h1>
@@ -89,7 +91,7 @@ const BulkUploadForm = () => {
         </form>
         {message && <p className="mt-4 text-center text-red-500">{message}</p>}
       </div>
-    </div>
+    </div></>
   );
 };
 

@@ -95,6 +95,73 @@ function App() {
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
+
+
+
+
+           {/* below admin panal routes */}
+           <Route path='/adminlogin' element={<AdminLogin />} />
+          {/* <Route path='/addnewproperty' element ={ <AddNewProperty />} />
+          <Route path='/addproperty' element ={ <AddNewProperty />} />
+          <Route path='/dashboard' element= {<Dashboard/>} />
+          <Route path='/bulkproperty' element= {<BulkUploadForm />} />
+          <Route path='/basicform' element= {<BasicForm />} />
+          <Route path='/view'  element= {<BasicFormView />} />
+          <Route path='/enquirydetails' element={<EnquiryDetails/>} /> */}
+
+
+
+          {/* Private routes (Protected) */}
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/addnewproperty"
+            element={
+              <PrivateRoute>
+                <AdminLayout>
+                <AddNewProperty />
+                </AdminLayout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/bulkproperty"
+            element={
+              <PrivateRoute>
+                <BulkUploadForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/basicform"
+            element={
+              <PrivateRoute>
+                <BasicForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/view"
+            element={
+              <PrivateRoute>
+                <BasicFormView />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/enquirydetails"
+            element={
+              <PrivateRoute>
+                <EnquiryDetails />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </main>
       <Cookies />
