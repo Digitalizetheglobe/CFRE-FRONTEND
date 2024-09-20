@@ -115,7 +115,7 @@ function PropertyCardInvestList() {
                     Exclusive Properties in India
                 </h1>
                 <button
-                    className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out mr-14"
+                    className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out md:mr-14 mr-18"
                     onClick={handleSearch}
                 >
                     Explore Properties

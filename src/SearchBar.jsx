@@ -158,99 +158,98 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="bg-white p-4 rounded-full shadow-lg flex items-center space-x-2 w-full max-w-5xl mx-auto">
-            {/* Property Category selection */}
-            <select
-                value={propertyCategory}
-                onChange={(e) => setPropertyCategory(e.target.value)}
-                className="border p-2 rounded focus:outline-none "
-            >
-                <option value="Rent">Rent</option>
-                <option value="Invest">Invest</option>
-            </select>
-
-            {/* City selection */}
-            <select
-                value={selectedCity}
-                onChange={handleCityChange}
-                className="border p-2 rounded focus:outline-none "
-            >
-                <option value="Pune">Pune</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Banglore">Banglore</option>
-                <option value="Hyderabad">Hyderabad</option>
-            </select>
-
-            <div className="relative flex-grow">
-                <input
-                    type="text"
-                    placeholder="Search location..."
-                    value={searchQuery}
-                    onChange={handleSearchQueryChange}
-                    className="w-full p-2 border rounded focus:outline-none"
-                />
-                {searchQuery && suggestions.length > 0 && (
-                    <ul className="absolute top-full left-0 right-0 bg-white border rounded shadow-lg mt-1 z-10">
-                        {suggestions
-                            .filter(area => area.toLowerCase().includes(searchQuery.toLowerCase()))
-                            .map((area, index) => (
-                                <li
-                                    key={index}
-                                    onClick={() => handleSearchSuggestionClick(area)}
-                                    className="p-2 cursor-pointer hover:bg-gray-200"
-                                >
-                                    {area}
-                                </li>
-                            ))}
-                    </ul>
-                )}
-            </div>
-
-            {/* Property type selection */}
-            <select
-                value={officeType}
-                onChange={(e) => setOfficeType(e.target.value)} // Fix here
-                className="border p-2 rounded focus:outline-none "
-            >
-                <option value="">Property Type</option>
-                <option value="Office Space">Office Space</option>
-                <option value="Showroom Space">Showroom Space</option>
-                <option value="Hospital">Hospital</option>
-                <option value="Independent Building">Independent Building</option>
-                <option value="Warehouse / Godown">Warehouse / Godown</option>
-                <option value="Industrial Factory">Industrial Factory</option>
-                <option value="Industrial Lands / Plot">Industrial Lands / Plot</option>
-                <option value="Commercial Lands / Plot">Commercial Lands / Plot</option>
-                <option value="Restaurant Space">Restaurant Space</option>
-                <option value="Banquet Hall">Banquet Hall</option>
-                <option value="Commercial Row House">Commercial Row House</option>
-                <option value="Hotel Resort">Hotel / Resort</option>
-                <option value="Residential Land / Plot">Residential Land / Plot</option>
-                <option value="Fractional Investment">Fractional Investment</option>
-
-            </select>
-
-            {/* Furnishing Status dropdown, shown only when "Rent" is selected */}
-            {propertyCategory === 'Rent' && (
-                <select
-                    value={furnishingStatus}
-                    onChange={(e) => setFurnishingStatus(e.target.value)}
-                    className="border p-2 rounded focus:outline-none "
-                >
-                    <option value="">Furnishing Status</option>
-                    <option value="Furnished">Furnished</option>
-                    <option value="Unfurnished">Unfurnished</option>
-
-                </select>
+        <div className="bg-white p-4 md:rounded-full  shadow-lg flex flex-wrap items-center space-x-2 w-full max-w-5xl mx-auto">
+        {/* Property Category selection */}
+        <select
+            value={propertyCategory}
+            onChange={(e) => setPropertyCategory(e.target.value)}
+            className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
+        >
+            <option value="Rent">Rent</option>
+            <option value="Invest">Invest</option>
+        </select>
+    
+        {/* City selection */}
+        <select
+            value={selectedCity}
+            onChange={handleCityChange}
+            className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
+        >
+            <option value="Pune">Pune</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Hyderabad">Hyderabad</option>
+        </select>
+    
+        <div className="relative flex-grow w-full sm:w-auto mb-2 sm:mb-0">
+            <input
+                type="text"
+                placeholder="Search location..."
+                value={searchQuery}
+                onChange={handleSearchQueryChange}
+                className="w-full p-2 border rounded focus:outline-none"
+            />
+            {searchQuery && suggestions.length > 0 && (
+                <ul className="absolute top-full left-0 right-0 bg-white border rounded shadow-lg mt-1 z-10">
+                    {suggestions
+                        .filter(area => area.toLowerCase().includes(searchQuery.toLowerCase()))
+                        .map((area, index) => (
+                            <li
+                                key={index}
+                                onClick={() => handleSearchSuggestionClick(area)}
+                                className="p-2 cursor-pointer hover:bg-gray-200"
+                            >
+                                {area}
+                            </li>
+                        ))}
+                </ul>
             )}
-
-            <button
-                onClick={handleSearch}
-                className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 rounded-full flex items-center justify-center w-32"
-            >
-                <FaSearch className="mr-2" /> Search
-            </button>
         </div>
+    
+        {/* Property type selection */}
+        <select
+            value={officeType}
+            onChange={(e) => setOfficeType(e.target.value)}
+            className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
+        >
+            <option value="">Property Type</option>
+            <option value="Office Space">Office Space</option>
+            <option value="Showroom Space">Showroom Space</option>
+            <option value="Hospital">Hospital</option>
+            <option value="Independent Building">Independent Building</option>
+            <option value="Warehouse / Godown">Warehouse / Godown</option>
+            <option value="Industrial Factory">Industrial Factory</option>
+            <option value="Industrial Lands / Plot">Industrial Lands / Plot</option>
+            <option value="Commercial Lands / Plot">Commercial Lands / Plot</option>
+            <option value="Restaurant Space">Restaurant Space</option>
+            <option value="Banquet Hall">Banquet Hall</option>
+            <option value="Commercial Row House">Commercial Row House</option>
+            <option value="Hotel Resort">Hotel / Resort</option>
+            <option value="Residential Land / Plot">Residential Land / Plot</option>
+            <option value="Fractional Investment">Fractional Investment</option>
+        </select>
+    
+        {/* Furnishing Status dropdown, shown only when "Rent" is selected */}
+        {propertyCategory === 'Rent' && (
+            <select
+                value={furnishingStatus}
+                onChange={(e) => setFurnishingStatus(e.target.value)}
+                className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
+            >
+                <option value="">Furnishing Status</option>
+                <option value="Furnished">Furnished</option>
+                <option value="Unfurnished">Unfurnished</option>
+            </select>
+        )}
+    
+        <button
+            onClick={handleSearch}
+            className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 rounded-full flex items-center justify-center w-full sm:w-auto"
+        >
+            <FaSearch className="mr-2" /> Search
+        </button>
+    </div>
+    
     );
 };
 

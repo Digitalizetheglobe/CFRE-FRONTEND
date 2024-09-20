@@ -117,7 +117,7 @@ function Blog1() {
     />
     {/* Text on Banner */}
     <div className="absolute inset-0 flex items-center justify-center">
-        <h1 className="text-white text-4xl  bg-black bg-opacity-50 px-4 py-2 rounded">
+        <h1 className="text-white md:text-4xl  bg-black bg-opacity-50 px-4 py-2 rounded">
         How to Evaluate Real Estate
         </h1>
     </div>
@@ -129,7 +129,7 @@ function Blog1() {
            
 
             {/* Blog Heading */}
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="md:text-4xl font-bold mb-4">
             How to Evaluate Real Estate Investment Opportunities in Warje, Pune                </h1>
 
             {/* Email and Date */}

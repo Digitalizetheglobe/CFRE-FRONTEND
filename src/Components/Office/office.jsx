@@ -98,7 +98,7 @@ const Office = () => {
             </div>
 
             {/* Filter Section - Below the Banner */}
-            <div className="relative container mx-auto p-4 mt-[80vh] ml-16">
+            <div className="relative container mx-auto p-4 mt-[80vh] md:ml-16">
                 <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
                     <div className="flex-1">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
@@ -151,7 +151,7 @@ const Office = () => {
             </div>
 
             {/* Main content - Below the Filter Section */}
-            <div className="relative container mx-auto p-4 mt-5 ml-14">
+            <div className="relative container mx-auto p-4 mt-5 md:ml-14">
                 {error ? (
                     <Error message={error} /> // Render Error component if there's an error
                 ) : (

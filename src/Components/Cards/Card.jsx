@@ -27,7 +27,7 @@ const Card = () => {
       <div className="grid md:grid-cols-2 gap-8 mt-8"> {/* Increased gap and margin */}
         {/* Card 1 with background image */}
         <div
-          className="text-white p-16 w-full rounded-lg bg-cover bg-center bg-[#84A7B7] flex flex-col justify-between"
+          className="text-white p-10 md:p-16 w-full rounded-lg bg-cover bg-center bg-[#84A7B7] flex flex-col justify-between"
           style={{
             backgroundImage: `url(${primeImage})`,
             backgroundSize: 'cover', // Ensures the image covers the container
@@ -37,7 +37,7 @@ const Card = () => {
         >
           <div>
             <h2 className="text-3xl font-bold">List, sell, relax – we’ll handle the rest.</h2> {/* Increased font size */}
-            <p className="text-xl leading-relaxed mt-6 sm:text-xs">
+            <p className="text-base leading-relaxed mt-6 md:text-xl">
               Maximize Exposure, Minimize Effort – List Now!
             </p>
           </div>
@@ -52,7 +52,7 @@ const Card = () => {
 
         {/* Card 2 with background image */}
         <div
-          className="text-white p-16 w-full rounded-lg bg-cover bg-center bg-[#84b7a8] flex flex-col justify-between"
+          className="text-white p-10 md:p-16 w-full rounded-lg bg-cover bg-center bg-[#84b7a8] flex flex-col justify-between"
           style={{
             backgroundImage: `url(${sellImage})`,
             backgroundSize: 'cover', // Ensures the image covers the container
@@ -62,7 +62,7 @@ const Card = () => {
         >
           <div>
             <h2 className="text-3xl font-bold ">Office Spaces That Work for You</h2> {/* Increased font size */}
-            <p className="text-xl leading-relaxed mt-6 sm:text-xs">
+            <p className="text-sm leading-relaxed mt-6 md:text-xl">
               Explore a curated selection of premium office spaces tailored to elevate your business operations.
             </p>
           </div>
