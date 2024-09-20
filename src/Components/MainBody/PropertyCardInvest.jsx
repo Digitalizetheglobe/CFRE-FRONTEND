@@ -36,7 +36,9 @@ function PropertyCardInvest({ property }) {
             </div>
 
             <div className="relative">
-                <img className="w-full h-52 object-cover" src={property.image || Image} alt="Property" />
+                <img className="w-full h-52 object-cover" 
+                        src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
+                        alt="Property" />
             </div>
 
             <div className="px-6 py-4">

@@ -29,7 +29,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
                 <Link to={`/property-detail/${property.id || ''}`}>
                     <img
                         className="w-full h-48 object-cover"
-                        src={Image} // Use a dynamic image source or default image
+                        src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
                         alt={title}
                     />
 

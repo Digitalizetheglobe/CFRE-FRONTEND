@@ -50,7 +50,7 @@ const Footer = () => {
                     {/* About CFRE */}
                     <div>
                         <h4 className="text-xl font-semibold mb-4">About CFRE Realty</h4>
-                        <p className="text-gray-400 leading-relaxed text-justify">
+                        <p className="text-white leading-relaxed text-justify">
                             CFRE is committed to providing top-quality products and services with an open and honest approach. Our goal is to engage in business operations that are morally sound and customer-focused.
                         </p>
                     </div>
@@ -59,10 +59,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-xl font-semibold mb-4  md:ml-8">Useful Links</h4>
                         <ul className="space-y-3 md:ml-8">
-                            <li><Link to="/exploreInvestProperty" className="text-gray-400 hover:text-white">Invest</Link></li>
-                            <li><Link to="/ExploreRentProperty" className="text-gray-400 hover:text-white">Rent</Link></li>
-                            <li><Link to="/projectproperty" className="text-gray-400 hover:text-white">Projects</Link></li>
-                            <li><Link to="/Latestblog" className="text-gray-400 hover:text-white">Blog</Link></li>
+                            <li><Link to="/exploreInvestProperty" className="text-white hover:text-white">Invest</Link></li>
+                            <li><Link to="/ExploreRentProperty" className="text-white hover:text-white">Rent</Link></li>
+                            <li><Link to="/projectproperty" className="text-white hover:text-white">Projects</Link></li>
+                            <li><Link to="/Latestblog" className="text-white hover:text-white">Blog</Link></li>
                         </ul>
                     </div>
 
@@ -70,17 +70,17 @@ const Footer = () => {
                     <div>
                         <h4 className="text-xl font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-3">
-                            <li><Link to="/aboutUs" className="text-gray-400 hover:text-white">About Us</Link></li>
-                            <li><Link to="/contactUs" className="text-gray-400 hover:text-white">Contact Us</Link></li>
-                            <li><Link to="/faqs" className="text-gray-400 hover:text-white">FAQ's</Link></li>
-                            <li><Link to="/privacyPolicy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+                            <li><Link to="/aboutUs" className="text-white hover:text-white">About Us</Link></li>
+                            <li><Link to="/contactUs" className="text-white hover:text-white">Contact Us</Link></li>
+                            <li><Link to="/faqs" className="text-white hover:text-white">FAQ's</Link></li>
+                            <li><Link to="/privacyPolicy" className="text-white hover:text-white">Privacy Policy</Link></li>
                         </ul>
                     </div>
 
                     {/* Contact Information */}
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-                        <p className="text-gray-400 mb-2">
+                        <p className="text-white mb-2">
                             <FaMapMarkerAlt className="inline mr-2 text-white" />
                             320, HBC, Hirabaug Chowk, Tilak Road Pune - 411002
                         </p>
@@ -118,7 +118,7 @@ const Footer = () => {
 
             {/* Footer Bottom */}
             <div className="bg-gray-800 text-center py-4 mt-8">
-                <p className="text-gray-500 text-sm">
+                <p className="text-white text-sm">
                     &copy; {new Date().getFullYear()} CFRE Realty. All rights reserved. 
                     Crafted with care by 
                     <a 
