@@ -27,7 +27,7 @@ function PropertyList() {
 
     return (
         <>
-        <Header />          
+        {/* <Header />           */}
         <div>
             {/* Property List Section */}
             <div className="p-4">

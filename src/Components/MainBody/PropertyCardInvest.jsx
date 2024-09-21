@@ -1,21 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import { FaPhoneAlt, FaWhatsapp, FaShareAlt } from 'react-icons/fa';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
-import Image from '../assets/ABC.jpeg';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { FaPhoneAlt, FaWhatsapp, FaShareAlt } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import Image from "../assets/ABC.jpeg";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 function PropertyCardInvest({ property }) {
     const navigate = useNavigate();
 
     const handleWhatsAppClick = () => {
-        window.open('https://wa.me/918149977661', '_blank');
+        window.open("https://wa.me/918149977661", "_blank");
     };
 
     const handlePhoneClick = () => {
-        window.location.href = 'tel:+918149977661';
+        window.location.href = "tel:+918149977661";
     };
 
     const handleImageClick = () => {
@@ -26,7 +26,9 @@ function PropertyCardInvest({ property }) {
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
             <div className="absolute top-0 right-0 z-10 p-2">
                 <a
-                    href={`https://wa.me/?text=${encodeURIComponent('Check out this investment property: ' + (property.image || Image))}`}
+                    href={`https://wa.me/?text=${encodeURIComponent(
+                        "Check out this investment property: " + (property.image || Image)
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white font-normal py-2 px-2 rounded flex items-center"
@@ -36,9 +38,13 @@ function PropertyCardInvest({ property }) {
             </div>
 
             <div className="relative">
-                <img className="w-full h-52 object-cover" 
-                        src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
-                        alt="Property" />
+                <img
+                    className="w-full h-52 object-cover"
+
+                    src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
+
+                    alt="Property"
+                />
             </div>
 
             <div className="px-6 py-4">
@@ -54,10 +60,12 @@ function PropertyCardInvest({ property }) {
                     </p>
                     <p className="mb-1 flex justify-between">
                         Building Type
-                        <span className="font-semibold">{property.buildingType}A Grade</span>
+                        <span className="font-semibold">
+                            {property.buildingType}A Grade
+                        </span>
                     </p>
                     <p className="mb-1 flex justify-between">
-                       Carpet Area
+                        Carpet Area
                         <span className="font-semibold">{property.carpetArea}</span>
                     </p>
                 </div>
@@ -66,7 +74,8 @@ function PropertyCardInvest({ property }) {
             <div className="px-6 pb-2 flex justify-between items-center">
                 <button
                     onClick={handleImageClick}
-                    className="bg-[#d84a48] hover:bg-[#b03b3a] text-white font-bold py-1 px-4 rounded w-full">
+                    className="bg-[#d84a48] hover:bg-[#b03b3a] text-white font-bold py-1 px-4 rounded w-full"
+                >
                     Know More
                 </button>
                 <div className="ml-2 flex space-x-2">
@@ -96,22 +105,24 @@ function PropertyCardInvestList() {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                console.log('Fetched properties:', response.data); // Debugging
+                const response = await axios.get(
+                    "https://cfrecpune.com/cfreproperties/"
+                );
+                console.log("Fetched properties:", response.data); // Debugging
                 setProperties(response.data);
             } catch (error) {
-                console.error('Error fetching properties:', error);
+                console.error("Error fetching properties:", error);
             }
         };
         fetchProperties();
     }, []);
 
     const handleSearch = () => {
-        navigate('/ExploreRentProperty');
+        navigate("/ExploreRentProperty");
     };
 
     return (
-        <div className='my-8 mx-12'>
+        <div className="my-8 mx-12">
             <div className="flex justify-between items-center mb-8">
                 <h1 className="md:text-4xl font-semibold mx-2">
                     Exclusive Properties in India
@@ -125,8 +136,7 @@ function PropertyCardInvestList() {
             </div>
 
             <Swiper
-                spaceBetween={30}
-                centeredSlides={true}
+                spaceBetween={30} // Space between each card
                 autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,
@@ -134,30 +144,28 @@ function PropertyCardInvestList() {
                 modules={[Autoplay, Pagination, Navigation]}
                 breakpoints={{
                     640: {
-                        slidesPerView: 1,
+                        slidesPerView: 1, // 1 card for small screens
                     },
                     768: {
-                        slidesPerView: 2,
+                        slidesPerView: 2, // 2 cards for medium screens
                     },
                     1024: {
-                        slidesPerView: 3,
+                        slidesPerView: 3, // 3 cards for larger screens
                     },
                     1280: {
-                        slidesPerView: 3,
+                        slidesPerView: 3, // 3 cards for extra large screens
                     },
                 }}
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
             >
                 {properties.length > 0 ? (
-                    properties.map(property => (
+                    properties.map((property) => (
                         <SwiperSlide key={property.id}>
                             <div
                                 onMouseEnter={() => swiperRef.current.autoplay.stop()}
                                 onMouseLeave={() => swiperRef.current.autoplay.start()}
                             >
-                                <PropertyCardInvest
-                                    property={property}
-                                />
+                                <PropertyCardInvest property={property} />
                             </div>
                         </SwiperSlide>
                     ))
@@ -165,6 +173,7 @@ function PropertyCardInvestList() {
                     <p>No properties available</p> // Message when there are no properties
                 )}
             </Swiper>
+
         </div>
     );
 }

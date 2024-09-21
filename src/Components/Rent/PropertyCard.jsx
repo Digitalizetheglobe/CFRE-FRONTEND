@@ -25,16 +25,16 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             </div>
 
             <div className="relative">
-                {/* Property image with a link to detailed view */}
-                <Link to={`/property-detail/${property.id || ''}`}>
-                    <img
-                        className="w-full h-48 object-cover"
-                        src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
-                        alt={title}
-                    />
+    {/* Property image with a link to detailed view */}
+    <Link to={`/property-detail/${property.id || ''}`}>
+        <img
+            className="w-full h-48 object-cover"
+            src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+            alt={title}
+        />
+    </Link>
+</div>
 
-                </Link>
-            </div>
 
             <div className="px-6 py-4">
                 {/* Property cost */}
