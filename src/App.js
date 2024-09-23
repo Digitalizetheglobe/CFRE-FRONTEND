@@ -56,7 +56,7 @@ import ProjectForm from './AdminDashboard/PropertyPages/ProjectForm.jsx'
 import EmiCalculator from './Components/EMICalculator/EmiCalculator.jsx';
 import StickyButton from './Components/StickyButton/StickyButton.jsx';
 
-
+import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 function App() {
   return (
     <Router>
@@ -174,6 +174,14 @@ function App() {
               < ProjectForm />
             </PrivateRoute>
           } 
+          />
+          <Route
+          path='/ViewAllProperty'
+          element={
+            <PrivateRoute>
+              <ViewAllProperty />
+            </PrivateRoute>
+          }
           />
         </Routes>
       </main>
