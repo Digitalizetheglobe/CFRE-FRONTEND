@@ -10,16 +10,16 @@ function Template() {
                 className="w-full md:w-1/2 flex flex-col justify-center items-center space-y-2 p-4 bg-cover bg-center rounded-lg"
                 style={{ backgroundImage: `url(${Image})` }}
             >
-                <p className="text-white font-bold text-lg text-center mb-2">
-                    Find Your Perfect Office Space With Us!
+                <p className="text-white font-semibold text-xl text-center mb-2">
+                Skip Complex Formulas! Use our Free Tools to Calculate
                 </p>
                 <div className="flex justify-center space-x-4 mt-2">
-                    <Link to='/ExploreRentProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
-                        Rent Properties
+                    <Link to='/emiCalculator' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
+                        EMI Calculator
                     </Link>
-                    <Link to='/ExploreInvestProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
+                    {/* <Link to='/ExploreInvestProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
                         Invest Properties
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
 

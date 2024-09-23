@@ -15,7 +15,7 @@ function BlogHomePage() {
             <h1 className="md:text-3xl text-2xl font-bold ">
               Insights from CFRE Realty
             </h1>
-            <div className="absolute top-0 right-0 md:mt-4 mt-12 mr-4">
+            <div className="absolute top-0 right-0 md:mt-4 mt-12 md:mr-4 mr-32">
               <Link
                 to="/Latestblog"
                 className="px-4 py-2 text-sm rounded text-white bg-[#d84a48] hover:bg-[#9c2f2d] transition-colors"

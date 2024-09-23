@@ -26,7 +26,9 @@ const OfficeCard = ({ property, onEnquireClick }) => {
             </div>
 
             <div className="relative">
-                <img className="w-full h-48 object-cover" src={Image} alt="Office" />
+                <img className="w-full h-48 object-cover"
+            src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+            alt="Office" />
             </div>
 
             <div className="px-6 py-4">

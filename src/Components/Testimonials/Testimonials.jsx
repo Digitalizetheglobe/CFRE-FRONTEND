@@ -74,7 +74,7 @@ function Testimonials() {
       </div>
 
       <div
-        className="py-12 sm:py-16 border ml-16 mr-12 mt-6"
+        className="py-12 sm:py-16 border ml-16 mr-12 mt-6  hidden md:block"
         style={{
           borderRadius: "2rem",
           backgroundImage: `url(${Bckgrndimg})`,

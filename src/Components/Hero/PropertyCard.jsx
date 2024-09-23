@@ -27,7 +27,7 @@ const PropertyCard = ({ property }) => {
             <Link to={`/property-detail/${property.id}`} className="relative block">
                 <img 
                     className="w-full h-48 object-cover cursor-pointer" 
-                    src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
+                    src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : OfficeImage}
                     // src={property.image || OfficeImage} 
                     alt="Property" 
                 />
