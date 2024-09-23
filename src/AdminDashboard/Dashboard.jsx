@@ -16,7 +16,7 @@ const Dashboard = () => {
             <p className="text-gray-600 mb-4">Add new property details manually to the database.</p>
             <Link 
               to="/addnewproperty" 
-              className="inline-block bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+              className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
               Go to Form
             </Link>
@@ -25,10 +25,10 @@ const Dashboard = () => {
           {/* Card 2: Bulk Property */}
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Bulk Property</h2>
-            <p className="text-gray-600 mb-4">Upload multiple property details in one go.</p>
+            <p className="text-gray-600 mb-4">Upload multiple property details in one go.</p><br/>
             <Link 
               to="/bulkproperty" 
-              className="inline-block bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
+              className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
               Upload Bulk Data
             </Link>
@@ -39,8 +39,8 @@ const Dashboard = () => {
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Add Project</h2>
             <p className="text-gray-600 mb-4">Create and manage new projects for properties.</p>
             <Link 
-              to="/addnewproperty" 
-              className="inline-block bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition-colors duration-300 ease-in-out"
+              to="/addnewproject" 
+              className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
               Add New Project
             </Link>
@@ -52,20 +52,19 @@ const Dashboard = () => {
             <p className="text-gray-600 mb-4">View and manage all listed properties.</p>
             <Link 
               to="/propertyList" 
-              className="inline-block bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600 transition-colors duration-300 ease-in-out"
+              className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
               View All
             </Link>
           </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out lg:col-span-2">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Latest Enquiry</h2>
-            <p className="text-gray-600 mb-4"></p>
+            <p className="text-gray-600 mb-4">Upload multiple property details in one go.</p>
             <Link 
-              to="/enquirydetails" 
-              className="inline-block bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600 transition-colors duration-300 ease-in-out"
+           to="/enquirydetails" 
+              className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
-              View All
+                 View All
             </Link>
           </div>
         </div>
