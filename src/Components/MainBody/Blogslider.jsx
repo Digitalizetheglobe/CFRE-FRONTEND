@@ -154,7 +154,7 @@ const firstRow = reviews.slice(0, reviews.length / 1);
 
 const ReviewCard = ({ img }) => {
   return (
-    <figure className="relative w-64 h-28 cursor-pointer overflow-hidden rounded-xl mt-3 mb-5 border border-gray-600 bg-gray-100 hover:bg-gray-200 mx-1 flex flex-col">
+    <figure className="relative w-64 h-28 cursor-pointer overflow-hidden rounded-xl mt-3 mb-5 border border-gray-600 bg-white hover:bg-gray-200 mx-1 flex flex-col">
       <img
         className="object-cover w-full h-full mt-0 mb-0 ml-0 mr-0"
         alt="Client Logo"

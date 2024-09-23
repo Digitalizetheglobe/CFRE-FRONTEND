@@ -4,6 +4,8 @@ import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
 import image from '../assets/RecentProperty.jpg';
 import Header from '../Header/header.jsx';
+import Image from '../assets/ABC.jpeg';
+
 
 const PropertyDetailInRent = () => {
     const { id } = useParams();
@@ -95,7 +97,7 @@ const PropertyDetailInRent = () => {
     return (
         <>
         <Header />
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto">
+            {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
                 <div className="sticky top-28 bg-white  shadow-md flex justify-center space-x-4 py-2">
                     <button
                         className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
@@ -111,17 +113,21 @@ const PropertyDetailInRent = () => {
                     </button>
                 </div>
 
-                <div className="border border-gray-300 rounded-lg shadow-sm bg-white p-4 max-w-8xl mx-auto mt-5 flex flex-wrap lg:flex-nowrap">
+                <div className=" rounded-lg shadow-sm bg-white p-4 max-w-8xl mx-auto mt-5 flex flex-wrap lg:flex-nowrap">
                     <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                         <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                             <div className="flex flex-wrap lg:flex-nowrap">
-                                <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-                                    <img
-                                        src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg"
-                                        alt="Property"
-                                        className="w-full h-72 object-cover rounded-lg shadow-md"
-                                    />
-                                </div>
+                          <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
+    <img
+      src={property?.multiplePropertyImages?.length > 0 
+        ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` 
+        : Image}  // Default image when no images are available
+      alt="Property"
+      className="w-full h-72 object-cover rounded-lg shadow-md"
+    />
+</div>
+
+
 
                                 <div className="w-full lg:w-1/2">
                                     <div className="text-2xl font-bold text-gray-900 mb-4">
@@ -187,7 +193,7 @@ const PropertyDetailInRent = () => {
                                 </div>
                             </div>
 
-                            <div ref={moreDetailsRef} className="mt-8 bg-white p-6 rounded-lg shadow-md border border-gray-300">
+                            <div ref={moreDetailsRef} className="mt-8 bg-white p-6 rounded-lg shadow-md ">
                                 <h4 className="text-xl font-semibold mb-6">More Details</h4>
                                 <div className="space-y-4 divide-y divide-gray-200">
                                     {displayedDetails.map((detail, index) => (
@@ -246,7 +252,7 @@ const PropertyDetailInRent = () => {
                         </div>
                     </div>
                 )}
-            </div>
+            {/* </div> */}
         </>
     );
 };

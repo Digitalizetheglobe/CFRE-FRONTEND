@@ -32,7 +32,9 @@ const Unfurnished = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-                setFilteredProperties(response.data.filter(property => property.furnishing === 'Fully Furnished'));
+                setFilteredProperties(response.data.filter(property => property.furnishing === 'Furnished'));
+                console.log('111111===>', response.data);
+                
             } catch (error) {
                 setError('Error fetching properties. Please try again later.'); // Set error message
                 console.error('Error fetching properties:', error);
@@ -56,7 +58,7 @@ const Unfurnished = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'Fully Furnished');
+        let filtered = properties.filter(property => property.furnishing === 'Furnished');
 
         if (searchTerm) {
             filtered = filtered.filter(property =>

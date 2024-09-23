@@ -40,7 +40,9 @@ function PropertyCard({ property }) {
             </div>
 
             <div className="relative">
-                <img className="w-full h-52 object-cover" src={property.image || Image} alt="Property" />
+                <img className="w-full h-52 object-cover" 
+                src={property.image || Image} 
+                alt="Property" />
             </div>
 
             <div className="px-6 py-4">

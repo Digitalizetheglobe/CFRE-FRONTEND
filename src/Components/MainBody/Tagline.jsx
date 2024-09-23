@@ -21,7 +21,7 @@ const Tagline = () => {
                 backgroundImage: `url(${Image})`,
                 backgroundSize: 'cover', // Ensures the image covers the container
                 backgroundPosition: 'center', // Centers the image
-                height: '500px', // Increased height
+                height: '450px', // Increased height
             }}
         >
             <div className="w-2/3"> {/* Adjusted width */}
