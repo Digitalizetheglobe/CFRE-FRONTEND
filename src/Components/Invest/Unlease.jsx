@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
@@ -28,11 +26,9 @@ const Prelease = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-                console.log('111111111===>',response.data);
-                
                 setFilteredProperties(response.data.filter(property => property.propertySubtype === 'unLeased'));
             } catch (error) {
-                setError('Error fetching properties. Please try again later.'); // Set error message
+                setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
             }
         };
@@ -61,6 +57,9 @@ const Prelease = () => {
                 property.location.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
+
+        // Sort by latest property first (assuming `createdAt` is the date field)
+        filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         if (sortOrder === 'asc') {
             filtered.sort((a, b) => a.cost - b.cost);
@@ -129,4 +128,3 @@ const Prelease = () => {
 };
 
 export default Prelease;
-

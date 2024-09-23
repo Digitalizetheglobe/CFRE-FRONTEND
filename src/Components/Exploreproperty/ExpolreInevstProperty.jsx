@@ -32,8 +32,11 @@ const ExploreInvestProperty = () => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setProperties(response.data);
-                setFilteredProperties(response.data.filter(property => property.availableFor === "Rent"));
+                const sortedProperties = response.data
+                    .filter(property => property.availableFor === "Rent")
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by latest date
+                setProperties(sortedProperties);
+                setFilteredProperties(sortedProperties);
             } catch (error) {
                 setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
@@ -41,6 +44,7 @@ const ExploreInvestProperty = () => {
         };
         fetchProperties();
     }, []);
+    
 
     useEffect(() => {
         if (!error) { 

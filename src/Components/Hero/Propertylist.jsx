@@ -6,12 +6,15 @@ import Header from '../Header/header.jsx';
 import Pagination from '@mui/material/Pagination';
 
 function PropertyList() {
-    const location = useLocation();
+    const location = useLocation(); 
     const properties = location.state?.properties || [];
     console.log('Properties Data:', properties);
 
     const [currentPage, setCurrentPage] = useState(1);
     const propertiesPerPage = 8; // Set how many properties per page you want to show
+
+    // Sort properties by createdAt or updatedAt in descending order to show latest properties first
+    const sortedProperties = [...properties].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     // Handle page change for pagination
     const handlePageChange = (event, value) => {
@@ -23,7 +26,7 @@ function PropertyList() {
     const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
 
     // Get the current properties for the current page
-    const currentProperties = properties.slice(indexOfFirstProperty, indexOfLastProperty);
+    const currentProperties = sortedProperties.slice(indexOfFirstProperty, indexOfLastProperty);
 
     return (
         <>
@@ -32,7 +35,7 @@ function PropertyList() {
             {/* Property List Section */}
             <div className="p-4">
                 {/* Check if there are any properties */}
-                {properties.length > 0 ? (
+                {sortedProperties.length > 0 ? (
                     <div className="flex flex-wrap -mx-2 mt-5">
                         {currentProperties.map(property => (
                             <div key={property.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
@@ -46,10 +49,10 @@ function PropertyList() {
             </div>
 
             {/* Add pagination component */}
-            {properties.length > propertiesPerPage && (
+            {sortedProperties.length > propertiesPerPage && (
                 <div className="flex justify-center mt-6">
                     <Pagination
-                        count={Math.ceil(properties.length / propertiesPerPage)} // Calculate total number of pages
+                        count={Math.ceil(sortedProperties.length / propertiesPerPage)} // Calculate total number of pages
                         page={currentPage}
                         onChange={handlePageChange}
                         color="primary"

@@ -59,21 +59,26 @@ const Unfurnished = () => {
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
         let filtered = properties.filter(property => property.furnishing === 'Furnished');
-
+    
         if (searchTerm) {
             filtered = filtered.filter(property =>
                 property.location.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
-
+    
+        // Default sorting: by createdAt or updatedAt to show the latest properties first
+        filtered.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    
+        // If a sort order is specified, apply that on top of the default sorting
         if (sortOrder === 'asc') {
             filtered.sort((a, b) => a.cost - b.cost);
         } else if (sortOrder === 'desc') {
             filtered.sort((a, b) => b.cost - a.cost);
         }
-
+    
         setFilteredProperties(filtered);
     };
+    
 
     const handlePageChange = (event, value) => {
         setCurrentPage(value);

@@ -23,8 +23,8 @@ function PropertyCardInvest({ property }) {
     };
 
     const imageUrl = property.multiplePropertyImages && property.multiplePropertyImages.length > 0
-    ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
-    : Image;
+        ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
+        : Image;
 
     return (
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
@@ -42,12 +42,10 @@ function PropertyCardInvest({ property }) {
             </div>
 
             <div className="relative">
-                <img
-                    className="w-full h-52 object-cover"
-
-                    src={imageUrl}
-                    alt="Property"
-                />
+                <img className="w-full h-52 object-cover" 
+                src={imageUrl} 
+                alt="Property"
+                onClick={handleImageClick} />
             </div>
 
             <div className="px-6 py-4">
@@ -64,7 +62,7 @@ function PropertyCardInvest({ property }) {
                     <p className="mb-1 flex justify-between">
                         Building Type
                         <span className="font-semibold">
-                            {property.buildingType}A Grade
+                            {property.buildingType} A Grade
                         </span>
                     </p>
                     <p className="mb-1 flex justify-between">
@@ -112,7 +110,11 @@ function PropertyCardInvestList() {
                     "https://cfrecpune.com/cfreproperties/"
                 );
                 console.log("Fetched properties:", response.data); // Debugging
-                setProperties(response.data);
+                
+                // Sort the properties by the date field (createdAt or updatedAt) in descending order
+                const sortedProperties = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                setProperties(sortedProperties); // Set sorted properties
             } catch (error) {
                 console.error("Error fetching properties:", error);
             }
@@ -176,7 +178,6 @@ function PropertyCardInvestList() {
                     <p>No properties available</p> // Message when there are no properties
                 )}
             </Swiper>
-
         </div>
     );
 }

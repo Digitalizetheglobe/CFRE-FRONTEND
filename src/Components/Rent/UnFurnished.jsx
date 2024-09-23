@@ -1,12 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
-// import Header from '../Header/header.jsx';
-import Header from '../Header/header.jsx'
+import Header from '../Header/header.jsx';
 
 const Unfurnished = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -63,6 +61,10 @@ const Unfurnished = () => {
             );
         }
 
+        // First sort by date to show the latest properties
+        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // Adjust based on your date field
+
+        // Then apply price sorting if selected
         if (sortOrder === 'asc') {
             filtered.sort((a, b) => a.cost - b.cost);
         } else if (sortOrder === 'desc') {
