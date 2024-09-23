@@ -23,7 +23,7 @@ const ShowroomPropertyDetails = () => {
     useEffect(() => {
         const fetchShowroomProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/showroomproperties/${id}`);
+                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${id}`);
                 setShowroomProperty(response.data);
             } catch (error) {
                 console.error('Error fetching showroom property:', error);

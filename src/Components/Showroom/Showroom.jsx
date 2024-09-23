@@ -1,11 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowroomCard from './ShowroomCard';
 import ContactForm from '../MainBody/ContactForm';
 import ShowroomVideo from './showroomvideo.mp4'; // Import your video file
 import Error from '../Error/Error'; // Import the Error component
-import Header from '../Header/header.jsx'
+import Header from '../Header/header.jsx';
+
 const Showroom = () => {
     const [properties, setProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
@@ -22,8 +22,9 @@ const Showroom = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/showroomproperty');
-                setProperties(response.data);
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const showroomProperties = response.data.filter(property => property.propertyType === 'Showroom'); // Filter for Showroom properties
+                setProperties(showroomProperties);
                 setError(null); // Clear error if data fetch is successful
             } catch (error) {
                 console.error('Error fetching showroom properties:', error);
@@ -36,56 +37,57 @@ const Showroom = () => {
 
     return (
         <>
-        <Header />
-        <div className="relative overflow-hidden">
-            <div className="absolute inset-0 w-full md:h-[75vh] overflow-hidden">
-                <video
-                    className="w-full h-full object-cover"
-                    src={ShowroomVideo}
-                    autoPlay
-                    loop
-                    muted
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <h1 className="text-3xl md:text-4xl text-white">Showroom Properties</h1>
+            <Header />
+            <div className="relative overflow-hidden">
+                <div className="absolute inset-0 w-full md:h-[75vh] overflow-hidden">
+                    <video
+                        className="w-full h-full object-cover"
+                        src={ShowroomVideo}
+                        autoPlay
+                        loop
+                        muted
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <h1 className="text-3xl md:text-4xl text-white">Showroom Properties</h1>
+                    </div>
                 </div>
-            </div>
 
-            <div className="relative container mx-auto p-4 mt-[80vh]">
-                {error ? (
-                    <Error message={error} /> // Render Error component if there's an error
-                ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {properties.length === 0 ? (
-                            <p>No showroom properties found.</p>
-                        ) : (
-                            properties.map(property => (
-                                <ShowroomCard
-                                    key={property.id}
-                                    property={property}
-                                    onEnquire={handleButtonClick} // Pass the handler
-                                />
-                            ))
-                        )}
+                <div className="relative container mx-auto p-4 mt-[80vh]">
+                    {error ? (
+                        <Error message={error} /> // Render Error component if there's an error
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {properties.length === 0 ? (
+                                <p>No showroom properties found.</p>
+                            ) : (
+                                properties.map(property => (
+                                    <ShowroomCard
+                                        key={property.id}
+                                        property={property}
+                                        onEnquire={handleButtonClick} // Pass the handler
+                                    />
+                                ))
+                            )}
+                        </div>
+                    )}
+                </div>
+
+                {/* Render ContactForm only if isFormVisible is true */}
+                {isFormVisible && (
+                    <div
+                        className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
+                        onClick={handleCloseForm} // Close on overlay click
+                    >
+                        <div
+                            className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
+                            onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
+                        >
+                            <ContactForm onClose={handleCloseForm} />
+                        </div>
                     </div>
                 )}
             </div>
-
-            {/* Render ContactForm only if isFormVisible is true */}
-            {isFormVisible && (
-                <div
-                    className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
-                    onClick={handleCloseForm} // Close on overlay click
-                >
-                    <div
-                        className='relative bg-white p-10 rounded-lg shadow-lg max-w-[500px] w-full'
-                        onClick={(e) => e.stopPropagation()} // Prevent clicks inside the form from closing it
-                    >
-                        <ContactForm onClose={handleCloseForm} />
-                    </div>
-                </div>
-            )}
-        </div></>
+        </>
     );
 };
 
