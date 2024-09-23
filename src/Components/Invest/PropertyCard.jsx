@@ -30,16 +30,16 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <Link to={`/property-detail/${property.id}`}  className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-2xl text-gray-800">
+                <div className="font-bold text-xl text-gray-800 ml-4">
                 Commercial Office Space for {property.availableFor} {property.buArea}sq.ft 
                     </div>
 
-                <div className="text-gray-600 mt-1">{property.location}, {property.city}</div>
+                <div className="text-gray-600 mt-1 ml-4">{property.location}, {property.city}</div>
             </Link>
 
 
 
-            <div className="px-6 pt-1 pb-2 flex justify-between items-center">
+            <div className="px-6 pt-1 pb-4 flex justify-between items-center">
                 <Link className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-8 rounded w-4/5"
                     to={`/property-detail/${property.id}`}
                 >

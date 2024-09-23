@@ -22,6 +22,10 @@ function PropertyCardInvest({ property }) {
         navigate(`/property-detail/${property.id}`); // Update the path as per the routing for investment properties
     };
 
+    const imageUrl = property.multiplePropertyImages && property.multiplePropertyImages.length > 0
+    ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
+    : Image;
+
     return (
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
             <div className="absolute top-0 right-0 z-10 p-2">
@@ -41,8 +45,7 @@ function PropertyCardInvest({ property }) {
                 <img
                     className="w-full h-52 object-cover"
 
-                    src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}  // Make sure to use the full backend URL
-
+                    src={imageUrl}
                     alt="Property"
                 />
             </div>

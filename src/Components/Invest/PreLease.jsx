@@ -33,7 +33,7 @@ const Prelease = () => {
                 setProperties(response.data);
                 console.log("2222222",response.data);
                 
-                setFilteredProperties(response.data.filter(property => property.availableFor === 'prelesed '));
+                setFilteredProperties(response.data.filter(property => property.propertySubtype === "preLeased"));
             } catch (error) {
                 setError('Error fetching properties. Please try again later.'); // Set error message
                 console.error('Error fetching properties:', error);
@@ -59,7 +59,7 @@ const Prelease = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.availableFor === 'prelesed ');
+        let filtered = properties.filter(property => property.propertySubtype === "preLeased");
 
         if (searchTerm) {
             filtered = filtered.filter(property =>

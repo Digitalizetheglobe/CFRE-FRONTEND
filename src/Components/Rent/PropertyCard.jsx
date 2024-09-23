@@ -25,25 +25,25 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             </div>
 
             <div className="relative">
-    {/* Property image with a link to detailed view */}
-    <Link to={`/property-detail/${property.id || ''}`}>
-        <img
-            className="w-full h-48 object-cover"
-            src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
-            alt={title}
-        />
-    </Link>
-</div>
+                {/* Property image with a link to detailed view */}
+                <Link to={`/property-detail/${property.id || ''}`}>
+                    <img
+                        className="w-full h-48 object-cover"
+                        src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+                        alt={title}
+                    />
+                </Link>
+            </div>
 
 
             <div className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold text-xl text-gray-800">
-                Commercial Office Space for {property.availableFor} {property.buArea}sq.ft {property.furnishing}
+                    Commercial Office Space for {property.availableFor} {property.buArea}sq.ft {property.furnishing}
                 </div>
 
                 {/* Property name with link to detailed view */}
-             
+
 
                 {/* Location and city */}
                 <div className="text-gray-600 mt-1">{property.location || 'Unknown Location'}, {property.city || 'Unknown City'}</div>

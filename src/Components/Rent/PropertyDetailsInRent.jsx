@@ -89,7 +89,7 @@ const PropertyDetailInRent = () => {
         { label: 'Property Taxes', value: 'To be borne by Licensor' },
         { label: 'GST on rent and maintenance', value: 'To be borne by Licensee' },
         { label: 'Electricity Charges / Water Charges', value: 'Borne by the Licensee as per usage directly to Authority' },
-        { label: 'Agreement charges', value: 'Equally by both the parties' },
+        { label: 'Agreement charges', value: property.agreementCharges },
     ];
 
     const displayedDetails = showAllDetails ? allDetails : allDetails.slice(0, 6);
