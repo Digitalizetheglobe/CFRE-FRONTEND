@@ -420,7 +420,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="bg-white p-4 md:rounded-full shadow-lg flex flex-wrap items-center space-x-2 w-full max-w-7xl mx-auto">
+        <div className="bg-white md:p-4 p-4 md:rounded-full shadow-lg flex flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
     {/* Property Category selection */}
     <select
         value={propertyCategory}

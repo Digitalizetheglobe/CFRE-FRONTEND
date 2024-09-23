@@ -218,9 +218,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../Header/cfre-logo.png';
 
 function Header() {
-    const [isInvestDropdownOpen, setInvestDropdownOpen] = useState(false);
-    const [isRentDropdownOpen, setRentDropdownOpen] = useState(false);
-    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false); // Mobile menu state
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const [isRentDropdownOpen, setIsRentDropdownOpen] = useState(false);
+const [isInvestDropdownOpen, setIsInvestDropdownOpen] = useState(false);
+
     const navigate = useNavigate();
 
     // Refs for dropdown menus
@@ -235,10 +236,10 @@ function Header() {
         // Event listener to handle clicks outside of the dropdown
         const handleClickOutside = (event) => {
             if (rentDropdownRef.current && !rentDropdownRef.current.contains(event.target) && isRentDropdownOpen) {
-                setRentDropdownOpen(false);
+                setIsRentDropdownOpen(false);
             }
             if (investDropdownRef.current && !investDropdownRef.current.contains(event.target) && isInvestDropdownOpen) {
-                setInvestDropdownOpen(false);
+                setIsInvestDropdownOpen(false);
             }
         };
 
@@ -248,19 +249,10 @@ function Header() {
         };
     }, [isRentDropdownOpen, isInvestDropdownOpen]);
 
-    const toggleInvestDropdown = () => {
-        setInvestDropdownOpen(!isInvestDropdownOpen);
-        if (isRentDropdownOpen) setRentDropdownOpen(false); // Close rent dropdown if open
-    };
-
-    const toggleRentDropdown = () => {
-        setRentDropdownOpen(!isRentDropdownOpen);
-        if (isInvestDropdownOpen) setInvestDropdownOpen(false); // Close invest dropdown if open
-    };
-
-    const toggleMobileMenu = () => {
-        setMobileMenuOpen(!isMobileMenuOpen);
-    };
+    const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
+    const toggleRentDropdown = () => setIsRentDropdownOpen(prev => !prev);
+    const toggleInvestDropdown = () => setIsInvestDropdownOpen(prev => !prev);
+    
 
     return (
         <header className="sticky top-0 bg-white shadow-md tracking-wide z-50">

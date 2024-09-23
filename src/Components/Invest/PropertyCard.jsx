@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon from react-icons\
 import { Link } from 'react-router-dom'; // Import Link for navigation
+import Image from '../assets/ABC.jpeg'
 
 const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
@@ -21,7 +22,10 @@ const PropertyCard = ({ property, onEnquire }) => {
             </div>
         
             <Link to={`/property-detail/${property.id}`} className="relative">
-                <img className="w-full h-48 object-cover" src="/Related sells the _Hudson Yards Experience_ at its tech-forward sales gallery.jpeg" alt="Property" />
+                <img className="w-full h-48 object-cover" 
+            src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+            alt="Property" 
+                />
             </Link>
 
             <Link to={`/property-detail/${property.id}`}  className="px-6 py-4">

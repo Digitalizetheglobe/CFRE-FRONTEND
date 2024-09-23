@@ -4,6 +4,10 @@ import OfficeCard from './OfficeCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error';
 import Header from '../Header/header.jsx'
+import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
+
+
+
 const Office = () => {
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
@@ -16,6 +20,11 @@ const Office = () => {
     });
     const [sortOrder, setSortOrder] = useState('');
     const [error, setError] = useState(null); // State for error handling
+
+
+      // Pagination-related state
+      const [currentPage, setCurrentPage] = useState(1);
+      const propertiesPerPage = 8; 
 
     useEffect(() => {
         const fetchProperties = async () => {
@@ -78,6 +87,17 @@ const Office = () => {
     useEffect(() => {
         applyFilters();
     }, [filters, sortOrder]);
+
+    const indexOfLastProperty = currentPage * propertiesPerPage;
+    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+
+    // Slice the filtered properties for the current page
+    const currentProperties = filteredProperties.slice(indexOfFirstProperty, indexOfLastProperty);
+
+    // Handle page change
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
 
     return (
         <>
@@ -152,25 +172,34 @@ const Office = () => {
                 </div>
             </div>
 
-            {/* Main content - Below the Filter Section */}
             <div className="relative container mx-auto p-4 mt-5 md:ml-14">
-                {error ? (
-                    <Error message={error} /> // Render Error component if there's an error
-                ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {filteredProperties.length > 0 ? (
-                            filteredProperties.map(property => (
-                                <OfficeCard
-                                    key={property.id}
-                                    property={property}
-                                    onEnquireClick={() => handleEnquireClick(property)}
-                                />
-                            ))
-                        ) : (
-                            <p className="text-center text-xl">No properties available</p>
-                        )}
-                    </div>
-                )}
+    {error ? (
+        <Error message={error} /> // Render Error component if there's an error
+    ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {currentProperties.length > 0 ? (
+                currentProperties.map(property => (
+                    <OfficeCard
+                        key={property.id}
+                        property={property}
+                        onEnquireClick={() => handleEnquireClick(property)}
+                    />
+                ))
+            ) : (
+                <p className="text-center text-xl">No properties available</p>
+            )}
+        </div>
+    )}
+</div>
+  {/* Pagination Component */}
+  <div className="flex justify-center mt-6">
+                <Pagination
+                    count={Math.ceil(filteredProperties.length / propertiesPerPage)} // Total page count
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                    size="large"
+                />
             </div>
 
             {/* Render ContactForm only if isFormVisible is true */}

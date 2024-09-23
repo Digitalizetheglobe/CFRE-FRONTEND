@@ -9,11 +9,13 @@ import Template from '../MainBody/Template.jsx';
 import Hero from '../Hero/Hero.jsx';
 import Blogslider from '../MainBody/Blogslider.jsx';
 import Header from '../Header/header.jsx';
+import StickyButton from '../StickyButton/StickyButton.jsx';
 
 const Home = () => {
   return (
     <>
     <Header/>
+      {/* <StickyButton/> */}
       <Hero />
       <Blogslider />
       <Card />

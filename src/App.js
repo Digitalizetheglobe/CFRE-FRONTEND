@@ -52,6 +52,9 @@ import FAQs from './FAQs.jsx';
 import BasicForm from './AdminDashboard/BasicForm.jsx'
 import BasicFormView from './AdminDashboard/BasicFormView.jsx'
 import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
+import EmiCalculator from './Components/EMICalculator/EmiCalculator.jsx';
+import StickyButton from './Components/StickyButton/StickyButton.jsx';
+
 
 function App() {
   return (
@@ -59,6 +62,7 @@ function App() {
       <ScrollToTop />
       {/* <Header /> */}
       <main>
+        <StickyButton/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -95,7 +99,7 @@ function App() {
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
-
+          <Route path="/emiCalculator" element={<EmiCalculator/>} />
 
 
 
