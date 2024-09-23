@@ -52,6 +52,7 @@ import FAQs from './FAQs.jsx';
 import BasicForm from './AdminDashboard/BasicForm.jsx'
 import BasicFormView from './AdminDashboard/BasicFormView.jsx'
 import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
+import ProjectForm from './AdminDashboard/PropertyPages/ProjectForm.jsx'
 
 function App() {
   return (
@@ -161,6 +162,14 @@ function App() {
                 <EnquiryDetails />
               </PrivateRoute>
             }
+          />
+          <Route 
+          path="/addnewproject"
+          element={
+            <PrivateRoute>
+              < ProjectForm />
+            </PrivateRoute>
+          } 
           />
         </Routes>
       </main>
