@@ -51,7 +51,7 @@ const Dashboard = () => {
             <h2 className="text-xl font-semibold mb-4 text-gray-800">View All Property</h2>
             <p className="text-gray-600 mb-4">View and manage all listed properties.</p>
             <Link 
-              to="/propertyList" 
+              to="/ViewAllProperty" 
               className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
               View All
