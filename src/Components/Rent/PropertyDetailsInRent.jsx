@@ -8,7 +8,8 @@ import Image from '../assets/ABC.jpeg';
 
 
 const PropertyDetailInRent = () => {
-    const { id } = useParams();
+    // const { id } = useParams();
+    const { slug } = useParams();
     const [property, setProperty] = useState(null);
     const [recentProperties, setRecentProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
@@ -40,7 +41,7 @@ const PropertyDetailInRent = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${id}`);
+                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);  // Update API call to use slug
                 setProperty(response.data);
             } catch (error) {
                 console.error('Error fetching property:', error);
@@ -58,7 +59,7 @@ const PropertyDetailInRent = () => {
 
         fetchProperty();
         fetchProperties();
-    }, [id]);
+    }, [slug]);
 
     if (!property) return <p className="text-center text-gray-500 mt-4">Property not found</p>;
 
@@ -66,8 +67,8 @@ const PropertyDetailInRent = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
 
-    const handlePropertyClick = (propertyId) => {
-        navigate(`/property-detail/${propertyId}`);
+    const handlePropertyClick = (propertySlug) => {
+        navigate(`/property-detail/${propertySlug}`);
     };
 
     const allDetails = [

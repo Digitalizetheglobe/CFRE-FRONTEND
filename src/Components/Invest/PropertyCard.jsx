@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import Image from '../assets/ABC.jpeg'
 
 const PropertyCard = ({ property, onEnquire }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`;
     const title = property.title;
 
     return (
@@ -21,14 +21,14 @@ const PropertyCard = ({ property, onEnquire }) => {
                 </a>
             </div>
         
-            <Link to={`/property-detail/${property.id}`} className="relative">
+            <Link to={`/property-detail/${property.slug}`} className="relative">
                 <img className="w-full h-48 object-cover" 
             src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
             alt="Property" 
                 />
             </Link>
 
-            <Link to={`/property-detail/${property.id}`}  className="px-6 py-4">
+            <Link to={`/property-detail/${property.slug}`}  className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold text-xl text-gray-800 ml-4">
                 Commercial Office Space for {property.availableFor} {property.buArea}sq.ft 
@@ -41,7 +41,7 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <div className="px-6 pt-1 pb-4 flex justify-between items-center">
                 <Link className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-8 rounded w-4/5"
-                    to={`/property-detail/${property.id}`}
+                    to={`/property-detail/${property.slug}`}
                 >
                     See Details
                 </Link>

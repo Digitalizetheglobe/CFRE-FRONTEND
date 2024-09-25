@@ -1,12 +1,10 @@
-
-
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import OfficeImage from './Office space.jpeg';
 
 const PropertyCard = ({ property }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`; // Use slug for share URL
     const title = property.title;
 
     return (
@@ -24,19 +22,18 @@ const PropertyCard = ({ property }) => {
             </div>
 
             {/* Image with link to property detail */}
-            <Link to={`/property-detail/${property.id}`} className="relative block">
+            <Link to={`/property-detail/${property.slug}`} className="relative block"> {/* Updated link */}
                 <img 
                     className="w-full h-48 object-cover cursor-pointer" 
                     src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : OfficeImage}
-                    // src={property.image || OfficeImage} 
                     alt="Property" 
                 />
             </Link>
 
             <div className="px-4 py-2">
                 {/* Property name with link to detailed view */}
-                <Link to={`/property-detail/${property.id}`} className="text-sm font-bold text-gray-800 mt-1 block hover:text-[#d84a48] transition-colors duration-300">
-                Commercial Office Space for {property.availableFor} {property.buArea} Sq.Ft {property.furnishing} 
+                <Link to={`/property-detail/${property.slug}`} className="text-sm font-bold text-gray-800 mt-1 block hover:text-[#d84a48] transition-colors duration-300">
+                    Commercial Office Space for {property.availableFor} {property.buArea} Sq.Ft {property.furnishing} 
                 </Link>
                 
                 {/* Location and city */}
@@ -48,7 +45,7 @@ const PropertyCard = ({ property }) => {
             <div className="px-4 pt-1 pb-2 flex justify-between items-center">
                 {/* Enquire button with link */}
                 <Link 
-                    to={`/property-detail/${property.id}`} 
+                    to={`/property-detail/${property.slug}`} // Updated link
                     className="bg-[#d84a48] hover:bg-[#a33735] text-white font-bold py-1 px-4 rounded text-xs flex-grow text-center"
                 >
                     Enquire

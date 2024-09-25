@@ -152,7 +152,8 @@ const Unfurnished = () => {
                     </div>
                 </div>
             )}
-        </div></>
+        </div>
+        </>
     );
 };
 

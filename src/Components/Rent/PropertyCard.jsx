@@ -1,10 +1,10 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
-import Image from '../assets/ABC.jpeg'
+import Image from '../assets/ABC.jpeg';
 
 const PropertyCard = ({ property = {}, onEnquire }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id || ''}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug || property.id || ''}`;
     const title = property.buildingName || 'Property';
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
@@ -26,24 +26,20 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
 
             <div className="relative">
                 {/* Property image with a link to detailed view */}
-                <Link to={`/property-detail/${property.id || ''}`}>
+                <Link to={`/property-detail/${property.slug || property.id || ''}`}>
                     <img
                         className="w-full h-48 object-cover"
-                        src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+                        src={property.multiplePropertyImages && property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
                         alt={title}
                     />
                 </Link>
             </div>
 
-
             <div className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold text-xl text-gray-800">
-                    Commercial Office Space for {property.availableFor} {property.buArea}sq.ft {property.furnishing}
+                    Commercial Office Space for {property.availableFor} {property.buArea} sq.ft {property.furnishing}
                 </div>
-
-                {/* Property name with link to detailed view */}
-
 
                 {/* Location and city */}
                 <div className="text-gray-600 mt-1">{property.location || 'Unknown Location'}, {property.city || 'Unknown City'}</div>
@@ -51,7 +47,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
 
             <div className="px-6 pb-4 flex justify-between items-center">
                 <Link
-                    to={`/property-detail/${property.id || ''}`}
+                    to={`/property-detail/${property.slug || property.id || ''}`}
                     className="bg-[#d84a48] hover:bg-[#c74b4a] text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
                     onClick={onEnquire} // Uncomment if you need onEnquire
                 >
