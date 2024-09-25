@@ -3,7 +3,7 @@ import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon
 import Image from './Office space image.jpg';
 
 const OfficeCard = ({ property, onEnquireClick }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`;
     const title = property.title;
 
     const handleWhatsAppClick = () => {

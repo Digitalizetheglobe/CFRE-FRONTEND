@@ -4,7 +4,7 @@ import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import Image from '../assets/ABC.jpeg';
 const ShowroomCard = ({ property }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.id}`;
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`;
     const title = property.title;
 
     return (
@@ -21,7 +21,7 @@ const ShowroomCard = ({ property }) => {
                 </a>
             </div>
 
-            <Link to={`/property-detail/${property.id}`}>
+            <Link to={`/property-detail/${property.slug}`}>
     {/* Replaced the property image with the provided image */}
     <img 
         className="w-full h-48 object-cover"
@@ -51,7 +51,7 @@ const ShowroomCard = ({ property }) => {
             </div>
 
             <div className="px-6 pb-4 flex justify-between items-center">
-                <Link to={`/property-detail/${property.id}`} className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
+                <Link to={`/property-detail/${property.slug}`} className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
 
                 >
                     See Details
