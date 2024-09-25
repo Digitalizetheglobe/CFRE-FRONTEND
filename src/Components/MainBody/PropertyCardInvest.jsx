@@ -19,7 +19,7 @@ function PropertyCardInvest({ property }) {
     };
 
     const handleImageClick = () => {
-        navigate(`/property-detail/${property.id}`); // Update the path as per the routing for investment properties
+        navigate(`/property-detail/${property.slug}`); // Update the path as per the routing for investment properties
     };
 
     const imageUrl = property.multiplePropertyImages && property.multiplePropertyImages.length > 0
