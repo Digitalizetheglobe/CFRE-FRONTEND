@@ -451,9 +451,9 @@ const SearchBar = () => {
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
             // Square footage filter logic based on carpet area
-            const carpetArea = property.carpetArea ? parseFloat(property.carpetArea) : 0;
-            const minSqFtMatch = minSqFt ? carpetArea >= parseFloat(minSqFt) : true;
-            const maxSqFtMatch = maxSqFt ? carpetArea <= parseFloat(maxSqFt) : true;
+            const buArea = property.buArea ? parseFloat(property.buArea) : 0;
+            const minSqFtMatch = minSqFt ? buArea >= parseFloat(minSqFt) : true;
+            const maxSqFtMatch = maxSqFt ? buArea <= parseFloat(maxSqFt) : true;
 
             return cityMatch && propertyTypeMatch && (propertyCategory === 'Invest' || furnishingStatusMatch) && searchMatch && minSqFtMatch && maxSqFtMatch;
         });
