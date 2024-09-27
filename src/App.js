@@ -75,11 +75,11 @@ function App() {
           <Route path="/rent" element={<Rent />} />
           <Route path="/projectproperty" element={<ProjectProperty />} />
           <Route path='/propertyList' element={<PropertyList />} />
-          <Route path="/combinedproperties/:id" element={<PropertyDetails />} />
-          <Route path="/property/:id" element={<PropertyDetail />} />
+          <Route path="/combinedproperties/:slug" element={<PropertyDetails />} />
+          <Route path="/property/:slug" element={<PropertyDetail />} />
           <Route path="/property-detail/:slug" element={<PropertyDetailInRent />} />
           <Route path='/commercial-properties-for-rent' element={<MainRent />} />
-          <Route path='/unfurnished-property-detail/:id' element={<UnfurnishedPropertyDetailsInRent />} />
+          <Route path='/unfurnished-property-detail/:slug' element={<UnfurnishedPropertyDetailsInRent />} />
           <Route path="/addproperty1" element={<AddProperty1 />} />
           <Route path="/addproperty2" element={<AddProperty2 />} />
           <Route path="/preleased" element={<PreLease />} />
@@ -98,7 +98,7 @@ function App() {
           <Route path='/exploreRentProperty' element={<ExploreRentProperty />} />
           <Route path="/office" element={<Office />} />
           <Route path="/showroom" element={<Showroom />} />
-          <Route path="/showroom/:id" element={<ShowroomPropertyDetails />} />
+          <Route path="/showroom/:slug" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
           <Route path="/emiCalculator" element={<EmiCalculator/>} />
 
