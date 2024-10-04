@@ -28,10 +28,12 @@ import img25 from "../ClientLogo/25.png";
 import img26 from "../ClientLogo/26.png";
 import img27 from "../ClientLogo/27.png";
 import img28 from "../ClientLogo/28.png";
+import img29 from "../ClientLogo/29.png";
 
 
 
 const reviews = [
+ 
   {
 
     img: img1,
@@ -43,6 +45,9 @@ const reviews = [
   {
 
     img: img3,
+  },
+  {
+    img: img29,
   },
   {
 
