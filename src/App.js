@@ -74,6 +74,7 @@ function App() {
           <Route path="/invest" element={<Invest />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/projectproperty" element={<ProjectProperty />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path='/propertyList' element={<PropertyList />} />
           <Route path="/combinedproperties/:slug" element={<PropertyDetails />} />
           <Route path="/property/:slug" element={<PropertyDetail />} />

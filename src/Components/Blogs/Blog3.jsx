@@ -114,7 +114,7 @@ function Blog1() {
         <img
           src={Banner} // Use src attribute for the image
           alt="Blog Banner"
-          className="w-full h-64 object-cover rounded-lg shadow-lg"
+          className="w-full md:h-64 h-32 object-cover rounded-lg shadow-lg"
         />
         {/* Text on Banner */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -131,14 +131,14 @@ function Blog1() {
         </h1>
 
         {/* Email and Date */}
-        <div className="flex items-center justify-between text-gray-600 mb-6">
+        <div className="flex items-center justify-between text-gray-600 mb-6 text-xs">
           <span>By cfrerealtypune@gmail.com </span>
           <span> July 6, 2024</span>
         </div>
 
         {/* Blog Content */}
         {/* <h2 className="text-2xl font-semibold mt-8 mb-4">Heading 2 Title</h2> */}
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Are you a growing business seeking a dynamic and collaborative
           environment? Do you need a professional space to impress clients
           without the hassle of setting up furniture and infrastructure? Look no
@@ -159,7 +159,7 @@ function Blog1() {
           At Amar Business Zone, we offer a variety of options to suit your
           needs:
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Furnished Offices for Rent: Get started quickly and efficiently with
           our move-in-ready furnished offices. These spaces come complete with
           stylish furniture, high-speed internet, and all the amenities you need
@@ -179,7 +179,7 @@ function Blog1() {
 
       {/* Content */}
       <div className="relative max-w-lg mx-auto text-center z-10">
-        <h4 className="text-white text-2xl font-bold mb-2 z-10">
+        <h4 className="text-white md:text-2xl font-bold mb-2 z-10">
           Navigating Every Aspect of Commercial Real Estate
         </h4>
 
@@ -280,73 +280,73 @@ function Blog1() {
 
 
         <h2 className="text-xl font-semibold mt-8 mb-4">Pros:</h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Move-in Ready: Start operating immediately without the wait or hassle
           of setting up furniture and equipment.{" "}
         </p>
         {/* <h2 className="text-2xl font-semibold mt-8 mb-4">Ongoing Infrastructure Development</h2> */}
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Cost-Effective: Eliminates upfront furniture costs and simplifies
           budgeting.{" "}
         </p>
         {/* <h2 className="text-2xl font-semibold mt-8 mb-4">High Rental Yields and Cost Efficiency</h2> */}
-        <p className="text-base text-gray-800 mb-6">
+        <p className="text-base text-gray-800 mb-6 text-justify">
           Professional Appearance: Provides a stylish and well-equipped space to
           impress clients.{" "}
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-4">Cons:</h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Limited Customization: Less flexibility to personalize the workspace
           to fit your brand identity.
         </p>
         {/* <h2 className="text-2xl font-semibold mt-8 mb-4">Conclusion</h2> */}
-        <p className="text-base text-gray-800 mb-6">
+        <p className="text-base text-gray-800 mb-6 text-justify">
           Potentially Higher Rent: Furnished offices may come at a slight
           premium compared to unfurnished options.
         </p>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Unfurnished Office Space: For businesses seeking a blank canvas to
           personalize their workspace, we offer unfurnished office spaces.
           Design your dream office and create a space that reflects your brand
           identity.
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-4">Pros:</h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="text-base text-gray-800 mb-6 text-justify">
           Complete Design Freedom: Create a space that reflects your company
           culture and brand personality.{" "}
         </p>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Potentially Lower Rent: May offer a more cost-effective option,
           especially for long-term leases.
         </p>
         <h2 className="text-xs font-semibold mt-8 mb-4"></h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="text-base text-gray-800 mb-6 text-justify">
           Furniture Ownership: Provides the opportunity to invest in furniture
           that suits your specific needs.
         </p>
         <h2 className="text-xl font-semibold mt-8 mb-4">Cons:</h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Start-up Time: Requires additional time and resources to purchase and
           set up furniture and equipment.
         </p>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Upfront Investment: Furniture costs can add up quickly, impacting
           initial budgeting. Pros:
         </p>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Co-working Space Available: Enjoy the benefits of a vibrant and
           collaborative atmosphere with our co-working space options. Network
           with other professionals, access shared resources, and benefit from
           the flexibility of co-working without the commitment of a traditional
           lease.
         </p>
-        <p className="text-lg text-gray-800 mb-6"></p>
+        
         {/* Leave a Comment Section */}
-        <h3 className="text-2xl font-bold mt-12 mb-6">Leave a Comment</h3>
+        <h3 className="md:text-2xl font-bold mt-12 mb-6">Leave a Comment</h3>
         <form className="space-y-6">
           <div>
             <textarea
-              className="w-full h-32 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full md:h-32 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your comment"
             ></textarea>
           </div>
@@ -367,7 +367,7 @@ function Blog1() {
           <div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg"
+              className="bg-[#d84a48] hover:bg-[#c34543] text-white font-bold md:py-3 py-1.5 px-3 md:px-6 rounded-lg"
             >
               Post Comment
             </button>

@@ -22,7 +22,7 @@ const PropertyCard = ({ property, onEnquire }) => {
             </div>
         
             <Link to={`/property-detail/${property.slug}`} className="relative">
-                <img className="w-full h-48 object-cover" 
+                <img className="w-full md:h-48 h-32 object-cover" 
             src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
             alt="Property" 
                 />
@@ -30,17 +30,17 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <Link to={`/property-detail/${property.slug}`}  className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-xl text-gray-800 ml-4">
+                <div className="font-bold md:text-xl text-gray-800 ml-4">
                 Commercial Office Space for {property.availableFor} {property.buArea}sq.ft 
                     </div>
 
-                <div className="text-gray-600 mt-1 ml-4">{property.location}, {property.city}</div>
+                <div className="text-gray-600 md:mt-1 ml-4">{property.location}, {property.city}</div>
             </Link>
 
 
 
-            <div className="px-6 pt-1 pb-4 flex justify-between items-center">
-                <Link className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2 px-8 rounded w-4/5"
+            <div className="px-6 md:pt-1 pb-4 flex justify-between items-center">
+                <Link className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2  px-8 rounded w-4/5"
                     to={`/property-detail/${property.slug}`}
                 >
                     See Details

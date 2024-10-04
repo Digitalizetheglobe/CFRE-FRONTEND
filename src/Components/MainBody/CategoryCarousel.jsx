@@ -24,13 +24,13 @@ const CategoryCard = ({ category }) => (
       <img
         src={category.imageUrl}
         alt={category.name}
-        className="w-full h-72 object-cover"
+        className="md:w-full md:h-72 w-full h-32 object-cover"
       />
       <div className="p-6">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-1">
+        <h3 className="md:text-2xl font-semibold text-gray-800 mb-1">
           {category.name}
         </h3>
-        <p className="text-gray-600 text-base">{category.description}</p>
+        <p className="text-gray-600 md:text-base">{category.description}</p>
       </div>
     </div>
   </Link>
@@ -39,10 +39,10 @@ const CategoryCard = ({ category }) => (
 const CategoryDisplay = () => {
   return (
     <div className="w-full max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center">
+      <h2 className="text-lg md:text-3xl font-bold text-gray-900 mb-4 text-center">
         Preleased Commercial Properties
       </h2>
-      <p className="text-base sm:text-lg text-gray-700 mb-8 text-center">
+      <p className="text-xs md:text-lg text-gray-700 mb-8 text-center">
         Explore our top categories for Smart Investments in Properties.
       </p>
       <div className="flex justify-center">

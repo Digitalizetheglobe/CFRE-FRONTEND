@@ -73,12 +73,12 @@ const ContactForm = ({ onClose }) => {
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto relative">
+        <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm mx-auto relative">
             <Link to="/" className="flex justify-center mb-4">
-                <img src={logo} alt="logo" className="w-20" />
+                <img src={logo} alt="logo" className="md:w-20 w-16" />
             </Link>
 
-            <h1 className='text-center text-2xl font-semibold mb-6'>Post Your Requirement</h1>
+            <h1 className='text-center md:text-2xl font-semibold mb-6'>Post Your Requirement</h1>
 
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -134,7 +134,7 @@ const ContactForm = ({ onClose }) => {
                     />
                     {errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}
                 </div>
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
+                <button type="submit" className="bg-[#d84a48] hover:bg-[#c34543] text-white md:px-4 px-2 py-1 md:py-2 rounded transition-colors duration-300">
                     Submit
                 </button>
             </form>
@@ -157,7 +157,7 @@ const ContactForm = ({ onClose }) => {
                         </p>
                         <button
                             onClick={onClose} // Use the onClose prop here as well
-                            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors duration-300">
+                            className="bg-[#d84a48] hover:bg-[#c34543] text-white px-4 py-2 rounded transition-colors duration-300">
                             Close
                         </button>
                     </div>

@@ -104,9 +104,9 @@ const Office = () => {
         <Header />
         <div className="relative overflow-hidden">
             {/* Video background */}
-            <div className="absolute inset-0 w-full h-[75vh] overflow-hidden">
+            <div className="absolute inset-0 md:w-full md:h-[75vh] h-[25vh]  overflow-hidden">
                 <video
-                    className="w-full h-full object-cover"
+                    className="md:w-full md:h-full object-cover"
                     autoPlay
                     loop
                     muted
@@ -115,14 +115,14 @@ const Office = () => {
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <h1 className="text-6xl text-white">Office Properties</h1>
+                    <h1 className="md:text-6xl text-white">Office Properties</h1>
                 </div>
             </div>
 
             {/* Filter Section - Below the Banner */}
-            <div className="relative container mx-auto p-4 mt-[80vh] md:ml-16">
-                <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
-                    <div className="flex-1">
+            <div className="relative container mx-auto p-4 md:mt-[80vh] mt-[25vh] md:ml-16">
+                <div className="flex flex-col-1 md:flex-row items-center justify-between  md:space-y-0 md:space-x-4 ">
+                    <div className="flex-1 ">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
                             City
                         </label>
@@ -132,7 +132,7 @@ const Office = () => {
                             id="city"
                             value={filters.city}
                             onChange={handleFilterChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none md:text-sm text-xs border rounded md:w-full  w-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter city"
                         />
                     </div>
@@ -146,7 +146,7 @@ const Office = () => {
                             id="location"
                             value={filters.location}
                             onChange={handleFilterChange}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none md:text-sm text-xs border rounded md:w-full w-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter location"
                         />
                     </div>
@@ -154,15 +154,15 @@ const Office = () => {
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Sort By Price
                         </label>
-                        <div className="flex space-x-4">
+                        <div className="flex md:space-x-4 space-x-1">
                             <button
-                                className={`py-2 px-4 rounded ${sortOrder === 'low-to-high' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                                className={`md:py-2  md:px-4 rounded md:text-sm text-xs ${sortOrder === 'low-to-high' ? 'bg-[#d84a48] text-white' : 'bg-gray-200 text-gray-700'}`}
                                 onClick={() => setSortOrder('low-to-high')}
                             >
                                 High to Low
                             </button>
                             <button
-                                className={`py-2 px-4 rounded ${sortOrder === 'high-to-low' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                                className={`md:py-2 md:px-4 rounded md:text-sm text-xs ${sortOrder === 'high-to-low' ? 'bg-[#d84a48] text-white' : 'bg-gray-200 text-gray-700'}`}
                                 onClick={() => setSortOrder('high-to-low')}
                             >
                                 Low to High

@@ -218,9 +218,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../Header/cfre-logo.png';
 
 function Header() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-const [isRentDropdownOpen, setIsRentDropdownOpen] = useState(false);
-const [isInvestDropdownOpen, setIsInvestDropdownOpen] = useState(false);
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isRentDropdownOpen, setRentDropdownOpen] = useState(false);
+    const [isInvestDropdownOpen, setInvestDropdownOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -236,10 +236,10 @@ const [isInvestDropdownOpen, setIsInvestDropdownOpen] = useState(false);
         // Event listener to handle clicks outside of the dropdown
         const handleClickOutside = (event) => {
             if (rentDropdownRef.current && !rentDropdownRef.current.contains(event.target) && isRentDropdownOpen) {
-                setIsRentDropdownOpen(false);
+                setRentDropdownOpen(false);
             }
             if (investDropdownRef.current && !investDropdownRef.current.contains(event.target) && isInvestDropdownOpen) {
-                setIsInvestDropdownOpen(false);
+                setInvestDropdownOpen(false);
             }
         };
 
@@ -248,22 +248,29 @@ const [isInvestDropdownOpen, setIsInvestDropdownOpen] = useState(false);
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [isRentDropdownOpen, isInvestDropdownOpen]);
+    const toggleMobileMenu = () => {
+        setMobileMenuOpen(!isMobileMenuOpen);
+    };
 
-    const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
-    const toggleRentDropdown = () => setIsRentDropdownOpen(prev => !prev);
-    const toggleInvestDropdown = () => setIsInvestDropdownOpen(prev => !prev);
-    
+    const toggleRentDropdown = () => {
+        setRentDropdownOpen(!isRentDropdownOpen);
+    };
+
+    const toggleInvestDropdown = () => {
+        setInvestDropdownOpen(!isInvestDropdownOpen);
+    };
+
 
     return (
         <header className="sticky top-0 bg-white shadow-md tracking-wide z-50">
-            <div className="flex items-center justify-between p-4 w-full">
+            <div className="flex items-center justify-between  md:p-4 p-2 w-full">
                 {/* Left: Logo */}
                 <div className="flex items-center space-x-4  md:pl-20">
                     <Link to="/">
                         <img
                             src={logo}
                             alt="logo"
-                            className="w-20 transition-transform duration-300 ease-in-out transform shadow-lg"
+                            className="md:w-20 w-12 transition-transform duration-300 ease-in-out transform shadow-lg"
                         />
                     </Link>
                 </div>
@@ -336,7 +343,7 @@ const [isInvestDropdownOpen, setIsInvestDropdownOpen] = useState(false);
                         onClick={handleNavigate}
                         className="bg-[#d84a48] text-white text-sm font-normal py-2 px-4 rounded-full hover:bg-[#ac3c3a] transition-colors duration-300"
                     >
-                        List Property 
+                        List Property
                         <span className="bg-yellow-300 text-black text-sm py-1 px-2 rounded-full ml-1">
                             FREE!
                         </span>
@@ -365,9 +372,15 @@ const [isInvestDropdownOpen, setIsInvestDropdownOpen] = useState(false);
                             </button>
                             {isRentDropdownOpen && (
                                 <ul className="bg-white shadow-lg rounded-lg mt-2">
-                                    <li className="py-2 px-4 hover:bg-gray-100" onClick={() => navigate('/Furnished')}>Furnished</li>
-                                    <li className="py-2 px-4 hover:bg-gray-100" onClick={() => navigate('/UnFurnished')}>Un-Furnished</li>
-                                    <li className="py-2 px-4 hover:bg-gray-100" onClick={() => navigate('/Coworking')}>Coworking</li>
+                                    <li className="py-2 px-4 hover:bg-gray-100">
+                                        <Link to="/Furnished" className="block w-full h-full">Furnished</Link>
+                                    </li>
+                                    <li className="py-2 px-4 hover:bg-gray-100">
+                                        <Link to="/UnFurnished" className="block w-full h-full">Un-Furnished</Link>
+                                    </li>
+                                    <li className="py-2 px-4 hover:bg-gray-100">
+                                        <Link to="/Coworking" className="block w-full h-full">Coworking</Link>
+                                    </li>
                                 </ul>
                             )}
                         </li>

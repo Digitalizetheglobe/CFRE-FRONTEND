@@ -48,7 +48,8 @@ const ProjectDetails = () => {
     };
 
     // Parse the amenities JSON string
-    const amenities = JSON.parse(project.amenities);
+    const amenities = JSON.parse(JSON.parse(project.amenities));
+
 
     return (
         <div className="bg-white py-8 px-4 sm:px-10">

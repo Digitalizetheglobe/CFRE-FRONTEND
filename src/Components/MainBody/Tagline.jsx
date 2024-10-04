@@ -24,29 +24,29 @@ const Tagline = () => {
                 height: '450px', // Increased height
             }}
         >
-            <div className="w-2/3"> {/* Adjusted width */}
-                <h1 className="text-3xl font-bold mb-6"> {/* Increased text size */}
+            <div className="md:w-2/3"> {/* Adjusted width */}
+                <h1 className="md:text-3xl text-sm font-bold mb-6"> {/* Increased text size */}
                     Find The Best Space For Your Business Operations With US !
                 </h1>
                 <ul className="space-y-3 mb-6"> {/* Increased spacing */}
-                    <li className="flex items-center">
+                    <li className="flex items-center md:text-3xl text-sm">
                         <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span> {/* Increased dot size */}
                         Speedy Service
 
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-center md:text-3xl text-sm">
                         <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span> {/* Increased dot size */}
                         Personalized Support
 
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-center md:text-3xl text-sm">
                         <span className="inline-block w-3 h-3 bg-white rounded-full mr-3"></span>
                         Strategic Solutions*
                     </li>
                 </ul>
                 <button
                     onClick={handleButtonClick}
-                    className="bg-white text-[#d84a48] font-semibold px-6 py-3 rounded-full inline-flex items-center hover:bg-black"
+                    className="bg-white text-[#d84a48] font-semibold md:px-6 md:py-3 px-4 py-2 rounded-full inline-flex items-center hover:bg-black"
 
                 > {/* Increased padding */}
 

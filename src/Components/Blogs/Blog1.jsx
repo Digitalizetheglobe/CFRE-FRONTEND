@@ -101,12 +101,12 @@ function Blog1() {
   return (
     <>
     <Header />
-      <div className="relative mb-8 d-flex">
+      <div className="relative md:mb-8 d-flex">
         {/* Banner Image */}
         <img
           src={Banner} // Use src attribute for the image
           alt="Blog Banner"
-          className="w-full h-64 object-cover rounded-lg shadow-lg"
+          className="w-full md:h-64 h-32 object-cover rounded-lg shadow-lg"
         />
         {/* Text on Banner */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -118,20 +118,20 @@ function Blog1() {
 
       <div className="max-w-4xl mx-auto p-6 ">
         {/* Blog Heading */}
-        <h1 className="md:text-4xl font-bold mb-4">
+        <h1 className="md:text-4xl text-sm font-bold mb-4">
           Why Commercial Property in Baner is a Prime Choice for Business
           Growth?
         </h1>
 
         {/* Email and Date */}
-        <div className="flex items-center justify-between text-gray-600 mb-6">
+        <div className="flex items-center justify-between text-gray-600 mb-6 text-xs">
           <span>By cfrerealtypune@gmail.com </span>
           <span> July 6, 2024</span>
         </div>
 
         {/* Blog Content */}
         {/* <h2 className="text-2xl font-semibold mt-8 mb-4">Heading 2 Title</h2> */}
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           If you’re considering expanding or relocating your business,
           commercial property in Baner should be at the top of your list. Baner,
           a rapidly growing locality in Pune, offers a wealth of opportunities
@@ -142,18 +142,18 @@ function Blog1() {
           investment and how it can drive your business forward.
         </p>
         {/* Banner Image */}
-        <div className="mb-8">
+        <div className=" relative md:mb-8">
           <img
             src={Image} // Use src attribute for the image
             alt="Blog Banner"
-            className="w-full h-64 object-cover rounded-lg shadow-lg"
+            className="w-full md:h-64 h-32 object-cover rounded-lg shadow-lg"
           />
         </div>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold md:mt-8 md:mb-4 mb-2 ">
           Strategic Location and Excellent Connectivity
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           One of the most compelling reasons to invest in commercial property in
           Baner is its strategic location. Baner is conveniently situated just
           off the Pune-Mumbai Expressway, providing seamless connectivity to
@@ -167,10 +167,10 @@ function Blog1() {
           thriving commercial environment.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 mb-4">
           A Flourishing Business Ecosystem
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Baner has established itself as a bustling commercial district with a
           diverse range of industries. The area is home to numerous IT
           companies, tech startups, and established businesses, creating a
@@ -181,10 +181,10 @@ function Blog1() {
           vibrant community, which can lead to valuable networking opportunities
           and business growth.
         </p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 mb-4">
           Ongoing Infrastructure Development
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Infrastructure development is a key factor driving the appeal of
           commercial property in Baner. The locality benefits from
           well-maintained roads, modern office complexes, and state-of-the-art
@@ -208,7 +208,7 @@ function Blog1() {
 
       {/* Content */}
       <div className="relative max-w-lg mx-auto text-center z-10">
-        <h4 className="text-white text-2xl font-bold mb-2 z-10">
+        <h4 className="text-white md:text-2xl font-bold mb-2 z-10">
           Navigating Every Aspect of Commercial Real Estate
         </h4>
 
@@ -294,7 +294,7 @@ function Blog1() {
               alt="Verified"
               className="w-16 h-16 mx-auto mb-4"
             />
-            <h2 className="text-2xl font-bold mb-2">Success!</h2>
+            <h2 className="md:text-2xl font-bold mb-2">Success!</h2>
             <p>Your form has been submitted successfully.</p>
             <button
               onClick={handleCloseModal}
@@ -307,10 +307,10 @@ function Blog1() {
       )}
     </div>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 mb-4">
           High Rental Yields and Cost Efficiency
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Commercial property in Baner offers competitive rental rates, making
           it a cost-effective choice for businesses. The high demand for
           commercial spaces in the area ensures that businesses can secure
@@ -321,10 +321,10 @@ function Blog1() {
           space, Baner provides an attractive option for optimizing your real
           estate budget.
         </p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 mb-4">
           Growing Residential Appeal and Market Potential
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           In addition to its commercial benefits, Baner is also a desirable
           residential area. The growing residential appeal enhances the local
           market potential, offering businesses access to a ready customer base.
@@ -334,8 +334,8 @@ function Blog1() {
           residential growth trend, allowing businesses to tap into a
           well-established and evolving market.
         </p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4">Conclusion</h2>
-        <p className="text-base text-gray-800 mb-6">
+        <h2 className="md:text-2xl font-semibold mt-8 mb-4">Conclusion</h2>
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           Investing in commercial property in Baner represents a strategic move
           for business development and relocation. The locality’s prime
           location, thriving business ecosystem, ongoing infrastructure
@@ -344,7 +344,7 @@ function Blog1() {
           growing residential appeal and dynamic market, Baner offers a wealth
           of opportunities for businesses to flourish.
         </p>
-        <p className="text-lg text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           At Commercial Field Real Estate (CFRE), we specialize in helping
           businesses find the perfect commercial property in Baner. Our
           expertise and market knowledge ensure that you receive the best advice
@@ -352,24 +352,19 @@ function Blog1() {
           relocate, expand, or invest, Baner stands out as a top choice for your
           commercial property requirements.
         </p>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-xs text-gray-800 mb-6 text-justify">
           For more information on commercial property in Baner and how CFRE can
           assist with your business needs, contact us today. With our guidance,
           you can make an informed decision and position your business for
           success in one of Pune’s most promising commercial locales.
         </p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4"></h2>
-        <p className="text-lg text-gray-800 mb-6"></p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4"></h2>
-        <p className="text-lg text-gray-800 mb-6"></p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4"></h2>
-        <p className="text-lg text-gray-800 mb-6"></p>
+  
         {/* Leave a Comment Section */}
-        <h3 className="text-2xl font-bold mt-12 mb-6">Leave a Comment</h3>
+        <h3 className="md:text-2xl font-bold md:mt-12 mb-6">Leave a Comment</h3>
         <form className="space-y-6">
           <div>
             <textarea
-              className="w-full h-32 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full md:h-32 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your comment"
             ></textarea>
           </div>
@@ -390,7 +385,7 @@ function Blog1() {
           <div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg"
+              className="bg-[#d84a48] hover:bg-[#c34543] text-white font-bold md:py-3 py-1.5 px-3 md:px-6 rounded-lg"
             >
               Post Comment
             </button>

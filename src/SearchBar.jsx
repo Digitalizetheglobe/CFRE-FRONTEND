@@ -624,7 +624,7 @@ const SearchBar = () => {
 
             <button
                 onClick={handleSearch}
-                className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 rounded-full flex items-center justify-center w-full sm:w-auto"
+                className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 mt-1 rounded-full flex items-center justify-center w-full sm:w-auto"
             >
                 <FaSearch className="mr-2" /> Search
             </button>

@@ -17,17 +17,17 @@ const Latestblog = () => {
                 <img
                     src="https://readymadeui.com/cardImg.webp"
                     alt="Banner Image"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full md:h-full object-cover"
                 />
 
                 {/* Content Overlay */}
-                <div className="min-h-[350px] relative z-50 h-full max-w-4xl mx-auto flex flex-col justify-center items-center text-center p-6">
-                    <h2 className="text-white md:text-4xl text-2xl">
+                <div className="md:min-h-[350px] min-h-[250px] relative z-50 h-full max-w-4xl mx-auto flex flex-col justify-center items-center text-center p-6">
+                    <h2 className="text-white md:text-4xl text-lg">
                         The Latest News and Updates from the Indian Real Estate Industry!
                     </h2>
                     <Link
                         to="#"
-                        className="mt-12 text-base font-semibold py-2.5 px-5 border-2 border-yellow-600 hover:border-yellow-400 bg-transparent text-yellow-500 rounded"
+                        className="md:mt-12 mt-4 text-base font-semibold md:py-2.5 px-5 border-2 border-yellow-600 hover:border-yellow-400 bg-transparent text-yellow-500 rounded"
                     >
                         Get started
                     </Link>
@@ -37,7 +37,7 @@ const Latestblog = () => {
             {/* Jumbotron Section */}
             <div className="max-w-6xl mx-auto">
                 <div className="bg-gray-50 max-sm:px-8 px-12 py-2 w-full rounded pl-2">
-                    <h1 className="text-3xl text-gray-700 mt-6">Featured</h1>
+                    <h1 className="md:text-3xl text-lg text-gray-700 mt-6">Featured</h1>
                     <div className="mt-4"></div>
                 </div>
 
@@ -48,13 +48,13 @@ const Latestblog = () => {
                         <img
                             alt="Company Branding"
                             src={Image2}
-                            className="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
+                            className="h-56 md:w-full md:ml-0 ml-10 rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
                         />
                     </Link>
 
                     {/* Content Card */}
                     <div className="bg-gray-50 max-sm:px-8 px-12 py-2 w-full rounded md:w-1/2 flex flex-col justify-center">
-                        <h2 className="text-gray-800 text-2xl font-bold py-2">
+                        <h2 className="text-gray-800 md:text-2xl font-bold py-2">
                             {" "}
                             Why Commercial Property ?
                         </h2>
@@ -82,7 +82,7 @@ const Latestblog = () => {
                         <Link to="/commercial-property-in-baner-2">
                             <button
                                 type="button"
-                                className="mt-4 px-2 py-3 text-sm rounded text-white border-none outline-none bg-[#d84a48] hover:text-black hover:bg-gray-300 w-36"
+                                className="mt-4 md:px-2  py-1.5 md:py-3 text-sm rounded text-white border-none outline-none bg-[#d84a48] hover:text-black hover:bg-gray-300 w-36"
                             >
                                 Learn more
                             </button>
@@ -107,7 +107,7 @@ const Latestblog = () => {
 
                         {/* Side Content Section */}
                         <div className="ml-4 flex-1">
-                            <h3 className="text-xl font-semibold">
+                            <h3 className="md:text-xl font-semibold">
                                 Find Your Perfect Workspace
                             </h3>
                             <p className="mt-2 text-xs text-gray-500 leading-relaxed">
@@ -137,7 +137,7 @@ const Latestblog = () => {
 
                         {/* Side Content Section */}
                         <div className="ml-4 flex-1">
-                            <h3 className="text-xl font-semibold">
+                            <h3 className="md:text-xl font-semibold">
                                 {" "}
                                 Investing in Commercial Property
                             </h3>
@@ -154,7 +154,7 @@ const Latestblog = () => {
                 </div>
 
                 <div className="bg-gray-50 max-sm:px-8 px-12 py-2 w-full rounded pl-2">
-                    <h1 className="text-3xl text-gray-700 mt-8">
+                    <h1 className="md:text-3xl text-xl text-gray-700 mt-8">
                         Insights from CFRE Reality
                     </h1>
                     {/* <div className="mt-4"></div> */}
@@ -168,13 +168,13 @@ const Latestblog = () => {
                                     <img
                                         src={Image5}
                                         alt="Blog Post 1"
-                                        className="w-full h-60 object-cover"
+                                        className="w-full md:h-60 h-40  object-cover"
                                     />
                                     <div className="p-6">
                                         <span className="text-sm block text-gray-400 mb-2">
                                             1 AUG 2024 | BY CFRE REALITY PUNE
                                         </span>
-                                        <h3 className="text-xl font-bold text-[#333]">
+                                        <h3 className="md:text-xl font-bold text-[#333]">
                                             How to Evaluate Real Estate
                                         </h3>
                                         <hr className="my-6" />
@@ -191,13 +191,13 @@ const Latestblog = () => {
                                 <img
                                     src={Image1}
                                     alt="Blog Post 2"
-                                    className="w-full h-60 object-cover"
+                                    className="w-full md:h-60 h-40 object-cover"
                                 />
                                 <div className="p-6">
                                     <span className="text-sm block text-gray-400 mb-2">
                                         3 SEP 2023 | BY CFRE REALITY PUNE
                                     </span>
-                                    <h3 className="text-xl font-bold text-[#333]">
+                                    <h3 className="md:text-xl font-bold text-[#333]">
                                         Investing in Commercial Property
                                     </h3>
                                     <hr className="my-6" />
@@ -213,13 +213,13 @@ const Latestblog = () => {
                                 <img
                                     src={Image6}
                                     alt="Blog Post 3"
-                                    className="w-full h-60 object-cover"
+                                    className="w-full md:h-60 h-40 object-cover"
                                 />
                                 <div className="p-6">
                                     <span className="text-sm block text-gray-400 mb-2">
                                         25 AUG 2024 | BY CFRE REALITY PUNE
                                     </span>
-                                    <h3 className="text-xl font-bold text-[#333]">
+                                    <h3 className="md:text-xl font-bold text-[#333]">
                                         Why to Invest in Commercial Property
                                     </h3>
                                     <hr className="my-6" />
@@ -233,16 +233,16 @@ const Latestblog = () => {
                     </div>
                 </div>
 
-                <div className="max-w-6xl mx-auto flex md:items-center max-md:flex-col bg-blue-900 px-8 py-4 min-h-[100px] rounded-xl shadow-xl mt-20 mb-12 ">
-                    <p className="text-white text-base flex-1">
+                <div className="max-w-6xl mx-auto flex md:items-center max-md:flex-col bg-blue-900 px-8 py-4 min-h-[100px] rounded-xl shadow-xl md:mt-20 md:mb-12 ">
+                    <p className="text-white md:text-base text-sm flex-1">
                         Begin Your Property Search Today – Let's Find Your Perfect Match
                         Together!
                     </p>
-                    <div className="max-md:mt-6">
+                    <div className="md:mt-6">
                         <Link to="/contactUs">
                             <button
                                 type="button"
-                                className="mt-4 px-2 py-3 text-sm rounded text-white border-none outline-none bg-[#d84a48] hover:text-black hover:bg-gray-300 w-36"
+                                className="mt-4 md:px-2 px-1 py-1.5 md:py-3 text-sm rounded text-white border-none outline-none bg-[#d84a48] hover:text-black hover:bg-gray-300 w-36"
                             >
                                 Get Started
                             </button>

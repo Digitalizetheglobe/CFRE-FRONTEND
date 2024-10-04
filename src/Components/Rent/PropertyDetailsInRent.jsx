@@ -79,7 +79,7 @@ const PropertyDetailInRent = () => {
         { label: 'Floor', value: property.floor },
         { label: 'Car Parking', value: property.carParking },
         { label: 'Bike Parking', value: property.bikeParking },
-        { label: 'Possession', value: 'Within 60 days from the date of agreement' },
+        { label: 'Possession', value: 'Immediate ' },
         { label: 'DG Back Up', value: property.dgBackup },
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
@@ -87,16 +87,16 @@ const PropertyDetailInRent = () => {
         { label: 'Escalation (on rent)', value: '5% Every Year' },
         { label: 'Agreement Period', value: property.agreementPeriod },
         { label: 'Locking Period', value: property.lockingPeriod },
-        { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
-        { label: 'Property Taxes', value: 'To be borne by Licensor' },
-        { label: 'GST on rent and maintenance', value: 'To be borne by Licensee' },
+        // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
+        { label: 'Property Taxes', value: property.propertyTax},
+        { label: 'GST on rent and maintenance', value: property.gstOnRent},
         { label: 'Electricity Charges / Water Charges', value: 'Borne by the Licensee as per usage directly to Authority' },
         { label: 'Agreement charges', value: property.agreementCharges },
     ];
-    
+
     // Filter out any details where the value is null, undefined, or an empty string
     const filteredDetails = allDetails.filter(detail => detail.value !== null && detail.value !== undefined && detail.value !== '');
-    
+
     const displayedDetails = showAllDetails ? filteredDetails : filteredDetails.slice(0, 6);
 
 
@@ -112,7 +112,7 @@ const PropertyDetailInRent = () => {
         <>
             <Header />
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
-            <div className="sticky top-28 bg-white  shadow-md flex justify-center space-x-4 py-2">
+            <div className="sticky md:top-28 top-16 bg-white  shadow-md flex justify-center space-x-4 py-2">
                 <button
                     className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
                     onClick={() => handleScrollTo(overviewRef)}
@@ -137,111 +137,111 @@ const PropertyDetailInRent = () => {
                                         ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
                                         : Image}  // Default image when no images are available
                                     alt="Property"
-                                    className="w-full h-72 object-cover rounded-lg shadow-md"
+                                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
                                 />
                             </div>
 
 
 
                             <div className="w-full lg:w-1/2">
-    <div className="text-2xl font-bold text-gray-900 mb-4">
-        {property?.rentPerMonthRsPerSqFt && (
-            <>
-                <span className="text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
-                <span className="bg-green-100 text-green-800 text-xs font-semibold ml-4 px-2.5 py-0.5 rounded">
-                    Verified on Site
-                </span>
-            </>
-        )}
-    </div>
+                                <div className="md:text-2xl font-bold text-gray-900 mb-4">
+                                    {property?.rentPerMonthRsPerSqFt && (
+                                        <>
+                                            <span className="md:text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
+                                            <span className="bg-green-100 text-green-800 text-xs font-semibold ml-4 px-2.5 py-0.5 rounded">
+                                                Verified on Site
+                                            </span>
+                                        </>
+                                    )}
+                                </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-sm text-gray-700">
-        {property?.buArea && (
-            <div>
-                <div className="font-semibold">Built-up Area</div>
-                <div className="font-bold">{property.buArea} sqft</div>
-                <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
-            </div>
-        )}
-        {property?.carpetArea && (
-            <div>
-                <div className="font-semibold">Carpet Area</div>
-                <div className="font-bold">{property.carpetArea} sqft</div>
-                <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
-            </div>
-        )}
-        {property?.floor && (
-            <div>
-                <div className="font-semibold">Floor</div>
-                <div className="font-bold">{property.floor}</div>
-            </div>
-        )}
-        {property?.conferenceRoom && (
-            <div>
-                <div className="font-semibold">Conference Room</div>
-                <div className="font-bold">{property.conferenceRoom}</div>
-            </div>
-        )}
-        {property?.cabin && (
-            <div>
-                <div className="font-semibold">Cabin</div>
-                <div className="font-bold">{property.cabin}</div>
-            </div>
-        )}
-        {property?.ws && (
-            <div>
-                <div className="font-semibold">Work Station</div>
-                <div className="font-bold">{property.ws}</div>
-            </div>
-        )}
-        {property?.bikeParking && (
-            <div>
-                <div className="font-semibold">Bike Parking</div>
-                <div className="font-bold">{property.bikeParking}</div>
-            </div>
-        )}
-        {property?.carParking && (
-            <div>
-                <div className="font-semibold">Car Parking</div>
-                <div className="font-bold">{property.carParking}</div>
-            </div>
-        )}
-        {property?.rentPerMonth && (
-            <div>
-                <div className="font-semibold">Rent</div>
-                <div className="font-bold">{formatIndianPrice(property.rentPerMonth)}/m</div>
-            </div>
-        )}
-    </div>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-6  text-xs md:text-sm text-gray-700">
+                                    {property?.buArea && (
+                                        <div>
+                                            <div className="font-semibold">Built-up Area</div>
+                                            <div className="font-bold">{property.buArea} sqft</div>
+                                            <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
+                                        </div>
+                                    )}
+                                    {property?.carpetArea && (
+                                        <div>
+                                            <div className="font-semibold">Carpet Area</div>
+                                            <div className="font-bold">{property.carpetArea} sqft</div>
+                                            <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
+                                        </div>
+                                    )}
+                                    {property?.floor && (
+                                        <div>
+                                            <div className="font-semibold">Floor</div>
+                                            <div className="font-bold">{property.floor}</div>
+                                        </div>
+                                    )}
+                                    {property?.conferenceRoom && (
+                                        <div>
+                                            <div className="font-semibold">Conference Room</div>
+                                            <div className="font-bold">{property.conferenceRoom}</div>
+                                        </div>
+                                    )}
+                                    {property?.cabin && (
+                                        <div>
+                                            <div className="font-semibold">Cabin</div>
+                                            <div className="font-bold">{property.cabin}</div>
+                                        </div>
+                                    )}
+                                    {property?.ws && (
+                                        <div>
+                                            <div className="font-semibold">Work Station</div>
+                                            <div className="font-bold">{property.ws}</div>
+                                        </div>
+                                    )}
+                                    {property?.bikeParking && (
+                                        <div>
+                                            <div className="font-semibold">Bike Parking</div>
+                                            <div className="font-bold">{property.bikeParking}</div>
+                                        </div>
+                                    )}
+                                    {property?.carParking && (
+                                        <div>
+                                            <div className="font-semibold">Car Parking</div>
+                                            <div className="font-bold">{property.carParking}</div>
+                                        </div>
+                                    )}
+                                    {property?.rentPerMonth && (
+                                        <div>
+                                            <div className="font-semibold">Rent</div>
+                                            <div className="font-bold">{formatIndianPrice(property.rentPerMonth)}/m</div>
+                                        </div>
+                                    )}
+                                </div>
 
-    <div className="flex space-x-2 mt-6">
-        <button
-            className="bg-[#d84a48] text-white w-full py-2 px-4 rounded-md text-md hover:bg-[#a53938] transition-colors duration-300"
-            onClick={handleButtonClick}
-        >
-            Contact Us
-        </button>
-        <button
-            onClick={handleWhatsAppClick}
-            className="bg-green-500 text-white w-full py-2 px-4 rounded-md text-md flex items-center justify-center hover:bg-green-600 transition-colors duration-300"
-        >
-            WhatsApp
-        </button>
-    </div>
-</div>
+                                <div className="flex space-x-2 mt-6">
+                                    <button
+                                        className="bg-[#d84a48] text-white w-full md:py-2 py-1 md:px-4  px-2 rounded-md text-md hover:bg-[#a53938] transition-colors duration-300"
+                                        onClick={handleButtonClick}
+                                    >
+                                        Contact Us
+                                    </button>
+                                    <button
+                                        onClick={handleWhatsAppClick}
+                                        className="bg-green-500 text-white w-full py-2 px-4 rounded-md text-md flex items-center justify-center hover:bg-green-600 transition-colors duration-300"
+                                    >
+                                        WhatsApp
+                                    </button>
+                                </div>
+                            </div>
 
                         </div>
 
                         <div ref={moreDetailsRef} className="mt-8 bg-white p-6 rounded-lg  ">
-                            <h4 className="text-xl font-semibold mb-6">More Details</h4>
+                            <h4 className="md:text-xl font-semibold mb-6">More Details</h4>
                             <div className="space-y-4 divide-y divide-gray-200">
-    {displayedDetails.map((detail, index) => (
-        <div key={index} className="grid grid-cols-3 gap-x-4 py-2">
-            <span className="font-semibold text-gray-700">{detail.label}</span>
-            <span className="col-span-2 font-bold text-gray-900">{detail.value}</span>
-        </div>
-    ))}
-</div>
+                                {displayedDetails.map((detail, index) => (
+                                    <div key={index} className="grid grid-cols-3 gap-x-4 py-2">
+                                        <span className="font-semibold text-gray-700 text-xs md:text-sm">{detail.label}</span>
+                                        <span className="col-span-2 font-bold text-gray-900 text-xs md:text-sm">{detail.value}</span>
+                                    </div>
+                                ))}
+                            </div>
 
 
                             <button
@@ -255,23 +255,23 @@ const PropertyDetailInRent = () => {
                 </div>
 
                 <div className="w-full lg:w-1/3 px-0 lg:px-4">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
+                    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
                     <div className="space-y-4">
                         {recentProperties.slice(0, 5).map((recentProperty, index) => (
                             <div
                                 key={index}
                                 className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                                onClick={() => handlePropertyClick(recentProperty.slug)} // Navigate on click
+                                onClick={() => handlePropertyClick(recentProperty.id)} // Navigate on click
                             >
                                 <img
                                     src={image}
                                     alt={recentProperty.title}
-                                    className="w-24 h-24 object-cover rounded-md mr-4"
+                                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
                                 />
                                 <div>
-                                    <div className="text-lg font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
-                                    <div className="text-gray-600">Available in {recentProperty.location}</div>
-                                    <div className="text-gray-900 font-semibold mt-2">₹{recentProperty.rentPerMonth}</div>
+                                    <div className="md:text-lg text-sm font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
+                                    <div className="text-gray-600 md:text-lg text-sm">Available in {recentProperty.location}</div>
+                                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹{recentProperty.rentPerMonth}</div>
                                 </div>
                             </div>
                         ))}

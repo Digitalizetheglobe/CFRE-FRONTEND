@@ -34,7 +34,7 @@ function ProjectProperty() {
                 <img
                     src={BannerImage}
                     alt="Banner"
-                    className="w-full object-cover"
+                    className="w-full  object-cover"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                     <h1 className="md:text-6xl text-white">Projects Listing</h1>
