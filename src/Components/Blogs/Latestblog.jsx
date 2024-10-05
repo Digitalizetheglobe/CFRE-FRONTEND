@@ -22,14 +22,14 @@ const Latestblog = () => {
 
                 {/* Content Overlay */}
                 <div className="md:min-h-[350px] min-h-[250px] relative z-50 h-full max-w-4xl mx-auto flex flex-col justify-center items-center text-center p-6">
-                    <h2 className="text-white md:text-4xl text-lg">
+                    <h2 className="text-white md:text-4xl text-lg items-center">
                         The Latest News and Updates from the Indian Real Estate Industry!
                     </h2>
                     <Link
                         to="#"
                         className="md:mt-12 mt-4 text-base font-semibold md:py-2.5 px-5 border-2 border-yellow-600 hover:border-yellow-400 bg-transparent text-yellow-500 rounded"
                     >
-                        Get started
+                        Get Started
                     </Link>
                 </div>
             </div>

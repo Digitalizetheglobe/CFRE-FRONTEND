@@ -173,7 +173,7 @@ const ReviewCard = ({ img }) => {
 
 const Blogslider = () => {
   return (
-    <div className="overflow-hidden -mt-6 ">
+    <div className="overflow-hidden">
       {/* Content Section */}
       <div className="text-center overflow-hidden">
       </div>
