@@ -79,7 +79,7 @@ const PropertyDetailInRent = () => {
         { label: 'Floor', value: property.floor },
         { label: 'Car Parking', value: property.carParking },
         { label: 'Bike Parking', value: property.bikeParking },
-        { label: 'Possession', value: 'Immediate ' },
+        { label: 'Possession', value: 'Within 60 days from the date of agreement' },
         { label: 'DG Back Up', value: property.dgBackup },
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },

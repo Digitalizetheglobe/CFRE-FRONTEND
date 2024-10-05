@@ -28,7 +28,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
                 {/* Property image with a link to detailed view */}
                 <Link to={`/property-detail/${property.slug || property.id || ''}`}>
                     <img
-                        className="w-full h-48 object-cover"
+                        className="w-full md:h-48 h-36 object-cover"
                         src={property.multiplePropertyImages && property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
                         alt={title}
                     />
@@ -37,7 +37,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
 
             <div className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold text-xl text-gray-800">
+                <div className="font-bold md:text-xl text-gray-800">
                     Commercial Office Space for {property.availableFor} {property.buArea} sq.ft {property.furnishing}
                 </div>
 
@@ -48,7 +48,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             <div className="px-6 pb-4 flex justify-between items-center">
                 <Link
                     to={`/property-detail/${property.slug || property.id || ''}`}
-                    className="bg-[#d84a48] hover:bg-[#c74b4a] text-white font-bold py-2 px-6 rounded transition-colors duration-200 w-4/5"
+                    className="bg-[#d84a48] hover:bg-[#c74b4a] text-white font-bold md:py-2 py-1 px-3 md:px-6 rounded transition-colors duration-200 w-4/5"
                     onClick={onEnquire} // Uncomment if you need onEnquire
                 >
                     See Details

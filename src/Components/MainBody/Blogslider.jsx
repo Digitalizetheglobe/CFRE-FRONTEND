@@ -34,10 +34,10 @@ import img29 from "../ClientLogo/29.png";
 
 const reviews = [
  
-  {
+  // {
 
-    img: img1,
-  },
+  //   img: img1,
+  // },
   {
 
     img: img2,
@@ -46,9 +46,9 @@ const reviews = [
 
     img: img3,
   },
-  {
-    img: img29,
-  },
+  // {
+  //   img: img29,
+  // },
   {
 
     img: img4,
@@ -65,18 +65,18 @@ const reviews = [
 
     img: img7,
   },
-  {
+  // {
 
-    img: img8,
-  },
+  //   img: img8,
+  // },
   {
 
     img: img9,
   },
-  {
+  // {
 
-    img: img10,
-  },
+  //   img: img10,
+  // },
   {
 
     img: img11,
@@ -111,10 +111,10 @@ const reviews = [
 
     img: img18,
   },
-  {
+  // {
 
-    img: img19,
-  },
+  //   img: img19,
+  // },
   {
 
     img: img20,
@@ -124,10 +124,10 @@ const reviews = [
     img: img21,
   },
 
-  {
+  // {
 
-    img: img22,
-  },
+  //   img: img22,
+  // },
   {
 
     img: img23,
@@ -137,21 +137,21 @@ const reviews = [
 
     img: img24,
   },
-  {
+  // {
 
-    img: img25,
-  },
-  {
+  //   img: img25,
+  // },
+  // {
 
-    img: img26,
-  },
+  //   img: img26,
+  // },
   
-  {
-    img:img27,
-  },
-  {
-    img:img28,
-  },
+  // {
+  //   img:img27,
+  // },
+  // {
+  //   img:img28,
+  // },
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 1);
@@ -159,42 +159,33 @@ const firstRow = reviews.slice(0, reviews.length / 1);
 
 const ReviewCard = ({ img }) => {
   return (
-    <figure className="relative w-64 h-28 cursor-pointer overflow-hidden rounded-xl mt-3 mb-5 border border-gray-600 bg-white hover:bg-gray-200 mx-1 flex flex-col">
-      <img
-        className="object-cover w-full h-full mt-0 mb-0 ml-0 mr-0"
-        alt="Client Logo"
-        src={img}
-      />
-    </figure>
+    <figure className="relative w-64 h-16 cursor-pointer overflow-hidden rounded-xl mb-5 bg-white  mx-1 flex flex-col ">
+  <img
+    className="object-cover w-full h-full mb-0 ml-0 mr-0 transition duration-300 ease-in-out filter grayscale hover:filter-none"
+    alt="Client Logo"
+    src={img}
+  />
+</figure>
+
   );
 };
 
 
 const Blogslider = () => {
   return (
-    <div className="overflow-hidden ">
+    <div className="overflow-hidden -mt-6 ">
       {/* Content Section */}
-      <div className="text-center">
-        <h2 className="text-4xl text-black font-bold mt-4">
-          Our Clients
-        </h2>
-      
+      <div className="text-center overflow-hidden">
       </div>
       {/* Blog Slider Section */}
-      <div className="relative h-auto rounded-lg  border-spacing-y-2 border-black p-4">
-        <Marquee pauseOnHover className="[--duration:5s] flex gap-4">
-          {firstRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        {/* <Marquee reverse pauseOnHover className="[--duration:5s] flex gap-4">
-          {secondRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee> */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3"></div>
-      </div>
+      <div className="relative h-auto w-11/12 mx-auto items-center rounded-lg border-spacing-y-2 border-black p-1">
+  <Marquee pauseOnHover className="[--duration:5s] flex gap-4">
+    {firstRow.map((review) => (
+      <ReviewCard key={review.username} {...review} />
+    ))}
+  </Marquee>
+</div>
+
     </div>
   );
 };

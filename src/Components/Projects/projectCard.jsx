@@ -27,8 +27,9 @@ const ProjectCard = ({ project }) => {
             </div>
 
             <div className="relative">
+            <Link to={`/project/${project.id}`}>
                 <img className="w-full md:h-48 h-36 object-cover" src={Image} alt="Project" />
-                
+                </Link>
             </div>
 
             <div className="px-6 py-4">
@@ -37,9 +38,9 @@ const ProjectCard = ({ project }) => {
                     <div className="font-bold md:text-xl hover:text-[#d84a48] hover:underline">
                         {truncateText(project.projectName, 30)} {/* Adjust the maxLength as needed */}
                     </div>
-                </Link>
                 <p className="text-gray-700 text-base">RERA REGD :{project.reraRegdNo}</p>
                 <p className="text-gray-700 text-base">{project.location}</p>
+                </Link>
             </div>
 
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
