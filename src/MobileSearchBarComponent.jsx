@@ -145,7 +145,7 @@ function MobileSearchBarComponent() {
         const filtered = properties.filter(property => {
             const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
             const propertyTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
-            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase().includes(furnishingStatus.toLowerCase()) : true;
+            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
             const buArea = property.buArea ? parseFloat(property.buArea) : 0;
@@ -293,7 +293,7 @@ function MobileSearchBarComponent() {
                         <div className="mb-4">
                             <p className="font-semibold mb-2">Furnishing Status</p>
                             <div className="flex flex-wrap gap-3">
-                                {["Furnished", "Un-Furnished", "Co-Working"].map((status, index) => (
+                                {["Furnished", "Unfurnished", "Co-Working"].map((status, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleStatusClick(status)}
