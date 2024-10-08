@@ -257,7 +257,7 @@
 
 
 import axios from 'axios';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -283,15 +283,6 @@ const allAreas = [
     "Bannerghatta Road", "Arekere", "Hulimavu", "Begur", "Bommanahalli",
     "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road"
 ];
-
-// const puneAreas = [
-//     "ABC-  Appa Balwant Chowk", "Shivaji Nagar", "Deccan Gymkhana", "Camp (Pune Cantonment)", "Sadashiv Peth", "Narayan Peth", "Kasba Peth",
-//     "Koregaon Park", "Kalyani Nagar", "Viman Nagar", "Wadgaon Sheri", "Mundhwa", "Kharadi",
-//     "Aundh", "Baner", "Balewadi", "Pashan", "Hinjawadi", "Bavdhan",
-//     "Bibwewadi", "Katraj", "Dhankawadi", "Undri", "NIBM Road", "Wanowrie",
-//     "Pimpri", "Chinchwad", "Wakad", "Bhosari", "Alandi",
-//     "Hadapsar", "Magarpatta City", "Fursungi", "Wagholi", "Manjri", "Sinhagad Road", "Warje", "Kothrud", "Ravet"
-// ];
 
 const puneAreas = [
     "ABC- Appa Balwant Chowk", "Akurdi",
@@ -422,10 +413,12 @@ const SearchBar = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [propertyCategory, setPropertyCategory] = useState('Rent');
     const navigate = useNavigate();
-
+    const [selectedForm, setSelectedForm] = useState('rent'); 
     const [minSqFt, setMinSqFt] = useState('');
     const [maxSqFt, setMaxSqFt] = useState('');
     const [showSqFtFields, setShowSqFtFields] = useState(false);
+
+
     useEffect(() => {
         const fetchProperties = async () => {
             try {
@@ -443,24 +436,31 @@ const SearchBar = () => {
     const handleSearchQueryChange = (e) => {
         setSearchQuery(e.target.value);
     };
+
+
     useEffect(() => {
         const filtered = properties.filter(property => {
             const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
             const propertyTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
             const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase().includes(furnishingStatus.toLowerCase()) : true;
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
-
+    
             // Square footage filter logic based on carpet area
             const buArea = property.buArea ? parseFloat(property.buArea) : 0;
             const minSqFtMatch = minSqFt ? buArea >= parseFloat(minSqFt) : true;
             const maxSqFtMatch = maxSqFt ? buArea <= parseFloat(maxSqFt) : true;
-
-            return cityMatch && propertyTypeMatch && (propertyCategory === 'Invest' || furnishingStatusMatch) && searchMatch && minSqFtMatch && maxSqFtMatch;
+    
+            // Updated filter by selected form (rent or invest) using availableFor field
+            const categoryMatch = selectedForm === 'Rent'
+                ? property.availableFor?.toLowerCase() === 'Rent'  // Check if availableFor is 'rent'
+                : property.availableFor?.toLowerCase() === 'Invest';  // Check if availableFor is 'invest'
+    
+            return cityMatch && propertyTypeMatch && furnishingStatusMatch && searchMatch && minSqFtMatch && maxSqFtMatch && categoryMatch;
         });
-
+    
         setFilteredProperties(filtered);
-    }, [selectedCity, officeType, furnishingStatus, searchQuery, properties, propertyCategory, minSqFt, maxSqFt]);
-
+    }, [selectedCity, officeType, furnishingStatus, searchQuery, properties, selectedForm, minSqFt, maxSqFt]);
+    
 
 
     const handleCityChange = (e) => {
@@ -508,16 +508,22 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="bg-white md:p-4 p-4 md:rounded-full shadow-lg flex flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
-            {/* Property Category selection */}
-            <select
-                value={propertyCategory}
-                onChange={(e) => setPropertyCategory(e.target.value)}
-                className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
-            >
-                <option value="Rent">Rent</option>
-                <option value="Invest">Invest</option>
-            </select>
+        <div className="hidden md:flex bg-white md:p-4 p-4 md:rounded-full shadow-lg flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
+            {/* Rent and Invest toggle */}
+            <div className="flex justify-center space-x-4 mb-6">
+                <button
+                    className={`py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 ${selectedForm === 'rent' ? 'bg-[#d84a48] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                    onClick={() => setSelectedForm('rent')} // Set to Rent
+                >
+                    Rent
+                </button>
+                <button
+                    className={`py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 ${selectedForm === 'invest' ? 'bg-[#d84a48] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                    onClick={() => setSelectedForm('invest')} // Set to Invest
+                >
+                    Invest
+                </button>
+            </div>
 
             {/* City selection */}
             <select

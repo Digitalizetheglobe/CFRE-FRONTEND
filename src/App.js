@@ -49,6 +49,7 @@ import Dashboard from './AdminDashboard/Dashboard.jsx'
 import AdminLayout from './Layout/AdminLayout.jsx'
 import FAQs from './FAQs.jsx';
 
+
 import BasicForm from './AdminDashboard/BasicForm.jsx'
 import BasicFormView from './AdminDashboard/BasicFormView.jsx'
 import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
@@ -57,6 +58,9 @@ import EmiCalculator from './Components/EMICalculator/EmiCalculator.jsx';
 import StickyButton from './Components/StickyButton/StickyButton.jsx';
 
 import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
+import MobileSearchBar from './MobileSearchBar.jsx';
+import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
+
 function App() {
   return (
     <Router>
@@ -102,8 +106,8 @@ function App() {
           <Route path="/showroom/:slug" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
           <Route path="/emiCalculator" element={<EmiCalculator/>} />
-
-
+          <Route path='/mobileSearchBar' element={< MobileSearchBar/>}/>
+          <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
 
            {/* below admin panal routes */}
            <Route path='/adminlogin' element={<AdminLogin />} />

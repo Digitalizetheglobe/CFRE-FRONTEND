@@ -30,7 +30,12 @@ function MobileHeader({ toggleRentDropdown, toggleInvestDropdown, isRentDropdown
     return (
         <>
             <div className="flex items-center justify-between">
-                <img src={logo} alt="logo" className='w-14 mx-10 mt-1' />
+            <Link to="/">
+                <img src={logo} 
+                    alt="logo" 
+                    className='w-14 mx-10 mt-1' 
+                />
+                </Link>
                 <button onClick={toggleMobileMenu} className='rounded-full bg-white p-3'>
                     <svg className="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd"

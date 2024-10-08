@@ -1,35 +1,32 @@
 
-import React, { useState, useEffect } from 'react';
-
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import SearchBar from '../../SearchBar';
 import Banner from './Banner 5.jpg';
+import MobileSearchBar from '../../MobileSearchBar';
+
+
 
 function Hero() {
-    const [properties, setProperties] = useState([]);
-    const [filteredProperties, setFilteredProperties] = useState([]);
-    const [selectedCity, setSelectedCity] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate();
-
     return (
         <>
         
         <div className="flex justify-center items-center my-8 mx-4">
-        <div className="relative md:w-full w-full h-[75vh] rounded-lg overflow-hidden">
+        <div className="relative w-full h-[25vh] md:h-[75vh] rounded-lg overflow-hidden">
+
             <img
-                className="absolute inset-0 md:w-full w-auto h-full  md:h-full object-cover"
+                className="absolute inset-0 md:w-full w-full h-full  md:h-full object-cover"
                 src={Banner}
                 alt="Banner"
             />
             <div className="justify-center absolute inset-0 bg-black bg-opacity-50 flex flex-col md:justify-center items-center px-4">
-                <h1 className="text-xl  md:text-xl lg:text-5xl text-white font-bold mb-2 text-center">
+                <h1 className="text-sm  md:text-xl lg:text-5xl text-white font-bold mb-2 text-center">
                     Commercial Real Estate Platform
                 </h1>
-                <p className="hidden md:flex text-xl sm:text-sm md:text-2xl lg:text-xl text-white mb-6 md:text-center">
+                <p className="text-[10px] md:flex sm:text-sm md:text-2xl lg:text-xl text-white mb-6 md:text-center">
                     Rent, Invest, Sale Commercial Real Estate with Verified Data
                 </p>
                 <SearchBar/>
+                <MobileSearchBar />
             </div>
         </div>
     </div>
