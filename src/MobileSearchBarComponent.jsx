@@ -83,8 +83,8 @@ function MobileSearchBarComponent() {
     const [minSqFt, setMinSqFt] = useState('');
     const [maxSqFt, setMaxSqFt] = useState('');
     const [selectedForm, setSelectedForm] = useState('rent');
-    const [minBudget, setMinBudget] = useState('');
-    const [maxBudget, setMaxBudget] = useState('');
+    // const [minBudget, setMinBudget] = useState('');
+    // const [maxBudget, setMaxBudget] = useState('');
     const [minBudgetInvest, setMinBudgetInvest] = useState('');
     const [maxBudgetInvest, setMaxBudgetInvest] = useState('');
 
@@ -309,7 +309,7 @@ function MobileSearchBarComponent() {
                         </div>
 
                         {/* Budget */}
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                             <p className="font-semibold mb-2">Budget</p>
                             <div className="flex items-center space-x-2 mb-2">
                                 <input
@@ -351,7 +351,7 @@ function MobileSearchBarComponent() {
                                     </button>
                                 ))}
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Carpet Area Section */}
                         <div className="mb-6">
