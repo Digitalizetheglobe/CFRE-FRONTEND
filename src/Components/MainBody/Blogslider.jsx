@@ -28,16 +28,15 @@ import img25 from "../ClientLogo/25.png";
 import img26 from "../ClientLogo/26.png";
 import img27 from "../ClientLogo/27.png";
 import img28 from "../ClientLogo/28.png";
-import img29 from "../ClientLogo/29.png";
 
 
 
 const reviews = [
  
-  // {
+  {
 
-  //   img: img1,
-  // },
+    img: img1,
+  },
   {
 
     img: img2,
@@ -46,9 +45,7 @@ const reviews = [
 
     img: img3,
   },
-  // {
-  //   img: img29,
-  // },
+  
   {
 
     img: img4,
@@ -65,18 +62,18 @@ const reviews = [
 
     img: img7,
   },
-  // {
+  {
 
-  //   img: img8,
-  // },
+    img: img8,
+  },
   {
 
     img: img9,
   },
-  // {
+  {
 
-  //   img: img10,
-  // },
+    img: img10,
+  },
   {
 
     img: img11,
@@ -111,10 +108,10 @@ const reviews = [
 
     img: img18,
   },
-  // {
+  {
 
-  //   img: img19,
-  // },
+    img: img19,
+  },
   {
 
     img: img20,
@@ -124,10 +121,10 @@ const reviews = [
     img: img21,
   },
 
-  // {
+  {
 
-  //   img: img22,
-  // },
+    img: img22,
+  },
   {
 
     img: img23,
@@ -137,21 +134,21 @@ const reviews = [
 
     img: img24,
   },
-  // {
+  {
 
-  //   img: img25,
-  // },
+    img: img25,
+  },
   // {
 
   //   img: img26,
   // },
   
-  // {
-  //   img:img27,
-  // },
-  // {
-  //   img:img28,
-  // },
+  {
+    img:img27,
+  },
+  {
+    img:img28,
+  },
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 1);
@@ -159,7 +156,7 @@ const firstRow = reviews.slice(0, reviews.length / 1);
 
 const ReviewCard = ({ img }) => {
   return (
-    <figure className="relative w-64 h-16 cursor-pointer overflow-hidden rounded-xl mb-5 bg-white  mx-1 flex flex-col ">
+    <figure className="relative w-64 h-24 cursor-pointer overflow-hidden rounded-xl mb-5 bg-white flex flex-col ">
   <img
     className="object-cover w-full h-full mb-0 ml-0 mr-0 transition duration-300 ease-in-out filter grayscale hover:filter-none"
     alt="Client Logo"
@@ -179,7 +176,7 @@ const Blogslider = () => {
       </div>
       {/* Blog Slider Section */}
       <div className="relative h-auto w-11/12 mx-auto items-center rounded-lg border-spacing-y-2 border-black p-1">
-  <Marquee pauseOnHover className="[--duration:5s] flex gap-4">
+  <Marquee pauseOnHover speed={150} className=" flex gap-4">
     {firstRow.map((review) => (
       <ReviewCard key={review.username} {...review} />
     ))}
