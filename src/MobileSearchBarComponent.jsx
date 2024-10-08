@@ -193,20 +193,6 @@ function MobileSearchBarComponent() {
             <Header />
 
             <div className="w-full p-4 mx-auto rounded-lg shadow-lg max-w-lg block ">
-                {/* <div className="flex justify-center space-x-4 mb-6">
-                    <button
-                        className={`py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 ${selectedForm === 'Rent' ? 'bg-[#d84a48] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                        onClick={() => setSelectedForm('rent')}
-                    >
-                        Rent
-                    </button>
-                    <button
-                        className={`py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 ${selectedForm === 'Invest' ? 'bg-[#d84a48] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                        onClick={() => setSelectedForm('invest')}
-                    >
-                        Invest
-                    </button>
-                </div> */}
                 <div className="flex justify-center space-x-4 mb-6">
                     <button
                         className={`py-3 px-6 rounded-lg font-semibold text-sm transition duration-300 ${selectedForm === 'Rent' ? 'bg-[#d84a48] text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}

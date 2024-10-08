@@ -18,6 +18,7 @@ function MobileSearchBar() {
       type="text"
       placeholder="Search By City, Locality, Project"
       className="flex-grow outline-none text-[10px] text-gray-700 placeholder-gray-900 px-2"
+      onClick={handleSearch}
     />
     <button className="bg-[#d84a48] p-2 rounded-full"
     onClick={handleSearch}> 
