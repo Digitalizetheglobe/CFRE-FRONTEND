@@ -438,7 +438,7 @@ const SearchBar = () => {
         const filtered = properties.filter(property => {
             const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
             const propertyTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
-            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase().includes(furnishingStatus.toLowerCase()) : true;
+            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
             // Square footage filter logic based on carpet area
