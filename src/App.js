@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './Components/Header/header';
 import Footer from './Components/Footer/footer';
 import ScrollToTop from './Components/ScrollToTop.jsx';
@@ -67,7 +68,9 @@ function App() {
       <ScrollToTop />
       {/* <Header /> */}
       <main>
+      <HelmetProvider>
         <StickyButton />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -189,7 +192,9 @@ function App() {
             }
           />
         </Routes>
+        </HelmetProvider>
       </main>
+      
       <Cookies />
       <Footer />
     </Router>
