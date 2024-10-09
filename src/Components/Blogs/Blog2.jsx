@@ -108,12 +108,12 @@ function Blog1() {
   return (
     <>
     <Header />
-      <div className="relative mb-8">
+      <div className="relative md:mb-8 ">
         {/* Banner Image */}
         <img
           src={Banner} // Use src attribute for the image
           alt="Blog Banner"
-          className="w-full h-64 object-cover rounded-lg shadow-lg"
+          className="w-full  md:h-64 h-32 object-cover rounded-lg shadow-lg"
         />
         {/* Text on Banner */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -125,19 +125,19 @@ function Blog1() {
 
       <div className="max-w-4xl mx-auto p-6">
         {/* Blog Heading */}
-        <h1 className="md:text-4xl font-bold mb-4">
+        <h1 className="md:text-4xl text-sm font-bold mb-4">
           Investing in Commercial Property in Balewadi: A Smart Choice for 2024
         </h1>
 
         {/* Email and Date */}
-        <div className="flex items-center justify-between text-gray-600 mb-6">
+        <div className="flex items-center justify-between text-gray-600 mb-6 text-xs">
           <span>By cfrerealtypune@gmail.com </span>
           <span> July 6, 2024</span>
         </div>
 
         {/* Blog Content */}
         {/* <h2 className="text-2xl font-semibold mt-8 mb-4">Heading 2 Title</h2> */}
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           Balewadi, a rapidly growing locality in Pune, is swiftly establishing
           itself as a premier destination for commercial real estate
           investments. With its strategic location, vibrant business
@@ -154,14 +154,14 @@ function Blog1() {
           <img
             src={Image} // Use src attribute for the image
             alt="Blog Banner"
-            className="w-full h-96 object-cover rounded-lg shadow-lg"
+            className="w-full md:h-96 h-56  object-cover rounded-lg shadow-lg"
           />
         </div>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 md:mb-4 mb-1">
           Strategic Location and Connectivity
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           One of Balewadi’s standout features is its strategic location in
           northwestern Pune. The area benefits from proximity to the Pune-Mumbai
           Expressway, which ensures excellent connectivity to both major cities.
@@ -174,10 +174,10 @@ function Blog1() {
           for employees and customers.{" "}
         </p>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 md:mb-4 mb-1">
           Thriving Business Environment
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           Balewadi has evolved into a bustling commercial hub, attracting a
           diverse range of industries. The area is home to a multitude of IT
           firms, startups, and established businesses, contributing to a dynamic
@@ -189,10 +189,10 @@ function Blog1() {
           supports high occupancy rates and offers a favorable climate for
           commercial investments.{" "}
         </p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 md:mb-4 mb-1">
           Infrastructure Development
         </h2>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           The ongoing infrastructure development in Balewadi is a key factor
           enhancing its attractiveness for commercial investments. The locality
           boasts well-maintained roads, modern office complexes, and
@@ -205,8 +205,8 @@ function Blog1() {
           their property values to appreciate, making it a lucrative option for
           the future.{" "}
         </p>
-        <h2 className="text-2xl font-semibold mt-8 mb-4">High Rental Yields</h2>
-        <p className="text-base text-gray-800 mb-6">
+        <h2 className="md:text-2xl font-semibold mt-8md:mb-4 mb-1">High Rental Yields</h2>
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           Investors are often drawn to Balewadi due to the competitive rental
           yields offered by commercial properties in the area. The high demand
           for commercial spaces allows property owners to command favorable
@@ -230,7 +230,7 @@ function Blog1() {
 
       {/* Content */}
       <div className="relative max-w-lg mx-auto text-center z-10">
-        <h4 className="text-white text-2xl font-bold mb-2 z-10">
+        <h4 className="text-white md:text-2xl font-bold mb-2 z-10">
           Navigating Every Aspect of Commercial Real Estate
         </h4>
 
@@ -330,11 +330,11 @@ function Blog1() {
     </div>
 
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">
+        <h2 className="md:text-2xl font-semibold mt-8 md:mb-4 mb-1">
           Best Investment Options in Balewadi for 2024
         </h2>
-        <h3 className="text-xl font-semibold mt-8 mb-4">1.Office Spaces </h3>
-        <p className="text-base text-gray-800 mb-6">
+        <h3 className="text-xl font-semibold md:mt-8 mb-4">1.Office Spaces </h3>
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           As Balewadi’s reputation as a business hub grows, office spaces remain
           a solid investment choice for 2024. The influx of IT companies and
           startups in the area creates a continuous demand for modern office
@@ -344,8 +344,8 @@ function Blog1() {
           particularly attractive to businesses seeking professional workspaces.{" "}
         </p>
 
-        <h3 className="text-xl font-semibold mt-8 mb-4">2.Retail Outlets </h3>
-        <p className="text-base text-gray-800 mb-6">
+        <h3 className="text-xl font-semibold md:mt-8 mb-4">2.Retail Outlets </h3>
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           The expanding residential population and the vibrant commercial
           environment in Balewadi make retail outlets a promising investment.
           With a growing community and an increasing number of residential
@@ -355,10 +355,10 @@ function Blog1() {
           significant returns as businesses aim to capture the local market.{" "}
         </p>
 
-        <h3 className="text-xl font-semibold mt-8 mb-4">
+        <h3 className="text-xl font-semibold md:mt-8 mb-4">
           3.Mixed-Use Developments{" "}
         </h3>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           Mixed-use developments that integrate commercial and residential
           spaces are gaining popularity in Balewadi. These properties offer a
           diverse investment opportunity by combining office spaces, retail
@@ -368,10 +368,10 @@ function Blog1() {
           properties can provide multiple revenue streams and attract a broad
           range of tenants.
         </p>
-        <h3 className="text-xl font-semibold mt-8 mb-4">
+        <h3 className="text-xl font-semibold md:mt-8 mb-4">
           4.Co-Working Spaces{" "}
         </h3>
-        <p className="text-base text-gray-800 mb-6">
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           The rise of remote work and flexible working arrangements has spiked
           demand for co-working spaces. Balewadi’s growing business ecosystem
           and entrepreneurial spirit make it an ideal location for co-working
@@ -380,8 +380,8 @@ function Blog1() {
           startups, and small businesses seeking flexible and cost-effective
           office solutions.
         </p>
-        <h3 className="text-xl font-semibold mt-8 mb-4">5.Business Parks </h3>
-        <p className="text-base text-gray-800 mb-6">
+        <h3 className="text-xl font-semibold md:mt-8 mb-4">5.Business Parks </h3>
+        <p className="md:text-base text-sm text-gray-800 mb-6 text-justify">
           Business parks that offer a mix of office spaces, warehouses, and
           support facilities present another viable investment option. These
           parks provide a comprehensive solution for companies requiring
@@ -390,14 +390,14 @@ function Blog1() {
           strategic location and infrastructure improvements.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4"></h2>
+        <h2 className="md:text-2xl font-semibold md:mt-8 mb-4"></h2>
         <p className="text-lg text-gray-800 mb-6"></p>
         {/* Leave a Comment Section */}
-        <h3 className="text-2xl font-bold mt-12 mb-6">Leave a Comment</h3>
+        <h3 className="md:text-2xl font-bold mt-12 mb-6">Leave a Comment</h3>
         <form className="space-y-6">
           <div>
             <textarea
-              className="w-full h-32 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full md:h-32 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your comment"
             ></textarea>
           </div>
@@ -418,7 +418,7 @@ function Blog1() {
           <div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg"
+              className="bg-[#d84a48] hover:bg-[#c34543] text-white font-bold md:py-3 py-1.5 px-3 md:px-6 rounded-lg"
             >
               Post Comment
             </button>

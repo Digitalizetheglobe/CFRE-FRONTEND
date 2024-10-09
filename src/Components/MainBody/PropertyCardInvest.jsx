@@ -42,30 +42,30 @@ function PropertyCardInvest({ property }) {
             </div>
 
             <div className="relative">
-                <img className="w-full h-52 object-cover" 
+                <img className="w-full md:h-52 h-32 object-cover" 
                 src={imageUrl} 
                 alt="Property"
                 onClick={handleImageClick} />
             </div>
 
             <div className="px-6 py-4">
-                <h3 className="font-bold text-base">Investment Property</h3>
+                <h3 className="font-bold md:text-base text-xs">Exclusive Property</h3>
                 <div className="text-gray-700 text-sm">
-                    <p className="mb-1 flex justify-between">
+                    <p className="mb-1 flex justify-between md:text-base text-xs">
                         Property Type
                         <span className="font-semibold">{property.propertyType}</span>
                     </p>
-                    <p className="mb-1 flex justify-between">
+                    <p className="mb-1 flex justify-between md:text-base text-xs">
                         Location
                         <span className="font-semibold">{property.location}</span>
                     </p>
-                    <p className="mb-1 flex justify-between">
+                    <p className="mb-1 flex justify-between md:text-base text-xs">
                         Building Type
                         <span className="font-semibold">
                             {property.buildingType} A Grade
                         </span>
                     </p>
-                    <p className="mb-1 flex justify-between">
+                    <p className="mb-1 flex justify-between md:text-base text-xs">
                         Carpet Area
                         <span className="font-semibold">{property.carpetArea}</span>
                     </p>
@@ -75,7 +75,7 @@ function PropertyCardInvest({ property }) {
             <div className="px-6 pb-2 flex justify-between items-center">
                 <button
                     onClick={handleImageClick}
-                    className="bg-[#d84a48] hover:bg-[#b03b3a] text-white font-bold py-1 px-4 rounded w-full"
+                    className="bg-[#d84a48] hover:bg-[#b03b3a] text-white font-bold py-1 md:px-4 rounded w-full"
                 >
                     Know More
                 </button>
@@ -129,11 +129,11 @@ function PropertyCardInvestList() {
     return (
         <div className="my-8 mx-12">
             <div className="flex justify-between items-center mb-8">
-                <h1 className="md:text-4xl font-semibold mx-2">
+                <h1 className="md:text-4xl font-semibold mx-2 text-xs">
                     Exclusive Properties in India
                 </h1>
                 <button
-                    className="md:text-xl font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out md:mr-14 mr-18"
+                    className="md:text-xl text-xs font-semibold text-[#d84a48] hover:text-[#b03b3a] transform hover:scale-105 transition duration-300 ease-in-out md:mr-14 mr-18"
                     onClick={handleSearch}
                 >
                     Explore Properties

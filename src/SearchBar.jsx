@@ -257,7 +257,7 @@
 
 
 import axios from 'axios';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -283,15 +283,6 @@ const allAreas = [
     "Bannerghatta Road", "Arekere", "Hulimavu", "Begur", "Bommanahalli",
     "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road"
 ];
-
-// const puneAreas = [
-//     "ABC-  Appa Balwant Chowk", "Shivaji Nagar", "Deccan Gymkhana", "Camp (Pune Cantonment)", "Sadashiv Peth", "Narayan Peth", "Kasba Peth",
-//     "Koregaon Park", "Kalyani Nagar", "Viman Nagar", "Wadgaon Sheri", "Mundhwa", "Kharadi",
-//     "Aundh", "Baner", "Balewadi", "Pashan", "Hinjawadi", "Bavdhan",
-//     "Bibwewadi", "Katraj", "Dhankawadi", "Undri", "NIBM Road", "Wanowrie",
-//     "Pimpri", "Chinchwad", "Wakad", "Bhosari", "Alandi",
-//     "Hadapsar", "Magarpatta City", "Fursungi", "Wagholi", "Manjri", "Sinhagad Road", "Warje", "Kothrud", "Ravet"
-// ];
 
 const puneAreas = [
     "ABC- Appa Balwant Chowk", "Akurdi",
@@ -447,7 +438,7 @@ const SearchBar = () => {
         const filtered = properties.filter(property => {
             const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
             const propertyTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
-            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase().includes(furnishingStatus.toLowerCase()) : true;
+            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
 
             // Square footage filter logic based on carpet area
@@ -508,7 +499,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="bg-white md:p-4 p-4 md:rounded-full shadow-lg flex flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
+        <div className="hidden md:flex bg-white md:p-4 p-4 md:rounded-full shadow-lg flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
             {/* Property Category selection */}
             <select
                 value={propertyCategory}
@@ -624,7 +615,7 @@ const SearchBar = () => {
 
             <button
                 onClick={handleSearch}
-                className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 rounded-full flex items-center justify-center w-full sm:w-auto"
+                className="bg-[#d84a48] hover:bg-[#c34543] text-white p-2 mt-1 rounded-full flex items-center justify-center w-full sm:w-auto"
             >
                 <FaSearch className="mr-2" /> Search
             </button>

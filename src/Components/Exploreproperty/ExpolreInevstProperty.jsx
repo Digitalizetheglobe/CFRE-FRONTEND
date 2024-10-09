@@ -95,25 +95,25 @@ const ExploreInvestProperty = () => {
         <>
         <Header />
         <div className="container mx-auto p-4">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-                <h1 className="text-4xl">Office Spaces Properties</h1>
-                <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
+            <div className="flex md:flex-col flex-col-1  justify-between items-center mb-6 space-y-4 md:space-y-0">
+                <h1 className="md:text-4xl text-lg ">Office Spaces Properties</h1>
+                <div className="flex md:flex-col flexcol-1 sm:flex-row items-center space-x-0 md:space-x-4 md:space-y-4">
                     <input
                         type="text"
-                        placeholder="Search by location..."
+                        placeholder="location..."
                         value={searchTerm}
                         onChange={handleSearch}
-                        className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="border border-gray-300 rounded-md px-4 py-2 md:w-full w-28 sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    <select
+                    {/* <select
                         value={sortOrder}
                         onChange={handleSort}
-                        className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="border border-gray-300 rounded-md md:px-4 md:py-2 md:w-full w-20 sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="">Sort by Price</option>
                         <option value="asc">Price: Low to High</option>
                         <option value="desc">Price: High to Low</option>
-                    </select>
+                    </select> */}
                 </div>
             </div>
 

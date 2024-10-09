@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import Header from '../../Components/Header/header';
 import axios from 'axios';
-import AdminNavbar from '../AdminNavbar'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 const ProjectForm = () => {
     const [formData, setFormData] = useState({
         projectName: '',
@@ -18,26 +17,101 @@ const ProjectForm = () => {
         commencementCertificate: '',
         occupancyCertificate: '',
         approvedBy: '',
-        specification: '',
-        projectPlans: '',
-        amenities: '',
-        floorPlanImages: '',
+        specification: [],
+        projectPlans: [{ Type: '', UnitCost: '', CarpetArea: '' }],
+        floorPlanImages: null,
+        propertyImage: null,
         video: '',
         virtualVideoTour: ''
     });
 
+    // Handle general input changes
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
 
+    // Handle changes for the project plans fields
+    const handleProjectPlansChange = (index, e) => {
+        const { name, value } = e.target;
+        const updatedPlans = [...formData.projectPlans];
+        updatedPlans[index][name] = value;
+        setFormData((prevData) => ({
+            ...prevData,
+            projectPlans: updatedPlans,
+        }));
+    };
+
+    // Add a new project plan field
+    const addProjectPlanField = () => {
+        setFormData((prevData) => ({
+            ...prevData,
+            projectPlans: [...prevData.projectPlans, { Type: '', UnitCost: '', CarpetArea: '' }]
+        }));
+    };
+
+    // Remove a project plan field
+    const removeProjectPlanField = (index) => {
+        const updatedPlans = formData.projectPlans.filter((_, i) => i !== index);
+        setFormData((prevData) => ({
+            ...prevData,
+            projectPlans: updatedPlans,
+        }));
+    };
+
+    // Handle file uploads
+    const handleFileChange = (e) => {
+        const { name, files } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: files.length > 0 ? files[0] : null // Ensure it's set to null if no file is selected
+        }));
+    };
+
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        console.log('Form Data Before Submission:', formData); // Log form data before submission
+
+        // Create a new FormData object
+        const data = new FormData();
+        
+        // Append simple fields to the FormData
+        Object.keys(formData).forEach(key => {
+            if (Array.isArray(formData[key])) {
+                if (key === 'specification') {
+                    formData[key].forEach((spec, index) => {
+                        if (spec) data.append(`specification[${index}]`, spec); // Append only if not null
+                    });
+                } else if (key === 'projectPlans') {
+                    formData[key].forEach((plan, index) => {
+                        if (plan.Type) data.append(`projectPlans[${index}][Type]`, plan.Type);
+                        if (plan.UnitCost) data.append(`projectPlans[${index}][UnitCost]`, plan.UnitCost);
+                        if (plan.CarpetArea) data.append(`projectPlans[${index}][CarpetArea]`, plan.CarpetArea);
+                    });
+                }
+            } else {
+                if (formData[key]) data.append(key, formData[key]); // Append only if not null or empty
+            }
+        });
+
+        // Log FormData contents for debugging
+        for (let [key, value] of data.entries()) {
+            console.log(key, value);
+        }
+
         try {
-            const response = await axios.post('https://cfrecpune.com/projects', formData);
-            alert('Project submitted successfully!');
+            const response = await axios.post('https://cfrecpune.com/projects/', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', 
+                },
+            });
+            console.log('Project created successfully:', response.data);
+            // Reset form after successful submission
             setFormData({
                 projectName: '',
                 reraRegdNo: '',
@@ -52,287 +126,81 @@ const ProjectForm = () => {
                 commencementCertificate: '',
                 occupancyCertificate: '',
                 approvedBy: '',
-                specification: '',
-                projectPlans: '',
-                amenities: '',
-                floorPlanImages: '',
+                specification: [],
+                projectPlans: [{ Type: '', UnitCost: '', CarpetArea: '' }],
+                floorPlanImages: null,
+                propertyImage: null,
                 video: '',
                 virtualVideoTour: ''
             });
         } catch (error) {
-            console.error('There was an error submitting the form!', error);
-            alert('Submission failed, please try again.');
+            console.error('Error creating project:', error);
         }
     };
 
     return (
         <>
-            < AdminNavbar />
-            <div className="space-y-12 pl-10 pr-10">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center mt-10">Add New Project</h2>
+            <Header />
+            <div className="max-w-4xl mx-auto p-8">
+                <h1 className="text-2xl font-semibold mb-6">Project Form</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                        {/* Project Name */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="projectName" className="block text-sm font-medium text-gray-700">Project Name</label>
-                            <input
-                                type="text"
-                                id="projectName"
-                                name="projectName"
-                                value={formData.projectName}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
+                    {/* Project Details Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" name="projectName" value={formData.projectName} onChange={handleChange} placeholder="Project Name" className="border p-2 rounded w-full" />
+                        <input type="text" name="reraRegdNo" value={formData.reraRegdNo} onChange={handleChange} placeholder="RERA Registration Number" className="border p-2 rounded w-full" />
+                        <input type="text" name="builderName" value={formData.builderName} onChange={handleChange} placeholder="Builder Name" className="border p-2 rounded w-full" />
+                        <input type="text" name="price" value={formData.price} onChange={handleChange} placeholder="Price" className="border p-2 rounded w-full" />
+                        <input type="text" name="area" value={formData.area} onChange={handleChange} placeholder="Area" className="border p-2 rounded w-full" />
+                        <input type="text" name="projectArea" value={formData.projectArea} onChange={handleChange} placeholder="Project Area" className="border p-2 rounded w-full" />
+                        <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="City" className="border p-2 rounded w-full" />
+                        <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" className="border p-2 rounded w-full" />
+                    </div>
+
+                    {/* Dynamic Specifications Section */}
+                    <h2 className="text-xl font-semibold mt-4">Specifications</h2>
+                    <textarea
+                        value={formData.specification.join(', ')} // Join the array into a string for display
+                        onChange={(e) => {
+                            const specs = e.target.value.split(',').map(spec => spec.trim()); // Split and trim to create an array
+                            setFormData(prevData => ({
+                                ...prevData,
+                                specification: specs // Update the specification array
+                            }));
+                        }}
+                        placeholder="Enter specifications separated by commas"
+                        className="border p-2 rounded w-full h-24"
+                    />
+
+                    {/* Dynamic Project Plans Section */}
+                    <h2 className="text-xl font-semibold mt-4">Project Plans</h2>
+                    {formData.projectPlans.map((plan, index) => (
+                        <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                            <input type="text" name="Type" value={plan.Type} onChange={(e) => handleProjectPlansChange(index, e)} placeholder="Type" className="border p-2 rounded w-full" />
+                            <input type="text" name="UnitCost" value={plan.UnitCost} onChange={(e) => handleProjectPlansChange(index, e)} placeholder="Unit Cost" className="border p-2 rounded w-full" />
+                            <input type="text" name="CarpetArea" value={plan.CarpetArea} onChange={(e) => handleProjectPlansChange(index, e)} placeholder="Carpet Area" className="border p-2 rounded w-full" />
+                            <button type="button" onClick={() => removeProjectPlanField(index)} className="text-red-500">Remove</button>
                         </div>
+                    ))}
+                    <button type="button" onClick={addProjectPlanField} className="bg-blue-500 text-white p-2 rounded mt-2">Add Project Plan</button>
 
-                        {/* RERA Registration Number */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="reraRegdNo" className="block text-sm font-medium text-gray-700">RERA Regd No</label>
-                            <input
-                                type="text"
-                                id="reraRegdNo"
-                                name="reraRegdNo"
-                                value={formData.reraRegdNo}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
+                    {/* File Upload Fields */}
+                    <h2 className="text-xl font-semibold mt-4">Upload Images</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block font-semibold mb-2">Upload Property Image</label>
+                            <input type="file" name="propertyImage" onChange={handleFileChange} className="border p-2 rounded w-full" />
                         </div>
-
-                        {/* Builder Name */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="builderName" className="block text-sm font-medium text-gray-700">Builder Name</label>
-                            <input
-                                type="text"
-                                id="builderName"
-                                name="builderName"
-                                value={formData.builderName}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Project Details */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="projectDetails" className="block text-sm font-medium text-gray-700">Project Details</label>
-                            <textarea
-                                id="projectDetails"
-                                name="projectDetails"
-                                value={formData.projectDetails}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Price */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
-                            <input
-                                type="text"
-                                id="price"
-                                name="price"
-                                value={formData.price}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Area */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="area" className="block text-sm font-medium text-gray-700">Area</label>
-                            <input
-                                type="text"
-                                id="area"
-                                name="area"
-                                value={formData.area}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Project Area */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="projectArea" className="block text-sm font-medium text-gray-700">Project Area</label>
-                            <input
-                                type="text"
-                                id="projectArea"
-                                name="projectArea"
-                                value={formData.projectArea}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Possession */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="possession" className="block text-sm font-medium text-gray-700">Possession</label>
-                            <input
-                                type="text"
-                                id="possession"
-                                name="possession"
-                                value={formData.possession}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* City */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
-                            <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                value={formData.city}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Location */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
-                            <input
-                                type="text"
-                                id="location"
-                                name="location"
-                                value={formData.location}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Commencement Certificate */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="commencementCertificate" className="block text-sm font-medium text-gray-700">Commencement Certificate</label>
-                            <input
-                                type="text"
-                                id="commencementCertificate"
-                                name="commencementCertificate"
-                                value={formData.commencementCertificate}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Occupancy Certificate */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="occupancyCertificate" className="block text-sm font-medium text-gray-700">Occupancy Certificate</label>
-                            <input
-                                type="text"
-                                id="occupancyCertificate"
-                                name="occupancyCertificate"
-                                value={formData.occupancyCertificate}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Approved By */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="approvedBy" className="block text-sm font-medium text-gray-700">Approved By</label>
-                            <input
-                                type="text"
-                                id="approvedBy"
-                                name="approvedBy"
-                                value={formData.approvedBy}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Specification */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="specification" className="block text-sm font-medium text-gray-700">Specification</label>
-                            <textarea
-                                id="specification"
-                                name="specification"
-                                value={formData.specification}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Project Plans */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="projectPlans" className="block text-sm font-medium text-gray-700">Project Plans</label>
-                            <textarea
-                                id="projectPlans"
-                                name="projectPlans"
-                                value={formData.projectPlans}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Amenities */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="amenities" className="block text-sm font-medium text-gray-700">Amenities</label>
-                            <input
-                                type="text"
-                                id="amenities"
-                                name="amenities"
-                                value={formData.amenities}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Floor Plan Images */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="floorPlanImages" className="block text-sm font-medium text-gray-700">Floor Plan Images</label>
-                            <input
-                                type="text"
-                                id="floorPlanImages"
-                                name="floorPlanImages"
-                                value={formData.floorPlanImages}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Video */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="video" className="block text-sm font-medium text-gray-700">Video</label>
-                            <input
-                                type="text"
-                                id="video"
-                                name="video"
-                                value={formData.video}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-
-                        {/* Virtual Video Tour */}
-                        <div className="sm:col-span-3">
-                            <label htmlFor="virtualVideoTour" className="block text-sm font-medium text-gray-700">Virtual Video Tour</label>
-                            <input
-                                type="text"
-                                id="virtualVideoTour"
-                                name="virtualVideoTour"
-                                value={formData.virtualVideoTour}
-                                onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-                        
-
-                        <div className="mt-15 flex items-center justify-center gap-x-6">
-                            <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                className="rounded-md bg-[#d84a48] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#b03b3a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 pl-3"
-                            >
-                                Save
-                            </button>
+                        <div>
+                            <label className="block font-semibold mb-2">Upload Floor Plans Images</label>
+                            <input type="file" name="floorPlanImages" onChange={handleFileChange} className="border p-2 rounded w-full" />
                         </div>
                     </div>
+
+                    {/* Submit Button */}
+                    <button type="submit" className="bg-[#d84a48] text-white p-3 rounded mt-4 hover:bg-[#c34543]">Submit</button>
                 </form>
             </div>
-
         </>
     );
 };

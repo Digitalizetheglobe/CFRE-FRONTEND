@@ -44,18 +44,18 @@ const Card = () => {
             }}
           >
             <div>
-              <h2 className="text-3xl font-bold">
+              <h2 className="md:text-3xl text-lg font-bold">
                 List, sell, relax – we’ll handle the rest.
               </h2>{" "}
               {/* Increased font size */}
-              <p className="text-base leading-relaxed mt-6 md:text-xl">
+              <p className="leading-relaxed mt-2 text-xs md:text-xl">
                 Maximize Exposure, Minimize Effort – List Now!
               </p>
             </div>
             <button
               type="button"
               onClick={handleNavigate}
-              className="mt-8 w-48 px-6 py-4 rounded-lg text-sm tracking-wider border-none outline-none bg-[#d84a48] hover:bg-[#ca3c39]"
+              className="md:mt-8 md:w-48 w-auto px-6 md:py-4 py-2 rounded-lg text-xs border-none outline-none bg-[#d84a48] hover:bg-[#ca3c39]"
             >
               List Your Property
             </button>
@@ -71,18 +71,18 @@ const Card = () => {
             }}
           >
             <div>
-              <h2 className="text-3xl font-bold ">
+              <h2 className="md:text-3xl text-lg font-bold ">
                 Office Spaces That Work for You
               </h2>{" "}
               {/* Increased font size */}
-              <p className="text-sm leading-relaxed mt-6 md:text-xl">
+              <p className="text-xs leading-relaxed mt-6 md:text-xl">
                 Explore a curated selection of premium office spaces tailored to
                 elevate your business operations.
               </p>
             </div>
             <button
               type="button"
-              className="mt-8 w-40 px-6 py-4 rounded-lg text-sm tracking-wider border-none outline-none bg-[#d84a48] hover:bg-[#ca3c39]"
+              className="md:mt-8 md:w-40 w-auto md:px-6 md:py-4 py-2 rounded-lg text-sm border-none outline-none bg-[#d84a48] hover:bg-[#ca3c39]"
               onClick={handleButtonClick}
             >
               Contact Us

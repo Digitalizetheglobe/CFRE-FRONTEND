@@ -96,8 +96,8 @@ const Unfurnished = () => {
         <>
         <Header />
         <div className="container mx-auto p-4">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-                <h1 className="text-4xl">Furnished Properties</h1>
+            <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">
+                <h1 className="md:text-4xl text-lg font-bold">Furnished Properties</h1>
                 <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
                     <input
                         type="text"

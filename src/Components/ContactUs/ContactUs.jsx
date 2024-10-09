@@ -87,23 +87,23 @@ function ContactUs() {
     return (
         <>
         <Header />
-            <div className="relative mb-10 mt-10">
+            <div className="relative mb-10 md:mt-10 mt-5">
                 {/* Banner Image */}
                 <img
                     src={Banner}
                     alt="Blog Banner"
-                    className="w-11/12 h-72 object-cover rounded-lg shadow-lg md:ml-16 ml-4"
+                    className="w-11/12 md:h-72 object-cover rounded-lg shadow-lg md:ml-16 ml-4"
                 />
                 {/* Text on Banner */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <h1 className="text-white text-5xl px-4 py-2 rounded">
+                    <h1 className="text-white md:text-5xl text-2xl px-4 py-2 rounded">
                         Contact Us
                     </h1>
                 </div>
             </div>
             <div className="bg-gray-50 flex flex-col md:flex-row justify-between p-8 mb-10 rounded-lg">
                 <div className="bg-gray-300 p-8 rounded-lg w-full md:w-1/2 mx-auto md:ml-32">
-                    <h2 className="text-2xl font-bold mb-4">
+                    <h2 className="md:text-2xl text-lg font-bold md:mb-4">
                         Get help from <span className="text-[#d84a48]">us.</span>
                     </h2>
                     <p className="text-gray-600 mb-8"></p>
@@ -115,7 +115,7 @@ function ContactUs() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 placeholder="Your name ..."
-                                className="p-4 rounded-lg w-full focus:outline-none"
+                                className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
                             />
                             {errors.name && <p className="text-red-500">{errors.name}</p>}
 
@@ -125,7 +125,7 @@ function ContactUs() {
                                 value={formData.mobileNumber}
                                 onChange={handleChange}
                                 placeholder="Phone number ..."
-                                className="p-4 rounded-lg w-full focus:outline-none"
+                                className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
                             />
                             {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber}</p>}
 
@@ -135,7 +135,7 @@ function ContactUs() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Email address ..."
-                                className="p-4 rounded-lg w-full focus:outline-none"
+                                className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
                             />
                             {errors.email && <p className="text-red-500">{errors.email}</p>}
                         </div>
@@ -144,13 +144,13 @@ function ContactUs() {
                             value={formData.message}
                             onChange={handleChange}
                             placeholder="Provide the message content ..."
-                            className="p-4 rounded-lg w-full h-40 focus:outline-none"
+                            className="md:p-4 p-2 rounded-lg w-full md:h-40 focus:outline-none"
                         ></textarea>
                         {errors.message && <p className="text-red-500">{errors.message}</p>}
 
                         <button
                             type="submit"
-                            className="bg-[#d84a48] text-white px-6 py-3 rounded-lg mt-4 hover:bg-[#ab3c3b] transition"
+                            className="bg-[#d84a48] text-white md:px-6 px-3 py-1.5 md:py-3 rounded-lg mt-4 hover:bg-[#ab3c3b] transition"
                         >
                             Send Message &rarr;
                         </button>
@@ -162,10 +162,10 @@ function ContactUs() {
                         <div className="flex items-center space-x-2">
                             <Phone className="w-6 h-6 text-gray-600" />
                             <div>
-                                <p className="font-bold">Office Number</p>
+                                <p className="md:text-base text-sm font-bold">Office Number</p>
                                 <a
                                     href="tel:+918149977661"
-                                    className="text-gray-700 hover:text-[#d84a48] hover:underline"
+                                    className="md:text-base text-sm text-gray-700 hover:text-[#d84a48] hover:underline"
                                 >
                                     +91 8149977661
                                 </a>
@@ -174,10 +174,10 @@ function ContactUs() {
                         <div className="flex items-center space-x-2">
                             <Mail className="w-6 h-6 text-gray-600" />
                             <div>
-                                <p className="font-bold">Business Email</p>
+                                <p className="font-bold md:text-base text-sm">Business Email</p>
                                 <a
                                     href="mailto:swapnil@cfrerealty.com"
-                                    className="text-gray-700 hover:text-[#d84a48] hover:underline"
+                                    className="md:text-base text-sm text-gray-700 hover:text-[#d84a48] hover:underline"
                                 >
                                     sales@cfrerealty.com
                                 </a>
@@ -187,8 +187,8 @@ function ContactUs() {
                         <div className="flex items-center space-x-2">
                             <MapPin className="w-6 h-6 text-gray-600" />
                             <div>
-                                <p className="font-bold">Office Location</p>
-                                <p className="text-gray-700">
+                                <p className="font-bold md:text-base text-sm">Office Location</p>
+                                <p className="text-gray-700 md:text-base text-sm">
                                     320, HBC, Hirabaug Chowk, Tilak Road Pune- 411002
                                 </p>
                             </div>
@@ -197,10 +197,10 @@ function ContactUs() {
                     <div className="w-full mt-6">
                         <div className="flex items-center space-x-2 mb-2">
                             <Map className="w-6 h-6 text-gray-600" />
-                            <p className="font-bold">Find Us On Google</p>
+                            <p className="font-bold md:text-base text-sm">Find Us On Google</p>
                         </div>
                         <iframe
-                            className="w-full h-96 rounded-lg"
+                            className="w-full md:h-96 rounded-lg"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.548551613884!2d73.85311307465182!3d18.50409726967826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c01328410eb9%3A0x19ebdd52d7fa6ef6!2sHirabaug%20Business%20Center!5e0!3m2!1sen!2sin!4v1725004275510!5m2!1sen!2sin"
                             allowFullScreen=""
                             loading="lazy"
@@ -211,7 +211,7 @@ function ContactUs() {
 
             <Blogslider />
             <div
-                className="py-12 sm:py-16 border ml-16 mr-12"
+                className="py-10 border md:ml-16 md:mr-12"
                 style={{ 
                     borderRadius: '2rem', 
                     backgroundImage: `url(${Bckgrndimg})`, 
@@ -219,29 +219,29 @@ function ContactUs() {
                     backgroundPosition: 'center'
                 }}
             >
-                <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
-                    <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
+                <div className="mx-auto  max-w-full px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
+                    <dl className="grid md:grid-cols grid-cols-4 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-white">Years</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                            <dt className="md:text-2xl leading-7 text-white">Years</dt>
+                            <dd className="order-first text-xl font-semibold tracking-tight text-white md:text-5xl">
                                 <CountUp start={0} end={12} duration={7} /> +
                             </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-white">Sq.Ft <br />Delivered</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                            <dt className="md:text-2xl leading-7 text-white">Sq.Ft <br />Delivered</dt>
+                            <dd className="order-first text-xl font-semibold tracking-tight text-white md:text-5xl">
                                 <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} />
                             </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-white">Clients</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                            <dt className="md:text-2xl leading-7 text-white">Clients</dt>
+                            <dd className="order-first text-xl font-semibold tracking-tight text-white sm:text-5xl">
                                 <CountUp start={0} end={500} duration={7} /> +
                             </dd>
                         </div>
                         <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-                            <dt className="text-2xl leading-7 text-white">Cities</dt>
-                            <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+                            <dt className="md:text-2xl leading-7 text-white">Cities</dt>
+                            <dd className="order-first text-xl font-semibold tracking-tight text-white md:text-5xl">
                                 <CountUp start={0} end={40} duration={7} /> +
                             </dd>
                         </div>
@@ -254,7 +254,7 @@ function ContactUs() {
                 <img
                     src={Tagline} // Use src attribute for the image
                     alt="Blog Banner"
-                    className="w-11/12 h-72 object-cover rounded-lg shadow-lg md:ml-16 ml-4"
+                    className="md:w-11/12 md:h-72 object-cover rounded-lg shadow-lg md:ml-16 "
                 />
             </div>
         </>

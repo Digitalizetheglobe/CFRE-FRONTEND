@@ -7,14 +7,17 @@ import Pagination from '@mui/material/Pagination';
 
 function PropertyList() {
     const location = useLocation(); 
-    const properties = location.state?.properties || [];
-    console.log('Properties Data:', properties);
+    const properties = location.state?.properties || []; // Ensure properties is an array
+    const { filteredProperties = [] } = location.state || {}; // Ensure filteredProperties is an array
+
+    // Determine which set of properties to use
+    const displayedProperties = filteredProperties.length > 0 ? filteredProperties : properties;
 
     const [currentPage, setCurrentPage] = useState(1);
     const propertiesPerPage = 8; // Set how many properties per page you want to show
 
     // Sort properties by createdAt or updatedAt in descending order to show latest properties first
-    const sortedProperties = [...properties].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const sortedProperties = [...displayedProperties].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     // Handle page change for pagination
     const handlePageChange = (event, value) => {
@@ -30,11 +33,11 @@ function PropertyList() {
 
     return (
         <>
-        <Header />          
+        <Header />
         <div>
             {/* Property List Section */}
             <div className="p-4">
-                {/* Check if there are any properties */}
+                {/* Check if there are any properties to display */}
                 {sortedProperties.length > 0 ? (
                     <div className="flex flex-wrap -mx-2 mt-5">
                         {currentProperties.map(property => (

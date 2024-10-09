@@ -32,7 +32,7 @@ const AddProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://192.168.0.105:8000/projects', formData);
+      const response = await axios.post('https://cfrecpune.com/projects', formData);
       console.log('Project created successfully:', response.data);
       // Reset form
       setFormData({

@@ -40,13 +40,13 @@ const EmiCalculator = () => {
             <div className="bg-gray-800 w-full font-[sans-serif]">
                 <div className="grid md:grid-cols-2 items-center md:max-h-[475px] overflow-hidden">
                     <div className="p-8">
-                        <h1 className="sm:text-4xl text-2xl font-bold text-white">EMI <span className="text-[#d84a48]">Calculator</span></h1>
+                        <h1 className="md:text-2xl text-xl font-bold text-white">EMI <span className="text-[#d84a48]">Calculator</span></h1>
                         <p className="mt-4 text-sm text-gray-300">Commercial Property Ownership Made Easier with Smart Financing</p>
                         <p className="mt-2 text-sm text-gray-300">"Commercial Property Ownership Made Easier with Smart Financing" emphasizes how innovative financing solutions simplify acquiring and managing commercial real estate...</p>
                         <button 
                             type="button"
                             onClick={handleGetStarted}
-                            className="px-6 py-3 mt-8 rounded-md text-white text-sm tracking-wider border-none outline-none bg-[#d84a48] hover:bg-[#9c2f2d]">
+                            className="md:px-6 px-3 py-1.5 md:py-3 mt-8 rounded-md text-white text-sm tracking-wider border-none outline-none bg-[#d84a48] hover:bg-[#9c2f2d]">
                             Get started
                         </button>
                     </div>
@@ -58,8 +58,8 @@ const EmiCalculator = () => {
                 {/* Input Section */}
                 <div className="bg-gray-50 p-8 rounded-lg shadow-md">
                     <div className="flex items-center mb-6 space-x-3">
-                        <FaCalculator className="text-[#d84a48] text-4xl" />
-                        <h2 className="text-3xl font-bold text-gray-800">EMI Calculator</h2>
+                        <FaCalculator className="text-[#d84a48] md:text-4xl" />
+                        <h2 className="md:text-3xl font-bold text-gray-800">EMI Calculator</h2>
                     </div>
 
                     {/* Loan Amount Input */}
@@ -109,7 +109,7 @@ const EmiCalculator = () => {
 
                 {/* EMI Details Section */}
                 <div className="p-8 bg-indigo-50 rounded-lg shadow-md">
-                    <h2 className="text-3xl font-semibold mb-8 text-center text-[#d84a48]">
+                    <h2 className="md:text-3xl font-semibold mb-8 text-center text-[#d84a48]">
                         EMI Amount: <span className="text-green-600">₹{emi.toLocaleString('en-IN')}</span>
                     </h2>
 
@@ -132,7 +132,7 @@ const EmiCalculator = () => {
                     </div>
 
                     <div className="bg-white p-6 rounded-lg shadow-inner">
-                        <h3 className="text-base font-semibold mb-4 text-[#d84a48]">Empowering Business Growth with Affordable EMI Plans</h3>
+                        <h3 className="md:text-base font-semibold mb-4 text-[#d84a48]">Empowering Business Growth with Affordable EMI Plans</h3>
                         <ul className="list-disc list-inside text-gray-700 space-y-2">
                             <li>Offers from 14+ Banks</li>
                             <li>Lowest Interest Rates</li>

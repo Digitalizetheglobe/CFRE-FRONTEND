@@ -48,6 +48,7 @@ import Dashboard from './AdminDashboard/Dashboard.jsx'
 // Layoutes
 import AdminLayout from './Layout/AdminLayout.jsx'
 import FAQs from './FAQs.jsx';
+
 import BasicForm from './AdminDashboard/BasicForm.jsx'
 import BasicFormView from './AdminDashboard/BasicFormView.jsx'
 import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
@@ -57,6 +58,9 @@ import StickyButton from './Components/StickyButton/StickyButton.jsx';
 import ProjectUpload from './AdminDashboard/ProjectUpload.jsx';
 import ProjectList from './AdminDashboard/ProjectList.jsx';
 import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
+import MobileSearchBar from './MobileSearchBar.jsx';
+import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
+
 function App() {
   return (
     <Router>
@@ -74,6 +78,7 @@ function App() {
           <Route path="/invest" element={<Invest />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/projectproperty" element={<ProjectProperty />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path='/propertyList' element={<PropertyList />} />
           <Route path="/combinedproperties/:slug" element={<PropertyDetails />} />
           <Route path="/property/:slug" element={<PropertyDetail />} />
@@ -100,9 +105,8 @@ function App() {
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:slug" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
-          <Route path="/emiCalculator" element={<EmiCalculator />} />
-          <Route path="/projectuplaod" element={<ProjectUpload/>} />
-          <Route path="/ProjectList" element={<ProjectList/>} />
+          <Route path="/emiCalculator" element={<EmiCalculator/>} />
+
 
 
           {/* below admin panal routes */}

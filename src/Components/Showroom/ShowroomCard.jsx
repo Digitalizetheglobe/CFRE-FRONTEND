@@ -24,7 +24,7 @@ const ShowroomCard = ({ property }) => {
             <Link to={`/property-detail/${property.slug}`}>
     {/* Replaced the property image with the provided image */}
     <img 
-        className="w-full h-48 object-cover"
+        className="w-full md:h-48 h-36 object-cover"
         src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
         alt="Property"
     />
@@ -33,10 +33,10 @@ const ShowroomCard = ({ property }) => {
 
             <div className="px-6 py-4">
                 {/* Showroom Price */}
-                <div className="font-bold text-xl">{property.basicPrice}</div>
+                <div className="font-bold md:text-xl">{property.basicPrice}</div>
 
                 {/* Showroom Location */}
-                <Link to={`/property-detail/${property.id}`} className="text-lg text-gray-600 mt-2 block hover:text-[#d84a48] transition-colors duration-300">
+                <Link to={`/property-detail/${property.id}`} className="md:text-lg text-gray-600 md:mt-2 block hover:text-[#d84a48] transition-colors duration-300">
                     {property.buildingName}
                 </Link>
                 <div className="text-gray-600 mt-1">{property.location}, {property.city}</div>

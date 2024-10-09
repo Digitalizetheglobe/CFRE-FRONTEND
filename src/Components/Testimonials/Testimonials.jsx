@@ -40,22 +40,22 @@ function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div key={index}>
               <div
-                className="flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto p-8 shadow-lg rounded-lg bg-cover bg-center"
+                className="flex flex-col lg:flex-row items-center justify-between md:max-w-7xl mx-auto p-8 shadow-lg rounded-lg bg-cover bg-center"
                 style={{ backgroundImage: `url(${BackgroundImage})` }}
               >
                 {/* Image Section */}
-                <div className="w-full lg:w-1/3">
+                <div className="md:w-full lg:w-1/3">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-full h-[300px] object-cover rounded-lg shadow-md"
+                    className="md:w-full  h-[250px] md:h-[300px] object-cover rounded-lg shadow-md"
                   />
                 </div>
 
                 {/* Testimonial Section */}
-                <div className="w-full lg:w-2/3 lg:pl-12 flex flex-col justify-center bg-opacity-90 text-white rounded-lg p-8">
-                  <div className="flex items-center mb-4">
-                    <p className="text-lg lg:text-xl font-light leading-relaxed text-white">
+                <div className="md:w-full lg:w-2/3 lg:pl-12 flex flex-col justify-center bg-opacity-90 text-white rounded-lg p-8">
+                  <div className="flex items-center md:mb-4">
+                    <p className="md:text-lg text-sm lg:text-xl font-light leading-relaxed text-white">
                       {testimonial.text}
                     </p>
                   </div>
@@ -74,7 +74,7 @@ function Testimonials() {
       </div>
 
       <div
-        className="py-12 sm:py-16 border ml-16 mr-12 mt-6  hidden md:block"
+        className="py-12 sm:py-16 hidden border md:ml-16 md:mr-12 ml-2 mr-2 mt-6 md:block"
         style={{
           borderRadius: "2rem",
           backgroundImage: `url(${Bckgrndimg})`,
@@ -83,19 +83,19 @@ function Testimonials() {
         }}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8 bg-opacity-75 rounded-lg p-8">
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
+          <dl className="grid md:grid-cols grid-cols-4  gap-x-8 gap-y-16 text-center lg:grid-cols-4">
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-2xl leading-7 text-white">Years</dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              <dt className="md:text-2xl leading-7 text-white">Years</dt>
+              <dd className="order-first text-xl font-semibold tracking-tight text-white sm:text-5xl">
                 <CountUp start={0} end={12} duration={7} /> +
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-2xl leading-7 text-white">
+              <dt className="md:text-2xl leading-7 text-white">
                 Sq.Ft <br />
                 Delivered
               </dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              <dd className="order-first text-xl font-semibold tracking-tight text-white sm:text-5xl">
                 <CountUp
                   start={0}
                   end={2.5}
@@ -106,14 +106,14 @@ function Testimonials() {
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-2xl leading-7 text-white">Clients</dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              <dt className="md:text-2xl leading-7 text-white">Clients</dt>
+              <dd className="order-first text-xl font-semibold tracking-tight text-white sm:text-5xl">
                 <CountUp start={0} end={500} duration={7} /> +
               </dd>
             </div>
             <div className="mx-auto flex max-w-xs flex-col gap-y-4">
-              <dt className="text-2xl leading-7 text-white">Cities</dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+              <dt className="md:text-2xl leading-7 text-white">Cities</dt>
+              <dd className="order-first text-xl font-semibold tracking-tight text-white sm:text-5xl">
                 <CountUp start={0} end={40} duration={7} /> +
               </dd>
             </div>

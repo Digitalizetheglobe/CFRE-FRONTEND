@@ -4,7 +4,7 @@ function FAQs() {
   return (
     <section class="bg-[#1D1D1D] text-gray-100 py-32 min-h-screen">
     <div class="container flex flex-col justify-center p-4 mx-auto md:p-8">
-      <h2 class="mb-12 text-4xl font-bold leadi text-center sm:text-5xl">Frequently Asked Questions</h2>
+      <h2 class="mb-12 md:text-4xl text-xl font-bold leadi text-center ">Frequently Asked Questions</h2>
       <div class="flex flex-col divide-y sm:px-8 lg:px-12 xl:px-32 divide-gray-700">
         <details>
           <summary class="py-2 outline-none cursor-pointer focus:underline">Q. How much do I have to pay to list my property on CFRE?

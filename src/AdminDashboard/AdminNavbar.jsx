@@ -36,20 +36,20 @@ const AdminNavbar = () => {
         </li>
         <li className='max-lg:border-b max-lg:py-3 px-3'>
           <Link to='/dashboard'
-            className='hover:text-[#007bff] text-[#333] font-semibold block text-[15px]'>Dashboard</Link>
+            className='hover:text-[#d84a48] text-[#333] font-semibold block text-[15px]'>Dashboard</Link>
         </li>
         <li className='max-lg:border-b max-lg:py-3 px-3'>
           <Link to='/addnewproperty'
-            className='hover:text-[#007bff] text-[#333]  font-semibold block text-[15px]'>Add Property</Link>
+            className='hover:text-[#d84a48] text-[#333]  font-semibold block text-[15px]'>Add Property</Link>
         </li>
         <li className='max-lg:border-b max-lg:py-3 px-3'><Link to='/bulkproperty'
-            className='hover:text-[#007bff] text-[#333] font-semibold block text-[15px]'>Bulk Upload Property</Link>
+            className='hover:text-[#d84a48] text-[#333] font-semibold block text-[15px]'>Bulk Upload Property</Link>
         </li>
         <li className='max-lg:border-b max-lg:py-3 px-3'><Link to='/enquirydetails'
-            className='hover:text-[#007bff] text-[#333] font-semibold block text-[15px]'>Enquiry Response</Link>
+            className='hover:text-[#d84a48] text-[#333] font-semibold block text-[15px]'>Enquiry Response</Link>
         </li>
         <li className='max-lg:border-b max-lg:py-3 px-3'><a href='javascript:void(0)'
-            className='hover:text-[#007bff] text-[#333] font-semibold block text-[15px]'>All Property</a>
+            className='hover:text-[#d84a48] text-[#333] font-semibold block text-[15px]'>All Property</a>
         </li>
       </ul>
     </div>
@@ -57,7 +57,7 @@ const AdminNavbar = () => {
     <div className='flex items-center max-lg:ml-auto space-x-6'>
       <Link 
       to="/adminlogin"
-        className='px-4 py-2 text-[15px] rounded font-semibold text-[#007bff] border-2 border-[#007bff] hover:bg-[#007bff] transition-all ease-in-out duration-300 bg-transparent hover:text-white'>Log Out</Link>
+        className='px-4 py-2 text-[15px] rounded font-semibold text-[#000000] bg-[#d84a48] border-2 border-[#d84a48] hover:bg-[#d84a48] transition-all ease-in-out duration-300 bg-transparent hover:text-white'>Log Out</Link>
 
       <button id="toggleOpen" className='lg:hidden'>
         <svg className="w-7 h-7" fill="#333" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

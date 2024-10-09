@@ -39,20 +39,20 @@ const Showroom = () => {
         <>
             <Header />
             <div className="relative overflow-hidden">
-                <div className="absolute inset-0 w-full md:h-[75vh] overflow-hidden">
+                <div className="absolute inset-0 w-full md:h-[75vh] h-[25vh] overflow-hidden">
                     <video
-                        className="w-full h-full object-cover"
+                        className="md:w-full md:h-full object-cover"
                         src={ShowroomVideo}
                         autoPlay
                         loop
                         muted
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                        <h1 className="text-3xl md:text-4xl text-white">Showroom Properties</h1>
+                        <h1 className="text-xl md:text-4xl text-white">Showroom Properties</h1>
                     </div>
                 </div>
 
-                <div className="relative container mx-auto p-4 mt-[80vh]">
+                <div className="relative container mx-auto p-4 md:mt-[80vh] mt-[25vh]">
                     {error ? (
                         <Error message={error} /> // Render Error component if there's an error
                     ) : (

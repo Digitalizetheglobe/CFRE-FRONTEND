@@ -36,34 +36,34 @@ const Thirdcards = () => {
       <div className="bg-gray-100 py-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
           <div className="md:w-1/2">
-            <h1 className="text-4xl font-bold text-gray-800">
+            <h1 className="md:text-4xl font-bold text-gray-800">
               Sell your <span className="text-[#d84a48]">Commercial Property</span> in weeks!
             </h1>
-            <p className="text-lg text-gray-600 mt-4">
+            <p className="md:text-lg text-sm text-gray-600 mt-4">
               List your Property for free and get access to 15,000+ Real Estate investors on our platform.
             </p>
             <div className="mt-6 space-y-4">
               <div className="flex items-center">
-                <span className="text-blue-600 text-xl mr-2">🪙</span>
+                <span className="text-blue-600 md:text-xl mr-2">🪙</span>
                 <p className="text-gray-700">Get the best price for your property</p>
               </div>
               <div className="flex items-center">
-                <span className="text-green-600 text-xl mr-2">👥</span>
+                <span className="text-green-600 md:text-xl mr-2">👥</span>
                 <p className="text-gray-700">Dedicated experts to assist you</p>
               </div>
               <div className="flex items-center">
-                <span className="text-yellow-600 text-xl mr-2">🏷️</span>
+                <span className="text-yellow-600 md:text-xl mr-2">🏷️</span>
                 <p className="text-gray-700">Average selling time is 2 weeks</p>
               </div>
             </div>
             <div className="mt-10 flex space-x-10">
   <div className="flex-shrink-0">
-    <p className="text-2xl font-bold text-gray-800">12 years+</p>
-    <p className="text-gray-600">of real estate experience</p>
+    <p className="md:text-2xl font-bold text-gray-800">12 years+</p>
+    <p className="text-gray-600 text-xs">of real estate experience</p>
   </div>
   <div className="flex-shrink-0">
-    <p className="text-2xl font-bold text-gray-800">500 CR+</p>
-    <p className="text-gray-600">Worth of transactions</p>
+    <p className="md:text-2xl font-bold text-gray-800">500 CR+</p>
+    <p className="text-gray-600 text-xs">Worth of transactions</p>
   </div>
  
 </div>
@@ -177,7 +177,7 @@ const Thirdcards = () => {
 
       <div className="divide-y rounded-lg max-w-7xl mx-auto px-4 ">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800">Frequently asked questions</h2>
+          <h2 className="md:text-2xl font-bold text-gray-800">Frequently asked questions</h2>
         </div>
         <div role="accordion">
           <button
@@ -185,14 +185,14 @@ const Thirdcards = () => {
             className="w-full text-base text-left font-semibold py-6 text-gray-800 flex items-center"
             onClick={() => toggleAccordion(1)}
           >
-            <span className="mr-4">Q. How much do I have to pay to list my property on CFRE?</span>
+            <span className="mr-4 text-sm md:text-base">Q. How much do I have to pay to list my property on CFRE?</span>
             <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 1 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
               <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
             </svg>
           </button>
           {openAccordion === 1 && (
             <div className="py-4">
-              <p className="text-sm text-gray-800">
+              <p className="text-sm md:text-base text-gray-800">
                 It is completely free to list your property on CFRE. We only charge a brokerage fee of 2% + GST once we successfully sell your property on our marketplace, incentivising us to sell faster and get the best deal possible for you.
               </p>
             </div>
@@ -201,7 +201,7 @@ const Thirdcards = () => {
         <div role="accordion">
           <button
             type="button"
-            className="w-full text-base text-left font-semibold py-6 text-gray-800 flex items-center"
+            className="w-full text-sm  md:text-base text-left font-semibold py-6 text-gray-800 flex items-center"
             onClick={() => toggleAccordion(2)}
           >
             <span className="mr-4">Q. Can I list my property on CFRE?</span>
@@ -211,7 +211,7 @@ const Thirdcards = () => {
           </button>
           {openAccordion === 2 && (
             <div className="py-4">
-              <p className="text-sm text-gray-800">
+              <p className="text-sm md:text-base text-gray-800">
                 Yes! Our marketplace allows owners of commercial properties (office, retail, or land) to list their property. Simply fill out our connect form, and our expert will reach out to you to explain the listing process.
               </p>
             </div>
@@ -220,17 +220,17 @@ const Thirdcards = () => {
         <div role="accordion">
           <button
             type="button"
-            className="w-full text-base text-left font-semibold py-6 text-gray-800 flex items-center"
+            className="w-full text-sm text-left font-semibold py-6 text-gray-800 flex items-center"
             onClick={() => toggleAccordion(3)}
           >
-            <span className="mr-4">Q. How is CFRE different from other brokers?</span>
+            <span className="mr-4 text-sm md:text-base">Q. How is CFRE different from other brokers?</span>
             <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
               <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
             </svg>
           </button>
           {openAccordion === 3 && (
             <div className="py-4">
-              <p className="text-sm text-gray-800">
+              <p className="text-sm md:text-base text-gray-800">
               CFRE distributes your property to more than 1500 verified investors, leading brokers, wealth management firms and financial advisors. Through our ecosystem we generate multiple businesses, a variety of offers, and the best price for your property. Due to our extensive network of investors, we are able to close our deals within weeks rather than months!
               </p>
             </div>

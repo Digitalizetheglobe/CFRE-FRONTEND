@@ -10,11 +10,11 @@ function Template() {
                 className="w-full md:w-1/2 flex flex-col justify-center items-center space-y-2 p-4 bg-cover bg-center rounded-lg"
                 style={{ backgroundImage: `url(${Image})` }}
             >
-                <p className="text-white font-semibold text-xl text-center mb-2">
+                <p className="text-white font-semibold md:text-xl text-sm text-center mb-2">
                 Skip Complex Formulas! Use our Free Tools to Calculate
                 </p>
                 <div className="flex justify-center space-x-4 mt-2">
-                    <Link to='/emiCalculator' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
+                    <Link to='/emiCalculator' className="bg-[#d84a48] text-white font-semibold md:py-2 py-1 md:px-6 p-2 rounded-lg hover:bg-[#9c2f2d]">
                         EMI Calculator
                     </Link>
                     {/* <Link to='/ExploreInvestProperty' className="bg-[#d84a48] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#9c2f2d]">
@@ -28,7 +28,7 @@ function Template() {
 
             {/* Right Side - Form */}
             <div className="w-full md:w-1/2 bg-[#1C2439] p-6 rounded-lg shadow-md space-y-4 flex flex-col justify-center">
-                <h2 className="text-xl font-bold text-white">Hey there,</h2>
+                <h2 className="md:text-xl font-bold text-white">Hey there,</h2>
                 <p className="text-white">How can we serve you today?</p>
 
                 <div className="space-y-3">
@@ -49,11 +49,11 @@ function Template() {
                 </div>
 
                 <textarea
-                    className="w-full h-28 p-3 mt-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 resize-none"
+                    className="w-full md:h-28 p-3 mt-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 resize-none"
                     placeholder="Tell us your requirements..."
                 ></textarea>
 
-                <button className="w-full bg-[#d84a48] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#9c2f2d]">
+                <button className="md:w-full bg-[#d84a48] text-white font-semibold md:py-2 py-1 md:px-4 px-2 rounded-lg hover:bg-[#9c2f2d]">
                     Submit
                 </button>
             </div>
