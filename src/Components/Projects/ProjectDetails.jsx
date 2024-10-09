@@ -14,6 +14,9 @@ import { GiElectric, GiWaterDrop } from 'react-icons/gi';
 import { FaUtensils } from 'react-icons/fa';
 import { BsShieldLock } from 'react-icons/bs';
 import { MdOutlineVisibility } from 'react-icons/md';
+import { FiWifi } from 'react-icons/fi';  // For Wi-Fi (Internet Connection)
+import { MdOutlineSmokeFree } from 'react-icons/md';  // For Fire Detection and Alarm System
+import { FaParking } from 'react-icons/fa';  // For Parking
 
 
 const ProjectDetails = () => {
@@ -85,9 +88,9 @@ const ProjectDetails = () => {
                             <div className="flex-1 w-full lg:w-2/5">
                                 <div className="bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden p-6 flex flex-col justify-between h-full">
                                     <div>
-                                        <h2 className="text-xl font-bold mb-2">{project.projectName}</h2>
+                                        <h2 className="md:text-xl font-bold mb-2">{project.projectName}</h2>
                                         <div className="flex flex-col mb-4">
-                                            <h3 className="text-2xl font-bold text-[#d84a48]">₹{project.price}</h3>
+                                            <h3 className="md:text-2xl font-bold text-[#d84a48]">₹{project.price}</h3>
                                             <div className="flex items-center mt-1">
                                                 <MdOutlinePinDrop className="text-gray-500 mr-1" />
                                                 <p className="text-gray-500">{project.location}, {project.city}</p>
@@ -98,7 +101,7 @@ const ProjectDetails = () => {
                                     {/* Buttons Section */}
                                     <div className="flex space-x-2 mt-auto">
                                         <button
-                                            className="bg-[#d84a48] text-white flex-1 py-2 px-4 rounded-md text-lg hover:bg-black-800 transition-colors duration-300"
+                                            className="bg-[#d84a48] text-white flex-1 md:py-2 md:px-4 rounded-md text-lg hover:bg-black-800 transition-colors duration-300"
                                             onClick={handleButtonClick}
                                         >
                                             Contact Us
@@ -118,33 +121,33 @@ const ProjectDetails = () => {
                     {/* Additional Details and Amenities Section */}
                     <div className="w-full bg-white border border-gray-500 shadow-md rounded-lg overflow-hidden p-6">
                         <div className="mb-6">
-                            <h4 className="text-xl font-semibold mb-2">About Project</h4>
-                            <p className="text-gray-700">
+                            <h4 className="md:text-xl font-semibold mb-2">About Project</h4>
+                            <p className="text-gray-700 md:text-base text-sm">
                                 This commercial project is designed to meet the dynamic needs of modern businesses. Located in a prime business district, it offers excellent visibility and accessibility.
                             </p>
                         </div>
 
                         <div className="mb-6">
                             <div className="flex items-center mb-4">
-                                <RiProgress2Line className="text-xl text-[#d84a48] mr-2" />
-                                <h4 className="text-xl font-semibold">Project Insights</h4>
+                                <RiProgress2Line className="md:text-xl text-[#d84a48] mr-2" />
+                                <h4 className="md:text-xl font-semibold">Project Insights</h4>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Project Area:</p>
-                                    <p className="text-lg font-medium">{project.projectArea}</p>
+                                    <p className="md:text-lg font-medium">{project.projectArea}</p>
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Area:</p>
-                                    <p className="text-lg font-medium">{project.area}</p>
+                                    <p className="md:text-lg font-medium">{project.area}</p>
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Basic Price:</p>
-                                    <p className="text-lg font-medium">{project.price}</p>
+                                    <p className="md:text-lg font-medium">{project.price}</p>
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Building Type:</p>
-                                    <p className="text-lg font-medium">{project.propertyType} Commercial</p>
+                                    <p className="md:text-lg font-medium">{project.propertyType} Commercial</p>
                                 </div>
                             </div>
                         </div>
@@ -158,29 +161,41 @@ const ProjectDetails = () => {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <GiElectric className="text-lg text-[#d84a48] mr-2" /> {/* Icon for Power Backup */}
+                                    <GiElectric className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Power Backup */}
                                     <span>100% Power Backup</span>
                                 </div>
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <BsShieldLock className="text-lg text-[#d84a48] mr-2" /> {/* Icon for Security */}
+                                    <BsShieldLock className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Security */}
                                     <span>24/7 Security</span>
                                 </div>
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <FaUtensils className="text-lg text-[#d84a48] mr-2" /> {/* Icon for Cafeteria */}
+                                    <FaUtensils className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Cafeteria */}
                                     <span>Common Cafeteria</span>
                                 </div>
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+                                    <AiFillRead className="md:text-xl text-[#d84a48] mr-2" />
                                     <span>Grand Lobby</span>
                                 </div>
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <MdOutlineVisibility className="text-lg text-[#d84a48] mr-2" /> {/* Icon for Glass Facade */}
+                                    <MdOutlineVisibility className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Glass Facade */}
                                     <span>Glass Facade Building</span>
                                 </div>
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <GiWaterDrop className="text-lg text-[#d84a48] mr-2" /> {/* Icon for Water Supply */}
+                                    <GiWaterDrop className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Water Supply */}
                                     <span>24/7 Water Supply</span>
                                 </div>
+                                <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
+  <FiWifi className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Internet Connection */}
+  <span>Internet Connection</span>
+</div>
+<div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
+  <MdOutlineSmokeFree className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Fire Detection */}
+  <span>Fire Detection and Alarm System</span>
+</div>
+<div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
+  <FaParking className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Parking */}
+  <span>Parking</span>
+</div>
                             </div>
                         </div>
 
@@ -188,7 +203,7 @@ const ProjectDetails = () => {
                         <div className="mb-6">
                             <div className="flex items-center mb-4">
                                 <AiFillRead className="text-xl text-[#d84a48] mr-2" />
-                                <h4 className="text-xl font-semibold">Available Areas</h4>
+                                <h4 className="md:text-xl font-semibold">Available Areas</h4>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="min-w-full bg-white border border-gray-300">
@@ -203,9 +218,9 @@ const ProjectDetails = () => {
                                         {project.projectPlans && project.projectPlans.length > 0 ? (
                                             project.projectPlans.map((plan, index) => (
                                                 <tr key={index} className="text-center">
-                                                    <td className="py-2 px-4 border border-gray-300">{plan.Type}</td>
-                                                    <td className="py-2 px-4 border border-gray-300">{plan["Unit Cost"]}</td>
-                                                    <td className="py-2 px-4 border border-gray-300">{plan["Carpet Area"]}</td>
+                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan.Type}</td>
+                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan["Unit Cost"]}</td>
+                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan["Carpet Area"]}</td>
                                                 </tr>
                                             ))
                                         ) : (
@@ -224,7 +239,7 @@ const ProjectDetails = () => {
                         <div className="mb-6">
                             <div className="flex items-center mb-4">
                                 <AiFillRead className="text-xl text-[#d84a48] mr-2" />
-                                <h4 className="text-xl font-semibold">Floor Plans</h4>
+                                <h4 className="md:text-xl font-semibold">Floor Plans</h4>
                             </div>
                             <div className="flex flex-col md:flex-row gap-4">
                                 {/* Image 1 */}
@@ -259,8 +274,8 @@ const ProjectDetails = () => {
 
 
                         <div className="md:mb-20 mb-4">
-                            <h4 className="text-xl font-semibold mb-2">Rera Register No</h4>
-                            <p className="text-gray-700 text-xl">{project.reraRegdNo}
+                            <h4 className="md:text-xl font-semibold mb-2">Rera Register No</h4>
+                            <p className="text-gray-700 md:text-xl">{project.reraRegdNo}
                             </p>
                         </div>
                     </div>
