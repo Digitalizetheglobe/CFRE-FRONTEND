@@ -48,14 +48,14 @@ import Dashboard from './AdminDashboard/Dashboard.jsx'
 // Layoutes
 import AdminLayout from './Layout/AdminLayout.jsx'
 import FAQs from './FAQs.jsx';
-
 import BasicForm from './AdminDashboard/BasicForm.jsx'
 import BasicFormView from './AdminDashboard/BasicFormView.jsx'
 import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
 import ProjectForm from './AdminDashboard/PropertyPages/ProjectForm.jsx'
 import EmiCalculator from './Components/EMICalculator/EmiCalculator.jsx';
 import StickyButton from './Components/StickyButton/StickyButton.jsx';
-
+import ProjectUpload from './AdminDashboard/ProjectUpload.jsx';
+import ProjectList from './AdminDashboard/ProjectList.jsx';
 import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 function App() {
   return (
@@ -63,7 +63,7 @@ function App() {
       <ScrollToTop />
       {/* <Header /> */}
       <main>
-        <StickyButton/>
+        <StickyButton />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -100,12 +100,13 @@ function App() {
           <Route path="/showroom" element={<Showroom />} />
           <Route path="/showroom/:slug" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
-          <Route path="/emiCalculator" element={<EmiCalculator/>} />
+          <Route path="/emiCalculator" element={<EmiCalculator />} />
+          <Route path="/projectuplaod" element={<ProjectUpload/>} />
+          <Route path="/ProjectList" element={<ProjectList/>} />
 
 
-
-           {/* below admin panal routes */}
-           <Route path='/adminlogin' element={<AdminLogin />} />
+          {/* below admin panal routes */}
+          <Route path='/adminlogin' element={<AdminLogin />} />
           {/* <Route path='/addnewproperty' element ={ <AddNewProperty />} />
           <Route path='/addproperty' element ={ <AddNewProperty />} />
           <Route path='/dashboard' element= {<Dashboard/>} />
@@ -130,7 +131,7 @@ function App() {
             element={
               <PrivateRoute>
                 <AdminLayout>
-                <AddNewProperty />
+                  <AddNewProperty />
                 </AdminLayout>
               </PrivateRoute>
             }
@@ -167,21 +168,21 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route 
-          path="/addnewproject"
-          element={
-            <PrivateRoute>
-              < ProjectForm />
-            </PrivateRoute>
-          } 
+          <Route
+            path="/addnewproject"
+            element={
+              <PrivateRoute>
+                < ProjectForm />
+              </PrivateRoute>
+            }
           />
           <Route
-          path='/ViewAllProperty'
-          element={
-            <PrivateRoute>
-              <ViewAllProperty />
-            </PrivateRoute>
-          }
+            path='/ViewAllProperty'
+            element={
+              <PrivateRoute>
+                <ViewAllProperty />
+              </PrivateRoute>
+            }
           />
         </Routes>
       </main>
