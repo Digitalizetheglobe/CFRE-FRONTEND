@@ -538,7 +538,7 @@ const PropertyModal = ({ property, onSave, onClose }) => {
 
         <div className="flex justify-between mt-4">
           <button onClick={handleSave} className="bg-[#d84a48] hover:bg-[#c34543] text-white px-4 py-2 rounded">
-            Save
+            Update
           </button>
           <button onClick={onClose} className="bg-gray-500  hover:bg-gray-700 text-white px-4 py-2 rounded">
             Cancel

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './Components/Header/header';
 import Footer from './Components/Footer/footer';
 import ScrollToTop from './Components/ScrollToTop.jsx';
@@ -49,14 +50,14 @@ import Dashboard from './AdminDashboard/Dashboard.jsx'
 import AdminLayout from './Layout/AdminLayout.jsx'
 import FAQs from './FAQs.jsx';
 
-
 import BasicForm from './AdminDashboard/BasicForm.jsx'
 import BasicFormView from './AdminDashboard/BasicFormView.jsx'
 import EnquiryDetails from './AdminDashboard/Enquiry/EnquiryDetails.jsx'
 import ProjectForm from './AdminDashboard/PropertyPages/ProjectForm.jsx'
 import EmiCalculator from './Components/EMICalculator/EmiCalculator.jsx';
 import StickyButton from './Components/StickyButton/StickyButton.jsx';
-
+import ProjectUpload from './AdminDashboard/ProjectUpload.jsx';
+import ProjectList from './AdminDashboard/ProjectList.jsx';
 import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 import MobileSearchBar from './MobileSearchBar.jsx';
 import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
@@ -67,7 +68,9 @@ function App() {
       <ScrollToTop />
       {/* <Header /> */}
       <main>
-        <StickyButton/>
+      <HelmetProvider>
+        <StickyButton />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -110,8 +113,10 @@ function App() {
           <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
           <Route path='/fAQs' element={<FAQs/>}/>
 
-           {/* below admin panal routes */}
-           <Route path='/adminlogin' element={<AdminLogin />} />
+
+
+          {/* below admin panal routes */}
+          <Route path='/adminlogin' element={<AdminLogin />} />
           {/* <Route path='/addnewproperty' element ={ <AddNewProperty />} />
           <Route path='/addproperty' element ={ <AddNewProperty />} />
           <Route path='/dashboard' element= {<Dashboard/>} />
@@ -136,7 +141,7 @@ function App() {
             element={
               <PrivateRoute>
                 <AdminLayout>
-                <AddNewProperty />
+                  <AddNewProperty />
                 </AdminLayout>
               </PrivateRoute>
             }
@@ -173,24 +178,26 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route 
-          path="/addnewproject"
-          element={
-            <PrivateRoute>
-              < ProjectForm />
-            </PrivateRoute>
-          } 
+          <Route
+            path="/addnewproject"
+            element={
+              <PrivateRoute>
+                < ProjectForm />
+              </PrivateRoute>
+            }
           />
           <Route
-          path='/ViewAllProperty'
-          element={
-            <PrivateRoute>
-              <ViewAllProperty />
-            </PrivateRoute>
-          }
+            path='/ViewAllProperty'
+            element={
+              <PrivateRoute>
+                <ViewAllProperty />
+              </PrivateRoute>
+            }
           />
         </Routes>
+        </HelmetProvider>
       </main>
+      
       <Cookies />
       <Footer />
     </Router>
