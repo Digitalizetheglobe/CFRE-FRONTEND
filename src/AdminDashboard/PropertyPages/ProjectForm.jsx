@@ -140,7 +140,7 @@ const ProjectForm = () => {
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div className="max-w-4xl mx-auto p-8">
                 <h1 className="text-2xl font-semibold mb-6">Project Form</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">

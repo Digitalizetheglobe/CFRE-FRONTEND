@@ -108,6 +108,7 @@ function App() {
           <Route path="/emiCalculator" element={<EmiCalculator/>} />
           <Route path='/mobileSearchBar' element={< MobileSearchBar/>}/>
           <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
+          <Route path='/fAQs' element={<FAQs/>}/>
 
            {/* below admin panal routes */}
            <Route path='/adminlogin' element={<AdminLogin />} />

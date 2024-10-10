@@ -3,6 +3,7 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import ContactForm from '../MainBody/ContactForm';
 
+
 const Footer = () => {
     const [isFormVisible, setFormVisible] = useState(false);
     const navigate = useNavigate(); // Initialize the navigate hook
@@ -16,6 +17,7 @@ const Footer = () => {
     };
 
     return (
+        <>
         <footer className="bg-gray-900 text-white pt-10 mt-10">
             {/* Call to Action */}
             <div className="bg-[#d84a48] py-4 px-4 md:px-10 flex flex-col md:flex-row items-center justify-between w-full mb-12 rounded-lg shadow-lg">
@@ -72,7 +74,7 @@ const Footer = () => {
                         <ul className="space-y-3">
                             <li><Link to="/aboutUs" className="text-white hover:text-white  md:text-base text-sm">About Us</Link></li>
                             <li><Link to="/contactUs" className="text-white hover:text-white  md:text-base text-sm">Contact Us</Link></li>
-                            <li><Link to="/faqs" className="text-white hover:text-white  md:text-base text-sm">FAQ's</Link></li>
+                            <li><Link to="/fAQs" className="text-white hover:text-white  md:text-base text-sm">FAQ's</Link></li>
                             <li><Link to="/privacyPolicy" className="text-white hover:text-white  md:text-base text-sm">Privacy Policy</Link></li>
                         </ul>
                     </div>
@@ -132,6 +134,7 @@ const Footer = () => {
                 </p>
             </div>
         </footer>
+        </>
     );
 };
 
