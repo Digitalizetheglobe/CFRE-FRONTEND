@@ -1,7 +1,11 @@
 import React from 'react'
+import Header from './Components/Header/header';
+
 
 function FAQs() {
   return (
+    <>
+    <Header/>
     <section class="bg-[#1D1D1D] text-gray-100 py-32 min-h-screen">
     <div class="container flex flex-col justify-center p-4 mx-auto md:p-8">
       <h2 class="mb-12 md:text-4xl text-xl font-bold leadi text-center ">Frequently Asked Questions</h2>
@@ -52,6 +56,7 @@ function FAQs() {
       </div>
     </div>
   </section>
+  </>
   
   )
 }

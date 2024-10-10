@@ -109,6 +109,9 @@ function App() {
           <Route path="/showroom/:slug" element={<ShowroomPropertyDetails />} />
           <Route path="/exploreInvestProperty" element={<ExploreInvestProperty />} />
           <Route path="/emiCalculator" element={<EmiCalculator/>} />
+          <Route path='/mobileSearchBar' element={< MobileSearchBar/>}/>
+          <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
+          <Route path='/fAQs' element={<FAQs/>}/>
 
 
 
