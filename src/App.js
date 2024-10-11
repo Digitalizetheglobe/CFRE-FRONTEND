@@ -30,6 +30,8 @@ import Blog1 from './Components/Blogs/Blog1.jsx';
 import Blog2 from './Components/Blogs/Blog2.jsx';
 import Blog3 from './Components/Blogs/Blog3.jsx';
 import Blog4 from './Components/Blogs/blog4.jsx';
+import Blog5 from './Components/Blogs/Blog5.jsx'
+import Blog7 from './Components/Blogs/Blog7.jsx';
 import MainRent from './Components/Rent/MainRent.jsx';
 import PropertyList from './Components/Hero/Propertylist';
 import PropertyDetailInRent from './Components/Rent/PropertyDetailsInRent';
@@ -46,6 +48,7 @@ import ExploreInvestProperty from './Components/Exploreproperty/ExpolreInevstPro
 import AdminLogin from './AdminDashboard/AdminLogin.jsx'
 import PrivateRoute from './PrivateRoute.jsx'
 import Dashboard from './AdminDashboard/Dashboard.jsx'
+
 // Layoutes
 import AdminLayout from './Layout/AdminLayout.jsx'
 import FAQs from './FAQs.jsx';
@@ -61,6 +64,8 @@ import ProjectList from './AdminDashboard/ProjectList.jsx';
 import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 import MobileSearchBar from './MobileSearchBar.jsx';
 import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
+import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
+
 
 function App() {
   return (
@@ -70,7 +75,7 @@ function App() {
       <main>
       <HelmetProvider>
         <StickyButton />
-        
+        <DisclaimerPopup />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -100,6 +105,8 @@ function App() {
           <Route path="/commercial-property-in-balewadi" element={<Blog2 />} />
           <Route path="/coworking-space" element={<Blog3 />} />
           <Route path="/office-space-for-rent-in-warje-pune" element={<Blog4 />} />
+          <Route path='/Why to Invest in Commercial Property in 2024 and Which are the Best Option to Invest in Baner-Balewadi?' element={<Blog5/>}/>
+          <Route path="/How to Evaluate Real Estate Investment Opportunities in Warje, Pune" element={<Blog7/>}/>
           <Route path="*" element={<Error />} />
           <Route path='/cards' element={<Card />} />
           <Route path='/third-card' element={<Thirdcards />} />
@@ -112,6 +119,7 @@ function App() {
           <Route path='/mobileSearchBar' element={< MobileSearchBar/>}/>
           <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
           <Route path='/fAQs' element={<FAQs/>}/>
+         
 
 
 

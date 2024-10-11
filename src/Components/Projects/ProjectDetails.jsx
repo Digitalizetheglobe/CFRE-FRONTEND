@@ -90,7 +90,7 @@ const ProjectDetails = () => {
                                     <div>
                                         <h2 className="md:text-xl font-bold mb-2">{project.projectName}</h2>
                                         <div className="flex flex-col mb-4">
-                                            <h3 className="md:text-2xl font-bold text-[#d84a48]">₹{project.price}</h3>
+                                            <h3 className="md:text-2xl font-bold text-[#d84a48]">₹{project.price} Cr</h3>
                                             <div className="flex items-center mt-1">
                                                 <MdOutlinePinDrop className="text-gray-500 mr-1" />
                                                 <p className="text-gray-500">{project.location}, {project.city}</p>
@@ -135,11 +135,11 @@ const ProjectDetails = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Project Area:</p>
-                                    <p className="md:text-lg font-medium">{project.projectArea}</p>
+                                    <p className="md:text-lg font-medium">{project.projectArea}Sq.ft</p>
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Area:</p>
-                                    <p className="md:text-lg font-medium">{project.area}</p>
+                                    <p className="md:text-lg font-medium">{project.area}Sq.ft</p>
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Basic Price:</p>
@@ -185,17 +185,17 @@ const ProjectDetails = () => {
                                     <span>24/7 Water Supply</span>
                                 </div>
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-  <FiWifi className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Internet Connection */}
-  <span>Internet Connection</span>
-</div>
-<div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-  <MdOutlineSmokeFree className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Fire Detection */}
-  <span>Fire Detection and Alarm System</span>
-</div>
-<div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-  <FaParking className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Parking */}
-  <span>Parking</span>
-</div>
+                                    <FiWifi className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Internet Connection */}
+                                    <span>Internet Connection</span>
+                                </div>
+                                <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
+                                    <MdOutlineSmokeFree className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Fire Detection */}
+                                    <span>Fire Detection and Alarm System</span>
+                                </div>
+                                <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
+                                    <FaParking className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Parking */}
+                                    <span>Parking</span>
+                                </div>
                             </div>
                         </div>
 
@@ -219,8 +219,12 @@ const ProjectDetails = () => {
                                             project.projectPlans.map((plan, index) => (
                                                 <tr key={index} className="text-center">
                                                     <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan.Type}</td>
-                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan["Unit Cost"]}</td>
-                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan["Carpet Area"]}</td>
+                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">
+                                                        {plan.UnitCost !== undefined ? plan.UnitCost : plan["Unit Cost"]}
+                                                    </td>
+                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">
+                                                        {plan.CarpetArea !== undefined ? plan.CarpetArea : plan["Carpet Area"]}
+                                                    </td>
                                                 </tr>
                                             ))
                                         ) : (
@@ -231,6 +235,7 @@ const ProjectDetails = () => {
                                             </tr>
                                         )}
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -255,22 +260,23 @@ const ProjectDetails = () => {
 
 
 
-                        <div className="md:mb-6 ">
-    <div className="flex items-center ">
-        <AiFillRead className="text-xl text-[#d84a48] mr-2" />
-        <h4 className="md:text-xl font-semibold">Specifications</h4>
-    </div>
+                        <div className="md:mb-6">
+                            <div className="flex items-center">
+                                <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+                                <h4 className="md:text-xl font-semibold">Specifications</h4>
+                            </div>
 
-    <div className=" p-4 rounded ">
-        <ul className="list-disc pl-5">
-            {Object.entries(specification).map(([category, details]) => (
-                <li key={category} className="py-1">
-                    <span className="font-medium">{category}:</span> {details}
-                </li>
-            ))}
-        </ul>
-    </div>
-</div>
+                            <div className="p-4 rounded">
+                                <ul className="list-disc pl-5">
+                                    {project.specification && project.specification.split(',').map((spec, index) => (
+                                        <li key={index} className="py-1">
+                                            {spec.trim()}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+
 
 
                         <div className="md:mb-20 mb-4">

@@ -6,11 +6,12 @@ import Image2 from "../Blogs/Blog3.jpg";
 import Image3 from "../Blogs/blog4.webp";
 import Image5 from "../Blogs/blog5.jpg";
 import Image6 from "../Blogs/blog6.jpg";
+import Image7 from "./blog7.webp"
 import Header from '../Header/header.jsx'
 const Latestblog = () => {
     return (
         <>
-        <Header />
+            <Header />
             {/* Background Section */}
             <div className="relative before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-70 before:z-10">
                 {/* Background Image */}
@@ -47,7 +48,7 @@ const Latestblog = () => {
                     <Link href="#" className="flex-shrink-0 md:w-1/2 mt-5">
                         <img
                             alt="Company Branding"
-                            src={Image2}
+                            src={Image}
                             className="h-56 md:w-full md:ml-0 ml-10 rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
                         />
                     </Link>
@@ -100,7 +101,7 @@ const Latestblog = () => {
                         <Link to="/coworking-space" className="flex-shrink-0">
                             <img
                                 alt="Company Branding"
-                                src={Image}
+                                src={Image2}
                                 className="w-[200px] h-[134px] object-cover"
                             />
                         </Link>
@@ -130,12 +131,13 @@ const Latestblog = () => {
                         >
                             <img
                                 alt="Company Branding"
-                                src={Image3}
+                                src={Image1}
                                 className="w-[200px] h-[134px] object-cover"
                             />
                         </Link>
 
                         {/* Side Content Section */}
+                        <Link to='/Investing in Commercial Property in Balewadi: A Smart Choice for 2024'>
                         <div className="ml-4 flex-1">
                             <h3 className="md:text-xl font-semibold">
                                 {" "}
@@ -150,6 +152,7 @@ const Latestblog = () => {
                                 <span> July 30, 2024</span>
                             </div>
                         </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -163,7 +166,7 @@ const Latestblog = () => {
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto">
                             {/* Blog Post 1 */}
-                            <Link to="/office-space-for-rent-in-warje-pune">
+                            <Link to="/Why to Invest in Commercial Property in 2024 and Which are the Best Option to Invest in Baner-Balewadi?">
                                 <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300">
                                     <img
                                         src={Image5}
@@ -185,6 +188,14 @@ const Latestblog = () => {
                                     </div>
                                 </div>
                             </Link>
+
+
+
+
+
+
+
+
 
                             {/* Blog Post 2 */}
                             <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300">
@@ -208,6 +219,19 @@ const Latestblog = () => {
                                 </div>
                             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
                             {/* Blog Post 3 */}
                             <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300">
                                 <img
@@ -229,6 +253,29 @@ const Latestblog = () => {
                                     </p>
                                 </div>
                             </div>
+                            <Link to="/How to Evaluate Real Estate Investment Opportunities in Warje, Pune">
+                                {/* Blog Post 4 */}
+                                <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300">
+                                    <img
+                                        src={Image7}
+                                        alt="Blog Post 3"
+                                        className="w-full md:h-60 h-40 object-cover"
+                                    />
+                                    <div className="p-6">
+                                        <span className="text-sm block text-gray-400 mb-2">
+                                            3 AUG 2024 | BY CFRE REALITY PUNE
+                                        </span>
+                                        <h3 className="md:text-xl font-bold text-[#333]">
+                                        Why to Invest in Commercial Property in 2024
+                                        </h3>
+                                        <hr className="my-6" />
+                                        <p className="text-gray-700 text-sm">
+                                        Why to Invest in Commercial Property in 2024 and Which are the Best Option to Invest in Baner-Balewadi?
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+
                         </div>
                     </div>
                 </div>
