@@ -5,6 +5,7 @@ import sell1 from '../assets/sell-your-property-step-2 (1).avif';
 import sell2 from '../assets/sell-your-property-step-3.avif';
 import ContactForm from './ContactForm';
 import Header from '../Header/header.jsx'
+import { Link, useNavigate } from 'react-router-dom';
 
 const Thirdcards = () => {
   // State to manage which accordion section is open
@@ -105,12 +106,12 @@ const Thirdcards = () => {
         </label>
       </div>
       {selectedPropertyType && (
-        <button
+        <Link
         className="bg-[#d84a48] text-white w-full py-3 rounded-md"
-        onClick={handleButtonClick}
+      to='/SellYourProperty'
       >
         Connect With Us!
-      </button>
+      </Link>
       )}
     </div>
 

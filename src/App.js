@@ -48,6 +48,7 @@ import ExploreInvestProperty from './Components/Exploreproperty/ExpolreInevstPro
 import AdminLogin from './AdminDashboard/AdminLogin.jsx'
 import PrivateRoute from './PrivateRoute.jsx'
 import Dashboard from './AdminDashboard/Dashboard.jsx'
+import SellYourProperty from './Components/MainBody/SellYourProperty.jsx';
 
 // Layoutes
 import AdminLayout from './Layout/AdminLayout.jsx'
@@ -118,6 +119,7 @@ function App() {
           <Route path="/emiCalculator" element={<EmiCalculator/>} />
           <Route path='/mobileSearchBar' element={< MobileSearchBar/>}/>
           <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
+          <Route path='/SellYourProperty' element={<SellYourProperty/>} />
           <Route path='/fAQs' element={<FAQs/>}/>
          
 
