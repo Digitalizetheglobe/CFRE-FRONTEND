@@ -7,6 +7,7 @@ import ContactForm from './ContactForm';
 import Header from '../Header/header.jsx'
 import { Link, useNavigate } from 'react-router-dom';
 
+
 const Thirdcards = () => {
   // State to manage which accordion section is open
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -71,8 +72,8 @@ const Thirdcards = () => {
 
           </div>
           <div className="md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-10 md:mt-0">
-  <h2 className="text-lg font-bold text-gray-800 mb-4">
-    Fill this form to <span className="text-[#d84a48]">Sell your property</span>
+  <h2 className="text-lg font-bold text-center text-gray-800 mb-4">
+    I Want to... 
   </h2>
   <p className="text-gray-600 mb-4">Select type of property to sale</p>
   <div className="flex justify-between mb-6">
@@ -87,7 +88,7 @@ const Thirdcards = () => {
           />
           <span className="flex flex-col">
             🏢 <br />
-            Pre-leased Commercial
+            Rent my property
           </span>
         </label>
         <label className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer">
@@ -101,14 +102,15 @@ const Thirdcards = () => {
           />
           <span className="flex flex-col">
             🏢 <br />
-            Vacant Commercial
+            Sell my property
           </span>
         </label>
       </div>
       {selectedPropertyType && (
         <Link
-        className="bg-[#d84a48] text-white w-full py-3 rounded-md"
+        className="bg-[#d84a48] text-white w-96 py-3 rounded-md"
       to='/SellYourProperty'
+      
       >
         Connect With Us!
       </Link>

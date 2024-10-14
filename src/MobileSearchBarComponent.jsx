@@ -185,8 +185,34 @@ function MobileSearchBarComponent() {
     };
 
 
-    const handleSearchQueryChange = (e) => {
+    const handleSearchQueryChange1 = (e) => {
         setSearchQuery(e.target.value);
+    };
+
+    const [searchQuery1, setSearchQuery1] = useState('');
+    const [filteredCities, setFilteredCities] = useState([]);
+    const cities = [
+      "Ahmedabad", "Bangalore", "Bhopal", "Bhubaneswar", "Chennai", "Coimbatore", 
+      "Delhi NVR", "Durgapur", "Gurgaon", "Goa", "Guwahati", "Hyderabad", "Indore", 
+      "Jaipur", "Jodhpur", "Kolkata", "Kochi", "Mumbai", "Navi Mumbai", "Nashik", 
+      "Nagpur", "Pune", "Raipur", "Rajkot", "Ranchi", "Siliguri", "Surat", "Thane", 
+      "Udaipur", "Vadodara"
+    ];
+  
+    const handleSearchQueryChange = (e) => {
+      const query = e.target.value;
+      setSearchQuery1(query);
+      // Filter cities based on the search query
+      setFilteredCities(
+        cities.filter(city => 
+          city.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    };
+  
+    const handleCitySelect = (city) => {
+      setSearchQuery1(city); // Update the search bar with the selected city
+      setFilteredCities([]); // Clear the filtered results
     };
     return (
         <>
@@ -216,14 +242,28 @@ function MobileSearchBarComponent() {
 
                         {/* Search by City and Location */}
                         <div className="flex items-center mb-4 space-x-3">
-                            <select className="border border-gray-300 rounded-lg px-2 py-2 flex-grow"
-                                value={selectedCity}
-                                onChange={handleCityChange}>
-                                <option value="Pune">Pune</option>
-                                <option value="Mumbai">Mumbai</option>
-                                <option value="Bangalore">Bangalore</option>
-                                <option value="Hyderabad">Hyderabad</option>
-                            </select>
+                        <div className="relative w-full">
+      <input
+        type="text"
+        placeholder="Search locations"
+        value={searchQuery1}
+        onChange={handleSearchQueryChange}
+        className="relative flex items-center flex-grow bg-gray-100 rounded-lg py-2 w-56"
+      />
+      {filteredCities.length > 0 && (
+        <ul className="absolute left-0 right-0 mt-1 max-h-48 overflow-y-auto bg-white border rounded shadow-lg z-10">
+          {filteredCities.map((city, index) => (
+            <li
+              key={index}
+              onClick={() => handleCitySelect(city)}
+              className="p-2 cursor-pointer hover:bg-gray-200"
+            >
+              {city}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
                             <div className="relative flex items-center flex-grow bg-gray-100 rounded-lg py-2 w-56">
                                 <input
                                     type="text"
