@@ -101,7 +101,7 @@ function App() {
           <Route path="/unfurnished" element={<UnFurnished />} />
           <Route path="/coworking" element={<Coworking />} />
           <Route path="/mainrent" element={<MainRent />} />
-          <Route path="/commercial-property-in-baner-2" element={<Blog1 />} />
+          <Route path="/commercial-property-in-baner" element={<Blog1 />} />
           <Route path="/commercial-property-in-balewadi" element={<Blog2 />} />
           <Route path="/coworking-space" element={<Blog3 />} />
           <Route path="/office-space-for-rent-in-warje-pune" element={<Blog4 />} />
