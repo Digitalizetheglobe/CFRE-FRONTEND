@@ -264,7 +264,7 @@ const PropertyDetailInRent = () => {
                             <div
                                 key={index}
                                 className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                                onClick={() => handlePropertyClick(recentProperty.id)} // Navigate on click
+                                onClick={() => handlePropertyClick(recentProperty.slug)} // Navigate on click
                             >
                                 <img
                                     src={image}

@@ -446,10 +446,10 @@ function Header() {
     };
 
     return (
-        <header className="sticky top-0 bg-white shadow-md tracking-wide z-10">
-            <div className="flex items-center justify-between md:p-4 p-2 w-full">
+        <header className="sticky top-0 bg-white shadow-md tracking-wide z-50">
+            <div className="flex bg-white items-center justify-between md:p-4 p-2 w-full">
                 {/* Left: Logo */}
-                <div className="flex items-center space-x-4 md:pl-20 md:flex hidden">
+                <div className="flex bg-white items-center space-x-4 md:pl-20 md:flex hidden">
                     <Link to="/">
                         <img
                             src={logo}
@@ -460,7 +460,7 @@ function Header() {
                 </div>
 
                 {/* Center Section: Navigation */}
-                <div className="hidden lg:flex gap-x-5">
+                <div className="hidden lg:flex gap-x-5 bg-white">
                     <ul className="flex items-center space-x-5 gap-4">
                         <li className="relative" ref={rentDropdownRef}>
                             <button

@@ -8,7 +8,7 @@ import Header from '../Header/header.jsx';
 import axios from 'axios';
 
 const PropertyDetail = () => {
-    const { id } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
 
     const [property, setProperty] = useState(null);
@@ -23,14 +23,14 @@ const PropertyDetail = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/projects/${id}`);
+                const response = await axios.get(`https://cfrecpune.com/projects/${slug}`);
                 setProperty(response.data); // Assuming the API returns the property in the response.data
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
         };
         fetchProperty();
-    }, [id]);
+    }, [slug]);
 
     if (!property) return <p>Loading property details...</p>;
 

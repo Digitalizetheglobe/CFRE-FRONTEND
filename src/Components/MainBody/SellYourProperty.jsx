@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../Header/header.jsx';
 import axios from 'axios';
+import sell from '../assets/sell-your-property-step-1 (1).avif';
+import sell1 from '../assets/sell-your-property-step-2 (1).avif';
+import sell2 from '../assets/sell-your-property-step-3.avif';
 import { FaBuilding, FaStore, FaBriefcase, FaUser, FaMapMarkerAlt, FaClipboardList } from 'react-icons/fa';
 
 const SellYourProperty = () => {
@@ -101,7 +104,7 @@ const SellYourProperty = () => {
       },
     });
   };
-  
+
   const handlePropertyChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -112,7 +115,7 @@ const SellYourProperty = () => {
       },
     });
   };
-  
+
   const handleChanges = (event) => {
     setSelectedSpaceType(event.target.value);
     setFormData({
@@ -120,8 +123,8 @@ const SellYourProperty = () => {
       type_of_space: event.target.value,
     });
   };
-  
-  console.log('11111==>',formData);
+
+  console.log('11111==>', formData);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -129,19 +132,23 @@ const SellYourProperty = () => {
       console.log('Form submitted successfully:', response.data);
     } catch (error) {
       console.error('Error submitting form:', error);
-      
+
     }
   };
 
+  const [openAccordion, setOpenAccordion] = useState(null);
+  const toggleAccordion = (index) => {
+    setOpenAccordion(openAccordion === index ? null : index);
+  };
   return (
     <>
       <Header />
       <div className="container mx-auto p-8 border rounded-lg shadow-lg md:mt-12 bg-white">
         <form onSubmit={handleSubmit}>
-          <div className="flex gap-8">
+          <div className=" flex gap-8">
             {/* Sidebar with Steps */}
-            <div className="hidden md:block w-1/4">
-              <div className="rounded-lg p-6 relative">
+            <div className="hidden md:block  w-1/4 ">
+              <div className="rounded-lg p-6 relative bg-white">
                 <div className="absolute top-12 bottom-12 left-[50px] border-l-2 border-gray-300"></div>
 
                 {/* Step 1: Overview */}
@@ -159,7 +166,7 @@ const SellYourProperty = () => {
 
                 {/* Step 2: User Details */}
                 <div className="relative z-10 mb-20 flex items-center gap-4">
-                  
+
                   <div className={`p-3 rounded-lg ${step === 2 ? stepsCompleted.userDetails ? 'bg-green-500 text-white' : 'bg-red-500 text-white' : 'bg-gray-300'}`}>
                     <FaUser className="text-2xl" />
                   </div>
@@ -204,30 +211,30 @@ const SellYourProperty = () => {
               <div className="bg-white rounded-lg p-8">
                 {step === 1 && (
                   <div className="flex flex-col items-center gap-6 md:mb-6">
-                  <h2 className="text-xl md:text-3xl text-center font-bold">What type of space are you looking to rent?</h2>
-                  <h3 className='hidden md:block md:text-base text-center'>We currently assist in leasing out the following type of spaces</h3>
-                  <div className="flex flex-col md:flex-row flex-1 gap-4 md:gap-6 w-full">
-                    {/* Office Space Option */}
-                    <label className={`flex items-center border rounded-lg p-4 cursor-pointer hover:bg-blue-50 gap-2 ${selectedSpaceType === 'Office Space' ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}>
-                      <input type="radio" name="type_of_space" value="Office Space" className="hidden" onChange={handleChanges} />
-                      <span className="text-4xl mb-2">🏢</span>
-                      <span className="font-bold">Office Space</span>
-                    </label>
-                    {/* Showroom Option */}
-                    <label className={`flex items-center border rounded-lg p-4 cursor-pointer hover:bg-blue-50 gap-2 ${selectedSpaceType === 'Showroom' ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}>
-                      <input type="radio" name="type_of_space" value="Showroom" className="hidden" onChange={handleChanges} />
-                      <span className="text-4xl mb-2">🏬</span>
-                      <span className="font-bold">Showroom</span>
-                    </label>
-                    {/* Warehouse Option */}
-                    <label className={`flex items-center border rounded-lg p-4 cursor-pointer hover:bg-blue-50 gap-2 ${selectedSpaceType === 'Warehouse' ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}>
-                      <input type="radio" name="type_of_space" value="Warehouse" className="hidden" onChange={handleChanges} />
-                      <span className="text-4xl mb-2">🏪</span>
-                      <span className="font-bold">Warehouse</span>
-                    </label>
+                    <h2 className="text-xl md:text-3xl text-center font-bold">What type of space are you looking to rent?</h2>
+                    <h3 className='hidden md:block md:text-base text-center'>We currently assist in leasing out the following type of spaces</h3>
+                    <div className="flex flex-col md:flex-row flex-1 gap-4 md:gap-6 w-full">
+                      {/* Office Space Option */}
+                      <label className={`flex items-center border rounded-lg p-4 cursor-pointer hover:bg-blue-50 gap-2 ${selectedSpaceType === 'Office Space' ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}>
+                        <input type="radio" name="type_of_space" value="Office Space" className="hidden" onChange={handleChanges} />
+                        <span className="text-4xl mb-2">🏢</span>
+                        <span className="font-bold">Office Space</span>
+                      </label>
+                      {/* Showroom Option */}
+                      <label className={`flex items-center border rounded-lg p-4 cursor-pointer hover:bg-blue-50 gap-2 ${selectedSpaceType === 'Showroom' ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}>
+                        <input type="radio" name="type_of_space" value="Showroom" className="hidden" onChange={handleChanges} />
+                        <span className="text-4xl mb-2">🏬</span>
+                        <span className="font-bold">Showroom</span>
+                      </label>
+                      {/* Warehouse Option */}
+                      <label className={`flex items-center border rounded-lg p-4 cursor-pointer hover:bg-blue-50 gap-2 ${selectedSpaceType === 'Warehouse' ? 'border-blue-500 bg-blue-100' : 'border-gray-300'}`}>
+                        <input type="radio" name="type_of_space" value="Warehouse" className="hidden" onChange={handleChanges} />
+                        <span className="text-4xl mb-2">🏪</span>
+                        <span className="font-bold">Warehouse</span>
+                      </label>
+                    </div>
                   </div>
-                </div>
-                
+
                 )}
 
                 {/* Step 2: User Details */}
@@ -315,6 +322,126 @@ const SellYourProperty = () => {
             </div>
           </div>
         </form>
+      </div>
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-wrap -m-4">
+            <div className="p-4 md:w-1/3">
+              <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img
+                  className="lg:h-48 md:h-36 w-full object-cover object-center"
+                  src={sell}
+                  alt="Step 1"
+                />
+                <div className="p-6">
+                  <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">STEP 1</h2>
+                  <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Initial Consultation</h1>
+                  <p className="leading-relaxed mb-3">
+                    Start with a consultation to understand your property needs and how we can assist.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 md:w-1/3">
+              <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img
+                  className="lg:h-48 md:h-36 w-full object-cover object-center"
+                  src={sell1}
+                  alt="Step 2"
+                />
+                <div className="p-6">
+                  <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">STEP 2</h2>
+                  <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Marketing</h1>
+                  <p className="leading-relaxed mb-3">
+                    We market your property to our network of investors and industry professionals.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 md:w-1/3">
+              <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                <img
+                  className="lg:h-48 md:h-36 w-full object-cover object-center"
+                  src={sell2}
+                  alt="Step 3"
+                />
+                <div className="p-6">
+                  <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">STEP 3</h2>
+                  <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Close the Deal</h1>
+                  <p className="leading-relaxed mb-3">
+                    Finalize the sale with our expert guidance and achieve your property goals.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="divide-y rounded-lg max-w-7xl mx-auto px-4 ">
+        <div className="mb-8">
+          <h2 className="md:text-2xl font-bold text-gray-800">Frequently asked questions</h2>
+        </div>
+        <div role="accordion">
+          <button
+            type="button"
+            className="w-full text-base text-left font-semibold py-6 text-gray-800 flex items-center"
+            onClick={() => toggleAccordion(1)}
+          >
+            <span className="mr-4 text-sm md:text-base">Q. How much do I have to pay to list my property on CFRE?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 1 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+              <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+            </svg>
+          </button>
+          {openAccordion === 1 && (
+            <div className="py-4">
+              <p className="text-sm md:text-base text-gray-800">
+                It is completely free to list your property on CFRE. We only charge a brokerage fee of 2% + GST once we successfully sell your property on our marketplace, incentivising us to sell faster and get the best deal possible for you.
+              </p>
+            </div>
+          )}
+        </div>
+        <div role="accordion">
+          <button
+            type="button"
+            className="w-full text-sm  md:text-base text-left font-semibold py-6 text-gray-800 flex items-center"
+            onClick={() => toggleAccordion(2)}
+          >
+            <span className="mr-4">Q. Can I list my property on CFRE?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+              <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+            </svg>
+          </button>
+          {openAccordion === 2 && (
+            <div className="py-4">
+              <p className="text-sm md:text-base text-gray-800">
+                Yes! Our marketplace allows owners of commercial properties (office, retail, or land) to list their property. Simply fill out our connect form, and our expert will reach out to you to explain the listing process.
+              </p>
+            </div>
+          )}
+        </div>
+        <div role="accordion">
+          <button
+            type="button"
+            className="w-full text-sm text-left font-semibold py-6 text-gray-800 flex items-center"
+            onClick={() => toggleAccordion(3)}
+          >
+            <span className="mr-4 text-sm md:text-base">Q. How is CFRE different from other brokers?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+              <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+            </svg>
+          </button>
+          {openAccordion === 3 && (
+            <div className="py-4">
+              <p className="text-sm md:text-base text-gray-800">
+                CFRE distributes your property to more than 1500 verified investors, leading brokers, wealth management firms and financial advisors. Through our ecosystem we generate multiple businesses, a variety of offers, and the best price for your property. Due to our extensive network of investors, we are able to close our deals within weeks rather than months!
+              </p>
+            </div>
+          )}
+        </div>
+
       </div>
     </>
   );

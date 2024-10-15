@@ -26,31 +26,52 @@ function MobileSearchBarComponent() {
         "Yelahanka", "Devanahalli", "Thanisandra", "Nagawara", "Hennur",
         "KR Puram", "Mahadevapura", "Ramamurthy Nagar", "Kaggadasapura", "Varthur",
         "Bannerghatta Road", "Arekere", "Hulimavu", "Begur", "Bommanahalli",
-        "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road"
+        "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road", "Alkapuri", "Sayajigunj", "Gordhanwadi", "Ellora Park", "Fatehgunj", "Tandalja", "Manjalpur", "Karelibaug", "Vasna", "Sardar Nagar", "Makarpura",
+        "Padra", "Bapod", "Gotri", "Bhayli", "Savli", "Gorwa", "Vijay Nagar", "Narmada Canal Road", "Pratap Nagar", "Navrangpura", "Bodakdev", "Satellite", "Vastrapur", "Prahlad Nagar", "Ambawadi", "Ellisbridge", "Paldi", "Thaltej", "Maninagar", "Chandkheda", "Gota", "Sola", "Bopal", "Vastral", "Naroda", "Ashram Road", "Shahibaug", "Memnagar", "Juhapura",
+        "MG Road", "Palasia", "Rajwada", "Vijay Nagar", "Sapna Sangeeta", "Chappal Market", "Indore Collectorate", "Nehru Park", "Sarafa Bazaar",
+        "Lal Baag", "Dewas Naka", "A.B. Road", "Sukhliya", "Banganga", "Rau", "Khajrana", "Mhow", "Bhanwarkuan", "Ring Road", "Mangal City", "Khan River", "Amer Fort", "Hawa Mahal", "City Palace", "Jantar Mantar", "Nahargarh Fort", "Jal Mahal", "Albert Hall Museum", "Birla Mandir", "Jaipur Market (Johari Bazaar)", "Chokhi Dhani", "Galta Ji (Galta Temple)",
+        "Sisodia Rani Garden", "Ram Niwas Garden", "Elefantastic", "Tonk Road", "Vaishali Nagar", "Malviya Nagar", "Bani Park", "Ajmer Road", "Sanganer", "Albert Ekka Chowk", "Ranchi Airport", "Morabadi", "Kanke Road", "Harmu Housing Colony", "Dhurwa", "Bariatu", "Hindpiri", "Khalari", "Nazaratpur",
+        "Ormanjhi", "Ratu Road", "Gumla Road", "Tatisilwai", "Kumar Pahar", "Chetla", "Sukhdeonagar", "Shyamali Colony", "Lalpur", "Main Road",
+        "Alkapuri", "Sayajigunj", "Gordhanwadi", "Ellora Park", "Fatehgunj", "Tandalja", "Manjalpur", "Karelibaug", "Vasna", "Sardar Nagar", "Makarpura",
+        "Padra", "Bapod", "Gotri", "Bhayli", "Savli", "Gorwa", "Vijay Nagar", "Narmada Canal Road", "Pratap Nagar", "City Palace", "Lake Pichola", "Jaisamand Lake", "Jag Mandir", "Saheliyon-ki-Bari", "Fateh Sagar Lake", "Jagdish Temple", "Sajjangarh Palace (Monsoon Palace)",
+        "Bagore Ki Haveli", "Saheliyon Ki Bari", "Shilpgram", "Haldighati", "Kumbhalgarh Fort", "Eklingji Temple", "Neemach Mata Temple",
+        "Rudra Vilas Palace", "Sukhadia Circle", "Moti Magri", "Bada Mahal", "Rajiv Gandhi Park", "Thane West", "Thane East", "Mulund", "Dombivli", "Kalyan", "Bhiwandi", "Kasara", "Mumbra", "Shahad", "Ulhasnagar", "Airoli", "Ghodbunder Road",
+        "Lokhandwala", "Manpada", "Kalwa", "Mahape", "Palava City", "Sewri", "Majiwada", "Teen Haath Naka", "Adajan", "Vesu", "Palsana", "Olpad", "Hazira", "Katargam", "Ghod Dod Road", "Dumas", "Surat City Center", "Udhana", "Maharashtra Society", "Vesu Village",
+        "Sarthana Nature Park", "Dumas Beach", "Ichchhpur", "Saraswati Nagar", "Athwa Lines", "Pandesara", "Lal Darwaza", "Vachhraj Complex", "Darjeeling More", "Sevok Road", "Bidhannagar", "Siliguri Junction", "Pradhannagar", "Matigara", "Kali Mandir", "Sukna", "Bagdogra", "Salugara",
+        "Iskon Mandir", "Mahananda Weir", "Ashram Para", "Champasari", "Khudiram Colony", "Rajkot Airport", "Rajkot Railway Station", "Kotecha Chowk", "Saurashtra University", "Ratanakut Hill", "Aji Dam", "Nyari Dam", "Bharat Nagar",
+        "Jubilee Garden", "Race Course", "Krishna Nagar", "Shastri Maidan", "Sardar Patel Park", "Gundavadi", "Gokul Nagar", "Shankar Nagar", "Dhamtari Road", "Telibandha", "Puja Park", "Ganjpara", "Kota", "Ravishankar University", "Mahatma Gandhi Road", "Chhattisgarh High Court", "Rajendra Nagar", "Bhatagaon",
+        "Old Dhamtari Road", "Amapara", "Civil Lines", "Brahmapuri", "Tatyapara", "Bhatia Bazar", "Fafadih", "Sundernagar", "Shivaji Nagar", "Civil Lines", "Sitabuldi", "Hingna", "Koradi", "Panchpaoli", "Khamla", "Mahal", "Ghatshpar", "Sadar", "Wadi", "Maharajbagh", "Dharampeth", "Nandanvan", "Laxmi Nagar", "Manish Nagar", "Pimpri", "Umred", "Nagpur Airport",
+        "Borgaon", "Khare Town", "Adasa", "Bidaadi", "Khadki", "Ajni", "Yadav Nagar", "Diksha Bhoomi", "Ramtek", "Kachnar City", "Vishwakarma Nagar", "Paltan Bazaar", "Bardhona", "Dispur", "Guwahati Zoo", "Fancy Bazaar",
+        "Kachari", "Hatigaon", "Nehru Park", "Uzan Bazar", "Sukleswar Ghat", "Bamunimaidan", "Guwahati Railway Station", "Beltola", "Ganeshguri",
+        "Bhangagarh", "Nabin Nagar", "Sarabbha Nagar", "Sonapur", "Lakhara", "Mirza", "Chandmari", "Khanapara", "Maligaon", "Rukminigaon", "Sarai Rani", "Panaji", "Margao", "Mapusa", "Ponda", "Vasco da Gama", "Calangute", "Baga", "Anjuna", "Candolim", "Palolem", "Agonda", "Dona Paula", "Cabo de Rama", "Fort Aguada", "Saligao", "Siolim", "Arambol", "Morjim", "Assagao", "Benaulim",
+        "Cyber City", "MG Road", "Golf Course Road", "Sector 29", "Sector 14", "Sector 17", "Sohna Road", "Sector 46", "DLF Phase 1",
+        "DLF Phase 2", "Sushant Lok", "Baani Square", "Nirvana Country", "Palam Vihar", "Galleria Market", "Ardee City", "Sector 82", "Sector 83", "Sector 95", "Sector 57",
+    
+    
     ];
-
+    
     const puneAreas = [
-        "ABC- Appa Balwant Chowk", "Akurdi",
-        "Ambegoan", "Anand Vihar", "Apte Road", "Aundh", "Aundh Annexe",
-        "Bajirao Road", "Balewadi", "Baner", "Baner Highway Side", "Baner Pashan Link Road", "Baner Road", "Bavdhan", "Bhandarkar Road", "Bhawani Peth",
+        "ABC- Appa Balwant Chowk", "Akurdi", "Ambegoan", "Anand Vihar", "Apte Road", "Aundh", "Aundh Annexe", "Bajirao Road", "Balewadi", "Baner", "Baner Highway Side", "Baner Pashan Link Road", "Baner Road", "Bavdhan", "Bhandarkar Road", "Bhawani Peth",
         "Bhosari", "Bhosri MIDC", "Bhugaon", "Bhukum", "Bibwewadi", "BT Kawade Road", "Budhwar Peth", "Bund Garden", "Bundgarden Road", "Camp", "Chakan", "Chakan MIDC", "Chandan Nagar",
-        "Chandani Chowk", "Chinchwad", "Dange Chowk", "Dapodi", "Deccan", "Dhankawadi", "Dhanori", "Dhayari", "East Street", "Erandwane", "Fatima Nagar", "FC Road", "Fursungi", "Ganesh Peth", "Ghole Road", "Ghorpadi",
-        "Hadapsar", "Handewadi", "Hinjewadi", "Hinjewadi Phase 1", "Hinjewadi Phase 2", "Hinjewadi Phase 3", "Jejuri", "JM Road", "Kahradi", "Kalewadi", "Kalyani Nagar", "Karve Nagar",
-        "Karve Road", "Kasarwadi", "Kasba Peth", "Katraj", "Katraj Kondhwa Road", "Keshav Nagar",
-        "Khadakwasla", "Khadki", "Kharadi", "Kondhwa", "Kondhwa BK", "Koregaon Park", "Kothrud", "Kumthekar Road", "Law College Road", "Laxmi Road", "Lohegaon", "Loni Kand", "Lulla Nagar",
-        "Madhuvan Colony", "Magarpatta", "Mahalunge", "Mangalwar Peth", "Manjiri", "Manjiri BK", "Market Yard", "MG Road", "Model Colony", "Mohammed Wadi", "Mundhwa", "Nagar Road", "Nal Stop", "Nana Peth", "Narayan Peth", "Narhe", "Narhe MIDC", "Nashik Highway", "Navi Peth", "Near Nawle Bridge", "NIBM", "Nigdi", "Pashan", "Paud Road", "PCMC", "Perne Phata", "Peth", "Phugewadi", "Phursungi", "Pimple Gurav", "Pimple Nilakh", "Pimple Saudagar", "Pimpri", "Pimpri Chinchwad", "Prabhat Road", "Pul Gate", "Pune Satara Pune", "Pune Station", "Rasta Peth", "Ravet", "Raviwar Peth", "RTO", "Sadashiv Peth", "Sadhu Waswani", "Sadhu Waswani Chowk", "Salisbury Park", "Salunke Vihar", "Sangvi", "Saniwar Wada", "SB Road", "Shaniwar Peth", "Shashtri Nagar", "Shivaji Nagar", "Singhgad Road", "Sinhagad Road", "Somwar Peth", "Sukrawar Peth", "Swargate", "Talawade", "Talegoan Dabhade", "Tathawade", "Tilak Road", "Tingre Nagar", "Undri", "Viman Nagar", "Vishal Nagar", "Vishrantwadi", "Wagholi", "Wakad", "Wakdewadi", "Wanowari", "Warje", "Yerwada"
+        "Chandani Chowk", "Chinchwad", "Dange Chowk", "Dapodi", "Deccan", "Dhankawadi", "Dhanori", "Dhayari", "East Street", "Erandwane", "Fatima Nagar", "FC Road", "Fursungi", "Ganesh Peth",
+        "Ghole Road", "Ghorpadi", "Hadapsar", "Handewadi", "Hinjewadi", "Hinjewadi Phase 1", "Hinjewadi Phase 2", "Hinjewadi Phase 3", "Jejuri", "JM Road", "Kahradi", "Kalewadi", "Kalyani Nagar", "Karve Nagar",
+        "Karve Road", "Kasarwadi", "Kasba Peth", "Katraj", "Katraj Kondhwa Road", "Keshav Nagar", "Khadakwasla", "Khadki", "Kharadi", "Kondhwa", "Kondhwa BK", "Koregaon Park", "Kothrud", "Kumthekar Road", "Law College Road", "Laxmi Road", "Lohegaon", "Loni Kand", "Lulla Nagar",
+        "Madhuvan Colony", "Magarpatta", "Mahalunge", "Mangalwar Peth", "Manjiri", "Manjiri BK", "Market Yard", "MG Road", "Model Colony", "Mohammed Wadi", "Mundhwa", "Nagar Road", "Nal Stop", "Nana Peth",
+        "Narayan Peth", "Narhe", "Narhe MIDC", "Nashik Highway", "Navi Peth", "Near Nawle Bridge", "NIBM", "Nigdi", "Pashan", "Paud Road", "PCMC", "Perne Phata", "Peth",
+        "Phugewadi", "Phursungi", "Pimple Gurav", "Pimple Nilakh", "Pimple Saudagar", "Pimpri", "Pimpri Chinchwad", "Prabhat Road", "Pul Gate", "Pune Satara Pune", "Pune Station", "Rasta Peth", "Ravet", "Raviwar Peth", "RTO",
+        "Sadashiv Peth", "Sadhu Waswani", "Sadhu Waswani Chowk", "Salisbury Park", "Salunke Vihar", "Sangvi", "Saniwar Wada", "SB Road", "Shaniwar Peth",
+        "Shashtri Nagar", "Shivaji Nagar", "Singhgad Road", "Sinhagad Road", "Somwar Peth", "Sukrawar Peth", "Swargate", "Talawade", "Talegoan Dabhade", "Tathawade", "Tilak Road", "Tingre Nagar", "Undri", "Viman Nagar", "Vishal Nagar", "Vishrantwadi", "Wagholi", "Wakad", "Wakdewadi", "Wanowari", "Warje", "Yerwada"
     ];
-
-
+    
+    
     const mumbaiAreas = [
         "Colaba", "Churchgate", "Marine Drive", "Malabar Hill", "Nariman Point", "Cuffe Parade", "Fort", "Ballard Estate", "Byculla", "Worli",
         "Dadar", "Parel", "Lower Parel", "Matunga", "Mahalaxmi", "Prabhadevi",
         "Bandra", "Khar", "Santacruz", "Vile Parle", "Andheri", "Juhu", "Versova", "Goregaon", "Malad", "Kandivali", "Borivali", "Dahisar",
-        "Kurla", "Ghatkopar", "Powai", "Vikhroli", "Bhandup", "Mulund",
-        "Vashi", "Nerul", "Belapur", "Kharghar", "Panvel", "Airoli",
+        "Kurla", "Ghatkopar", "Powai", "Vikhroli", "Bhandup", "Mulund", "Vashi", "Nerul", "Belapur", "Kharghar", "Panvel", "Airoli",
         "Thane West", "Thane East", "Ghodbunder Road", "Kopri", "Vartak Nagar", "Majiwada"
     ];
-
+    
     const hyderabadAreas = [
         "Banjara Hills", "Jubilee Hills", "Madhapur", "Hitech City", "Gachibowli", "Kondapur", "Kukatpally", "Manikonda",
         "Begumpet", "Somajiguda", "Punjagutta", "Ameerpet", "Himayatnagar", "Abids", "Nampally",
@@ -61,7 +82,7 @@ function MobileSearchBarComponent() {
         "Shamshabad", "Shamirpet", "Kompally", "Medchal", "Moinabad",
         "Charminar", "Moghalpura", "Falaknuma", "Bahadurpura", "Yakutpura"
     ];
-
+    
     const bangaloreAreas = [
         "MG Road", "Brigade Road", "Koramangala", "Indiranagar", "Whitefield", "Marathahalli", "Bellandur", "Sarjapur",
         "Electronic City", "HSR Layout", "BTM Layout", "Jayanagar", "JP Nagar", "Banashankari", "Basavanagudi",
@@ -71,6 +92,140 @@ function MobileSearchBarComponent() {
         "Bannerghatta Road", "Arekere", "Hulimavu", "Begur", "Bommanahalli",
         "Kumaraswamy Layout", "Vijayanagar", "Kengeri", "Nagarbhavi", "Magadi Road"
     ];
+    
+    const AhmedabadAreas = [
+        "Navrangpura", "Bodakdev", "Satellite", "Vastrapur", "Prahlad Nagar", "Ambawadi", "Ellisbridge", "Paldi", "Thaltej", "Maninagar", "Chandkheda", "Gota", "Sola", "Bopal", "Vastral", "Naroda", "Ashram Road", "Shahibaug", "Memnagar", "Juhapura"
+    ];
+    
+    
+    
+    const indoreAreas = [
+        "MG Road", "Palasia", "Rajwada", "Vijay Nagar", "Sapna Sangeeta", "Chappal Market", "Indore Collectorate", "Nehru Park", "Sarafa Bazaar",
+        "Lal Baag", "Dewas Naka", "A.B. Road", "Sukhliya", "Banganga", "Rau", "Khajrana", "Mhow", "Bhanwarkuan", "Ring Road", "Mangal City", "Khan River",
+    ];
+    
+    const jaipurAreas = [
+        "Amer Fort", "Hawa Mahal", "City Palace", "Jantar Mantar", "Nahargarh Fort", "Jal Mahal", "Albert Hall Museum", "Birla Mandir", "Jaipur Market (Johari Bazaar)", "Chokhi Dhani", "Galta Ji (Galta Temple)",
+        "Sisodia Rani Garden", "Ram Niwas Garden", "Elefantastic", "Tonk Road", "Vaishali Nagar", "Malviya Nagar", "Bani Park", "Ajmer Road", "Sanganer"
+    ];
+    
+    const jodhpurAreas = [
+        "Mehrangarh Fort", "Umaid Bhawan Palace", "Jaswant Thada", "Clock Tower and Sardar Market", "Mandore Gardens", "Blue City (Old Jodhpur)", "Kaylana Lake", "Ranisar Padamsar", "Sojati Gate", "Osian Temples",
+        "Toorji Ka Jhalra (Step Well)", "Nehru Park", "Jodhpur Museum", "Maha Mandir", "Rao Jodha Desert Rock Park", "Balsamand Lake", "Sardar Government Museum"
+    ];
+    
+    const kolkataAreas = [
+        "Alambazar", "Ballygunge", "Bansdroni", "Behala", "Bhowanipore", "Bowbazar", "Dum Dum",
+        "Garia", "Ghatakpukur", "Jadavpur", "Kalighat", "Kankurgachi", "Kasba", "Lake Town", "Lansdowne", "Madhyamgram", "Maniktala", "Moulali", "New Alipore",
+        "Park Circus", "Salt Lake", "Sarat Bose Road", "Shyambazar", "Tollygunge", "Vivekananda Nagar", "Rajarhat", "Bidhannagar", "Howrah", "North Kolkata", "South Kolkata"
+    ];
+    
+    const kochiAreas = [
+        "Fort Kochi", "Ernakulam", "Marine Drive", "Mattancherry", "Kochi International Airport", "Kumarakom", "Bolgatty Palace",
+        "Jew Town", "Cherai Beach", "Vypin Island", "Subhash Park", "Kochi Biennale", "Chottanikkara", "Hill Palace Museum", "Willingdon Island"
+    ];
+    
+    const naviMumbaiAreas = [
+        "Airoli", "Belapur", "Bhandup", "Digha", "Dronagiri", "Kharghar", "Kopar Khairane", "Mansarovar",
+        "Navi Mumbai International Airport", "Nerul", "Panvel", "Rabale", "Sanpada", "Sewri", "Turbhe", "Vashi", "Vashi Creek", "Vijay Nagar", "Wadala", "Sector 17", "CBD Belapur"
+    ];
+    
+    const nashikAreas = [
+        "Nashik Road", "Gangapur", "Panchavati", "Satpur", "Indira Nagar", "Nashik City Center", "CIDCO", "Deolali", "Trimbak", "Ambad", "Sinnar", "Lasalgaon",
+        "Khadkale", "Ozar", "Anjneri", "Nanduri", "Nashik Dindori Road", "Nashik Pune Highway", "Nashik Gole Colony", "Nashik IT Park", "Nashik Adgaon"
+    ];
+    
+    
+    const bhopalAreas = [
+        "Arera Colony", "MP Nagar", "Bawadiya Kalan", "Hoshangabad Road", "Shahpura", "Kolar Road", "Indrapuri", "Gulmohar", "Chunabhatti", "Ayodhya Bypass",
+        "Katara Hills", "Vidyadhar Nagar", "Raisen Road", "Awadhpuri", "Baghmugalia", "Habibganj", "Karond", "Ashoka Garden", "Airport Road", "Berasia Road"
+    ];
+    
+    const bhubaneswarAreas = [
+        "Khandagiri", "Chandaka", "Sahid Nagar", "Jaydev Vihar", "Patia", "Nayapalli", "Old Town", "Mancheswar", "Bapuji Nagar",
+        "Chandrasekharpur", "Rasulgarh", "Acharya Vihar", "Baramunda", "Unit 1", "Unit 4", "Unit 6", "Unit 8", "Vani Vihar", "Maitri Vihar", "Shree Vihar"
+    ];
+    
+    const chennaiAreas = [
+        "T. Nagar", "Adyar", "Velachery", "Anna Nagar", "Nungambakkam", "Besant Nagar", "Kodambakkam", "Royapettah",
+        "Thiruvanmiyur", "Porur", "Guindy", "Mylapore", "Vadapalani", "Egmore", "Tambaram", "Perungudi", "Saidapet", "Pallavaram", "Alwarpet", "Kilpauk"
+    ];
+    
+    const coimbatoreAreas = [
+        "Gandhipuram", "Peelamedu", "RS Puram", "Saibaba Colony", "Singanallur", "Sundarapuram", "Ganapathy", "Saravanampatti", "Thudiyalur", "Ukkadam",
+        "Vadavalli", "Avinashi Road", "Rathinapuri", "Trichy Road", "Kalapatti", "Race Course", "Kuniamuthur", "Kovaipudur", "Town Hall", "Podanur"
+    ];
+    
+    const delhiNCRAreas = [
+        "Connaught Place", "Saket", "Karol Bagh", "Dwarka", "Vasant Kunj", "Rohini", "Janakpuri", "Lajpat Nagar", "Noida", "Gurgaon",
+        "Faridabad", "Ghaziabad", "Greater Noida", "Mayur Vihar", "East of Kailash", "South Extension", "Chanakyapuri", "Punjabi Bagh", "Pitampura", "Rajouri Garden"
+    ];
+    
+    const durgapurAreas = [
+        "City Centre", "Bidhannagar", "Benachity", "DVC Township", "A-Zone", "Steel Township", "Raniganj", "Bamunara", "Muchipara", "Amrai", "Rajbandh", "Nadiha", "Prantika", "Gandhi More", "Mamra Bazaar"
+    ];
+    
+    const gurgaonAreas = [
+        "Cyber City", "MG Road", "Golf Course Road", "Sector 29", "Sector 14", "Sector 17", "Sohna Road", "Sector 46", "DLF Phase 1",
+        "DLF Phase 2", "Sushant Lok", "Baani Square", "Nirvana Country", "Palam Vihar", "Galleria Market", "Ardee City", "Sector 82", "Sector 83", "Sector 95", "Sector 57"
+    ];
+    
+    const goaAreas = [
+        "Panaji", "Margao", "Mapusa", "Ponda", "Vasco da Gama", "Calangute", "Baga", "Anjuna", "Candolim", "Palolem", "Agonda", "Dona Paula", "Cabo de Rama", "Fort Aguada", "Saligao", "Siolim", "Arambol", "Morjim", "Assagao", "Benaulim"
+    ];
+    
+    const guwahatiAreas = [
+        "Paltan Bazaar", "Bardhona", "Dispur", "Guwahati Zoo", "Fancy Bazaar",
+        "Kachari", "Hatigaon", "Nehru Park", "Uzan Bazar", "Sukleswar Ghat", "Bamunimaidan", "Guwahati Railway Station", "Beltola", "Ganeshguri",
+        "Bhangagarh", "Nabin Nagar", "Sarabbha Nagar", "Sonapur", "Lakhara", "Mirza", "Chandmari", "Khanapara", "Maligaon", "Rukminigaon", "Sarai Rani"
+    ];
+    
+    const nagpurAreas = [
+        "Civil Lines", "Sitabuldi", "Hingna", "Koradi", "Panchpaoli", "Khamla", "Mahal", "Ghatshpar", "Sadar", "Wadi", "Maharajbagh", "Dharampeth", "Nandanvan", "Laxmi Nagar", "Manish Nagar", "Pimpri", "Umred", "Nagpur Airport",
+        "Borgaon", "Khare Town", "Adasa", "Bidaadi", "Khadki", "Ajni", "Yadav Nagar", "Diksha Bhoomi", "Ramtek", "Kachnar City", "Vishwakarma Nagar",
+    ];
+    
+    const raipurAreas = [
+        "Shankar Nagar", "Dhamtari Road", "Telibandha", "Puja Park", "Ganjpara", "Kota", "Ravishankar University", "Mahatma Gandhi Road", "Chhattisgarh High Court", "Rajendra Nagar", "Bhatagaon",
+        "Old Dhamtari Road", "Amapara", "Civil Lines", "Brahmapuri", "Tatyapara", "Bhatia Bazar", "Fafadih", "Sundernagar", "Shivaji Nagar"
+    ];
+    
+    const rajkotAreas = [
+        "Rajkot Airport", "Rajkot Railway Station", "Kotecha Chowk", "Saurashtra University", "Ratanakut Hill", "Aji Dam", "Nyari Dam", "Bharat Nagar",
+        "Jubilee Garden", "Race Course", "Krishna Nagar", "Shastri Maidan", "Sardar Patel Park", "Gundavadi", "Gokul Nagar"
+    ];
+    
+    const ranchiAreas = [
+        "Albert Ekka Chowk", "Ranchi Airport", "Morabadi", "Kanke Road", "Harmu Housing Colony", "Dhurwa", "Bariatu", "Hindpiri", "Khalari", "Nazaratpur",
+        "Ormanjhi", "Ratu Road", "Gumla Road", "Tatisilwai", "Kumar Pahar", "Chetla", "Sukhdeonagar", "Shyamali Colony", "Lalpur", "Main Road"
+    ];
+    
+    const siliguriAreas = [
+        "Darjeeling More", "Sevok Road", "Bidhannagar", "Siliguri Junction", "Pradhannagar", "Matigara", "Kali Mandir", "Sukna", "Bagdogra", "Salugara",
+        "Iskon Mandir", "Mahananda Weir", "Ashram Para", "Champasari", "Khudiram Colony"
+    ];
+    
+    const suratAreas = [
+        "Adajan", "Vesu", "Palsana", "Olpad", "Hazira", "Katargam", "Ghod Dod Road", "Dumas", "Surat City Center", "Udhana", "Maharashtra Society", "Vesu Village",
+        "Sarthana Nature Park", "Dumas Beach", "Ichchhpur", "Saraswati Nagar", "Athwa Lines", "Pandesara", "Lal Darwaza", "Vachhraj Complex"
+    ];
+    
+    const thaneAreas = [
+        "Thane West", "Thane East", "Mulund", "Dombivli", "Kalyan", "Bhiwandi", "Kasara", "Mumbra", "Shahad", "Ulhasnagar", "Airoli", "Ghodbunder Road",
+        "Lokhandwala", "Manpada", "Kalwa", "Mahape", "Palava City", "Sewri", "Majiwada", "Teen Haath Naka"
+    ];
+    
+    const udaipurAreas = [
+        "City Palace", "Lake Pichola", "Jaisamand Lake", "Jag Mandir", "Saheliyon-ki-Bari", "Fateh Sagar Lake", "Jagdish Temple", "Sajjangarh Palace (Monsoon Palace)",
+        "Bagore Ki Haveli", "Saheliyon Ki Bari", "Shilpgram", "Haldighati", "Kumbhalgarh Fort", "Eklingji Temple", "Neemach Mata Temple",
+        "Rudra Vilas Palace", "Sukhadia Circle", "Moti Magri", "Bada Mahal", "Rajiv Gandhi Park"
+    ];
+    
+    const vadodaraAreas = [
+        "Alkapuri", "Sayajigunj", "Gordhanwadi", "Ellora Park", "Fatehgunj", "Tandalja", "Manjalpur", "Karelibaug", "Vasna", "Sardar Nagar", "Makarpura",
+        "Padra", "Bapod", "Gotri", "Bhayli", "Savli", "Gorwa", "Vijay Nagar", "Narmada Canal Road", "Pratap Nagar",
+    ];
+
 
     const [suggestions, setSuggestions] = useState([]);
     const [properties, setProperties] = useState([]);
@@ -116,6 +271,85 @@ function MobileSearchBarComponent() {
                 case 'Bangalore':
                     setSuggestions(bangaloreAreas);
                     break;
+                case 'Ahmedabad':
+                    setSuggestions(AhmedabadAreas);
+                    break;
+                case 'Indore':
+                    setSuggestions(indoreAreas);
+                    break;
+                case 'Jodhpur':
+                    setSuggestions(jodhpurAreas);
+                    break;
+                case 'Jaipur':
+                    setSuggestions(jaipurAreas);
+                    break;
+                case 'Kolkata':
+                    setSuggestions(kolkataAreas);
+                    break;
+                case 'Kochi':
+                    setSuggestions(kochiAreas);
+                    break;
+                case 'Navi Mumbai':
+                    setSuggestions(naviMumbaiAreas);
+                    break;
+                case 'Nashik':
+                    setSuggestions(nashikAreas);
+                    break;
+                case 'Bhopal':
+                    setSuggestions(bhopalAreas);
+                    break;
+                case 'Bhubaneswar':
+                    setSuggestions(bhubaneswarAreas);
+                    break;
+                case 'Chennai':
+                    setSuggestions(chennaiAreas);
+                    break;
+                case 'Coimbatore':
+                    setSuggestions(coimbatoreAreas);
+                    break;
+                case 'Delhi NCR':
+                    setSuggestions(delhiNCRAreas);
+                    break;
+                case 'Durgapur':
+                    setSuggestions(durgapurAreas);
+                    break;
+                case 'Gurgaon':
+                    setSuggestions(gurgaonAreas);
+                    break;
+                case 'Goa':
+                    setSuggestions(goaAreas);
+                    break;
+                case 'Guwahati':
+                    setSuggestions(guwahatiAreas);
+                    break;
+                case 'Nagpur':
+                    setSuggestions(nagpurAreas);
+                    break;
+                case 'Raipur':
+                    setSuggestions(raipurAreas);
+                    break;
+                case 'Rajkot':
+                    setSuggestions(rajkotAreas);
+                    break;
+                case 'Ranchi':
+                    setSuggestions(ranchiAreas);
+                    break;
+                case 'Siliguri':
+                    setSuggestions(siliguriAreas);
+                    break;
+                case 'Surat':
+                    setSuggestions(suratAreas);
+                    break;
+                case 'Thane':
+                    setSuggestions(thaneAreas);
+                    break;
+                case 'Udaipur':
+                    setSuggestions(udaipurAreas);
+                    break;
+                case 'Vadodara':
+                    setSuggestions(vadodaraAreas)
+                    break;
+
                 default:
                     setSuggestions(allAreas);
                     break;
@@ -185,34 +419,8 @@ function MobileSearchBarComponent() {
     };
 
 
-    const handleSearchQueryChange1 = (e) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const [searchQuery1, setSearchQuery1] = useState('');
-    const [filteredCities, setFilteredCities] = useState([]);
-    const cities = [
-      "Ahmedabad", "Bangalore", "Bhopal", "Bhubaneswar", "Chennai", "Coimbatore", 
-      "Delhi NVR", "Durgapur", "Gurgaon", "Goa", "Guwahati", "Hyderabad", "Indore", 
-      "Jaipur", "Jodhpur", "Kolkata", "Kochi", "Mumbai", "Navi Mumbai", "Nashik", 
-      "Nagpur", "Pune", "Raipur", "Rajkot", "Ranchi", "Siliguri", "Surat", "Thane", 
-      "Udaipur", "Vadodara"
-    ];
-  
     const handleSearchQueryChange = (e) => {
-      const query = e.target.value;
-      setSearchQuery1(query);
-      // Filter cities based on the search query
-      setFilteredCities(
-        cities.filter(city => 
-          city.toLowerCase().includes(query.toLowerCase())
-        )
-      );
-    };
-  
-    const handleCitySelect = (city) => {
-      setSearchQuery1(city); // Update the search bar with the selected city
-      setFilteredCities([]); // Clear the filtered results
+        setSearchQuery(e.target.value);
     };
     return (
         <>
@@ -242,28 +450,43 @@ function MobileSearchBarComponent() {
 
                         {/* Search by City and Location */}
                         <div className="flex items-center mb-4 space-x-3">
-                        <div className="relative w-full">
-      <input
-        type="text"
-        placeholder="Search locations"
-        value={searchQuery1}
-        onChange={handleSearchQueryChange}
-        className="relative flex items-center flex-grow bg-gray-100 rounded-lg py-2 w-56"
-      />
-      {filteredCities.length > 0 && (
-        <ul className="absolute left-0 right-0 mt-1 max-h-48 overflow-y-auto bg-white border rounded shadow-lg z-10">
-          {filteredCities.map((city, index) => (
-            <li
-              key={index}
-              onClick={() => handleCitySelect(city)}
-              className="p-2 cursor-pointer hover:bg-gray-200"
+                        <select
+                value={selectedCity}
+                onChange={handleCityChange}
+                className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
             >
-              {city}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Bhopal">Bhopal</option>
+                <option value="Bhubaneswar">Bhubaneswar</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Delhi NCR">Delhi NCR</option>
+                <option value="Durgapur">Durgapur</option>
+                <option value="Gurgaon">Gurgaon</option>
+                <option value="Goa">Goa</option>
+                <option value="Guwahati">Guwahati</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Indore">Indore</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Jodhpur">Jodhpur</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Kochi">Kochi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Navi Mumbai">Navi Mumbai</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Pune">Pune</option>
+                <option value="Raipur">Raipur</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Ranchi">Ranchi</option>
+                <option value="Siliguri">Siliguri</option>
+                <option value="Surat">Surat</option>
+                <option value="Thane">Thane</option>
+                <option value="Udaipur">Udaipur</option>
+                <option value="Vadodara">Vadodara</option>
+
+            </select>
                             <div className="relative flex items-center flex-grow bg-gray-100 rounded-lg py-2 w-56">
                                 <input
                                     type="text"
@@ -452,14 +675,43 @@ function MobileSearchBarComponent() {
                             <div className="flex items-center space-x-2 mb-4">
                                 <div className="w-2/3">
                                     {/* <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label> */}
-                                    <select className="border border-gray-300 rounded-lg px-1 py-2 flex-grow"
-                                        value={selectedCity}
-                                        onChange={handleCityChange}>
-                                        <option value="Pune">Pune</option>
-                                        <option value="Mumbai">Mumbai</option>
-                                        <option value="Bangalore">Bangalore</option>
-                                        <option value="Hyderabad">Hyderabad</option>
-                                    </select>
+                                    <select
+                value={selectedCity}
+                onChange={handleCityChange}
+                className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
+            >
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Bhopal">Bhopal</option>
+                <option value="Bhubaneswar">Bhubaneswar</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Delhi NCR">Delhi NCR</option>
+                <option value="Durgapur">Durgapur</option>
+                <option value="Gurgaon">Gurgaon</option>
+                <option value="Goa">Goa</option>
+                <option value="Guwahati">Guwahati</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Indore">Indore</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Jodhpur">Jodhpur</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Kochi">Kochi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Navi Mumbai">Navi Mumbai</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Pune">Pune</option>
+                <option value="Raipur">Raipur</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Ranchi">Ranchi</option>
+                <option value="Siliguri">Siliguri</option>
+                <option value="Surat">Surat</option>
+                <option value="Thane">Thane</option>
+                <option value="Udaipur">Udaipur</option>
+                <option value="Vadodara">Vadodara</option>
+
+            </select>
                                 </div>
                                 <div className="relative flex items-center flex-grow bg-gray-100 rounded-lg py-2 w-56">
                                     <input

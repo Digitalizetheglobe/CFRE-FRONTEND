@@ -143,7 +143,7 @@ const ProjectDetails = () => {
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Basic Price:</p>
-                                    <p className="md:text-lg font-medium">{project.price}</p>
+                                    <p className="md:text-lg font-medium">{project.price} Cr</p>
                                 </div>
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Building Type:</p>
