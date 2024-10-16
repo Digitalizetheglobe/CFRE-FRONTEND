@@ -57,6 +57,7 @@ const Dashboard = () => {
               View All
             </Link>
           </div>
+         
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Latest Enquiry</h2>
             <p className="text-gray-600 mb-4">Upload multiple property details in one go.</p>
@@ -65,6 +66,17 @@ const Dashboard = () => {
               className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
             >
                  View All
+            </Link>
+          </div>
+           {/* Card 4: View All Project */}
+           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out lg:col-span-2">
+            <h2 className="text-xl font-semibold mb-4 text-gray-800">View All Projects</h2>
+            <p className="text-gray-600 mb-4">View and manage all listed Projects.</p>
+            <Link 
+              to="/ViewAllProjects" 
+              className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
+            >
+              View All
             </Link>
           </div>
         </div>

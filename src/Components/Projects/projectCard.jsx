@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Image from './ABZ-1-1.jpg';
+import Image from './new_16850803601652257231.jpg';
 
 const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) return text;
