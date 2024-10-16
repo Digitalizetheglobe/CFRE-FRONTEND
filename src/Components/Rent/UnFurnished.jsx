@@ -93,6 +93,7 @@ const Unfurnished = () => {
           <Helmet>
                     <title>Un-Furnished Homes for Rent | CFRE Realty</title>
                     <meta name="description" content="Looking for un-furnished rentals? CFRE Realty offers diverse options in prime locations. Browse our listings and take the first step towards your new home!" />
+                    
                     <meta property="og:url" content="https://www.cfrerealty.com/UnFurnished" />
                     </Helmet>
         <Header />

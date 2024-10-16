@@ -90,7 +90,7 @@ const ProjectDetails = () => {
                                     <div>
                                         <h2 className="md:text-xl font-bold mb-2">{project.projectName}</h2>
                                         <div className="flex flex-col mb-4">
-                                            <h3 className="md:text-2xl font-bold text-[#d84a48]">₹{project.price} Cr</h3>
+                                            {/* <h3 className="md:text-2xl font-bold text-[#d84a48]">₹{project.price} Cr</h3> */}
                                             <div className="flex items-center mt-1">
                                                 <MdOutlinePinDrop className="text-gray-500 mr-1" />
                                                 <p className="text-gray-500">{project.location}, {project.city}</p>
@@ -141,10 +141,10 @@ const ProjectDetails = () => {
                                     <p className="text-gray-500 text-xs font-semibold">Area:</p>
                                     <p className="md:text-lg font-medium">{project.area}Sq.ft</p>
                                 </div>
-                                <div className="p-4 border border-gray-400 rounded-md">
+                                {/* <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Basic Price:</p>
                                     <p className="md:text-lg font-medium">{project.price} Cr</p>
-                                </div>
+                                </div> */}
                                 <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Building Type:</p>
                                     <p className="md:text-lg font-medium">{project.propertyType} Commercial</p>
