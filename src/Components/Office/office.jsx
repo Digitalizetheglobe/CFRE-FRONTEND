@@ -126,7 +126,7 @@ const Office = () => {
             </div>
 
             {/* Filter Section - Below the Banner */}
-            <div className="relative container mx-auto p-4 md:mt-[80vh] mt-[25vh] md:ml-16">
+            <div className="relative container mx-auto p-4 md:mt-[80vh] mt-[25vh] w-full">
                 <div className="flex flex-col-1 md:flex-row items-center justify-between  md:space-y-0 md:space-x-4 ">
                     <div className="flex-1 ">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
@@ -178,11 +178,11 @@ const Office = () => {
                 </div>
             </div>
 
-            <div className="relative container mx-auto p-4 mt-5 md:ml-14">
+            <div className="relative container mx-auto p-4 mt-5 ">
     {error ? (
         <Error message={error} /> // Render Error component if there's an error
     ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
             {currentProperties.length > 0 ? (
                 currentProperties.map(property => (
                     <OfficeCard
