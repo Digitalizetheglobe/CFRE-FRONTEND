@@ -97,17 +97,22 @@ const Unfurnished = () => {
 
     return (
         <>
-            <Helmet>
+            {/* <Helmet>
                 <title>Top Real Estate Services: Corporate Offices & Retail Spaces for Sale & rent</title>
-                {/* <Helmet>
+                <Helmet>
                     <title>About Us - My Website</title>
                     <meta name="description" content="Learn more about our company on the About Us page." />
                     <meta property="og:title" content="About Us - My Website" />
                     <meta property="og:description" content="Learn more about our company on the About Us page." />
                     <meta property="og:url" content="https://mywebsite.com/about" />
                     </Helmet>
-                */}
-            </Helmet>
+               
+            </Helmet> */}
+            <Helmet>
+                    <title>Premium Furnished Rentals | CFRE Realty</title>
+                    <meta name="description" content="Find your next home with CFRE Realty’s premium furnished rentals. Enjoy luxurious, move-in ready spaces that elevate your living experience" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/Furnished" />
+                    </Helmet>
             <Header />
             <div className="container mx-auto p-4">
                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">

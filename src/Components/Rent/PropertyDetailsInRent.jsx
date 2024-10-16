@@ -5,7 +5,7 @@ import ContactForm from '../MainBody/ContactForm';
 import image from '../assets/RecentProperty.jpg';
 import Header from '../Header/header.jsx';
 import Image from '../assets/ABC.jpeg';
-import { Helmet } from 'react-helmet-async'; 
+import { Helmet } from 'react-helmet-async';
 
 const PropertyDetailInRent = () => {
     // const { id } = useParams();
@@ -88,8 +88,8 @@ const PropertyDetailInRent = () => {
         { label: 'Agreement Period', value: property.agreementPeriod },
         { label: 'Locking Period', value: property.lockingPeriod },
         // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
-        { label: 'Property Taxes', value: property.propertyTax},
-        { label: 'GST on rent and maintenance', value: property.gstOnRent},
+        { label: 'Property Taxes', value: property.propertyTax },
+        { label: 'GST on rent and maintenance', value: property.gstOnRent },
         { label: 'Electricity Charges / Water Charges', value: 'Borne by the Licensee as per usage directly to Authority' },
         { label: 'Agreement charges', value: property.agreementCharges },
     ];
@@ -110,8 +110,8 @@ const PropertyDetailInRent = () => {
 
     return (
         <>
-         <Helmet>
-                <title>{property?.seoTitle || 'Top Real Estate Services: Corporate Offices & Retail Spaces for Sale & rent'}</title> 
+            <Helmet>
+                <title>{property?.seoTitle || 'Top Real Estate Services: Corporate Offices & Retail Spaces for Sale & rent'}</title>
             </Helmet>
             <Header />
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
@@ -235,7 +235,7 @@ const PropertyDetailInRent = () => {
 
                         </div>
 
-                        <div ref={moreDetailsRef} className="mt-8 bg-white p-6 rounded-lg  ">
+                        <div ref={moreDetailsRef} className="mt-8 bg-white p-6 rounded-lg">
                             <h4 className="md:text-xl font-semibold mb-6">More Details</h4>
                             <div className="space-y-4 divide-y divide-gray-200">
                                 {displayedDetails.map((detail, index) => (
@@ -246,6 +246,8 @@ const PropertyDetailInRent = () => {
                                 ))}
                             </div>
 
+                            {/* SEO Description */}
+                            <span className="text-xs text-gray-500 block mt-4">{property.seoDiscription}</span>
 
                             <button
                                 className="mt-4 text-[#d84a48] hover:underline"
@@ -254,6 +256,7 @@ const PropertyDetailInRent = () => {
                                 {showAllDetails ? 'Hide More Details' : 'See More Details'}
                             </button>
                         </div>
+
                     </div>
                 </div>
 

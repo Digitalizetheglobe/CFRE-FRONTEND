@@ -9,6 +9,7 @@ import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
 import Header from '../Header/header.jsx';
 // import Bckgrndimg from '../assets/coundown.jpg';
+import { Helmet } from 'react-helmet-async';
 
 function ContactUs() {
     const [formData, setFormData] = useState({
@@ -86,6 +87,12 @@ function ContactUs() {
 
     return (
         <>
+         <Helmet>
+                    <title>Get in Touch with CFRE Realty | Contact Us Today!</title>
+                    <meta name="description" content="Have questions or need assistance? Reach out to CFRE Realty! Our team is ready to help you with all your real estate needs. Contact us for personalized support!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/contactUs" />
+                    </Helmet>
+            
         <Header />
             <div className="relative mb-10 md:mt-10 mt-5">
                 {/* Banner Image */}

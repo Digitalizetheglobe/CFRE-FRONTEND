@@ -5,6 +5,7 @@ import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error';
 import Pagination from '@mui/material/Pagination';
 import Header from '../Header/header.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -96,6 +97,11 @@ const Prelease = () => {
 
     return (
         <>
+         <Helmet>
+                    <title>CFRE Realty Pre-Released Properties: Get Ahead of the Market</title>
+                    <meta name="description" content="Discover pre-released properties at CFRE Realty and find your perfect space before anyone else. Explore our exclusive listings and act fast!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/preleased" />
+                    </Helmet>
             <Header />
             <div className="container mx-auto p-4">
                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">

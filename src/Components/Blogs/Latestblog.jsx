@@ -8,9 +8,16 @@ import Image5 from "../Blogs/blog5.jpg";
 import Image6 from "../Blogs/blog6.jpg";
 import Image7 from "./blog7.webp"
 import Header from '../Header/header.jsx'
+import { Helmet } from 'react-helmet-async';
+
 const Latestblog = () => {
     return (
         <>
+             <Helmet>
+                    <title>Unlock Real Estate Secrets | CFRE Realty's Latest Blog</title>
+                    <meta name="description" content="Dive into CFRE Realty's blog for expert insights, market trends, and tips that empower your real estate journey. Discover what's shaping the property landscape today!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/Latestblog" />
+                    </Helmet>
             <Header />
             {/* Background Section */}
             <div className="relative before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-70 before:z-10">
@@ -138,20 +145,20 @@ const Latestblog = () => {
 
                         {/* Side Content Section */}
                         <Link to='/Investing in Commercial Property in Balewadi: A Smart Choice for 2024'>
-                        <div className="ml-4 flex-1">
-                            <h3 className="md:text-xl font-semibold">
-                                {" "}
-                                Investing in Commercial Property
-                            </h3>
-                            <p className="mt-2 text-xs text-gray-500 leading-relaxed">
-                                Investing in Commercial Property in Balewadi: A Smart Choice for
-                                2024
-                            </p>
-                            <div className="flex items-center text-xs justify-between text-gray-700 mt-4">
-                                <span>BY CFRE REALITY PUNE </span>
-                                <span> July 30, 2024</span>
+                            <div className="ml-4 flex-1">
+                                <h3 className="md:text-xl font-semibold">
+                                    {" "}
+                                    Investing in Commercial Property
+                                </h3>
+                                <p className="mt-2 text-xs text-gray-500 leading-relaxed">
+                                    Investing in Commercial Property in Balewadi: A Smart Choice for
+                                    2024
+                                </p>
+                                <div className="flex items-center text-xs justify-between text-gray-700 mt-4">
+                                    <span>BY CFRE REALITY PUNE </span>
+                                    <span> July 30, 2024</span>
+                                </div>
                             </div>
-                        </div>
                         </Link>
                     </div>
                 </div>
@@ -266,11 +273,11 @@ const Latestblog = () => {
                                             3 AUG 2024 | BY CFRE REALITY PUNE
                                         </span>
                                         <h3 className="md:text-xl font-bold text-[#333]">
-                                        Why to Invest in Commercial Property in 2024
+                                            Why to Invest in Commercial Property in 2024
                                         </h3>
                                         <hr className="my-6" />
                                         <p className="text-gray-700 text-sm">
-                                        Why to Invest in Commercial Property in 2024 and Which are the Best Option to Invest in Baner-Balewadi?
+                                            Why to Invest in Commercial Property in 2024 and Which are the Best Option to Invest in Baner-Balewadi?
                                         </p>
                                     </div>
                                 </div>

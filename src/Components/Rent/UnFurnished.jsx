@@ -5,6 +5,7 @@ import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
 import Header from '../Header/header.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const Unfurnished = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -89,6 +90,11 @@ const Unfurnished = () => {
 
     return (
         <>
+          <Helmet>
+                    <title>Un-Furnished Homes for Rent | CFRE Realty</title>
+                    <meta name="description" content="Looking for un-furnished rentals? CFRE Realty offers diverse options in prime locations. Browse our listings and take the first step towards your new home!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/UnFurnished" />
+                    </Helmet>
         <Header />
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">

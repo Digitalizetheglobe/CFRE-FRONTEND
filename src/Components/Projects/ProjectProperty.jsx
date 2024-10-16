@@ -4,6 +4,7 @@ import ProjectCard from './projectCard';
 import BannerImage from './1.png'; // Replace with your actual image path
 import Error from '../Error/Error'; // Import the Error component
 import Header from '../Header/header.jsx';
+import { Helmet } from 'react-helmet-async';
 
 function ProjectProperty() {
     const [projects, setProjects] = useState([]);
@@ -27,6 +28,15 @@ function ProjectProperty() {
 
     return (
         <>
+                <Helmet>
+                    <title>Explore Premier Properties | CFRE Realty Project Listings</title>
+                    <meta name="description" content="Discover your dream property at CFRE Realty. Browse our comprehensive listings of residential and commercial projects. Find the perfect space today!" />
+                    {/* <meta property="og:title" content="About Us - My Website" /> */}
+                    {/* <meta property="og:description" content="Learn more about our company on the About Us page." /> */}
+                    <meta property="og:url" content="https://www.cfrerealty.com/projectproperty" />
+                    </Helmet>
+               
+           
         <Header />
         <div className="relative overflow-hidden">
             {/* Banner Image */}
