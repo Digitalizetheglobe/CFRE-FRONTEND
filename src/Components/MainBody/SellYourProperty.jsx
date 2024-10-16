@@ -5,6 +5,7 @@ import sell from '../assets/sell-your-property-step-1 (1).avif';
 import sell1 from '../assets/sell-your-property-step-2 (1).avif';
 import sell2 from '../assets/sell-your-property-step-3.avif';
 import { FaBuilding, FaStore, FaBriefcase, FaUser, FaMapMarkerAlt, FaClipboardList } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const SellYourProperty = () => {
   const [step, setStep] = useState(1);
@@ -143,6 +144,12 @@ const SellYourProperty = () => {
   return (
     <>
       <Header />
+      <Helmet>
+                    <title>Sell Your Property with CFRE Realty - Trusted Real Estate Services</title>
+                    <meta name="description" content="Unlock the potential of your property with CFR Realty. Our expert team provides comprehensive services to help you sell your property efficiently and at the best price. Contact us today for a free consultation!" />
+                    <meta property="og:description" content="Unlock the potential of your property with CFR Realty. Our expert team provides comprehensive services to help you sell your property efficiently and at the best price. Contact us today for a free consultation!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/SellYourProperty" />
+                    </Helmet>
       <div className="container mx-auto p-8 border rounded-lg shadow-lg md:mt-12 bg-white">
         <form onSubmit={handleSubmit}>
           <div className=" flex gap-8">
