@@ -112,6 +112,8 @@ const PropertyDetailInRent = () => {
         <>
             <Helmet>
                 <title>{property?.seoTitle || 'Top Real Estate Services: Corporate Offices & Retail Spaces for Sale & rent'}</title>
+                <meta name="description" content={property.seoDiscription} />
+
             </Helmet>
             <Header />
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
