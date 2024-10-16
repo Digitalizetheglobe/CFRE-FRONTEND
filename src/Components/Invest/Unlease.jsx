@@ -4,6 +4,7 @@ import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import Header from '../Header/header.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -77,6 +78,12 @@ const Prelease = () => {
     return (
         <>
         <Header />
+        <Helmet>
+                    <title>Unleased Commercial Spaces for Rent in Pune - CFRE Realty</title>
+                    <meta name="description" content="Discover a variety of unleased commercial spaces available for rent in Pune with CFRE Realty. Flexible options tailored for every business need. Explore our listings today!" />
+                    <meta property="og:description" content="Discover a variety of unleased commercial spaces available for rent in Pune with CFRE Realty. Flexible options tailored for every business need. Explore our listings today!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/unleased" />
+                    </Helmet>
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="md:text-4xl text-lg font-bold">Un-Leased Properties</h1>

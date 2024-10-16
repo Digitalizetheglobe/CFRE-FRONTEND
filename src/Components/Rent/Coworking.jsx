@@ -4,6 +4,8 @@ import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import Header from '../Header/header.jsx'
+import { Helmet } from 'react-helmet-async';
+
 const Coworking = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState('');
@@ -74,6 +76,12 @@ const Coworking = () => {
     return (
         <>
         <Header />
+        <Helmet>
+                    <title>Dynamic Coworking Spaces in Pune - CFRE Realty</title>
+                    <meta name="description" content="Unlock your potential with CFRE Realty's coworking spaces in Pune. Enjoy amenities, networking opportunities, and a vibrant work environment. Sign up for a tour today!" />
+                    <meta property="og:description" content="Unlock your potential with CFRE Realty's coworking spaces in Pune. Enjoy amenities, networking opportunities, and a vibrant work environment. Sign up for a tour today!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/Coworking" />
+                    </Helmet>
         <div className="container mx-auto p-4">
             <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 space-y-4 md:space-y-0">
                 <h1 className="md:text-4xl text-lg font-bold">Coworking Spaces</h1>

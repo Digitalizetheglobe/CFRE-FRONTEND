@@ -446,7 +446,7 @@ function Header() {
     };
 
     return (
-        <header className="sticky top-0 bg-white shadow-md tracking-wide z-10">
+        <header className="sticky top-0 bg-white shadow-md tracking-wide z-50">
             <div className="flex bg-white items-center justify-between md:p-4 p-2 w-full">
                 {/* Left: Logo */}
                 <div className="flex bg-white items-center space-x-4 md:pl-20 md:flex hidden">

@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@fontsource/montserrat": "^5.0.19",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "github:fortawesome/react-fontawesome",
     "@heroicons/react": "^2.1.5",
     "@mui/icons-material": "^6.1.2",
     "@testing-library/jest-dom": "^5.17.0",

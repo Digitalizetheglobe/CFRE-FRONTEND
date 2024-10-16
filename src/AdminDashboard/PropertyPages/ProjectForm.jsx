@@ -113,18 +113,6 @@ const ProjectForm = () => {
                     />
                 </div>
 
-                {/* Builder Name */}
-                {/* <div className="mb-4">
-                    <label className="block text-sm font-semibold mb-2">Builder Name:</label>
-                    <input
-                        type="text"
-                        name="builderName"
-                        value={formData.builderName}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div> */}
-
                 {/* Project Details */}
                 <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Project Details:</label>
@@ -222,26 +210,6 @@ const ProjectForm = () => {
                         className="w-full p-2 border border-gray-300 rounded-md"
                     />
                 </div>
-                {/* <div className="mb-4">
-          <label className="block text-sm font-semibold mb-2">Project Area:</label>
-          <input
-            type="number"
-            name="projectArea"
-            value={formData.projectArea}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-semibold mb-2">Project Area:</label>
-          <input
-            type="number"
-            name="projectArea"
-            value={formData.projectArea}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div> */}
 
                 {/* Project Plans */}
                 <div className="mb-4">

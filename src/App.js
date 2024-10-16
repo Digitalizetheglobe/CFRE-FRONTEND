@@ -65,7 +65,8 @@ import ProjectList from './AdminDashboard/ProjectList.jsx';
 import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 import MobileSearchBar from './MobileSearchBar.jsx';
 import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
-// import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
+import ViewAllProjects from './AdminDashboard/ProjectPages/ViewAllProjects.jsx';
+import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
 function App() {
@@ -76,7 +77,7 @@ function App() {
       <main>
       <HelmetProvider>
         <StickyButton />
-        {/* <DisclaimerPopup /> */}
+        <DisclaimerPopup />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
@@ -203,6 +204,15 @@ function App() {
                 <ViewAllProperty />
               </PrivateRoute>
             }
+          />
+
+          <Route
+           path='/ViewAllProjects'
+           element={
+            <PrivateRoute>
+              <ViewAllProjects/>
+            </PrivateRoute>
+           }
           />
         </Routes>
         </HelmetProvider>
