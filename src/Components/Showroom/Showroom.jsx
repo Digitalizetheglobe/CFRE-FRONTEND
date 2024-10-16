@@ -5,6 +5,7 @@ import ContactForm from '../MainBody/ContactForm';
 import ShowroomVideo from './showroomvideo.mp4'; // Import your video file
 import Error from '../Error/Error'; // Import the Error component
 import Header from '../Header/header.jsx';
+import { Helmet } from 'react-helmet-async';
 
 const Showroom = () => {
     const [properties, setProperties] = useState([]);
@@ -38,6 +39,12 @@ const Showroom = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                    <title>Premium Showrooms for Lease in Pune | CFRE Realty</title>
+                    <meta name="description" content="Discover premium showroom spaces for lease in prime locations of Pune with CFRE Realty. Ideal for businesses seeking high-visibility retail spaces. Contact us for availability, pricing, and more details." />
+                    <meta property="og:description" content="Discover premium showroom spaces for lease in prime locations of Pune with CFRE Realty. Ideal for businesses seeking high-visibility retail spaces. Contact us for availability, pricing, and more details." />
+                    <meta property="og:url" content="https://www.cfrerealty.com/Showroom" />
+                    </Helmet>
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 w-full md:h-[75vh] h-[25vh] overflow-hidden">
                     <video

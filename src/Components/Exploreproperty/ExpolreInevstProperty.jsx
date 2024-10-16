@@ -6,7 +6,7 @@ import PropertyCard from '../Invest/PropertyCard';
 import Header from '../Header/header.jsx'
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
 import { Link } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet-async';
 
 const ExploreInvestProperty = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -94,49 +94,56 @@ const ExploreInvestProperty = () => {
     return (
         <>
         <Header />
+        <Helmet>
+                    <title>Explore Investment Properties in Pune | CFRE Realty</title>
+                    <meta name="description" content="Discover prime investment opportunities in Pune with CFRE Realty. Explore a range of office spaces and commercial properties tailored to your investment needs. Contact us for more details and take the first step towards securing your future today!" />
+                    <meta property="og:description" content="Discover prime investment opportunities in Pune with CFRE Realty. Explore a range of office spaces and commercial properties tailored to your investment needs. Contact us for more details and take the first step towards securing your future today!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/exploreInvestProperty" />
+                    </Helmet>
         <div className="container mx-auto p-4">
-            <div className="flex md:flex-col flex-col-1  justify-between items-center mb-6 space-y-4 md:space-y-0">
-                <h1 className="md:text-4xl text-lg ">Office Spaces Properties</h1>
-                <div className="flex md:flex-col flexcol-1 sm:flex-row items-center space-x-0 md:space-x-4 md:space-y-4">
-                    <input
-                        type="text"
-                        placeholder="location..."
-                        value={searchTerm}
-                        onChange={handleSearch}
-                        className="border border-gray-300 rounded-md px-4 py-2 md:w-full w-28 sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    {/* <select
-                        value={sortOrder}
-                        onChange={handleSort}
-                        className="border border-gray-300 rounded-md md:px-4 md:py-2 md:w-full w-20 sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="">Sort by Price</option>
-                        <option value="asc">Price: Low to High</option>
-                        <option value="desc">Price: High to Low</option>
-                    </select> */}
-                </div>
-            </div>
+        <div className="container mx-auto p-4">
+  <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+    <h1 className="md:text-4xl text-2xl font-semibold">Office Spaces Properties</h1>
+    <div className="flex flex-col sm:flex-row items-center md:space-x-4 md:space-y-0 space-y-4 sm:space-y-0">
+      <input
+        type="text"
+        placeholder="Location..."
+        value={searchTerm}
+        onChange={handleSearch}
+        className="border border-gray-300 rounded-md px-4 py-2 md:w-64 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+      />
+      <select
+        value={sortOrder}
+        onChange={handleSort}
+        className="border border-gray-300 rounded-md px-4 py-2 md:w-64 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+      >
+        <option value="">Sort by Price</option>
+        <option value="asc">Price: Low to High</option>
+        <option value="desc">Price: High to Low</option>
+      </select>
+    </div>
+  </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {currentProperties.length === 0 ? (
-                    <p className="text-center w-full">No properties found.</p>
-                ) : (
-                    currentProperties.map(property => (
-                        <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
-                    ))
-                )}
-            </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {currentProperties.length === 0 ? (
+      <p className="text-center w-full text-gray-500">No properties found.</p>
+    ) : (
+      currentProperties.map(property => (
+        <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
+      ))
+    )}
+  </div>
 
-            {/* Pagination Component */}
-            <div className="flex justify-center mt-6">
-                <Pagination
-                    count={Math.ceil(filteredProperties.length / propertiesPerPage)} // Total page count
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    color="primary"
-                    size="large"
-                />
-            </div>
+  <div className="flex justify-center mt-8">
+    <Pagination
+      count={Math.ceil(filteredProperties.length / propertiesPerPage)}
+      page={currentPage}
+      onChange={handlePageChange}
+      color="primary"
+      size="large"
+    />
+  </div>
+</div>
 
             {isFormVisible && (
                 <div 

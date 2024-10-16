@@ -6,7 +6,7 @@ import sell2 from '../assets/sell-your-property-step-3.avif';
 import ContactForm from './ContactForm';
 import Header from '../Header/header.jsx'
 import { Link, useNavigate } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet-async';
 
 const Thirdcards = () => {
   // State to manage which accordion section is open
@@ -34,6 +34,12 @@ const Thirdcards = () => {
   return (
     <>
       <Header />
+      <Helmet>
+                    <title>Premium Office Spaces & Retail Solutions in Pune - CFRE Realty</title>
+                    <meta name="description" content="Discover exceptional office and retail spaces for sale and rent in Pune. CFRE Realty offers tailored real estate solutions to meet your business needs. Contact us today for personalized assistance and expert guidance." />
+                    <meta property="og:url" content="https://www.cfrerealty.com/third-card" />
+                    </Helmet>
+            
       <div>
         <div className="bg-gray-100 py-16">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">

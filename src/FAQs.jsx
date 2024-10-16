@@ -1,11 +1,17 @@
 import React from 'react'
 import Header from './Components/Header/header';
-
+import { Helmet } from 'react-helmet-async';
 
 function FAQs() {
   return (
     <>
     <Header/>
+    <Helmet>
+                    <title>FAQs | CFRE Realty - Real Estate Solutions for Corporate Offices & Retail Spaces</title>
+                    <meta name="description" content="Explore frequently asked questions about real estate services offered by CFRE Realty. Learn more about corporate office spaces, retail properties for rent and sale, investment opportunities, and client services. Find all the answers you need for your property solutions." />
+                    <meta property="og:description" content="Explore frequently asked questions about real estate services offered by CFRE Realty. Learn more about corporate office spaces, retail properties for rent and sale, investment opportunities, and client services. Find all the answers you need for your property solutions." />
+                    <meta property="og:url" content="https://www.cfrerealty.com/fAQs" />
+                    </Helmet>
     <section class="bg-[#1D1D1D] text-gray-100 py-32 min-h-screen">
     <div class="container flex flex-col justify-center p-4 mx-auto md:p-8">
       <h2 class="mb-12 md:text-4xl text-xl font-bold leadi text-center ">Frequently Asked Questions</h2>

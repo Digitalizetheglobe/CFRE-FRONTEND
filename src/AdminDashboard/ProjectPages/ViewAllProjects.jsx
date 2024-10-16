@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 // Assuming you have a ProjectModal component
 import AdminNavbar from '../AdminNavbar';
 import axios from 'axios';
-import { FaEdit, FaTrash, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 const ProjectModal = ({ project, onSave, onClose }) => {
     const [editedProject, setEditedProject] = useState(project || {});

@@ -29,7 +29,7 @@ function ProjectProperty() {
     return (
         <>
                 <Helmet>
-                    <title>Explore Premier Properties | CFRE Realty Project Listings</title>
+                    <title>Explore Premier Projects | CFRE Realty Project Listings</title>
                     <meta name="description" content="Discover your dream property at CFRE Realty. Browse our comprehensive listings of residential and commercial projects. Find the perfect space today!" />
                     {/* <meta property="og:title" content="About Us - My Website" /> */}
                     {/* <meta property="og:description" content="Learn more about our company on the About Us page." /> */}

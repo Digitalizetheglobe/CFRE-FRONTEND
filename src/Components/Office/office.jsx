@@ -5,7 +5,7 @@ import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error';
 import Header from '../Header/header.jsx'
 import Pagination from '@mui/material/Pagination'; // Import MUI Pagination
-
+import { Helmet } from 'react-helmet-async';
 
 
 const Office = () => {
@@ -102,6 +102,12 @@ const Office = () => {
     return (
         <>
         <Header />
+        <Helmet>
+                    <title>Premium Office Spaces for Rent and Sale – CFRE Realty</title>
+                    <meta name="description" content="Explore a wide range of premium office spaces for rent and sale at CFRE Realty. Discover prime locations, flexible leasing options, and top-tier amenities. Find the perfect office space to elevate your business with CFRE Realty." />
+                    <meta property="og:description" content="Explore a wide range of premium office spaces for rent and sale at CFRE Realty. Discover prime locations, flexible leasing options, and top-tier amenities. Find the perfect office space to elevate your business with CFRE Realty." />
+                    <meta property="og:url" content="https://www.cfrerealty.com/office" />
+                    </Helmet>
         <div className="relative overflow-hidden">
             {/* Video background */}
             <div className="absolute inset-0 md:w-full md:h-[75vh] h-[25vh]  overflow-hidden">

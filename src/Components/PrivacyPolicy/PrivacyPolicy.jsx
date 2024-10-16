@@ -1,13 +1,19 @@
 import React from 'react';
 import Image from './privacyPolicy.webp'
 import Header from '../Header/header.jsx';
-
+import { Helmet } from 'react-helmet-async';
 
 
 function PrivacyPolicy() {
     return (
         <>
         <Header />
+        <Helmet>
+                    <title>Privacy Policy | CFRE Realty</title>
+                    <meta name="description" content="Review the comprehensive privacy policy of CFRE Realty, which details how we collect, use, and protect your personal information when you visit our site. Learn about our practices and your rights regarding data privacy." />
+                    <meta property="og:description" content="Review the comprehensive privacy policy of CFRE Realty, which details how we collect, use, and protect your personal information when you visit our site. Learn about our practices and your rights regarding data privacy." />
+                    <meta property="og:url" content="https://www.cfrerealty.com/privacyPolicy" />
+                    </Helmet>
             <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}

@@ -4,10 +4,18 @@ import Image from './privacyPolicy.webp';
 import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
 import Header from '../Header/header.jsx';
+import { Helmet } from 'react-helmet-async';
+
 function AboutUs() {
     return (
         <>
     <Header/>
+    <Helmet>
+                    <title>About CFRE-Realty: Premier Real Estate Services for Commercial Spaces</title>
+                    <meta name="description" content="Learn more about CFR E-Realty, a leading provider of commercial real estate services specializing in corporate offices and retail spaces for sale and rent. Discover our expertise in offering tailor-made solutions for property investment, leasing, and more." />
+                    <meta property="og:description" content="Learn more about CFR E-Realty, a leading provider of commercial real estate services specializing in corporate offices and retail spaces for sale and rent. Discover our expertise in offering tailor-made solutions for property investment, leasing, and more." />
+                    <meta property="og:url" content="https://www.cfrerealty.com/aboutUs" />
+                    </Helmet>
             <div
                 className="bg-blue-400 text-black py-16 bg-cover bg-center"
                 style={{ backgroundImage: `url(${Image})` }}

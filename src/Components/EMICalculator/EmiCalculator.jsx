@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Header from "../Header/header";
 import { FaCalculator } from "react-icons/fa";
 import FAQs from "../../FAQs";
+import { Helmet } from 'react-helmet-async';
 
 const EmiCalculator = () => {
     const [loanAmount, setLoanAmount] = useState(2000000);
@@ -36,7 +37,12 @@ const EmiCalculator = () => {
     return (
         <>
             <Header />
-
+            <Helmet>
+                    <title>EMI Calculator - Estimate Your Home Loan EMIs | CFRE Realty</title>
+                    <meta name="description" content=" Use the EMI Calculator by CFRE Realty to calculate your monthly home loan payments. Easily determine EMIs based on loan amount, interest rate, and tenure for your property investment. Start planning today!" />
+                    <meta property="og:description" content=" Use the EMI Calculator by CFRE Realty to calculate your monthly home loan payments. Easily determine EMIs based on loan amount, interest rate, and tenure for your property investment. Start planning today!" />
+                    <meta property="og:url" content="https://www.cfrerealty.com/emiCalculator" />
+                    </Helmet>
             <div className="bg-gray-800 w-full font-[sans-serif]">
                 <div className="grid md:grid-cols-2 items-center md:max-h-[475px] overflow-hidden">
                     <div className="p-8">
@@ -141,7 +147,7 @@ const EmiCalculator = () => {
                     </div>
                 </div>
             </div>
-            <FAQs/>
+            {/* <FAQs/> */}
         </>
     );
 };

@@ -89,7 +89,7 @@ function ContactUs() {
         <>
          <Helmet>
                     <title>Get in Touch with CFRE Realty | Contact Us Today!</title>
-                    <meta name="description" content="Have questions or need assistance? Reach out to CFRE Realty! Our team is ready to help you with all your real estate needs. Contact us for personalized support!" />
+                    <meta name="description" content="Contact CFRE Realty for expert assistance in finding corporate office spaces and retail properties. Reach out to our team for any inquiries related to property investment, sales, and leasing." />
                     <meta property="og:url" content="https://www.cfrerealty.com/contactUs" />
                     </Helmet>
             
