@@ -109,9 +109,9 @@ const Unfurnished = () => {
                
             </Helmet> */}
             <Helmet>
-                    <title>Premium Furnished Rentals | CFRE Realty</title>
-                    <meta name="description" content="Find your next home with CFRE Realty’s premium furnished rentals. Enjoy luxurious, move-in ready spaces that elevate your living experience" />
-                    <meta property="og:description" content="Find your next home with CFRE Realty’s premium furnished rentals. Enjoy luxurious, move-in ready spaces that elevate your living experience" />
+                    <title>Furnished Commercial Properties for Rent | CFRE Realty</title>
+                    <meta name="description" content="Discover a range of furnished commercial properties for rent at CFRE Realty. Enhance your business presence with fully equipped spaces in prime locations. Find your ideal workspace today!" />
+                    <meta property="og:description" content="Discover a range of furnished commercial properties for rent at CFRE Realty. Enhance your business presence with fully equipped spaces in prime locations. Find your ideal workspace today!" />
                     <meta property="og:url" content="https://www.cfrerealty.com/Furnished" />
                     </Helmet>
             <Header />

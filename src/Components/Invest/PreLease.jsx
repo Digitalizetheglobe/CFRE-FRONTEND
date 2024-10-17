@@ -98,8 +98,8 @@ const Prelease = () => {
     return (
         <>
          <Helmet>
-                    <title>CFRE Realty Pre-Released Properties: Get Ahead of the Market</title>
-                    <meta name="description" content="Discover pre-released properties at CFRE Realty and find your perfect space before anyone else. Explore our exclusive listings and act fast!" />
+                    <title>Pre-Leased Commercial Office Spaces | CFRE Realty</title>
+                    <meta name="description" content="Explore our selection of pre-leased commercial office spaces at CFRE Realty. Secure reliable investments with established tenants in prime locations. Discover your next opportunity today!" />
                     <meta property="og:url" content="https://www.cfrerealty.com/preleased" />
                     </Helmet>
             <Header />

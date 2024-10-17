@@ -91,8 +91,8 @@ const Unfurnished = () => {
     return (
         <>
           <Helmet>
-                    <title>Un-Furnished Homes for Rent | CFRE Realty</title>
-                    <meta name="description" content="Looking for un-furnished rentals? CFRE Realty offers diverse options in prime locations. Browse our listings and take the first step towards your new home!" />
+                    <title>Unfurnished Commercial Properties for Rent | CFRE Realty</title>
+                    <meta name="description" content="Explore a variety of unfurnished commercial properties available for rent at CFRE Realty. Customize your workspace to meet your business needs in prime locations. Find your perfect space today!" />
                     
                     <meta property="og:url" content="https://www.cfrerealty.com/UnFurnished" />
                     </Helmet>
