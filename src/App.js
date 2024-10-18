@@ -66,7 +66,7 @@ import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 import MobileSearchBar from './MobileSearchBar.jsx';
 import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
 import ViewAllProjects from './AdminDashboard/ProjectPages/ViewAllProjects.jsx';
-import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
+// import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
 function App() {
@@ -77,7 +77,7 @@ function App() {
       <main>
       <HelmetProvider>
         <StickyButton />
-        <DisclaimerPopup />
+        {/* <DisclaimerPopup /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import axios for API requests
-import Banner from './Get Started Now FREE (1).png';
+import Banner from './Get.png';
 import Blogslider from '../MainBody/Blogslider';
 import Tagline from './123.png';
 import Image from './ranger-4df6c1b6.png';
