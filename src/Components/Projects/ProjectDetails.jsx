@@ -5,7 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { MdOutlinePinDrop } from 'react-icons/md';
 import { RiProgress2Line } from "react-icons/ri";
 import { AiFillDatabase, AiFillRead } from "react-icons/ai";
-import Image from './new_16850803601652257231.jpg';
+import Image from './Screensh.png';
 import ContactForm from '../MainBody/ContactForm';
 import Header from '../Header/header';
 import cpFP1 from './cpFP1.jpg';

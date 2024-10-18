@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from './ab.jpg';
-import Image from './tower.jpeg';
+import Image from './Untitled123.jpg';
 import CountUp from 'react-countup';
 import Bckgrndimg from '../assets/coundown.jpg'
 import Header from '../Header/header.jsx';
@@ -43,7 +43,7 @@ function AboutUs() {
                 className="relative w-full h-full"
 
             >
-                <div className="w-full flex items-center justify-center p-4 md:py-14 bg-black border border-t-pd-neutral-1">
+                <div className="w-full flex items-center justify-center p-4 md:py-14 bg-gray-600 border border-t-pd-neutral-1">
                     <dl className="md:container grid grid-cols-3 md:grid-cols-4 gap-5 gap-y-6 text-center">
 
                         <div className=" md:flex col-span-1 flex-col items-center justify-center">
