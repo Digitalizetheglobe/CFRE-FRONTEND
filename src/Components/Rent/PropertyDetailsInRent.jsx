@@ -6,6 +6,8 @@ import image from '../assets/RecentProperty.jpg';
 import Header from '../Header/header.jsx';
 import Image from '../assets/ABC.jpeg';
 import { Helmet } from 'react-helmet-async';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const PropertyDetailInRent = () => {
     // const { id } = useParams();
@@ -14,6 +16,7 @@ const PropertyDetailInRent = () => {
     const [recentProperties, setRecentProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
     const [showAllDetails, setShowAllDetails] = useState(false);
+    const [loading, setLoading] = useState(false); 
 
     const navigate = useNavigate(); // Initialize the navigate hook
 
@@ -68,8 +71,14 @@ const PropertyDetailInRent = () => {
     };
 
     const handlePropertyClick = (propertySlug) => {
-        navigate(`/property-detail/${propertySlug}`);
+        setLoading(true); // Set loading to true
+        setTimeout(() => {
+            navigate(`/property-detail/${propertySlug}`);
+            setLoading(false); // Set loading to false after navigation
+        }, 2000); // Delay of 2 seconds (2000 ms)
     };
+    
+    
 
 
     const allDetails = [
@@ -117,6 +126,15 @@ const PropertyDetailInRent = () => {
 
             </Helmet>
             <Header />
+
+            {/* Show Loader when loading is true */}
+            {loading && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <FontAwesomeIcon icon={faSpinner} spin size="3x" className="text-white" />
+                </div>
+            )}
+
+
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
             <div className="sticky md:top-28 top-16 bg-white  shadow-md flex justify-center space-x-4 py-2">
                 <button

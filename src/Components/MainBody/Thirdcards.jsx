@@ -187,68 +187,110 @@ const Thirdcards = () => {
         </section>
 
         <div className="divide-y rounded-lg max-w-7xl mx-auto px-4 ">
-          <div className="mb-8">
-            <h2 className="md:text-2xl font-bold text-gray-800">Frequently asked questions</h2>
-          </div>
-          <div role="accordion">
-            <button
-              type="button"
-              className="w-full text-base text-left font-semibold py-6 text-gray-800 flex items-center"
-              onClick={() => toggleAccordion(1)}
-            >
-              <span className="mr-4 text-sm md:text-base">Q. How much do I have to pay to list my property on CFRE?</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 1 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
-                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
-              </svg>
-            </button>
-            {openAccordion === 1 && (
-              <div className="py-4">
-                <p className="text-sm md:text-base text-gray-800">
-                  It is completely free to list your property on CFRE. We only charge a brokerage fee of 2% + GST once we successfully sell your property on our marketplace, incentivising us to sell faster and get the best deal possible for you.
-                </p>
-              </div>
-            )}
-          </div>
-          <div role="accordion">
-            <button
-              type="button"
-              className="w-full text-sm  md:text-base text-left font-semibold py-6 text-gray-800 flex items-center"
-              onClick={() => toggleAccordion(2)}
-            >
-              <span className="mr-4">Q. Can I list my property on CFRE?</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
-                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
-              </svg>
-            </button>
-            {openAccordion === 2 && (
-              <div className="py-4">
-                <p className="text-sm md:text-base text-gray-800">
-                  Yes! Our marketplace allows owners of commercial properties (office, retail, or land) to list their property. Simply fill out our connect form, and our expert will reach out to you to explain the listing process.
-                </p>
-              </div>
-            )}
-          </div>
-          <div role="accordion">
-            <button
-              type="button"
-              className="w-full text-sm text-left font-semibold py-6 text-gray-800 flex items-center"
-              onClick={() => toggleAccordion(3)}
-            >
-              <span className="mr-4 text-sm md:text-base">Q. How is CFRE different from other brokers?</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
-                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
-              </svg>
-            </button>
-            {openAccordion === 3 && (
-              <div className="py-4">
-                <p className="text-sm md:text-base text-gray-800">
-                  CFRE distributes your property to more than 1500 verified investors, leading brokers, wealth management firms and financial advisors. Through our ecosystem we generate multiple businesses, a variety of offers, and the best price for your property. Due to our extensive network of investors, we are able to close our deals within weeks rather than months!
-                </p>
-              </div>
-            )}
-          </div>
+                    <div className="mb-8">
+                        <h2 className="md:text-2xl font-bold text-gray-800 text-center md:mt-8">Frequently asked questions</h2>
+                    </div>
+                    <div role="accordion">
+                        <button
+                            type="button"
+                            className="w-full text-base text-left font-semibold py-6 text-gray-800 flex items-center"
+                            onClick={() => toggleAccordion(1)}
+                        >
+                            <span className="mr-4 text-sm md:text-base">Q. How much do I have to pay to list my property on CFRE?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 1 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+                                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+                            </svg>
+                        </button>
+                        {openAccordion === 1 && (
+                            <div className="py-4">
+                                <p className="text-sm md:text-base text-gray-800">
+                                    It is completely free to list your property on CFRE. We only charge a brokerage fee of 2% + GST once we successfully sell your property on our marketplace, incentivising us to sell faster and get the best deal possible for you.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                    <div role="accordion">
+                        <button
+                            type="button"
+                            className="w-full text-sm  md:text-base text-left font-semibold py-6 text-gray-800 flex items-center"
+                            onClick={() => toggleAccordion(2)}
+                        >
+                            <span className="mr-4">Q. Can I list my property on CFRE?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+                                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+                            </svg>
+                        </button>
+                        {openAccordion === 2 && (
+                            <div className="py-4">
+                                <p className="text-sm md:text-base text-gray-800">
+                                    Yes! Our marketplace allows owners of commercial properties (office, retail, or land) to list their property. Simply fill out our connect form, and our expert will reach out to you to explain the listing process.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                    <div role="accordion">
+                        <button
+                            type="button"
+                            className="w-full text-sm text-left font-semibold py-6 text-gray-800 flex items-center"
+                            onClick={() => toggleAccordion(3)}
+                        >
+                            <span className="mr-4 text-sm md:text-base">Q. How is CFRE different from other brokers?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+                                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+                            </svg>
+                        </button>
+                        {openAccordion === 3 && (
+                            <div className="py-4">
+                                <p className="text-sm md:text-base text-gray-800">
+                                    CFRE distributes your property to more than 1500 verified investors, leading brokers, wealth management firms and financial advisors. Through our ecosystem we generate multiple businesses, a variety of offers, and the best price for your property. Due to our extensive network of investors, we are able to close our deals within weeks rather than months!
+                                </p>
+                            </div>
+                        )}
+                    </div>
 
-        </div>
+                    <div role="accordion">
+                        <button
+                            type="button"
+                            className="w-full text-sm text-left font-semibold py-6 text-gray-800 flex items-center"
+                            onClick={() => toggleAccordion(4)}
+                        >
+                            <span className="mr-4 text-sm md:text-base">Q. How do you calculate office space costs?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+                                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+                            </svg>
+                        </button>
+                        {openAccordion === 4 && (
+                            <div className="py-4">
+                                <p className="text-sm md:text-base text-gray-800">
+                                    
+When looking for a commercial office space for rent, it's important to consider the average rent in your chosen location. Additionally, you should decide on the grade of office space (A, B, or C) that fits your needs. The rent cost will vary depending on both the location and the grade of the space. Once you've identified these factors, you should also calculate the additional costs associated with maintenance, insurance, taxes, and utilities to get a complete picture of your total expenses.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    <div role="accordion">
+                        <button
+                            type="button"
+                            className="w-full text-sm text-left font-semibold py-6 text-gray-800 flex items-center"
+                            onClick={() => toggleAccordion(5)}
+                        >
+                            <span className="mr-4 text-sm md:text-base">Q. What is the right size office space?</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 fill-current ml-auto shrink-0 transform ${openAccordion === 2 ? 'rotate-90' : ''}`} viewBox="0 0 124 124">
+                                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000" />
+                            </svg>
+                        </button>
+                        {openAccordion === 5 && (
+                            <div className="py-4">
+                                <p className="text-sm md:text-base text-gray-800">
+                                    
+                                Determining the right size of office space involves several key factors, starting with the number of employees and the type of work being done, as a general guideline suggests allocating about 150 to 200 square feet per employee for comfort. It's also essential to consider potential business growth, workspace layout preferences, the number of meeting rooms and facilities needed, and any storage requirements for documents or inventory. Additionally, local zoning regulations may impact available space, while budget constraints will ultimately dictate the size you can afford. By carefully evaluating these factors, you can identify an office space that meets your current and future business needs.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                </div>
         {/* Render ContactForm only if isFormVisible is true */}
         {isFormVisible && (
           <div

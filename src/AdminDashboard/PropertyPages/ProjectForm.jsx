@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from '../AdminNavbar';
 
 const ProjectForm = () => {
     const [formData, setFormData] = useState({
@@ -17,6 +18,10 @@ const ProjectForm = () => {
         approvedBy: '',
         specification: '',
         projectPlans: [{ Type: '', UnitCost: '', CarpetArea: '' }],
+        slug:'',
+        seoTitle:'',
+        seoDescription:'',
+        seoKeywords:'',
         floorPlanImages: null,
         multiplePropertyImages: null,
         video: '',
@@ -85,6 +90,8 @@ const ProjectForm = () => {
     };
 
     return (
+        <>
+        <Navbar />
         <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
             <h2 className="text-2xl font-bold mb-6 text-center">Property Submission Form</h2>
 
@@ -253,6 +260,50 @@ const ProjectForm = () => {
                     </button>
                 </div>
 
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-2">Slug:</label>
+                    <input
+                        type="number"
+                        name="slug"
+                        value={formData.slug}
+                        onChange={handleChange}
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-2">Seo Title:</label>
+                    <input
+                        type="number"
+                        name="seoTitle"
+                        value={formData.seoTitle}
+                        onChange={handleChange}
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-2">Description:</label>
+                    <input
+                        type="number"
+                        name="seoDescription"
+                        value={formData.seoDescription}
+                        onChange={handleChange}
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-2">Seo Keywords:</label>
+                    <input
+                        type="number"
+                        name="seoKeywords"
+                        value={formData.seoKeywords}
+                        onChange={handleChange}
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                    />
+                </div>
+
                 {/* Submit Button */}
                 <div className="mt-6">
                     <button
@@ -272,6 +323,7 @@ const ProjectForm = () => {
                 )}
             </form>
         </div>
+        </>
     );
 };
 

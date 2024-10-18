@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import image from './disclaimerImage.jpg'; // Import the image
+import { useLocation } from 'react-router-dom';
+import image from './disclaimerImage.jpg'; 
 import Logo from '../Header/cfre-logo.png';
 
 const DisclaimerPopup = () => {
@@ -8,15 +9,18 @@ const DisclaimerPopup = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
+  const location = useLocation();
 
-  // Show popup after 2 seconds
+  // Show popup after 2 seconds if the user is on the home page and not on mobile
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPopup(true);
-    }, 2000);
+    if (location.pathname === '/' && window.innerWidth > 768) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+      }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname]);
 
   const handleClosePopup = () => {
     setShowPopup(false);
@@ -28,7 +32,7 @@ const DisclaimerPopup = () => {
   };
 
   const validatePhone = (phone) => {
-    const phoneRegex = /^[0-9]{10}$/; // Ensures 10 digits
+    const phoneRegex = /^[0-9]{10}$/; 
     return phoneRegex.test(phone);
   };
 
@@ -52,11 +56,9 @@ const DisclaimerPopup = () => {
 
     setErrors(validationErrors);
 
-    // If no errors, form can be submitted
     if (Object.keys(validationErrors).length === 0) {
-      // Handle form submission logic
       alert('Form submitted successfully');
-      handleClosePopup(); // Close the popup after submission
+      handleClosePopup(); 
     }
   };
 
@@ -65,14 +67,11 @@ const DisclaimerPopup = () => {
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 p-4">
           <div className="bg-white w-full max-w-3xl rounded-lg shadow-lg overflow-hidden relative flex flex-col md:flex-row">
-            {/* Image Section */}
             <div className="w-full md:w-1/2 h-64 md:h-auto">
               <img src={image} alt="Commercial Real Estate" className="h-full w-full object-cover" />
             </div>
 
-            {/* Disclaimer and Form Section */}
             <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
-              {/* Header Section */}
               <div className="text-black mb-4">
                 <div className="flex items-center space-x-4 mb-3">
                   <img src={Logo} alt="Logo" className="h-10 w-10" />
@@ -83,7 +82,6 @@ const DisclaimerPopup = () => {
                 </p>
               </div>
 
-              {/* Form Section */}
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="relative">
                   <input
@@ -129,7 +127,7 @@ const DisclaimerPopup = () => {
                     Get In Touch
                   </button>
                   <a
-                    href="tel:+918149977661" // Replace with your phone number
+                    href="tel:+918149977661"
                     className="bg-gray-200 text-gray-600 hover:bg-gray-300 py-3 px-4 rounded-lg text-xl font-bold flex items-center justify-center"
                   >
                     📞
@@ -137,12 +135,11 @@ const DisclaimerPopup = () => {
                 </div>
               </form>
 
-              {/* Close Button */}
               <button
                 className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl font-bold"
                 onClick={handleClosePopup}
               >
-                &times; {/* This is the cross symbol */}
+                &times;
               </button>
             </div>
           </div>
@@ -153,4 +150,3 @@ const DisclaimerPopup = () => {
 };
 
 export default DisclaimerPopup;
-  

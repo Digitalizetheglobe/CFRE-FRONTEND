@@ -151,6 +151,47 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                     </div>
 
                     <div className="mb-4">
+                        <label className="block text-gray-700">Slug:</label>
+                        <input
+                            type="text"
+                            name="slug"
+                            value={editedProject.slug || ''}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Seo Title:</label>
+                        <input
+                            type="text"
+                            name="seoTitle"
+                            value={editedProject.seoTitle || ''}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Description:</label>
+                        <input
+                            type="text"
+                            name="seoDescription"
+                            value={editedProject.seoDescription || ''}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Seo Keywords:</label>
+                        <input
+                            type="text"
+                            name="seoKeywords"
+                            value={editedProject.seoKeywords || ''}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
+
+                    <div className="mb-4">
                         <label className="block text-gray-700">Property Images:</label>
                         <input
                             type="file"
@@ -362,7 +403,7 @@ const ViewAllProjects = () => {
 
             {/* Edit and Delete Icons */}
             <div className="flex justify-between mt-4">
-                <button onClick={() => handleEditClick(project)} className="text-gray-600 hover:text-gray-900">
+                <button onClick={() => handleEditClick(project)} className="text-gray-600 hover:text-green-600">
                     <i className="fas fa-edit"></i> Edit
                 </button>
                 <button onClick={() => handleDeleteClick(project.id, index)} className="text-red-600 hover:text-red-900">
