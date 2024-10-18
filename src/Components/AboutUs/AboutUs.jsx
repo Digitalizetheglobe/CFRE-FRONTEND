@@ -31,7 +31,7 @@ function AboutUs() {
             >
                 <div className='py-2 md:py-10 w-full h-full flex items-center'>
                     <div className="text-pd-m-xl md:text-[40px] text-pd-text-5 font-bold">
-                        <h1 className=" md:text-4xl text-lg text-white font-bold text-center align-middle">Transforming Commercial Real Estate Investment and Leasing into <span className='italic text-[#d84a48]'>Extraordinary Opportunities</span></h1>
+                        <h1 className=" md:text-4xl  text-lg text-white font-bold text-center align-middle">Transforming Commercial Real Estate Investment and Leasing into <span className='italic text-[#d84a48]'>Extraordinary Opportunities</span></h1>
                     </div>
                 </div>
             </div>
@@ -43,28 +43,28 @@ function AboutUs() {
                     <dl className="md:container grid grid-cols-3 md:grid-cols-4 gap-5 gap-y-6 text-center">
 
                         <div className=" md:flex col-span-1 flex-col items-center justify-center">
-                            <dd className="md:text-3xl font-semibold tracking-tight text-white  text-4xl">
+                            <dd className="md:text-6xl font-semibold tracking-tight text-white  text-4xl">
                                 <CountUp start={0} end={12} duration={7} /> +
                             </dd>
                             <dt className="md:text-2xl leading-7 text-white">Years</dt>
                         </div>
 
                         <div className= " hidden md:flex col-span-1 flex-col items-center justify-center">
-                            <dd className="md:text-3xl font-semibold tracking-tight text-white text-4xl">
+                            <dd className="md:text-6xl font-semibold tracking-tight text-white text-4xl">
                                 <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} /> +
                             </dd>
                             <dt className="md:text-2xl leading-7 text-white">Sq.Ft  Delivered</dt>
                         </div>
 
                         <div className="col-span-1 flex flex-col items-center justify-center">
-                            <dd className="md:text-3xl font-semibold tracking-tight text-white text-4xl">
+                            <dd className="md:text-6xl font-semibold tracking-tight text-white text-4xl">
                                 <CountUp start={0} end={500} duration={7} /> +
                             </dd>
                             <dt className="md:text-2xl leading-7 text-white">Clients</dt>
                         </div>
 
                         <div className="col-span-1 flex flex-col items-center justify-center">
-                            <dd className="md:text-3xl font-semibold tracking-tight text-white text-4xl">
+                            <dd className="md:text-6xl font-semibold tracking-tight text-white text-4xl">
                                 <CountUp start={0} end={40} duration={7} /> +
                             </dd>
                             <dt className="md:text-2xl leading-7 text-white">Cities</dt>
