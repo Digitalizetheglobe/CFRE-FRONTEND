@@ -26,18 +26,19 @@ function AboutUs() {
             </Helmet>
 
             <div
-    className="bg-black md:h-[550px] h-[300px] w-full text-black py-16 bg-cover bg-center"
-    style={{ backgroundImage: `url(${Image})` }}
+  className="bg-black md:h-[450px] h-[300px] w-full text-black py-16 bg-cover bg-center"
+  style={{ backgroundImage: `url(${Image})` }}
 >
-    <div className='w-full h-full flex flex-col justify-end'> {/* Changed to flex-col and added justify-end */}
-        <div className="py-2 md:py-10 w-full flex items-center"> {/* Adjusted for spacing */}
-            <h1 className="md:text-4xl text-lg text-white font-bold align-middle">
-                Transforming Commercial Real Estate Investment and Leasing into <br />
-                <span className='italic font-bold text-[#d84a48]'>Extraordinary Opportunities</span>
-            </h1>
-        </div>
+  <div className="w-full h-full flex justify-center items-center text-center"> {/* Centered vertically and horizontally */}
+    <div className="py-2 md:py-10 w-full flex flex-col justify-center items-center"> {/* Flex column and center alignment */}
+      <h1 className="md:text-4xl text-lg text-white font-bold text-center">
+      Commercial Real Estate Simplified: Rent, Invest, and Sell with <br />
+        <span className=" font-bold ">Trusted, Verified Data</span>
+      </h1>
     </div>
+  </div>
 </div>
+
 
             <div
                 className="relative w-full h-full"
