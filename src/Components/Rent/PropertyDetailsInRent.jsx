@@ -110,11 +110,21 @@ const PropertyDetailInRent = () => {
 
 
     function formatIndianPrice(price) {
-        const x = price.toString();
-        const lastThree = x.substring(x.length - 3);
-        const otherNumbers = x.substring(0, x.length - 3);
-        const formatted = otherNumbers !== '' ? otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree : lastThree;
-        return formatted;
+        if (price >= 10000000) {
+            // Convert to Crores
+            return `${(price / 10000000).toFixed(2)} Cr`;
+          } else if (price >= 100000) {
+            // Convert to Lakhs
+            return `${(price / 100000).toFixed(2)} Lac`;
+          } else {
+            // Return the price as is
+            return `₹${price.toLocaleString("en-IN")}`;
+          }
+        // const x = price.toString();
+        // const lastThree = x.substring(x.length - 3);
+        // const otherNumbers = x.substring(0, x.length - 3);
+        // const formatted = otherNumbers !== '' ? otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree : lastThree;
+        // return formatted;
     }
 
     return (
@@ -233,7 +243,7 @@ const PropertyDetailInRent = () => {
                                     {property?.rentPerMonth && (
                                         <div>
                                             <div className="font-semibold">Rent</div>
-                                            <div className="font-bold">{formatIndianPrice(property.rentPerMonth)}/m</div>
+                                            <div className="font-bold">{formatIndianPrice(property.rentPerMonth)}</div>
                                         </div>
                                     )}
                                 </div>
@@ -295,7 +305,7 @@ const PropertyDetailInRent = () => {
                                     alt={recentProperty.title}
                                     className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
                                 />
-                                <div>
+                          <div>
                                     <div className="md:text-lg text-sm font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
                                     <div className="text-gray-600 md:text-lg text-sm">Available in {recentProperty.location}</div>
                                     <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹{recentProperty.rentPerMonth}</div>

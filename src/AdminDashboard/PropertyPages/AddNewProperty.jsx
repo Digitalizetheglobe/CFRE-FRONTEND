@@ -210,7 +210,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.unitNo}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -225,7 +225,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.floor}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -286,7 +286,7 @@ const AddNewProperty = () => {
                   name="propertyType"
                   value={formData.propertyType}
                   onChange={handleChange}
-                    required
+                    // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 >
                   <option value="">Select Property Type</option>
@@ -316,7 +316,7 @@ const AddNewProperty = () => {
     name="availableFor"
     value={formData.availableFor}
     onChange={handleChange}
-    required
+    // required
     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
   >
     <option value="">Select Available For - Sale / Rent</option>
@@ -324,6 +324,7 @@ const AddNewProperty = () => {
     <option value="Rent">Rent</option>
   </select>
 </div>
+
 
 <div className="sm:col-span-3">
   <label htmlFor="propertySubtype" className="block text-sm font-medium leading-6 text-gray-900">
@@ -333,7 +334,7 @@ const AddNewProperty = () => {
     id="propertySubtype"
     name="propertySubtype"
     value={formData.propertySubtype}
-    required
+    // required
     onChange={handleChange}
     disabled={formData.availableFor !== "Invest"} // Disable if not "Invest"
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
@@ -356,7 +357,7 @@ const AddNewProperty = () => {
     name="furnishing"
     value={formData.furnishing}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.availableFor !== "Rent"} // Disable if not "Rent"
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.availableFor !== "Rent" ? "bg-gray-200" : "bg-white" // Optional: Change background when disabled
@@ -380,7 +381,7 @@ const AddNewProperty = () => {
     type="text"
     value={formData.ws}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.furnishing !== "Furnished"} // Disable unless "Furnished" is selected
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.furnishing !== "Furnished" ? "bg-gray-200" : "bg-white" // Change background when disabled
@@ -399,7 +400,7 @@ const AddNewProperty = () => {
     type="text"
     value={formData.cabin}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.furnishing !== "Furnished"} // Disable unless "Furnished" is selected
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.furnishing !== "Furnished" ? "bg-gray-200" : "bg-white" // Change background when disabled
@@ -418,7 +419,7 @@ const AddNewProperty = () => {
     type="text"
     value={formData.conferenceRoom}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.furnishing !== "Furnished"} // Disable unless "Furnished" is selected
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.furnishing !== "Furnished" ? "bg-gray-200" : "bg-white" // Change background when disabled
@@ -437,7 +438,7 @@ const AddNewProperty = () => {
     type="text"
     value={formData.meetingRoom}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.furnishing !== "Furnished"} // Disable unless "Furnished" is selected
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.furnishing !== "Furnished" ? "bg-gray-200" : "bg-white" // Change background when disabled
@@ -456,7 +457,7 @@ const AddNewProperty = () => {
     type="text"
     value={formData.otherFurniture}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.furnishing !== "Furnished"} // Disable unless "Furnished" is selected
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.furnishing !== "Furnished" ? "bg-gray-200" : "bg-white" // Change background when disabled
@@ -475,7 +476,7 @@ const AddNewProperty = () => {
     type="text"
     value={formData.furnitureDoneBy}
     onChange={handleChange}
-    required
+    // required
     disabled={formData.furnishing !== "Furnished"} // Disable unless "Furnished" is selected
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
       formData.furnishing !== "Furnished" ? "bg-gray-200" : "bg-white" // Change background when disabled
@@ -497,7 +498,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.carParking}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -512,7 +513,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.bikeParking}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -527,7 +528,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.dgBackup}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -536,21 +537,21 @@ const AddNewProperty = () => {
                 <label htmlFor="cafeteria" className="block text-sm font-medium leading-6 text-gray-900">
                   Cafeteria
                 </label>
-                <input
+                <select
                   id="cafeteria"
                   name="cafeteria"
                   type="text"
                   value={formData.cafeteria}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
-                />
+                >
+                   <option value="">Select Cafeteria </option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+                  </select>
               </div>
 
-              
-
-
-             
               <div className="sm:col-span-3">
                 <label htmlFor="amenities" className="block text-sm font-medium leading-6 text-gray-900">
                   Other Amenities
@@ -561,7 +562,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.amenities}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -593,7 +594,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.rentPerMonthRsPerSqFt}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -607,7 +608,7 @@ const AddNewProperty = () => {
                   name="rentPerMonth"
                   type="text"
                   value={formData.rentPerMonth}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                   readOnly
                 />
@@ -624,7 +625,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.rentStartFrom}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -639,7 +640,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.basePrice}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -669,7 +670,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.deposit}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -684,7 +685,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.yearlyEscalation}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -699,7 +700,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.agreementPeriod}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -717,7 +718,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.lockingPeriod}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -732,7 +733,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.propertyTax}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -747,7 +748,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.governmentTaxes}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -762,7 +763,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.gstOnRent}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -777,7 +778,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.agreementCharges}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -813,7 +814,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.slug}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -827,7 +828,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.seoTitle}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -841,7 +842,6 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.seoDescription}
                   onChange={handleChange}
-                  required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
@@ -855,7 +855,7 @@ const AddNewProperty = () => {
                   type="text"
                   value={formData.seoKeywords}
                   onChange={handleChange}
-                  required
+                  // required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>

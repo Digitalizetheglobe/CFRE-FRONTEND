@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../AdminNavbar';
+import { FaSearch } from "react-icons/fa"; 
 
 // Modal Component
 const PropertyModal = ({ property, onSave, onClose }) => {
@@ -552,24 +553,27 @@ const PropertyModal = ({ property, onSave, onClose }) => {
 };
 
 const ViewAllProperty = () => {
-  const [properties, setProperties] = useState([]);
-  const [toggleStatus, setToggleStatus] = useState({}); // Store the toggle status for each property
-  const [selectedProperty, setSelectedProperty] = useState(null); // For editing modal
+  const [properties, setProperties] = useState([]); // All properties
+  const [filteredProperties, setFilteredProperties] = useState([]); // Filtered properties for search
+  const [toggleStatus, setToggleStatus] = useState({}); // Toggle state
+  const [selectedProperty, setSelectedProperty] = useState(null); // Selected property for editing
   const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const [searchQuery, setSearchQuery] = useState(""); // Search query
 
   useEffect(() => {
-    fetch('https://cfrecpune.com/cfreproperties')
+    fetch("https://cfrecpune.com/cfreproperties")
       .then((response) => response.json())
       .then((data) => {
-        setProperties(data);
+        setProperties(data); // Set the full list of properties
+        setFilteredProperties(data); // Initially show all properties
         const initialToggleState = {};
         data.forEach((property, index) => {
-          initialToggleState[index] = true; // Initially all toggles are "On"
+          initialToggleState[index] = true; // Set all toggles to "On"
         });
         setToggleStatus(initialToggleState);
       })
       .catch((error) => {
-        console.error('Error fetching properties:', error);
+        console.error("Error fetching properties:", error);
       });
   }, []);
 
@@ -585,22 +589,58 @@ const ViewAllProperty = () => {
     setShowModal(true);
   };
 
+  // Handle search input
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase(); // Convert input to lowercase for case-insensitive search
+    setSearchQuery(query);
+
+    // Filter properties by building name, location, or city
+    const filtered = properties.filter(
+      (property) =>
+        property.buildingName.toLowerCase().includes(query) || // Match building name
+        property.location.toLowerCase().includes(query) || // Match location
+        property.city.toLowerCase().includes(query) // Match city
+    );
+
+    setFilteredProperties(filtered); // Update the filtered list
+  };
+
+
+  function formatIndianPrice(price) {
+    if (price >= 10000000) {
+        // Convert to Crores
+        return `${(price / 10000000).toFixed(2)} Cr`;
+      } else if (price >= 100000) {
+        // Convert to Lakhs
+        return `${(price / 100000).toFixed(2)} Lac`;
+      } else {
+        // Return the price as is
+        return `₹${price.toLocaleString("en-IN")}`;
+      }
+    // const x = price.toString();
+    // const lastThree = x.substring(x.length - 3);
+    // const otherNumbers = x.substring(0, x.length - 3);
+    // const formatted = otherNumbers !== '' ? otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree : lastThree;
+    // return formatted;
+}
+
   const handleSaveChanges = (updatedProperty) => {
-    // Send PUT request to update the property
     fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedProperty),
     })
       .then((response) => response.json())
       .then((data) => {
-        setProperties((prev) => prev.map((p) => (p.id === data.id ? data : p))); // Update the properties in state
+        setProperties((prev) =>
+          prev.map((p) => (p.id === data.id ? data : p))
+        );
         setShowModal(false); // Close modal
       })
       .catch((error) => {
-        console.error('Error updating property:', error);
+        console.error("Error updating property:", error);
       });
   };
 
@@ -608,49 +648,92 @@ const ViewAllProperty = () => {
     <>
       <AdminNavbar />
       <div className="container mx-auto p-8">
-        <h2 className="text-base font-bold leading-7 text-gray-900 text-center " style={{ fontSize: '20px' }}>All Properties</h2>
+        {/* Search Bar */}
+        <div className="flex justify-center mb-6">
+          <div className="relative w-full max-w-md">
+            <input
+              type="text"
+              placeholder="Search by Building Name, Location, or City"
+              value={searchQuery}
+              onChange={handleSearchChange} // Update on every keypress
+              className="w-full border rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
+            />
+            <FaSearch className="absolute top-3 right-3 text-gray-400" />
+          </div>
+        </div>
+
+        <h2
+          className="text-base font-bold leading-7 text-gray-900 text-center"
+          style={{ fontSize: "20px" }}
+        >
+          All Properties
+        </h2>
+
+        {/* Render Filtered Properties */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
-          {properties.map((property, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-md rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 border"
-              style={{ borderColor: '#d84a48', borderWidth: '1px' }} // Light border color
-            >
-              <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
-              <p className="text-gray-700 mb-2">
-                <strong>Location:</strong> {property.location}
-              </p>
-              <p className="text-gray-700 mb-2">
-                <strong>City:</strong> {property.city}
-              </p>
-              <p className="text-gray-700 mb-4">
-                <strong>Carpet Area:</strong> {property.carpetArea} sq. ft.
-              </p>
+          {filteredProperties.length > 0 ? (
+            filteredProperties.map((property, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-md rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 border"
+                style={{ borderColor: "#d84a48", borderWidth: "1px" }}
+              >
+                <h3 className="text-xl font-bold mb-2">
+                  {property.buildingName}
+                </h3>
+                <p className="text-gray-700 mb-2">
+                  <strong>Location:</strong> {property.location}
+                </p>
+                <p className="text-gray-700 mb-2">
+                  <strong>City:</strong> {property.city}
+                </p>
+                <p className="text-gray-700 mb-4">
+                  <strong>Carpet Area:</strong> {property.carpetArea} sq. ft.
+                </p>
+                <p className="text-gray-700 mb-4">
+                  <strong>Price:</strong> {formatIndianPrice(property.rentPerMonth)}
+                  
+                </p>
+                <p className="text-gray-700 mb-4">
+                  <strong>Available For:</strong> {property.availableFor}
+                </p>
 
-              {/* Toggle Button */}
-              <div className="flex items-center justify-between">
-                <label className="inline-flex items-center">
-                  <span className="mr-2 text-gray-700">Available</span>
-                  <input
-                    type="checkbox"
-                    className="form-checkbox h-5 w-5 text-indigo-600"
-                    checked={toggleStatus[index]} // Default is "On"
-                    onChange={() => handleToggle(index)}
-                  />
-                </label>
-                <span className={`ml-4 text-sm ${toggleStatus[index] ? 'text-green-500' : 'text-red-500'}`}>
-                  {toggleStatus[index] ? 'On' : 'Off'}
-                </span>
-              </div>
+                {/* Toggle Button */}
+                <div className="flex items-center justify-between">
+                  <label className="inline-flex items-center">
+                    <span className="mr-2 text-gray-700">Available</span>
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 text-indigo-600"
+                      checked={toggleStatus[index]} // Default is "On"
+                      onChange={() => handleToggle(index)}
+                    />
+                  </label>
+                  <span
+                    className={`ml-4 text-sm ${
+                      toggleStatus[index] ? "text-green-500" : "text-red-500"
+                    }`}
+                  >
+                    {toggleStatus[index] ? "On" : "Off"}
+                  </span>
+                </div>
 
-              {/* Edit Icon */}
-              <div className="text-right mt-4">
-                <button onClick={() => handleEditClick(property)} className="text-gray-600 hover:text-gray-900">
-                  <i className="fas fa-edit"></i> Edit
-                </button>
+                {/* Edit Icon */}
+                <div className="text-right mt-4">
+                  <button
+                    onClick={() => handleEditClick(property)}
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    <i className="fas fa-edit"></i> Edit
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text-center text-gray-500">
+              No properties found matching your search.
+            </p>
+          )}
         </div>
 
         {/* Modal for editing property */}
