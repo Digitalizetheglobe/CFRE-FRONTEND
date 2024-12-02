@@ -194,14 +194,14 @@ const PropertyDetailInRent = () => {
                                         <div>
                                             <div className="font-semibold">Built-up Area</div>
                                             <div className="font-bold">{property.buArea} sqft</div>
-                                            <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
+                                            {/* <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div> */}
                                         </div>
                                     )}
                                     {property?.carpetArea && (
                                         <div>
                                             <div className="font-semibold">Carpet Area</div>
                                             <div className="font-bold">{property.carpetArea} sqft</div>
-                                            <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div>
+                                            {/* <div className="text-gray-500">{property.rentPerMonthRsPerSqFt}/sqft</div> */}
                                         </div>
                                     )}
                                     {property?.floor && (
@@ -242,10 +242,15 @@ const PropertyDetailInRent = () => {
                                     )}
                                     {property?.rentPerMonth && (
                                         <div>
-                                            <div className="font-semibold">Rent</div>
-                                            <div className="font-bold">{formatIndianPrice(property.rentPerMonth)}</div>
+                                            <div className="font-semibold">
+                                            {property.availableFor?.toLowerCase() === "rent" ? "Rent" : "Cost"}
+                                            </div>
+                                            <div className="font-bold">
+                                            {formatIndianPrice(property.rentPerMonth)}
+                                            </div>
                                         </div>
-                                    )}
+                                        )}
+
                                 </div>
 
                                 <div className="flex space-x-2 mt-6">

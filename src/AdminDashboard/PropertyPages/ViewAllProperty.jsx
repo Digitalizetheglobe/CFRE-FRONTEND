@@ -5,6 +5,7 @@ import { FaSearch } from "react-icons/fa";
 // Modal Component
 const PropertyModal = ({ property, onSave, onClose }) => {
   const [editedProperty, setEditedProperty] = useState(property);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +18,27 @@ const PropertyModal = ({ property, onSave, onClose }) => {
   const handleSave = () => {
     onSave(editedProperty); // Save the updated property
   };
-
+  
+  // const deletePropertyById = async (id) => {
+  //   try {
+  //     const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     if (response.ok) {
+  //       console.log("Property deleted successfully");
+  //     } else {
+  //       console.error("Failed to delete property");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error deleting property:", error);
+  //   }
+  // };
+  
+  // const handleDelete = () => {
+  //   const propertyId = 123; 
+  //   deletePropertyById(propertyId);
+  // };
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-lg max-h-screen overflow-y-auto">
@@ -537,14 +558,31 @@ const PropertyModal = ({ property, onSave, onClose }) => {
 
         {/* Add more form fields as needed */}
 
-        <div className="flex justify-between mt-4">
-          <button onClick={handleSave} className="bg-[#d84a48] hover:bg-[#c34543] text-white px-4 py-2 rounded">
-            Update
-          </button>
-          <button onClick={onClose} className="bg-gray-500  hover:bg-gray-700 text-white px-4 py-2 rounded">
-            Cancel
-          </button>
+        <div className="flex items-center justify-between mt-4">
+            <div className="flex space-x-2">
+              <button
+                onClick={handleSave}
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+              >
+                Update
+              </button>
+              {/* <button
+                onClick={handleDelete}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+              >
+                Delete
+              </button> */}
+            </div>
+
+            {/* Right-aligned button */}
+            <button
+              onClick={onClose}
+              className="bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded"
+            >
+              Cancel
+            </button>
         </div>
+
       </div>
     </div>
 
@@ -623,7 +661,25 @@ const ViewAllProperty = () => {
     // const formatted = otherNumbers !== '' ? otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree : lastThree;
     // return formatted;
 }
-
+const deletePropertyById = async (id) => {
+  try {
+    const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      console.log("Property deleted successfully");
+      // Remove the deleted property from state
+      setProperties((prev) => prev.filter((property) => property.id !== id));
+      setFilteredProperties((prev) =>
+        prev.filter((property) => property.id !== id)
+      );
+    } else {
+      console.error("Failed to delete property");
+    }
+  } catch (error) {
+    console.error("Error deleting property:", error);
+  }
+};
   const handleSaveChanges = (updatedProperty) => {
     fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
       method: "PUT",
@@ -671,70 +727,81 @@ const ViewAllProperty = () => {
 
         {/* Render Filtered Properties */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
-          {filteredProperties.length > 0 ? (
-            filteredProperties.map((property, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-md rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 border"
-                style={{ borderColor: "#d84a48", borderWidth: "1px" }}
-              >
-                <h3 className="text-xl font-bold mb-2">
-                  {property.buildingName}
-                </h3>
-                <p className="text-gray-700 mb-2">
-                  <strong>Location:</strong> {property.location}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <strong>City:</strong> {property.city}
-                </p>
-                <p className="text-gray-700 mb-4">
-                  <strong>Carpet Area:</strong> {property.carpetArea} sq. ft.
-                </p>
-                <p className="text-gray-700 mb-4">
-                  <strong>Price:</strong> {formatIndianPrice(property.rentPerMonth)}
-                  
-                </p>
-                <p className="text-gray-700 mb-4">
-                  <strong>Available For:</strong> {property.availableFor}
-                </p>
+  {filteredProperties.length > 0 ? (
+    filteredProperties.map((property, index) => (
+      <div
+        key={index}
+        className="bg-white shadow-md rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 border"
+        style={{ borderColor: "#d84a48", borderWidth: "1px" }}
+      >
+        <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
+        <p className="text-gray-700 mb-2">
+          <strong>Location:</strong> {property.location}
+        </p>
+        <p className="text-gray-700 mb-2">
+          <strong>City:</strong> {property.city}
+        </p>
+        <p className="text-gray-700 mb-4">
+          <strong>Carpet Area:</strong> {property.carpetArea} sq. ft.
+        </p>
+        <p className="text-gray-700 mb-4">
+          <strong>Price:</strong> {formatIndianPrice(property.rentPerMonth)}
+        </p>
+        <p className="text-gray-700 mb-4">
+          <strong>Available For:</strong> {property.availableFor}
+        </p>
 
-                {/* Toggle Button */}
-                <div className="flex items-center justify-between">
-                  <label className="inline-flex items-center">
-                    <span className="mr-2 text-gray-700">Available</span>
-                    <input
-                      type="checkbox"
-                      className="form-checkbox h-5 w-5 text-indigo-600"
-                      checked={toggleStatus[index]} // Default is "On"
-                      onChange={() => handleToggle(index)}
-                    />
-                  </label>
-                  <span
-                    className={`ml-4 text-sm ${
-                      toggleStatus[index] ? "text-green-500" : "text-red-500"
-                    }`}
-                  >
-                    {toggleStatus[index] ? "On" : "Off"}
-                  </span>
-                </div>
-
-                {/* Edit Icon */}
-                <div className="text-right mt-4">
-                  <button
-                    onClick={() => handleEditClick(property)}
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    <i className="fas fa-edit"></i> Edit
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-500">
-              No properties found matching your search.
-            </p>
-          )}
+        {/* Toggle Button */}
+        <div className="flex items-center justify-between">
+          <label className="inline-flex items-center">
+            <span className="mr-2 text-gray-700">Available</span>
+            <input
+              type="checkbox"
+              className="form-checkbox h-5 w-5 text-indigo-600"
+              checked={toggleStatus[index]}
+              onChange={() => handleToggle(index)}
+            />
+          </label>
+          <span
+            className={`ml-4 text-sm ${
+              toggleStatus[index] ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            {toggleStatus[index] ? "On" : "Off"}
+          </span>
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex justify-between mt-4">
+          {/* Delete Button */}
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            onClick={() => {
+              if (window.confirm("Are you sure you want to delete this property?")) {
+                deletePropertyById(property.id);
+              }
+            }}
+          >
+            Delete
+          </button>
+
+          {/* Edit Button */}
+          <button
+            onClick={() => handleEditClick(property)}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="text-center text-gray-500">
+      No properties found matching your search.
+    </p>
+  )}
+</div>
+
 
         {/* Modal for editing property */}
         {showModal && selectedProperty && (
