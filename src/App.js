@@ -136,7 +136,7 @@ function App() {
           <Route path='/basicform' element= {<BasicForm />} />
           <Route path='/view'  element= {<BasicFormView />} />
           <Route path='/enquirydetails' element={<EnquiryDetails/>} /> */}
-
+{/* mata jdklj */}
 
 
           {/* Private routes (Protected) */}
