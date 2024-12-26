@@ -141,7 +141,7 @@ const ProjectForm = () => {
                 </div>
 
                 {/* Price */}
-                <div className="mb-4">
+                {/* <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Cost:</label>
                     <input
                         type="number"
@@ -150,7 +150,7 @@ const ProjectForm = () => {
                         onChange={handleChange}
                         className="w-full p-2 border border-gray-300 rounded-md"
                     />
-                </div>
+                </div> */}
 
 
                 <div className="mb-4">

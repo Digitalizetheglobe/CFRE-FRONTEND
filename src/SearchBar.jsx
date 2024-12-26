@@ -518,20 +518,39 @@ const SearchBar = () => {
         const filtered = properties.filter(property => {
             const cityMatch = selectedCity ? property.city.toLowerCase().includes(selectedCity.toLowerCase()) : true;
             const propertyTypeMatch = officeType ? property.propertyType.toLowerCase() === officeType.toLowerCase() : true;
-            const furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
+            
+            // Furnishing status match with validation
+            let furnishingStatusMatch = true;
+            if (propertyCategory === "Rent") {
+                if (property.furnishing === "Furnished") {
+                    furnishingStatusMatch = furnishingStatus === "Furnished";
+                } else if (property.furnishing === "Unfurnished") {
+                    furnishingStatusMatch = furnishingStatus === "Unfurnished";
+                } else if (property.furnishing === "Coworking") {
+                    furnishingStatusMatch = furnishingStatus === "Coworking";
+                } else {
+                    furnishingStatusMatch = false;
+                }
+            } else {
+                furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
+            }
+    
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
-
+    
             // Square footage filter logic based on carpet area
             const buArea = property.buArea ? parseFloat(property.buArea) : 0;
             const minSqFtMatch = minSqFt ? buArea >= parseFloat(minSqFt) : true;
             const maxSqFtMatch = maxSqFt ? buArea <= parseFloat(maxSqFt) : true;
-
-            return cityMatch && propertyTypeMatch && (propertyCategory === 'Invest' || furnishingStatusMatch) && searchMatch && minSqFtMatch && maxSqFtMatch;
+    
+            // Filter based on the propertyCategory and availableFor field
+            const categoryMatch = propertyCategory ? property.availableFor === propertyCategory : true;
+    
+            return cityMatch && propertyTypeMatch && categoryMatch && furnishingStatusMatch && searchMatch && minSqFtMatch && maxSqFtMatch;
         });
-
+    
         setFilteredProperties(filtered);
     }, [selectedCity, officeType, furnishingStatus, searchQuery, properties, propertyCategory, minSqFt, maxSqFt]);
-
+    
 
 
     const handleCityChange = (e) => {

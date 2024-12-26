@@ -114,7 +114,7 @@ const Prelease = () => {
                             onChange={handleSearch}
                             className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        <select
+                        {/* <select
                             value={sortOrder}
                             onChange={handleSort}
                             className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -122,7 +122,33 @@ const Prelease = () => {
                             <option value="">Sort by Price</option>
                             <option value="asc">Price: Low to High</option>
                             <option value="desc">Price: High to Low</option>
-                        </select>
+                        </select> */}
+                        <div className="mb-6">
+    <label className="block text-lg font-semibold mb-2">Sort by Area in sq ft.</label>
+    <div className="grid grid-cols-3 gap-4">
+        {[
+            { label: "0-1500", min: 0, max: 1500 },
+            { label: "1500-3000", min: 1500, max: 3000 },
+            { label: "3000-5000", min: 3000, max: 5000 },
+            { label: "5000-10000", min: 5000, max: 10000 },
+            { label: "Above", min: 10000, max: '' },
+        ].map((area, index) => (
+            <button
+                key={index}
+                className="px-1 py-2 border rounded-lg focus:outline-none bg-gray-100 hover:bg-[#d84a48] hover:text-white transition duration-300"
+                onClick={() => {
+                    const filtered = properties.filter(property => 
+                        property.carpetArea >= area.min &&
+                        (area.max === '' || property.carpetArea <= area.max)
+                    );
+                    setFilteredProperties(filtered);
+                }}
+            >
+                {area.label}
+            </button>
+        ))}
+    </div>
+</div>
                     </div>
                 </div>
 

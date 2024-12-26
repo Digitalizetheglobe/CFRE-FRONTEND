@@ -95,7 +95,7 @@ const Prelease = () => {
                         onChange={handleSearch}
                         className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    <select
+                    {/* <select
                         value={sortOrder}
                         onChange={handleSort}
                         className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -103,7 +103,7 @@ const Prelease = () => {
                         <option value="">Sort by Price</option>
                         <option value="asc">Price: Low to High</option>
                         <option value="desc">Price: High to Low</option>
-                    </select>
+                    </select> */}
                 </div>
             </div>
 

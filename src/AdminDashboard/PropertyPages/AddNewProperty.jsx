@@ -53,14 +53,18 @@ const AddNewProperty = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Update the form data
     setFormData((prevFormData) => {
       const updatedData = {
         ...prevFormData,
         [name]: value,
       };
 
-      // Parse the values as numbers
+      // Automatically update 'slug' if 'buildingName' is changed
+      if (name === 'buildingName') {
+        updatedData.slug = value.replace(/\s+/g, '-'); // Replace spaces with dashes
+      }
+
+      // Parse the values as numbers for calculation
       const buArea = parseFloat(updatedData.buArea) || 0;
       const rentPerMonthRsPerSqFt = parseFloat(updatedData.rentPerMonthRsPerSqFt) || 0;
 
@@ -358,9 +362,9 @@ const AddNewProperty = () => {
     value={formData.furnishing}
     onChange={handleChange}
     // required
-    disabled={formData.availableFor !== "Rent"} // Disable if not "Rent"
+    // disabled={formData.availableFor !== "Rent"} // Disable if not "Rent"
     className={`block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 ${
-      formData.availableFor !== "Rent" ? "bg-gray-200" : "bg-white" // Optional: Change background when disabled
+      formData.availableFor !== "Rent" ? "bg-white" : "bg-white" // Optional: Change background when disabled
     }`}
   >
     <option value="">Select Furnishing Status - Furnished / Unfurnished</option>

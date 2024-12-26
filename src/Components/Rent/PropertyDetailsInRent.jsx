@@ -93,7 +93,7 @@ const PropertyDetailInRent = () => {
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
         { label: 'Security Deposit', value: property.deposit },
-        { label: 'Escalation (on rent)', value: '5% Every Year' },
+        { label: 'Escalation (on rent)', value: property.yearlyEscalation },
         { label: 'Agreement Period', value: property.agreementPeriod },
         { label: 'Locking Period', value: property.lockingPeriod },
         // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },

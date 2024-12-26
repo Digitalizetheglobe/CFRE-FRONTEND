@@ -33,9 +33,13 @@ const Unfurnished = () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
                 setProperties(response.data);
-                setFilteredProperties(response.data.filter(property => property.furnishing === 'Furnished'));
+                // Filter by furnishing and availability for rent
+                setFilteredProperties(
+                    response.data.filter(
+                        property => property.furnishing === 'Furnished' && property.availableFor === 'Rent'
+                    )
+                );
                 console.log('111111===>', response.data);
-
             } catch (error) {
                 setError('Error fetching properties. Please try again later.'); // Set error message
                 console.error('Error fetching properties:', error);
@@ -59,7 +63,9 @@ const Unfurnished = () => {
     };
 
     const filterAndSortProperties = (searchTerm, sortOrder) => {
-        let filtered = properties.filter(property => property.furnishing === 'Furnished');
+        let filtered = properties.filter(
+            property => property.furnishing === 'Furnished' && property.availableFor === 'Rent'
+        );
 
         if (searchTerm) {
             filtered = filtered.filter(property =>
@@ -126,7 +132,7 @@ const Unfurnished = () => {
                             onChange={handleSearch}
                             className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        <select
+                        {/* <select
                             value={sortOrder}
                             onChange={handleSort}
                             className="border border-gray-300 rounded-md px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -134,7 +140,7 @@ const Unfurnished = () => {
                             <option value="">Sort by Price</option>
                             <option value="asc">Price: Low to High</option>
                             <option value="desc">Price: High to Low</option>
-                        </select>
+                        </select> */}
                     </div>
                 </div>
 
