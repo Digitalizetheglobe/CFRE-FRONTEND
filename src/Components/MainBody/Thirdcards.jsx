@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import sell from '../assets/sell-your-property-step-1 (1).avif';
 import sell1 from '../assets/sell-your-property-step-2 (1).avif';
 import sell2 from '../assets/sell-your-property-step-3.avif';
@@ -7,23 +7,25 @@ import ContactForm from './ContactForm';
 import Header from '../Header/header.jsx'
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+// import { } from 'react-router-dom';
 
 const Thirdcards = () => {
   // State to manage which accordion section is open
   const [openAccordion, setOpenAccordion] = useState(null);
   const [isFormVisible, setFormVisible] = useState(false);
+   // Handle radio button change
+  const navigate = useNavigate();
   const [selectedPropertyType, setSelectedPropertyType] = useState('');
 
-  // Handle radio button change
   const handleRadioChange = (event) => {
-    setSelectedPropertyType(event.target.value);
-  };
-  const handleButtonClick = () => {
-    setFormVisible(true);
-  };
+    const value = event.target.value;
+    setSelectedPropertyType(value);
 
-  const handleCloseForm = () => {
-    setFormVisible(false);
+    if (value === 'pre-leased') {
+      navigate('/RentYourProperty');
+    } else if (value === 'vacant') {
+      navigate('/SellYourProperty');
+    }
   };
 
   // Function to toggle the accordion section
@@ -78,52 +80,48 @@ const Thirdcards = () => {
 
             </div>
             <div className="md:w-1/3 bg-white shadow-lg rounded-lg p-6 mt-10 md:mt-0">
-              <h2 className="text-lg font-bold text-center text-gray-800 mb-4">
-                I Want to...
-              </h2>
-              <p className="text-gray-600 mb-4">Select type of property to sale</p>
-              <div className="flex justify-between mb-6">
-                <label className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="propertyType"
-                    value="pre-leased"
-                    className="form-radio text-blue-500 mr-2"
-                    checked={selectedPropertyType === 'pre-leased'}
-                    onChange={handleRadioChange}
-                  />
-                  <span className="flex flex-col">
-                    🏢 <br />
-                    Rent my property
-                  </span>
-                </label>
-                <label className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="propertyType"
-                    value="vacant"
-                    className="form-radio text-blue-500 mr-2"
-                    checked={selectedPropertyType === 'vacant'}
-                    onChange={handleRadioChange}
-                  />
-                  <span className="flex flex-col">
-                    🏢 <br />
-                    Sell my property
-                  </span>
-                </label>
-              </div>
-              {selectedPropertyType && (
-                <Link
-                  className="bg-[#d84a48] text-white py-3 rounded-md"
-                  to='/SellYourProperty'
+  <h2 className="text-lg font-bold text-center text-gray-800 mb-4">
+    I Want to...
+  </h2>
+  <p className="text-gray-600 mb-4">Select type of property to sale</p>
+  <div className="flex justify-between mb-6">
+    <label 
+      className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer"
+      onClick={() => navigate('/RentYourProperty')}
+    >
+      <input
+        type="radio"
+        name="propertyType"
+        value="pre-leased"
+        className="form-radio text-blue-500 mr-2"
+        checked={selectedPropertyType === 'pre-leased'}
+        onChange={handleRadioChange}
+      />
+      <span className="flex flex-col">
+        🏢 <br />
+        Rent my property
+      </span>
+    </label>
+    <label 
+      className="flex items-center border rounded-lg p-4 w-1/2 text-center mx-1 cursor-pointer"
+      onClick={() => navigate('/SellYourProperty')}
+    >
+      <input
+        type="radio"
+        name="propertyType"
+        value="vacant"
+        className="form-radio text-blue-500 mr-2"
+        checked={selectedPropertyType === 'vacant'}
+        onChange={handleRadioChange}
+      />
+      <span className="flex flex-col">
+        🏢 <br />
+        Sell my property
+      </span>
+    </label>
+  </div>
+</div>
 
-                >
-                  <button className='w-full'>
-                  Connect With Us..
-                </button>
-                </Link>
-              )}
-            </div>
 
 
           </div>
@@ -292,7 +290,7 @@ When looking for a commercial office space for rent, it's important to consider 
 
                 </div>
         {/* Render ContactForm only if isFormVisible is true */}
-        {isFormVisible && (
+        {/* {isFormVisible && (
           <div
             className='fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50'
             onClick={handleCloseForm} // Close on overlay click
@@ -304,7 +302,7 @@ When looking for a commercial office space for rent, it's important to consider 
               <ContactForm onClose={handleCloseForm} />
             </div>
           </div>
-        )}
+        )} */}
       </div></>
   );
 };

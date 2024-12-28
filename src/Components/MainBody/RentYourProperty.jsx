@@ -7,7 +7,7 @@ import sell2 from '../assets/sell-your-property-step-3.avif';
 import { FaBuilding, FaStore, FaBriefcase, FaUser, FaMapMarkerAlt, FaClipboardList } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 
-const SellYourProperty = () => {
+const RentYourProperty = () => {
   const [step, setStep] = useState(1);
   const [selectedSpaceType, setSelectedSpaceType] = useState('');
   const [formData, setFormData] = useState({
@@ -361,7 +361,7 @@ const SuccessModal = () => (
                       <input type="text" name="unit_no" value={formData.propertyDetails.unit_no} onChange={handlePropertyChange} required className="w-full border border-gray-300 rounded px-4 py-2" />
                     </label>
                     <label>
-                      Cost per Month:
+                      Rent per Month:
                       <input type="number" name="rent_per_month" value={formData.propertyDetails.rent_per_month} onChange={handlePropertyChange} required className="w-full border border-gray-300 rounded px-4 py-2" />
                     </label>
                   </div>
@@ -513,4 +513,4 @@ const SuccessModal = () => (
   );
 };
 
-export default SellYourProperty;
+export default RentYourProperty;

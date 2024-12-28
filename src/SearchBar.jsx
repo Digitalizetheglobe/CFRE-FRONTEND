@@ -522,18 +522,18 @@ const SearchBar = () => {
             // Furnishing status match with validation
             let furnishingStatusMatch = true;
             if (propertyCategory === "Rent") {
-                if (property.furnishing === "Furnished") {
-                    furnishingStatusMatch = furnishingStatus === "Furnished";
-                } else if (property.furnishing === "Unfurnished") {
-                    furnishingStatusMatch = furnishingStatus === "Unfurnished";
-                } else if (property.furnishing === "Coworking") {
-                    furnishingStatusMatch = furnishingStatus === "Coworking";
+                if (furnishingStatus) {
+                    furnishingStatusMatch = property.furnishing.toLowerCase() === furnishingStatus.toLowerCase();
                 } else {
-                    furnishingStatusMatch = false;
+                    // If no option is selected, include all furnishing statuses
+                    furnishingStatusMatch = true; 
                 }
             } else {
-                furnishingStatusMatch = furnishingStatus ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() : true;
+                furnishingStatusMatch = furnishingStatus 
+                    ? property.furnishing.toLowerCase() === furnishingStatus.toLowerCase() 
+                    : true;
             }
+            
     
             const searchMatch = searchQuery ? property.location?.toLowerCase().includes(searchQuery.toLowerCase()) : true;
     
@@ -677,7 +677,7 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="hidden md:flex bg-white md:p-4 p-4 md:rounded-full shadow-lg flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
+        <div className="hidden md:flex bg-white md:p-4 p-5 md:rounded-full shadow-lg flex-wrap items-center space-x-2 w-full md:max-w-7xl mx-auto">
             {/* Property Category selection */}
             <select
                 value={propertyCategory}
@@ -753,7 +753,7 @@ const SearchBar = () => {
             </div>
 
             {/* Property type selection */}
-            <select
+            {/* <select
                 value={officeType}
                 onChange={(e) => setOfficeType(e.target.value)}
                 className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
@@ -773,7 +773,7 @@ const SearchBar = () => {
                 <option value="Hotel Resort">Hotel / Resort</option>
                 <option value="Residential Land / Plot">Residential Land / Plot</option>
                 <option value="Fractional Investment">Fractional Investment</option>
-            </select>
+            </select> */}
 
             {/* Furnishing Status dropdown, shown only when "Rent" is selected */}
             {propertyCategory === 'Rent' && (

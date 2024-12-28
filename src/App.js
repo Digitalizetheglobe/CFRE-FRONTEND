@@ -49,6 +49,7 @@ import AdminLogin from './AdminDashboard/AdminLogin.jsx'
 import PrivateRoute from './PrivateRoute.jsx'
 import Dashboard from './AdminDashboard/Dashboard.jsx'
 import SellYourProperty from './Components/MainBody/SellYourProperty.jsx';
+import RentYourProperty from './Components/MainBody/RentYourProperty.jsx';
 
 // Layoutes
 import AdminLayout from './Layout/AdminLayout.jsx'
@@ -66,6 +67,8 @@ import ViewAllProperty from './AdminDashboard/PropertyPages/ViewAllProperty.jsx'
 import MobileSearchBar from './MobileSearchBar.jsx';
 import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
 import ViewAllProjects from './AdminDashboard/ProjectPages/ViewAllProjects.jsx';
+import InvestPropertyDetail from './Components/Invest/InvestPropertyDetail.jsx';
+import SaleInvestPropertyDetail from './Components/Invest/SaleInvestPropertyDetail.jsx';
 // import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
@@ -94,6 +97,8 @@ function App() {
           <Route path="/combinedproperties/:slug" element={<PropertyDetails />} />
           <Route path="/property/:slug" element={<PropertyDetail />} />
           <Route path="/property-detail/:slug" element={<PropertyDetailInRent />} />
+             <Route path="/property-detail-invest/:slug" element={<InvestPropertyDetail/>} />
+             <Route path="/property-detail-invest-sale/:slug" element={<SaleInvestPropertyDetail/>} />
           <Route path='/commercial-properties-for-rent' element={<MainRent />} />
           <Route path='/unfurnished-property-detail/:slug' element={<UnfurnishedPropertyDetailsInRent />} />
           <Route path="/addproperty1" element={<AddProperty1 />} />
@@ -122,6 +127,7 @@ function App() {
           <Route path='/mobileSearchBar' element={< MobileSearchBar/>}/>
           <Route path='/mobileSearchBarComponent' element={<MobileSearchBarComponent/>} />
           <Route path='/SellYourProperty' element={<SellYourProperty/>} />
+          <Route path='/RentYourProperty' element={<RentYourProperty/>} />
           <Route path='/fAQs' element={<FAQs/>}/>
          
 

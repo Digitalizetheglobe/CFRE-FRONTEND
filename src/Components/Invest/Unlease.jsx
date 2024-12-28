@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import PropertyCard from './PropertyCard';
+// import PropertyCard from './PropertyCard';
 import ContactForm from '../MainBody/ContactForm';
 import Error from '../Error/Error'; // Import the Error component
 import Header from '../Header/header.jsx';
 import { Helmet } from 'react-helmet-async';
+import PropertyCardSale from './PropertyCard-Sale.jsx';
 
 const Prelease = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -26,8 +27,14 @@ const Prelease = () => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setProperties(response.data);
-                setFilteredProperties(response.data.filter(property => property.propertySubtype === 'unLeased'));
+    
+                // Filter only un-leased properties and sort by date (latest first)
+                const unLeasedProperties = response.data
+                    .filter(property => property.propertySubtype === "unLeased")
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+                setProperties(unLeasedProperties);
+                setFilteredProperties(unLeasedProperties); // Default view
             } catch (error) {
                 setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
@@ -35,6 +42,8 @@ const Prelease = () => {
         };
         fetchProperties();
     }, []);
+    
+    
 
     useEffect(() => {
         if (!error) { // Only filter and sort if there's no error
@@ -104,6 +113,31 @@ const Prelease = () => {
                         <option value="asc">Price: Low to High</option>
                         <option value="desc">Price: High to Low</option>
                     </select> */}
+                      <div className="mb-6">
+    <select
+        className="w-full p-2 border rounded-lg focus:outline-none bg-white hover:bg-gray-200 transition duration-300"
+        onChange={(e) => {
+            const selectedRange = e.target.value.split("-"); // Splitting min and max
+            const min = parseInt(selectedRange[0], 10);
+            const max = selectedRange[1] === "Above" ? null : parseInt(selectedRange[1], 10);
+
+            // Filter only un-leased properties based on carpet area
+            const filtered = properties.filter(property =>
+                property.carpetArea >= min && (max === null || property.carpetArea <= max)
+            );
+            setFilteredProperties(filtered);
+        }}
+    >
+        <option value="">Sort by Area in sq ft.</option>
+        <hr></hr>
+        <option value="0-1500">0-1500</option>
+        <option value="1500-3000">1500-3000</option>
+        <option value="3000-5000">3000-5000</option>
+        <option value="5000-10000">5000-10000</option>
+        <option value="10000-Above">Above 10000</option>
+    </select>
+</div>
+
                 </div>
             </div>
 
@@ -112,7 +146,7 @@ const Prelease = () => {
                     <p className="text-center w-full">No Unfurnished properties found.</p>
                 ) : (
                     filteredProperties.map(property => (
-                        <PropertyCard key={property.id} property={property} onEnquire={handleButtonClick} />
+                        <PropertyCardSale key={property.id} property={property} onEnquire={handleButtonClick} />
                     ))
                 )}
             </div>

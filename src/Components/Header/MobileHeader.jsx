@@ -90,7 +90,7 @@ function MobileHeader({ toggleRentDropdown, toggleInvestDropdown, isRentDropdown
                                             <Link to="/preleased">Pre-Leased</Link>
                                         </li>
                                         <li className="py-2 hover:bg-gray-200">
-                                            <Link to="/unleased">Un-Leased</Link>
+                                            <Link to="/unleased">Sale</Link>
                                         </li>
                                     </ul>
                                 )}

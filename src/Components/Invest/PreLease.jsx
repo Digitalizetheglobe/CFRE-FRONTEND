@@ -30,14 +30,14 @@ const Prelease = () => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setProperties(response.data);
-                
-                // Filter for pre-leased properties and set them
-                setFilteredProperties(
-                    response.data
-                        .filter(property => property.propertySubtype === "preLeased")
-                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by date (latest first)
-                );
+    
+                // Filter only pre-leased properties and sort by date (latest first)
+                const preLeasedProperties = response.data
+                    .filter(property => property.propertySubtype === "preLeased")
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+                setProperties(preLeasedProperties);
+                setFilteredProperties(preLeasedProperties); // Default view
             } catch (error) {
                 setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
@@ -124,31 +124,31 @@ const Prelease = () => {
                             <option value="desc">Price: High to Low</option>
                         </select> */}
                         <div className="mb-6">
-    <label className="block text-lg font-semibold mb-2">Sort by Area in sq ft.</label>
-    <div className="grid grid-cols-3 gap-4">
-        {[
-            { label: "0-1500", min: 0, max: 1500 },
-            { label: "1500-3000", min: 1500, max: 3000 },
-            { label: "3000-5000", min: 3000, max: 5000 },
-            { label: "5000-10000", min: 5000, max: 10000 },
-            { label: "Above", min: 10000, max: '' },
-        ].map((area, index) => (
-            <button
-                key={index}
-                className="px-1 py-2 border rounded-lg focus:outline-none bg-gray-100 hover:bg-[#d84a48] hover:text-white transition duration-300"
-                onClick={() => {
-                    const filtered = properties.filter(property => 
-                        property.carpetArea >= area.min &&
-                        (area.max === '' || property.carpetArea <= area.max)
-                    );
-                    setFilteredProperties(filtered);
-                }}
-            >
-                {area.label}
-            </button>
-        ))}
-    </div>
+    <select
+        className="w-full p-2 border rounded-lg focus:outline-none bg-white hover:bg-gray-200 transition duration-300"
+        onChange={(e) => {
+            const selectedRange = e.target.value.split("-"); // Splitting min and max
+            const min = parseInt(selectedRange[0], 10);
+            const max = selectedRange[1] === "Above" ? null : parseInt(selectedRange[1], 10);
+
+            // Filter only pre-leased properties based on carpet area
+            const filtered = properties.filter(property =>
+                property.carpetArea >= min && (max === null || property.carpetArea <= max)
+            );
+            setFilteredProperties(filtered);
+        }}
+    >
+        <option value="">Sort by Area in sq ft.</option>
+        <hr></hr>
+        <option value="0-1500">0-1500</option>
+        <option value="1500-3000">1500-3000</option>
+        <option value="3000-5000">3000-5000</option>
+        <option value="5000-10000">5000-10000</option>
+        <option value="10000-Above">Above 10000</option>
+    </select>
 </div>
+
+
                     </div>
                 </div>
 
