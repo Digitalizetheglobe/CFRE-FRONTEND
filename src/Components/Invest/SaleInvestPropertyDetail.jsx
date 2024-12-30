@@ -8,7 +8,7 @@ import Image from '../assets/ABC.jpeg';
 import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
+import Slider from 'react-slick';
 const SaleInvestPropertyDetail = () => {
     // const { id } = useParams();
     const { slug } = useParams();
@@ -19,7 +19,15 @@ const SaleInvestPropertyDetail = () => {
     const [loading, setLoading] = useState(false); 
 
     const navigate = useNavigate(); // Initialize the navigate hook
-
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+      };
     // References for smooth scrolling
     const overviewRef = useRef(null);
     const moreDetailsRef = useRef(null);
@@ -173,13 +181,27 @@ const SaleInvestPropertyDetail = () => {
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
                             <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-                                <img
-                                    src={property?.multiplePropertyImages?.length > 0
-                                        ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
-                                        : Image}  // Default image when no images are available
-                                    alt="Property"
-                                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                />
+                            <div className="property-images">
+      {property?.multiplePropertyImages?.length > 0 ? (
+        <Slider {...settings}>
+          {property.multiplePropertyImages.map((image, index) => (
+            <div key={index}>
+              <img
+                src={`https://cfrecpune.com/${image}`}
+                alt={`Property ${index + 1}`}
+                className="w-full md:h-72 object-cover rounded-lg shadow-md"
+              />
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <img
+          src="path/to/default-image.jpg"  // Provide a default image path
+          alt="Property"
+          className="w-full md:h-72 object-cover rounded-lg shadow-md"
+        />
+      )}
+    </div>
                             </div>
 
 

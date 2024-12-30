@@ -32,7 +32,57 @@ const ProjectDetails = () => {
     const handleCloseForm = () => {
         setFormVisible(false);
     };
+    const [showModal, setShowModal] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        mobileNumber: '',
+        email: '',
+        message: ''
+    });
+    const [errors, setErrors] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!formData.name.trim()) newErrors.name = 'Name is required';
+        if (!formData.mobileNumber.trim()) {
+            newErrors.mobileNumber = 'Phone number is required';
+        } else if (!/^\d{10}$/.test(formData.mobileNumber)) {
+            newErrors.mobileNumber = 'Phone number must be exactly 10 digits';
+        }
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email address is required';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+            newErrors.email = 'Invalid email address';
+        }
+        if (!formData.message.trim()) newErrors.message = 'Message content is required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            try {
+                const response = await axios.post('https://cfrecpune.com/contactform', formData, {
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                console.log('Form submitted successfully:', response.data);
+                setIsSubmitted(true);
+                setFormData({ name: '', mobileNumber: '', email: '', message: '' });
+                setErrors({});
+                setShowModal(false);
+            } catch (error) {
+                console.error('Error submitting the form:', error);
+            }
+        }
+    };
     useEffect(() => {
         const fetchProject = async () => {
             try {
@@ -241,22 +291,50 @@ const ProjectDetails = () => {
                         </div>
 
                         {/* Floor Plans Section */}
+                        <button onClick={() => setShowModal(true)}>
                         <div className="mb-6">
-                            <div className="flex items-center mb-4">
-                                <AiFillRead className="text-xl text-[#d84a48] mr-2" />
-                                <h4 className="md:text-xl font-semibold">Floor Plans</h4>
-                            </div>
-                            <div className="flex flex-col md:flex-row gap-4">
-                                {/* Image 1 */}
-                                <div className="relative w-full md:w-1/2">
-                                    <img src={cpFP1} alt="Floor Plan 1 " className="w-full h-56 rounded-md shadow-md blur-sm" />
+                                <div className="flex items-center mb-4">
+                                    <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+                                    <h4 className="md:text-xl font-semibold">Floor Plans</h4>
                                 </div>
-                                {/* Image 2 */}
-                                <div className="relative w-full md:w-1/2">
-                                    <img src={cpFP2} alt="Floor Plan 2" className="w-full h-56 rounded-md shadow-md blur-sm" />
+                                <div className="flex flex-col md:flex-row gap-4">
+                                    {/* Image 1 */}
+                                    <div className="relative w-full md:w-1/2">
+                                        <img src={cpFP1} alt="Floor Plan 1 " className="w-full h-56 rounded-md shadow-md blur-sm" />
+                                    </div>
+                                    {/* Image 2 */}
+                                    <div className="relative w-full md:w-1/2">
+                                        <img src={cpFP2} alt="Floor Plan 2" className="w-full h-56 rounded-md shadow-md blur-sm" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+            </button>
+
+            {showModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
+                    <div className="bg-white p-6 rounded-lg w-full max-w-md">
+                        <h2 className="text-xl font-bold mb-4">Contact Us</h2>
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" className="p-2 w-full border rounded" />
+                            {errors.name && <p className="text-red-500">{errors.name}</p>}
+
+                            <input type="number" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} placeholder="Phone number" className="p-2 w-full border rounded" />
+                            {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber}</p>}
+
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email address" className="p-2 w-full border rounded" />
+                            {errors.email && <p className="text-red-500">{errors.email}</p>}
+
+                            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" className="p-2 w-full border rounded"></textarea>
+                            {errors.message && <p className="text-red-500">{errors.message}</p>}
+
+                            <button type="submit" className="bg-[#d84a48] text-white py-2 px-4 rounded hover:bg-[#ab3c3b]">
+                                Send Message
+                            </button>
+                        </form>
+                        <button onClick={() => setShowModal(false)} className="mt-4 text-red-500">Close</button>
+                    </div>
+                </div>
+            )}
 
 
 
