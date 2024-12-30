@@ -69,8 +69,8 @@ import MobileSearchBarComponent from './MobileSearchBarComponent.jsx';
 import ViewAllProjects from './AdminDashboard/ProjectPages/ViewAllProjects.jsx';
 import InvestPropertyDetail from './Components/Invest/InvestPropertyDetail.jsx';
 import SaleInvestPropertyDetail from './Components/Invest/SaleInvestPropertyDetail.jsx';
+import NewprojectForm from './Components/NewprojectForm.js';
 // import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
-
 
 
 function App() {
@@ -88,6 +88,8 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/latestblog" element={<Latestblog />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+          {/* <Route path="/projectForm" element={<ProjectForm />} /> */}
+          <Route path="/NewpropertyForm" element={<NewprojectForm />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/invest" element={<Invest />} />
           <Route path="/rent" element={<Rent />} />
