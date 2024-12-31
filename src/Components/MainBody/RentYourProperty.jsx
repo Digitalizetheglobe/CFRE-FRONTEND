@@ -6,6 +6,7 @@ import sell1 from '../assets/sell-your-property-step-2 (1).avif';
 import sell2 from '../assets/sell-your-property-step-3.avif';
 import { FaBuilding, FaStore, FaBriefcase, FaUser, FaMapMarkerAlt, FaClipboardList } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const RentYourProperty = () => {
   const [step, setStep] = useState(1);
@@ -181,13 +182,14 @@ const RentYourProperty = () => {
         </svg>
         <div className="mt-12">
           <h3 className="text-gray-800 text-2xl font-bold flex-1">User property Request has be Send Successfully!</h3>
-          <button
-            type="button"
-            className="px-6 py-2.5 mt-8 w-full rounded-md text-white text-sm font-semibold tracking-wide border-none outline-none bg-green-500 hover:bg-green-600"
-            onClick={() => setIsModalOpen(false)} // Close Modal
-          >
-            Got it
-          </button>
+         <Link to="/">
+           <button
+             type="button"
+             className="px-6 py-2.5 mt-8 w-full rounded-md text-white text-sm font-semibold tracking-wide border-none outline-none bg-green-500 hover:bg-green-600"
+           >
+             Got it
+           </button>
+         </Link>
         </div>
       </div>
     </div>
@@ -216,13 +218,13 @@ const RentYourProperty = () => {
 
                 {/* Step 1: Overview */}
                 <div className="relative z-10 mb-20 flex items-center gap-4">
-                  <div className={`p-3 rounded-lg ${step === 1 ? stepsCompleted.overview ? 'bg-green-500 text-white' : 'bg-red-500 text-white' : 'bg-gray-300'}`}>
+                  <div className={`p-3 rounded-lg ${step === 1 ? stepsCompleted.propertyDetails ? 'bg-green-500 text-white' : 'bg-red-500 text-white' : 'bg-gray-300'}`}>
                     <FaBriefcase className="text-2xl" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium">Overview</h3>
-                    <span className={`text-sm font-semibold ${stepsCompleted.overview ? 'text-green-500' : 'text-yellow-500'}`}>
-                      {stepsCompleted.overview ? 'Completed' : 'Pending'}
+                    <span className={`text-sm font-semibold ${stepsCompleted.propertyDetails ? 'text-green-500' : 'text-yellow-500'}`}>
+                      {stepsCompleted.propertyDetails ? 'Completed' : 'Pending'}
                     </span>
                   </div>
                 </div>

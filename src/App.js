@@ -70,6 +70,8 @@ import ViewAllProjects from './AdminDashboard/ProjectPages/ViewAllProjects.jsx';
 import InvestPropertyDetail from './Components/Invest/InvestPropertyDetail.jsx';
 import SaleInvestPropertyDetail from './Components/Invest/SaleInvestPropertyDetail.jsx';
 import NewprojectForm from './Components/NewprojectForm.js';
+import ListProperty from './AdminDashboard/ListProperty/ListProperty.jsx';
+import PropertyModal from './AdminDashboard/ListProperty/PropertyModal.jsx';
 // import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
@@ -131,8 +133,9 @@ function App() {
           <Route path='/SellYourProperty' element={<SellYourProperty/>} />
           <Route path='/RentYourProperty' element={<RentYourProperty/>} />
           <Route path='/fAQs' element={<FAQs/>}/>
-         
-
+          <Route path='/ListProperty/:id' element={<PropertyModal/>}/>
+          {/* <Route path="/property/:id" element={<ListPropertyDetail />} /> */}
+          <Route path="/ListProperty" element={<ListProperty />} />
 
 
           {/* below admin panal routes */}
@@ -198,6 +201,15 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/ListProperty"
+            element={
+              <PrivateRoute>
+                <ListProperty />
+              </PrivateRoute>
+            }
+          />
+         
           <Route
             path="/addnewproject"
             element={

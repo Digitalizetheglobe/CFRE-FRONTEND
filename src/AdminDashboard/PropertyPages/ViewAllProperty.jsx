@@ -45,16 +45,28 @@ const PropertyModal = ({ property, onSave, onClose }) => {
         <h2 className="text-xl font-bold text-center mb-4">Edit Property Details</h2>
 
         <div className="grid grid-cols-2 gap-4">
-          <div className="mb-4">
-            <label className="block text-gray-700">Building Name:</label>
-            <input
-              type="text"
-              name="buildingName"
-              value={editedProperty.buildingName}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-            />
-          </div>
+        <div className="mb-4">
+    <label className="block text-gray-700">Building Name:</label>
+    <input
+        type="text"
+        name="buildingName"
+        value={
+            editedProperty.buildingName.startsWith("SHOW_")
+                ? editedProperty.buildingName.replace("SHOW_", "")
+                : editedProperty.buildingName
+        }
+        onChange={(e) =>
+            handleChange({
+                target: {
+                    name: "buildingName",
+                    value: "SHOW_" + e.target.value, // Add prefix back
+                },
+            })
+        }
+        className="w-full p-2 border rounded"
+    />
+</div>
+
 
 
           <div className="mb-4">

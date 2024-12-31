@@ -263,7 +263,7 @@ const ProjectForm = () => {
                 <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Slug:</label>
                     <input
-                        type="number"
+                        type="text"
                         name="slug"
                         value={formData.slug}
                         onChange={handleChange}
@@ -274,7 +274,7 @@ const ProjectForm = () => {
                 <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Seo Title:</label>
                     <input
-                        type="number"
+                        type="text"
                         name="seoTitle"
                         value={formData.seoTitle}
                         onChange={handleChange}
@@ -285,7 +285,7 @@ const ProjectForm = () => {
                 <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Description:</label>
                     <input
-                        type="number"
+                        type="text"
                         name="seoDescription"
                         value={formData.seoDescription}
                         onChange={handleChange}
@@ -296,7 +296,7 @@ const ProjectForm = () => {
                 <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Seo Keywords:</label>
                     <input
-                        type="number"
+                        type="text"
                         name="seoKeywords"
                         value={formData.seoKeywords}
                         onChange={handleChange}

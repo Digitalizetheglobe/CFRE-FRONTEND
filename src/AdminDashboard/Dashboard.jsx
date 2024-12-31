@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -90,6 +91,17 @@ const Dashboard = () => {
                 View All
               </Link>
             </div>
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <FontAwesomeIcon icon={faComments} size="3x" className="text-[#d84a48] mb-4 " />
+              <h2 className="text-xl font-semibold mb-4 text-gray-800">List Property</h2>
+              <p className="text-gray-600 mb-4">View the latest property Listed.</p>
+              <Link 
+                to="/listproperty" 
+                className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
+              >
+                View All
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -98,3 +110,19 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+{/* <h2 className="text-xl font-bold mb-4">Property Details</h2>
+<p><strong>Full Name:</strong> {propertyDetails.full_name}</p>
+<p><strong>Email:</strong> {propertyDetails.email}</p>
+<p><strong>Mobile Number:</strong> {propertyDetails.mobile_number}</p>
+<p><strong>Building Name:</strong> {propertyDetails.building_name}</p>
+<p><strong>Location:</strong> {propertyDetails.location}</p>
+<p><strong>City:</strong> {propertyDetails.city}</p>
+<p><strong>Carpet Area:</strong> {propertyDetails.carpet_area} sq. ft.</p>
+<p><strong>Built-up Area:</strong> {propertyDetails.built_up_area} sq. ft.</p>
+<p><strong>Floor Number:</strong> {propertyDetails.floor_number}</p>
+<p><strong>Unit Number:</strong> {propertyDetails.unit_number}</p>
+<p><strong>Rent per Month:</strong> ₹{propertyDetails.rent_per_month}</p>
+<p><strong>Cost:</strong> ₹{propertyDetails.cost}</p>
+<p><strong>Message:</strong> {propertyDetails.message}</p> */}

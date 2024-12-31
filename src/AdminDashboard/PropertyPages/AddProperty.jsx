@@ -64,7 +64,7 @@ const AddProperty = () => {
       <h2 className="text-2xl font-bold mb-6">Add New Property</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="buildingName">Building Name</label>
+          <label className="block text-sm font-medium text-gray-700" htmlFor="buildingName">Building Name</label> 
           <input type="text" name="buildingName" id="buildingName" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" value={formData.buildingName} onChange={handleChange} required />
         </div>
 
