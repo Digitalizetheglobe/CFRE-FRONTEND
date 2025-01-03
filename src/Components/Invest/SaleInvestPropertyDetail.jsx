@@ -105,7 +105,7 @@ const SaleInvestPropertyDetail = () => {
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Basic Price', value: property.basePrice },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
-        { label: 'Security Deposit', value: property.deposit },
+        // { label: 'Security Deposit', value: property.deposit },
         { label: 'Any other furniture', value: property.otherFurniture },
         // { label: 'Escalation (on rent)', value: property.yearlyEscalation },
         // { label: 'Agreement Period', value: property.agreementPeriod },

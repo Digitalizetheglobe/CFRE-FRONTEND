@@ -8,12 +8,23 @@ const PropertyModal = ({ property, onSave, onClose }) => {
   
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditedProperty((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+  
+    setEditedProperty((prev) => {
+      let updatedProperty = { ...prev };
+  
+      if (name === 'propertyImages') {
+        // Handle multiple file uploads
+        const images = Array.from(files); // Convert FileList to Array
+        updatedProperty[name] = images; // Store the files array
+      } else {
+        updatedProperty[name] = value; // Handle other inputs
+      }
+  
+      return updatedProperty;
+    });
   };
+  
 
   const handleSave = () => {
     onSave(editedProperty); // Save the updated property
@@ -69,16 +80,17 @@ const PropertyModal = ({ property, onSave, onClose }) => {
 
 
 
-          <div className="mb-4">
-            <label className="block text-gray-700">Property Images:</label>
-            <input
-              type="file"
-              name="propertyImages"
-              value={editedProperty.propertyImages}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-            />
-          </div>
+<div className="mb-4">
+  <label className="block text-gray-700">Property Images:</label>
+  <input
+    type="file"
+    name="propertyImages"
+    multiple
+    onChange={handleChange}
+    className="w-full p-2 border rounded"
+  />
+</div>
+
 
           <div className="mb-4">
             <label className="block text-gray-700">Unit No:</label>
@@ -641,19 +653,24 @@ const ViewAllProperty = () => {
 
   // Handle search input
   const handleSearchChange = (e) => {
-    const query = e.target.value.toLowerCase(); // Convert input to lowercase for case-insensitive search
+    const query = e.target.value?.toLowerCase() || ""; // Convert input to lowercase or default to an empty string
     setSearchQuery(query);
-
-    // Filter properties by building name, location, or city
-    const filtered = properties.filter(
-      (property) =>
-        property.buildingName.toLowerCase().includes(query) || // Match building name
-        property.location.toLowerCase().includes(query) || // Match location
-        property.city.toLowerCase().includes(query) // Match city
-    );
-
+  
+    // Filter properties safely
+    const filtered = properties.filter((property) => {
+      return (
+        property.buildingName?.toLowerCase().includes(query) || // Match building name
+        property.location?.toLowerCase().includes(query) || // Match location
+        property.city?.toLowerCase().includes(query) || // Match city
+        property.propertySubtype?.toLowerCase().includes(query) || // Match property subtype
+        property.cpropertyType?.toLowerCase().includes(query) || // Match property type
+        property.availableFor?.toLowerCase().includes(query) // Match availability
+      );
+    });
+  
     setFilteredProperties(filtered); // Update the filtered list
   };
+  
 
 
   function formatIndianPrice(price) {

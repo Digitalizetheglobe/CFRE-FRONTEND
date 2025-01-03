@@ -72,6 +72,7 @@ import SaleInvestPropertyDetail from './Components/Invest/SaleInvestPropertyDeta
 import NewprojectForm from './Components/NewprojectForm.js';
 import ListProperty from './AdminDashboard/ListProperty/ListProperty.jsx';
 import PropertyModal from './AdminDashboard/ListProperty/PropertyModal.jsx';
+import TestNewproject from './Components/Projects/TestProject.jsx';
 // import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
@@ -96,7 +97,7 @@ function App() {
           <Route path="/invest" element={<Invest />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/projectproperty" element={<ProjectProperty />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
+          <Route path="/project/:slug" element={<ProjectDetails />} />
           <Route path='/propertyList' element={<PropertyList />} />
           <Route path="/combinedproperties/:slug" element={<PropertyDetails />} />
           <Route path="/property/:slug" element={<PropertyDetail />} />
@@ -137,7 +138,7 @@ function App() {
           {/* <Route path="/property/:id" element={<ListPropertyDetail />} /> */}
           <Route path="/ListProperty" element={<ListProperty />} />
 
-
+<Route path='/testproject' element={<TestNewproject/>} />
           {/* below admin panal routes */}
           <Route path='/adminlogin' element={<AdminLogin />} />
           {/* <Route path='/addnewproperty' element ={ <AddNewProperty />} />
@@ -193,6 +194,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          
           <Route
             path="/enquirydetails"
             element={

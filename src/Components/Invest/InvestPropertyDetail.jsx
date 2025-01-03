@@ -27,6 +27,8 @@ const InvestPropertyDetail = () => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        arrows: true,
+        adaptiveHeight: true,
       };
     // References for smooth scrolling
     const overviewRef = useRef(null);

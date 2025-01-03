@@ -4,19 +4,32 @@ import AdminNavbar from '../AdminNavbar';
 import axios from 'axios';
 
 const ProjectModal = ({ project, onSave, onClose }) => {
-    const [editedProject, setEditedProject] = useState(project || {});
+    const [editedProject, setEditedProject] = useState({
+        ...project,
+        projectPlans: Array.isArray(project?.projectPlans) ? project.projectPlans : [], // Ensure projectPlans is an array
+    });
     const [projectImages, setProjectImages] = useState([]); // State for project images
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (project) {
-            setEditedProject(project);
+            setEditedProject({
+                ...project,
+                projectPlans: Array.isArray(project.projectPlans) ? project.projectPlans : [], // Ensure projectPlans is an array
+            });
             setProjectImages(project.projectImages || []); // Pre-fill with existing images
         }
     }, [project]);
 
     const handleProjectPlansChange = (e, index, field) => {
+        let value = e.target.value;
+
+        if (field === 'UnitCost' && (isNaN(value) || value < 0)) {
+            value = 0; // Reset invalid values
+        }
+
         const newProjectPlans = [...editedProject.projectPlans];
-        newProjectPlans[index][field] = e.target.value;
+        newProjectPlans[index][field] = value;
         setEditedProject((prev) => ({ ...prev, projectPlans: newProjectPlans }));
     };
 
@@ -30,12 +43,58 @@ const ProjectModal = ({ project, onSave, onClose }) => {
         setProjectImages(files); // Store the selected files
         setEditedProject((prev) => ({
             ...prev,
-            projectImages: files.map((file) => file.name), // Store only the file names or update logic as needed
+            projectImages: files,
         }));
     };
 
-    const handleSave = () => {
-        onSave({ ...editedProject, projectImages }); // Include images in the save
+    const handleSave = async () => {
+        if (!editedProject.projectName || !editedProject.city || !editedProject.location) {
+            alert("Project Name, City, and Location are required.");
+            return;
+        }
+
+        setLoading(true);
+
+        // Prepare FormData for API submission
+        const formData = new FormData();
+        formData.append('reraRegdNo', editedProject.reraRegdNo || '');
+        formData.append('projectName', editedProject.projectName || '');
+        formData.append('projectDetails', editedProject.projectDetails || '');
+        formData.append('specification', editedProject.specification || '');
+        formData.append('city', editedProject.city || '');
+        formData.append('location', editedProject.location || '');
+        formData.append('area', editedProject.area || '');
+        formData.append('projectArea', editedProject.projectArea || '');
+        formData.append('slug', editedProject.slug || '');
+        formData.append('seoTitle', editedProject.seoTitle || '');
+        formData.append('seoDescription', editedProject.seoDescription || '');
+        formData.append('seoKeywords', editedProject.seoKeywords || '');
+
+        // Append project images
+        projectImages.forEach((file) => {
+            formData.append('projectImages', file); // Append each file
+        });
+
+        // Append project plans
+        editedProject.projectPlans.forEach((plan, index) => {
+            formData.append(`projectPlans[${index}][Type]`, plan.Type);
+            formData.append(`projectPlans[${index}][UnitCost]`, plan.UnitCost);
+            formData.append(`projectPlans[${index}][CarpetArea]`, plan.CarpetArea);
+        });
+
+        try {
+            const response = await fetch('https://cfrecpune.com/cfreprojects/', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json();
+            console.log('Saved successfully:', data);
+            setLoading(false);
+            onSave(data); // Call onSave with response data
+        } catch (error) {
+            console.error('Failed to save:', error);
+            setLoading(false);
+        }
     };
 
     const addProjectPlan = () => {
@@ -160,6 +219,7 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                             className="w-full p-2 border rounded"
                         />
                     </div>
+
                     <div className="mb-4">
                         <label className="block text-gray-700">Seo Title:</label>
                         <input
@@ -170,6 +230,7 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                             className="w-full p-2 border rounded"
                         />
                     </div>
+
                     <div className="mb-4">
                         <label className="block text-gray-700">Description:</label>
                         <input
@@ -180,6 +241,7 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                             className="w-full p-2 border rounded"
                         />
                     </div>
+
                     <div className="mb-4">
                         <label className="block text-gray-700">Seo Keywords:</label>
                         <input
@@ -197,19 +259,22 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                             type="file"
                             name="propertyImages"
                             onChange={handleFileChange}
-                            multiple // Allow multiple file uploads
+                            multiple
                             className="w-full p-2 border rounded"
                         />
                         <div className="mt-2">
                             {projectImages.map((img, index) => (
-                                <div key={index} className="text-gray-600">
-                                    {img.name || img} {/* Show file name or object if necessary */}
+                                <div key={index} className="relative w-20 h-20 mr-2 inline-block">
+                                    <img
+                                        src={typeof img === 'string' ? img : URL.createObjectURL(img)}
+                                        alt="Project"
+                                        className="w-full h-full object-cover rounded"
+                                    />
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* Project Plans Section */}
                     <div className="mb-4 col-span-2">
                         <label className="block text-sm font-semibold mb-2">Project Plans:</label>
                         <table className="min-w-full border border-gray-300">
@@ -222,7 +287,7 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {editedProject.projectPlans.map((plan, index) => (
+                                {Array.isArray(editedProject.projectPlans) && editedProject.projectPlans.map((plan, index) => (
                                     <tr key={index}>
                                         <td className="border border-gray-300 p-2">
                                             <input
@@ -269,23 +334,30 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                             className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
                             onClick={addProjectPlan}
                         >
-                            Add Another Plan
+                            Add Project Plan
                         </button>
                     </div>
-
                 </div>
 
-                <div className="flex justify-between mt-4">
-                    <button onClick={handleSave} className="bg-[#d84a48] hover:bg-[#c34543] text-white px-4 py-2 rounded">
-                        Update
+                <div className="mt-6 text-center">
+                    <button
+                        onClick={handleSave}
+                        disabled={loading}
+                        className={`bg-[#d84a48] hover:bg-[#c34543] text-white px-4 py-2 rounded ${
+                            loading ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                    >
+                        {loading ? 'Saving...' : 'Save Changes'}
                     </button>
-                    <button onClick={onClose} className="bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded">
+                    <button
+                        onClick={onClose}
+                        className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded ml-4"
+                    >
                         Cancel
                     </button>
                 </div>
             </div>
         </div>
-    
     );
 };
 
@@ -296,7 +368,7 @@ const ViewAllProjects = () => {
     const [showModal, setShowModal] = useState(false); // Modal visibility state
 
     useEffect(() => {
-        fetch('https://cfrecpune.com/projects')
+        fetch('https://cfrecpune.com/cfreprojects/')
             .then((response) => response.json())
             .then((data) => {
                 setProjects(data);
@@ -324,32 +396,41 @@ const ViewAllProjects = () => {
         setShowModal(true);
     };
 
-    const handleSaveChanges = (updatedProject) => {
-        // Send PUT request to update the property
-        fetch(`https://cfrecpune.com/projects/${updatedProject.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedProject),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setProjects((prev) => prev.map((p) => (p.id === data.id ? data : p))); // Update the projects in state
-                setShowModal(false); // Close modal
-            })
-            .catch((error) => {
-                console.error('Error updating property:', error);
+    const handleSaveChanges = async (updatedProject) => {
+        try {
+            const response = await fetch(`https://cfrecpune.com/cfreprojects/${updatedProject.slug}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add authorization header if required
+                    'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`, // Example if token is stored in .env
+                },
+                body: JSON.stringify(updatedProject),
             });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to update project. Status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+    
+            setProjects((prev) =>
+                prev.map((p) => (p.id === data.id ? data : p))
+            ); // Update state with new data
+            setShowModal(false); // Close modal
+        } catch (error) {
+            console.error('Error updating property:', error);
+            alert('Failed to save changes. Please try again.');
+        }
     };
-
-    const handleDeleteClick = async (projectId, index) => {
+    
+    const handleDeleteClick = async (slug, index) => {
         // Show confirmation dialog if necessary
         const confirmDelete = window.confirm("Are you sure you want to delete this project?");
         if (confirmDelete) {
             try {
-                // Make a DELETE request to the API
-                await axios.delete(`https://cfrecpune.com/projects/${projectId}`);
+                // Make a DELETE request to the API using the slug
+                await axios.delete(`https://cfrecpune.com/cfreprojects/${slug}`);
                 
                 // Update the state to remove the deleted project
                 setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
@@ -360,6 +441,8 @@ const ViewAllProjects = () => {
             }
         }
     };
+    
+    
     return (
         <>
             <AdminNavbar />
@@ -406,7 +489,7 @@ const ViewAllProjects = () => {
                 <button onClick={() => handleEditClick(project)} className="text-gray-600 hover:text-green-600">
                     <i className="fas fa-edit"></i> Edit
                 </button>
-                <button onClick={() => handleDeleteClick(project.id, index)} className="text-red-600 hover:text-red-900">
+                <button onClick={() => handleDeleteClick(project.slug, index)} className="text-red-600 hover:text-red-900">
                     <i className="fas fa-trash"></i> Delete
                 </button>
             </div>

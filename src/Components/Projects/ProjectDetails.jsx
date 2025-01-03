@@ -18,9 +18,8 @@ import { FiWifi } from 'react-icons/fi';  // For Wi-Fi (Internet Connection)
 import { MdOutlineSmokeFree } from 'react-icons/md';  // For Fire Detection and Alarm System
 import { FaParking } from 'react-icons/fa';  // For Parking
 
-
 const ProjectDetails = () => {
-    const { id } = useParams();
+    const { slug } = useParams();  // Get slug from URL params
     const navigate = useNavigate();
     const [project, setProject] = useState(null);
     const [isFormVisible, setFormVisible] = useState(false);
@@ -83,17 +82,18 @@ const ProjectDetails = () => {
             }
         }
     };
+
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/projects/${id}`);
+                const response = await axios.get(`https://cfrecpune.com/cfreprojects/${slug}`);
                 setProject(response.data);
             } catch (error) {
                 console.error('Error fetching project:', error);
             }
         };
         fetchProject();
-    }, [id]);
+    }, [slug]);  // Fetch project data when the slug changes
 
     if (!project) return <p>Project not found</p>;
 
@@ -105,6 +105,7 @@ const ProjectDetails = () => {
     // Parse the amenities JSON string
     const amenities = JSON.parse(JSON.parse(project.amenities));
     const specification = project.specification;
+
 
     return (
         <>

@@ -13,7 +13,7 @@ function ProjectProperty() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/projects');
+                const response = await axios.get('https://cfrecpune.com/cfreprojects/');
                 setProjects(response.data);
                 console.log('Fetched projects:', response.data);
                 setError(null); // Clear any previous errors
@@ -53,7 +53,7 @@ function ProjectProperty() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {projects.length > 0 ? (
                             projects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard key={project.slug} project={project} />
                             ))
                         ) : (
                             <p>No projects found.</p>

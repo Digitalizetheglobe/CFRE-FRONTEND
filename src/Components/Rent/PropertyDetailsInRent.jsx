@@ -8,6 +8,9 @@ import Image from '../assets/ABC.jpeg';
 import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const PropertyDetailInRent = () => {
     // const { id } = useParams();
@@ -15,8 +18,21 @@ const PropertyDetailInRent = () => {
     const [property, setProperty] = useState(null);
     const [recentProperties, setRecentProperties] = useState([]);
     const [isFormVisible, setFormVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [showAllDetails, setShowAllDetails] = useState(false);
-    const [loading, setLoading] = useState(false); 
+  
+    // Slider settings
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: true,
+      adaptiveHeight: true,
+    };
 
     const navigate = useNavigate(); // Initialize the navigate hook
 
@@ -165,15 +181,30 @@ const PropertyDetailInRent = () => {
                 <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
-                            <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-                                <img
-                                    src={property?.multiplePropertyImages?.length > 0
-                                        ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
-                                        : Image}  // Default image when no images are available
+                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
+      {/* Check if images are available */}
+                                {property?.multiplePropertyImages?.length > 0 ? (
+                                    <Slider {...settings}>
+                                    {property.multiplePropertyImages.map((image, index) => (
+                                        <div key={index}>
+                                        <img
+                                            src={`https://cfrecpune.com/${image}`}
+                                            alt={`Property ${index + 1}`}
+                                            className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                                            loading="lazy" // Improve performance by lazy loading
+                                        />
+                                        </div>
+                                    ))}
+                                    </Slider>
+                                ) : (
+                                    // Default image if no property images are available
+                                    <img
+                                    src=""
                                     alt="Property"
                                     className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                />
-                            </div>
+                                    />
+                                )}
+                                </div>
 
 
 
