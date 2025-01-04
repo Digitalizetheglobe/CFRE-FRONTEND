@@ -19,47 +19,36 @@ function ContactUs() {
         message: ''
     });
     const [errors, setErrors] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
+   
 
-    const validateForm = () => {
-        const newErrors = {};
-
-        // Name validation
-        if (!formData.name.trim()) {
-            newErrors.name = "Name is required";
-        }
-
-        // Phone validation
-        if (!formData.mobileNumber.trim()) {
-            newErrors.mobileNumber = "Phone number is required";
-        } else if (!/^\d{10}$/.test(formData.mobileNumber.trim())) {
-            newErrors.mobileNumber = "Phone number must be exactly 10 digits";
-        }
-        
-
-        // Email validation
-        if (!formData.email.trim()) {
-            newErrors.email = "Email address is required";
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
-            newErrors.email = "Invalid email address";
-        }
-
-        // Message validation
-        if (!formData.message.trim()) {
-            newErrors.message = "Message content is required";
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+      
+        // Validation for mobile number
+        if (name === "mobileNumber") {
+          const isValid = value.length === 10 && /^\d+$/.test(value); // Check if it's exactly 10 digits and contains only numbers
+      
+          if (!isValid) {
+            setFormData({ ...formData, [name]: value });
+            setError("Please enter a valid 10-digit phone number.");
+          } else {
+            setFormData({ ...formData, [name]: value });
+            setError(""); // Clear error if valid
+          }
+        } else {
+          setFormData({ ...formData, [name]: value });
+        }
       };
+      
+      const [error, setError] = useState("");
+      
     
       const sendEmail = (e) => {
         e.preventDefault();
+
+        
     
         emailjs
           .send(
@@ -131,19 +120,19 @@ function ContactUs() {
         placeholder="Email address ..."
         className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
     />
-    {errors.email && <p className="text-red-500">{errors.email}</p>}
+    
 
-      <input
-        type="text"
-        name="user_phone"
-        // placeholder="Phone"
-        value={formData.user_phone}
-        onChange={handleChange}
-        required
-        placeholder="Phone number ..."
-        className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
-    />
-    {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber}</p>}
+    
+                        <input
+                        type="text"
+                        name="mobileNumber"
+                        value={formData.mobileNumber}
+                        onChange={handleChange}
+                        placeholder={error || "Phone number ..."}
+                        className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
+                        />
+                        
+
 
       <textarea
         name="user_message"
@@ -153,7 +142,7 @@ function ContactUs() {
         required
         className="md:p-4 p-2 rounded-lg w-full md:h-40 focus:outline-none"
         ></textarea>
-        {errors.message && <p className="text-red-500">{errors.message}</p>}
+      
 
                         <button
                             type="submit"
