@@ -136,11 +136,7 @@ const PropertyDetailInRent = () => {
             // Return the price as is
             return `₹${price.toLocaleString("en-IN")}`;
           }
-        // const x = price.toString();
-        // const lastThree = x.substring(x.length - 3);
-        // const otherNumbers = x.substring(0, x.length - 3);
-        // const formatted = otherNumbers !== '' ? otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree : lastThree;
-        // return formatted;
+      
     }
 
     return (
@@ -199,7 +195,7 @@ const PropertyDetailInRent = () => {
                                 ) : (
                                     // Default image if no property images are available
                                     <img
-                                    src=""
+                                    src="../assets/ABC.jpeg"
                                     alt="Property"
                                     className="w-full md:h-72 object-cover rounded-lg shadow-md"
                                     />
