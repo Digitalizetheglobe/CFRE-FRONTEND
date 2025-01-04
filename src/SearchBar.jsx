@@ -753,12 +753,13 @@ const SearchBar = () => {
             </div>
 
             {/* Property type selection */}
-            {/* <select
+            <select
                 value={officeType}
                 onChange={(e) => setOfficeType(e.target.value)}
                 className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
             >
                 <option value="">Property Type</option>
+                <hr></hr>
                 <option value="OfficeSpace">Office Space</option>
                 <option value="Showroom Space">Showroom Space</option>
                 <option value="Hospital">Hospital</option>
@@ -773,7 +774,7 @@ const SearchBar = () => {
                 <option value="Hotel Resort">Hotel / Resort</option>
                 <option value="Residential Land / Plot">Residential Land / Plot</option>
                 <option value="Fractional Investment">Fractional Investment</option>
-            </select> */}
+            </select>
 
             {/* Furnishing Status dropdown, shown only when "Rent" is selected */}
             {propertyCategory === 'Rent' && (

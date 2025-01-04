@@ -10,7 +10,7 @@ import Bckgrndimg from '../assets/coundown.jpg'
 import Header from '../Header/header.jsx';
 // import Bckgrndimg from '../assets/coundown.jpg';
 import { Helmet } from 'react-helmet-async';
-
+import emailjs from 'emailjs-com'; // Import EmailJS
 function ContactUs() {
     const [formData, setFormData] = useState({
         name: '',
@@ -32,9 +32,10 @@ function ContactUs() {
         // Phone validation
         if (!formData.mobileNumber.trim()) {
             newErrors.mobileNumber = "Phone number is required";
-        } else if (!/^\d{10}$/.test(formData.mobileNumber)) {
+        } else if (!/^\d{10}$/.test(formData.mobileNumber.trim())) {
             newErrors.mobileNumber = "Phone number must be exactly 10 digits";
         }
+        
 
         // Email validation
         if (!formData.email.trim()) {
@@ -53,37 +54,31 @@ function ContactUs() {
     };
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = async (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+    
+      const sendEmail = (e) => {
         e.preventDefault();
-
-        if (validateForm()) {
-            try {
-                const response = await axios.post('https://cfrecpune.com/contactform', formData, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                console.log('Form submitted successfully:', response.data);
-                setIsSubmitted(true);
-                setFormData({
-                    name: '',
-                    mobileNumber: '',
-                    email: '',
-                    message: ''
-                });
-                setErrors({});
-            } catch (error) {
-                console.error('Error submitting the form:', error);
+    
+        emailjs
+          .send(
+            "service_tcxetoy", // Replace with your EmailJS service ID
+            "template_hpqdgn4", // Replace with your EmailJS template ID
+            formData,
+            "AEeCWA03cEiyY3oJg" // Replace with your EmailJS public key
+          )
+          .then(
+            (result) => {
+              console.log("Email sent successfully:", result.text);
+              alert("Mail sent successfully!");
+            },
+            (error) => {
+              console.error("Error sending email:", error.text);
+              alert("Error sending email!");
             }
-        }
-    };
+          );
+      };
 
     return (
         <>
@@ -114,46 +109,51 @@ function ContactUs() {
                         Get help from <span className="text-[#d84a48]">us.</span>
                     </h2>
                     <p className="text-gray-600 mb-8"></p>
-                    <form className="space-y-4" onSubmit={handleSubmit}>
-                        <div className="grid grid-cols-1 gap-4">
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="Your name ..."
-                                className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
-                            />
-                            {errors.name && <p className="text-red-500">{errors.name}</p>}
+                    <form className="space-y-4" onSubmit={sendEmail}>
+      <input
+        type="text"
+        name="user_name"
+        // placeholder="Full Name"
+        value={formData.user_name}
+        onChange={handleChange}
+        required
+        placeholder="Your name ..."
+        className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
+   
+      />
+      <input
+        type="email"
+        name="user_email"
+        // placeholder="Email"
+        value={formData.user_email}
+        onChange={handleChange}
+        required
+        placeholder="Email address ..."
+        className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
+    />
+    {errors.email && <p className="text-red-500">{errors.email}</p>}
 
-                            <input
-                                type="number"
-                                name="mobileNumber"
-                                value={formData.mobileNumber}
-                                onChange={handleChange}
-                                placeholder="Phone number ..."
-                                className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
-                            />
-                            {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber}</p>}
+      <input
+        type="text"
+        name="user_phone"
+        // placeholder="Phone"
+        value={formData.user_phone}
+        onChange={handleChange}
+        required
+        placeholder="Phone number ..."
+        className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
+    />
+    {errors.mobileNumber && <p className="text-red-500">{errors.mobileNumber}</p>}
 
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="Email address ..."
-                                className="md:p-4 p-2 rounded-lg w-full focus:outline-none"
-                            />
-                            {errors.email && <p className="text-red-500">{errors.email}</p>}
-                        </div>
-                        <textarea
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            placeholder="Provide the message content ..."
-                            className="md:p-4 p-2 rounded-lg w-full md:h-40 focus:outline-none"
-                        ></textarea>
-                        {errors.message && <p className="text-red-500">{errors.message}</p>}
+      <textarea
+        name="user_message"
+        placeholder="Message"
+        value={formData.user_message}
+        onChange={handleChange}
+        required
+        className="md:p-4 p-2 rounded-lg w-full md:h-40 focus:outline-none"
+        ></textarea>
+        {errors.message && <p className="text-red-500">{errors.message}</p>}
 
                         <button
                             type="submit"
@@ -161,7 +161,8 @@ function ContactUs() {
                         >
                             Send Message &rarr;
                         </button>
-                    </form>
+    </form>
+                
                 </div>
 
                 <div className="w-full md:w-1/3 flex flex-col items-start justify-between mt-8 md:mt-0 mx-auto md:mr-16">
