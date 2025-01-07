@@ -48,7 +48,7 @@ const ProjectCard = ({ project }) => {
                 {/* Change the Link to use the slug */}
                 <Link to={`/project/${project.slug}`}>
                     <button className="bg-[#d84a48] hover:bg-black-700 text-white font-bold md:py-2 py-1 px-4 md:px-8 rounded ">
-                        See Details
+                        View Details
                     </button>
                 </Link>
             </div>

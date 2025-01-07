@@ -7,6 +7,9 @@ const PropertyCard = ({ property }) => {
     const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`; // Use slug for share URL
     const title = property.title;
 
+    // Safely handle multiplePropertyImages
+    const images = property.multiplePropertyImages || []; // Default to empty array
+
     return (
         <div className="max-w-xs rounded overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
             {/* Share button */}
@@ -25,7 +28,7 @@ const PropertyCard = ({ property }) => {
             <Link to={`/property-detail/${property.slug}`} className="relative block"> {/* Updated link */}
                 <img 
                     className="w-full h-48 object-cover cursor-pointer" 
-                    src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : OfficeImage}
+                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : OfficeImage}
                     alt="Property" 
                 />
             </Link>

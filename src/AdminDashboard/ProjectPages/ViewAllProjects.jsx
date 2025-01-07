@@ -396,17 +396,25 @@ const ViewAllProjects = () => {
         setShowModal(true);
     };
 
-    const handleSaveChanges = async (updatedProject) => {
+    const handleSaveChanges = async (slug) => {
         try {
-            const response = await fetch(`https://cfrecpune.com/cfreprojects/${updatedProject.slug}`, {
-                method: 'PUT',
+            // Assuming you need to send some property values to update
+            const updatedPropertyData = {
+                // Include the properties you want to update, e.g., title, description, etc.
+              
+                // Add other properties as needed
+            };
+    
+            // Sending the PUT request with slug and updated data
+            const response = await fetch(`https://cfrecpune.com/cfreprojects/${slug}`, {
+                method: 'PUT', // Switch to POST if the API only supports POST for updates
                 headers: {
                     'Content-Type': 'application/json',
-                    // Add authorization header if required
-                    'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`, // Example if token is stored in .env
+                    'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,
                 },
-                body: JSON.stringify(updatedProject),
+                body: JSON.stringify(updatedPropertyData),
             });
+            
     
             if (!response.ok) {
                 throw new Error(`Failed to update project. Status: ${response.status}`);
@@ -414,33 +422,49 @@ const ViewAllProjects = () => {
     
             const data = await response.json();
     
+            // Update state with the new data after a successful response
             setProjects((prev) =>
                 prev.map((p) => (p.id === data.id ? data : p))
-            ); // Update state with new data
-            setShowModal(false); // Close modal
+            );
+            setShowModal(false); // Close modal after saving
         } catch (error) {
             console.error('Error updating property:', error);
             alert('Failed to save changes. Please try again.');
         }
     };
     
+    
+    
+    
     const handleDeleteClick = async (slug, index) => {
-        // Show confirmation dialog if necessary
         const confirmDelete = window.confirm("Are you sure you want to delete this project?");
         if (confirmDelete) {
             try {
-                // Make a DELETE request to the API using the slug
-                await axios.delete(`https://cfrecpune.com/cfreprojects/${slug}`);
-                
-                // Update the state to remove the deleted project
-                setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
+                // Log the URL for debugging
+                console.log(`Deleting project with slug: ${slug}`);
+    
+                const response = await axios.delete(`https://cfrecpune.com/cfreprojects/${slug}`, {
+                    headers: {
+                        'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+                    }
+                });
+    
+                if (response.status === 200 || response.status === 204) {
+                    // Remove project from state
+                    setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
+                } else {
+                    throw new Error('Failed to delete the project.');
+                }
             } catch (error) {
                 console.error("Error deleting project:", error);
-                // Optionally, show an error message to the user
                 alert("There was an error deleting the project. Please try again.");
             }
         }
     };
+    
+    
+    
+
     
     
     return (
@@ -457,7 +481,10 @@ const ViewAllProjects = () => {
             className="bg-white shadow-md rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 border"
             style={{ borderColor: '#d84a48', borderWidth: '1px' }} // Light border color
         >
-            <h3 className="text-xl font-bold mb-2">{project.buildingName}</h3>
+            {/* <h3 className="text-gray-700 mt-2 mb-2">{project.buildingName}</h3> */}
+            <p className="text-gray-700 mb-2">
+                <strong>Building Name:</strong> {project.buildingName}
+            </p>
             <p className="text-gray-700 mb-2">
                 <strong>Location:</strong> {project.location}
             </p>
@@ -489,9 +516,12 @@ const ViewAllProjects = () => {
                 <button onClick={() => handleEditClick(project)} className="text-gray-600 hover:text-green-600">
                     <i className="fas fa-edit"></i> Edit
                 </button>
-                <button onClick={() => handleDeleteClick(project.slug, index)} className="text-red-600 hover:text-red-900">
-                    <i className="fas fa-trash"></i> Delete
-                </button>
+                <button
+                            onClick={() => handleDeleteClick(project.slug, index)}
+                            className="text-red-600 hover:text-red-900"
+                        >
+                            <i className="fas fa-trash"></i> Delete
+                        </button>
             </div>
         </div>
     ))}

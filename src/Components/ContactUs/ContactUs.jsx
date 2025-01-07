@@ -47,27 +47,28 @@ function ContactUs() {
     
       const sendEmail = (e) => {
         e.preventDefault();
-
-        
     
         emailjs
-          .send(
-            "service_tcxetoy", // Replace with your EmailJS service ID
-            "template_hpqdgn4", // Replace with your EmailJS template ID
-            formData,
-            "AEeCWA03cEiyY3oJg" // Replace with your EmailJS public key
-          )
-          .then(
-            (result) => {
-              console.log("Email sent successfully:", result.text);
-              alert("Mail sent successfully!");
-            },
-            (error) => {
-              console.error("Error sending email:", error.text);
-              alert("Error sending email!");
-            }
-          );
-      };
+            .send(
+                "service_tcxetoy", // Replace with your EmailJS service ID
+                "template_hpqdgn4", // Replace with your EmailJS template ID
+                formData,
+                "AEeCWA03cEiyY3oJg" // Replace with your EmailJS public key
+            )
+            .then(
+                (result) => {
+                    console.log("Email sent successfully:", result.text);
+                    alert("Mail sent successfully!");
+                    // Auto-refresh the page
+                    window.location.reload();
+                },
+                (error) => {
+                    console.error("Error sending email:", error.text);
+                    alert("Error sending email!");
+                }
+            );
+    };
+    
 
     return (
         <>

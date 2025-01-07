@@ -95,6 +95,10 @@ const InvestPropertyDetail = () => {
         { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
         { label: 'Property Type', value: property.propertyType },
         { label: 'Purpose', value: property.availableFor },
+        { label: 'Rent per Month', value: property.rentPerMonth},
+        { label: 'Tenant Name', value: property.seoDiscription },
+        
+        
         { label: 'Floor', value: property.floor },
         { label: 'Car Parking', value: property.carParking },
         { label: 'Bike Parking', value: property.bikeParking },
@@ -103,7 +107,7 @@ const InvestPropertyDetail = () => {
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
         { label: 'Security Deposit', value: property.deposit },
-        // { label: 'Escalation (on rent)', value: property.yearlyEscalation },
+        { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation },
         // { label: 'Agreement Period', value: property.agreementPeriod },
         // { label: 'Locking Period', value: property.lockingPeriod },
         { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
@@ -192,7 +196,7 @@ const InvestPropertyDetail = () => {
         </Slider>
       ) : (
         <img
-          src="path/to/default-image.jpg"  // Provide a default image path
+          src="../assets/ABC.jpeg"  // Provide a default image path
           alt="Property"
           className="w-full md:h-72 object-cover rounded-lg shadow-md"
         />
@@ -203,7 +207,7 @@ const InvestPropertyDetail = () => {
 
 
                             <div className="w-full lg:w-1/2">
-                                <div className="md:text-2xl font-bold text-gray-900 mb-4">
+                                {/* <div className="md:text-2xl font-bold text-gray-900 mb-4">
                                     {property?.rentPerMonthRsPerSqFt && (
                                         <>
                                             <span className="md:text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
@@ -212,7 +216,7 @@ const InvestPropertyDetail = () => {
                                             </span>
                                         </>
                                     )}
-                                </div>
+                                </div> */}
 
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6  text-xs md:text-sm text-gray-700">
                                     {property?.buArea && (
@@ -267,12 +271,25 @@ const InvestPropertyDetail = () => {
                                     )}
                                     {property?.rentPerMonth && (
                                         <div>
-                                            <div className="font-semibold">
-                                            {property.availableFor?.toLowerCase() === "rent" ? "Rent" : "Cost"}
+                                            <div className="font-semibold"> 
+                                                {property.availableFor?.toLowerCase() === "rent" ? (
+                                                    <>
+                                                        Rent
+                                                        <div className="font-bold">
+                                                            {formatIndianPrice(property.rentPerMonth)}
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Price
+                                                        <div className="font-bold">
+                                                            {formatIndianPrice(property.basePrice)}
+                                                        </div>
+                                                    </>
+                                                )}
                                             </div>
-                                            <div className="font-bold">
-                                            {formatIndianPrice(property.rentPerMonth)}
-                                            </div>
+
+                                            
                                         </div>
                                         )}
 
@@ -337,8 +354,9 @@ const InvestPropertyDetail = () => {
                                 />
                           <div>
                                     <div className="md:text-lg text-sm font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
-                                    <div className="text-gray-600 md:text-lg text-sm">Available in {recentProperty.location}</div>
-                                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹{recentProperty.rentPerMonth}</div>
+                                    <div className="text-gray-600 md:text-lg text-sm">Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b></div>
+                                    {/* <div className="text-gray-600 md:text-lg text-sm"></div> */}
+                                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹<b>{recentProperty.rentPerMonth}</b></div>
                                 </div>
                             </div>
                         ))}

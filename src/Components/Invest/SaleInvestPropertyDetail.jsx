@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm.jsx';
-import image from '../assets/RecentProperty.jpg';
+import defaultImage from '../assets/RecentProperty.jpg';
 import Header from '../Header/header.jsx';
 import Image from '../assets/ABC.jpeg';
 import { Helmet } from 'react-helmet-async';
@@ -92,6 +92,7 @@ const SaleInvestPropertyDetail = () => {
     const allDetails = [
         { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
         { label: 'Property Type', value: property.propertyType },
+        
         { label: 'Purpose', value: property.availableFor },
         { label: 'Floor', value: property.floor },
         { label: 'Car Parking', value: property.carParking },
@@ -271,12 +272,24 @@ const SaleInvestPropertyDetail = () => {
                                     )}
                                     {property?.rentPerMonth && (
                                         <div>
-                                            <div className="font-semibold">
-                                            {property.availableFor?.toLowerCase() === "rent" ? "Rent" : "Cost"}
+                                           <div className="font-semibold">
+                                                {property.availableFor?.toLowerCase() === "rent" ? (
+                                                    <>
+                                                        Rent
+                                                        <div className="font-bold">
+                                                            {formatIndianPrice(property.rentPerMonth)}
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Price
+                                                        <div className="font-bold">
+                                                            {formatIndianPrice(property.rentPerMonth)}
+                                                        </div>
+                                                    </>
+                                                )}
                                             </div>
-                                            <div className="font-bold">
-                                            {formatIndianPrice(property.rentPerMonth)}
-                                            </div>
+                                           
                                         </div>
                                         )}
 
@@ -326,28 +339,34 @@ const SaleInvestPropertyDetail = () => {
                 </div>
 
                 <div className="w-full lg:w-1/3 px-0 lg:px-4">
-                    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
-                    <div className="space-y-4">
-                        {recentProperties.slice(0, 5).map((recentProperty, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                                onClick={() => handlePropertyClick(recentProperty.slug)} // Navigate on click
-                            >
-                                <img
-                                    src={image}
-                                    alt={recentProperty.title}
-                                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
-                                />
-                          <div>
-                                    <div className="md:text-lg text-sm font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
-                                    <div className="text-gray-600 md:text-lg text-sm">Available in {recentProperty.location}</div>
-                                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹{recentProperty.rentPerMonth}</div>
-                                </div>
-                            </div>
-                        ))}
+    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
+    <div className="space-y-4">
+        {recentProperties.map((recentProperty, index) => (
+            <div
+                key={index}
+                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
+                onClick={() => handlePropertyClick(recentProperty.slug)}
+            >
+               <img           
+                    src={defaultImage} // Handle dynamic or default image
+                    alt={recentProperty.title}
+                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+                />
+                <div>
+                    <div className="md:text-lg text-sm font-bold text-gray-800">
+                        {recentProperty.carpetArea} sq.ft
+                    </div>
+                    <div className="text-gray-600 md:text-lg text-sm">
+                        Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
+                    </div>
+                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
+                        ₹<b>{recentProperty.rentPerMonth}</b>
                     </div>
                 </div>
+            </div>
+        ))}
+    </div>
+</div>
             </div>
 
             {isFormVisible && (

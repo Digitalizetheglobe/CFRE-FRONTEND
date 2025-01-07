@@ -5,49 +5,36 @@ import { FaSearch } from "react-icons/fa";
 // Modal Component
 const PropertyModal = ({ property, onSave, onClose }) => {
   const [editedProperty, setEditedProperty] = useState(property);
-  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-  
+
     setEditedProperty((prev) => {
       let updatedProperty = { ...prev };
-  
+
       if (name === 'propertyImages') {
-        // Handle multiple file uploads
-        const images = Array.from(files); // Convert FileList to Array
-        updatedProperty[name] = images; // Store the files array
+        const images = Array.from(files);
+        updatedProperty.multiplePropertyImages = [...(prev.multiplePropertyImages || []), ...images];
       } else {
-        updatedProperty[name] = value; // Handle other inputs
+        updatedProperty[name] = value;
       }
-  
+
       return updatedProperty;
     });
   };
-  
+
+  const handleRemoveImage = (index) => {
+    setEditedProperty((prev) => {
+      const updatedImages = [...prev.multiplePropertyImages];
+      updatedImages.splice(index, 1);
+      return { ...prev, multiplePropertyImages: updatedImages };
+    });
+  };
 
   const handleSave = () => {
-    onSave(editedProperty); // Save the updated property
+    onSave(editedProperty);
   };
-  
-  // const deletePropertyById = async (id) => {
-  //   try {
-  //     const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     if (response.ok) {
-  //       console.log("Property deleted successfully");
-  //     } else {
-  //       console.error("Failed to delete property");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error deleting property:", error);
-  //   }
-  // };
-  
-  // const handleDelete = () => {
-  //   const propertyId = 123; 
-  //   deletePropertyById(propertyId);
+
   // };
   
   return (
@@ -63,14 +50,15 @@ const PropertyModal = ({ property, onSave, onClose }) => {
         name="buildingName"
         value={
             editedProperty.buildingName.startsWith("SHOW_")
-                ? editedProperty.buildingName.replace("SHOW_", "")
+                ? editedProperty.buildingName.replace("SHOW_", "") // Remove "SHOW_" for display
                 : editedProperty.buildingName
         }
         onChange={(e) =>
             handleChange({
                 target: {
                     name: "buildingName",
-                    value: "SHOW_" + e.target.value, // Add prefix back
+                    value:
+                        "SHOW_" + e.target.value.trim(), // Trim and re-add "SHOW_"
                 },
             })
         }
@@ -78,19 +66,45 @@ const PropertyModal = ({ property, onSave, onClose }) => {
     />
 </div>
 
+        <div className="mb-4">
+          <label className="block text-gray-700">Property Images:</label>
+          <input
+            type="file"
+            name="propertyImages"
+            multiple
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+        </div>
 
+        <div className="flex flex-wrap gap-4">
+          {editedProperty.multiplePropertyImages &&
+            editedProperty.multiplePropertyImages.map((image, index) => {
+              const imageUrl = image instanceof File
+                ? URL.createObjectURL(image)
+                : image;
 
-<div className="mb-4">
-  <label className="block text-gray-700">Property Images:</label>
-  <input
-    type="file"
-    name="propertyImages"
-    multiple
-    onChange={handleChange}
-    className="w-full p-2 border rounded"
-  />
-</div>
-
+              return (
+                <div key={index} className="flex flex-col items-center relative">
+                  <img
+                    src={imageUrl}
+                    alt={`property-${index}`}
+                    className="border rounded"
+                    style={{ width: '70px', height: '70px', objectFit: 'cover' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImage(index)}
+                    className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
+                  >
+                    x
+                  </button>
+                </div>
+              );
+            })}
+        </div>
+      
+    
 
           <div className="mb-4">
             <label className="block text-gray-700">Unit No:</label>

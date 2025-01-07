@@ -38,7 +38,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             <div className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold md:text-xl text-gray-800">
-                    Commercial Office Space for {property.availableFor} {property.buArea} sq.ft {property.furnishing}
+                Commercial {property.propertyType} for {property.availableFor} {property.buArea} sq.ft {property.furnishing}
                 </div>
 
                 {/* Location and city */}
@@ -51,7 +51,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
                     className="bg-[#d84a48] hover:bg-[#c74b4a] text-white font-bold md:py-2 py-1 px-3 md:px-6 rounded transition-colors duration-200 w-4/5"
                     onClick={onEnquire} // Uncomment if you need onEnquire
                 >
-                    See Details
+                    View Details
                 </Link>
                 <button
                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full flex items-center justify-center h-10 w-10"

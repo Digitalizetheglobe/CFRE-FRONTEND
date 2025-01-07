@@ -88,6 +88,7 @@ const ProjectDetails = () => {
             try {
                 const response = await axios.get(`https://cfrecpune.com/cfreprojects/${slug}`);
                 setProject(response.data);
+                console.log('Project Data:', response.data); // Log the project data to inspect it
             } catch (error) {
                 console.error('Error fetching project:', error);
             }
@@ -103,7 +104,18 @@ const ProjectDetails = () => {
     };
 
     // Parse the amenities JSON string
-    const amenities = JSON.parse(JSON.parse(project.amenities));
+    let amenities = [];
+    try {
+        if (typeof project.amenities === 'string') {
+            amenities = JSON.parse(project.amenities); // Parse if it's a string
+        } else {
+            amenities = project.amenities; // Use directly if it's already an object
+        }
+    } catch (error) {
+        console.error('Error parsing amenities:', error);
+        amenities = []; // Fallback
+    }
+
     const specification = project.specification;
 
 

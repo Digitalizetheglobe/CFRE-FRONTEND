@@ -8,8 +8,10 @@ import { Helmet } from 'react-helmet-async';
 
 function PropertyList() {
     const location = useLocation(); 
+
+    // Safely access properties and filteredProperties using empty array as fallback
     const properties = location.state?.properties || []; // Ensure properties is an array
-    const { filteredProperties = [] } = location.state || {}; // Ensure filteredProperties is an array
+    const filteredProperties = location.state?.filteredProperties || []; // Ensure filteredProperties is an array
 
     // Determine which set of properties to use
     const displayedProperties = filteredProperties.length > 0 ? filteredProperties : properties;
@@ -36,10 +38,10 @@ function PropertyList() {
         <>
         <Header />
         <Helmet>
-                    <title>Explore Premium Office Spaces & Retail Properties for Sale or Rent | CFRE Realty</title>
-                    <meta name="description" content="Discover a curated list of high-quality office spaces and retail properties for sale or rent at CFRE Realty. Our comprehensive listings cater to all business needs, ensuring the perfect location for your investment." />
-                    <meta property="og:url" content="https://www.cfrerealty.com/PropertyList" />
-                    </Helmet> 
+            <title>Explore Premium Office Spaces & Retail Properties for Sale or Rent | CFRE Realty</title>
+            <meta name="description" content="Discover a curated list of high-quality office spaces and retail properties for sale or rent at CFRE Realty. Our comprehensive listings cater to all business needs, ensuring the perfect location for your investment." />
+            <meta property="og:url" content="https://www.cfrerealty.com/PropertyList" />
+        </Helmet> 
         <div>
             {/* Property List Section */}
             <div className="p-4">

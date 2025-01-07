@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
-import image from '../assets/RecentProperty.jpg';
+import defaultImage from '../assets/RecentProperty.jpg';
 import Header from '../Header/header.jsx';
 import Image from '../assets/ABC.jpeg';
 import { Helmet } from 'react-helmet-async';
@@ -11,6 +11,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 
 const PropertyDetailInRent = () => {
     // const { id } = useParams();
@@ -60,25 +61,30 @@ const PropertyDetailInRent = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);  // Update API call to use slug
+                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
                 setProperty(response.data);
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
         };
-
+    
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setRecentProperties(response.data);
+                // Sort properties by 'createdAt' in descending order and take the latest 5
+                const sortedProperties = response.data
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                    .slice(0, 5);
+                setRecentProperties(sortedProperties);
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
         };
-
+    
         fetchProperty();
         fetchProperties();
     }, [slug]);
+    
 
     if (!property) return <p className="text-center text-gray-500 mt-4">Property not found</p>;
 
@@ -104,14 +110,14 @@ const PropertyDetailInRent = () => {
         { label: 'Floor', value: property.floor },
         { label: 'Car Parking', value: property.carParking },
         { label: 'Bike Parking', value: property.bikeParking },
-        { label: 'Possession', value: 'Within 60 days from the date of agreement' },
+        { label: 'Possession', value: 'Immediate' },
         { label: 'DG Back Up', value: property.dgBackup },
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
         { label: 'Security Deposit', value: property.deposit },
-        { label: 'Escalation (on rent)', value: property.yearlyEscalation },
-        { label: 'Agreement Period', value: property.agreementPeriod },
-        { label: 'Locking Period', value: property.lockingPeriod },
+        { label: 'Escalation (on rent)', value: `${property.yearlyEscalation}%` },
+        { label: 'Agreement Period', value: `${property.agreementPeriod} years` },
+        { label: 'Locking Period', value: `${property.lockingPeriod} years` },
         // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
         { label: 'Property Taxes', value: property.propertyTax },
         { label: 'GST on rent and maintenance', value: property.gstOnRent },
@@ -139,6 +145,7 @@ const PropertyDetailInRent = () => {
       
     }
 
+   
     return (
         <>
             <Helmet>
@@ -195,7 +202,7 @@ const PropertyDetailInRent = () => {
                                 ) : (
                                     // Default image if no property images are available
                                     <img
-                                    src="../assets/ABC.jpeg"
+                                    src={Image}
                                     alt="Property"
                                     className="w-full md:h-72 object-cover rounded-lg shadow-md"
                                     />
@@ -334,28 +341,35 @@ const PropertyDetailInRent = () => {
                 </div>
 
                 <div className="w-full lg:w-1/3 px-0 lg:px-4">
-                    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
-                    <div className="space-y-4">
-                        {recentProperties.slice(0, 5).map((recentProperty, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                                onClick={() => handlePropertyClick(recentProperty.slug)} // Navigate on click
-                            >
-                                <img
-                                    src={image}
-                                    alt={recentProperty.title}
-                                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
-                                />
-                          <div>
-                                    <div className="md:text-lg text-sm font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
-                                    <div className="text-gray-600 md:text-lg text-sm">Available in {recentProperty.location}</div>
-                                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹{recentProperty.rentPerMonth}</div>
-                                </div>
-                            </div>
-                        ))}
+    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
+    <div className="space-y-4">
+        {recentProperties.map((recentProperty, index) => (
+            <div
+                key={index}
+                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
+                onClick={() => handlePropertyClick(recentProperty.slug)}
+            >
+               <img           
+                    src={defaultImage} // Handle dynamic or default image
+                    alt={recentProperty.title}
+                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+                />
+                <div>
+                    <div className="md:text-lg text-sm font-bold text-gray-800">
+                        {recentProperty.carpetArea} sq.ft
+                    </div>
+                    <div className="text-gray-600 md:text-lg text-sm">
+                        Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
+                    </div>
+                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
+                        ₹<b>{recentProperty.rentPerMonth}</b>
                     </div>
                 </div>
+            </div>
+        ))}
+    </div>
+</div>
+
             </div>
 
             {isFormVisible && (
