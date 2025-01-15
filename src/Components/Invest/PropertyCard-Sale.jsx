@@ -43,7 +43,7 @@ const PropertyCardSale = ({ property, onEnquire }) => {
                 <Link className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2  px-8 rounded w-4/5"
                     to={`/property-detail-invest-sale/${property.slug}`}
                 >
-                    See Details
+                    View Details
                 </Link>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded flex items-center h-10 w-10">
                     <FaWhatsapp className="ml-2" />

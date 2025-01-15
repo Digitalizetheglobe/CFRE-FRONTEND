@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 // import AdminNavbar from '../AdminNavbar';
 const AddNewProperty = () => {
   const [formData, setFormData] = useState({
@@ -48,73 +49,82 @@ const AddNewProperty = () => {
     availableFor: '',
   });
 
-  const [files, setFiles] = useState([]);
+  const [images, setImages] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-  
+
     setFormData((prevFormData) => {
       let updatedData = { ...prevFormData };
-  
-      if (name === 'propertyImages') {
-        // Handle multiple file uploads
-        const images = Array.from(files); // Convert FileList to Array
-        updatedData[name] = images; // Store the files array
+
+      if (name === "propertyImages") {
+        const images = Array.from(files);
+        updatedData[name] = images;
       } else {
         updatedData[name] = value;
-  
-        // Automatically update 'slug' if 'buildingName' is changed
-        if (name === 'buildingName') {
-          updatedData.slug = value.replace(/\s+/g, '-'); // Replace spaces with dashes
+
+        if (name === "buildingName") {
+          updatedData.slug = value.replace(/\s+/g, "-");
         }
-  
-        // Parse values as numbers for calculations
+
         const buArea = parseFloat(updatedData.buArea) || 0;
-        const rentPerMonthRsPerSqFt = parseFloat(updatedData.rentPerMonthRsPerSqFt) || 0;
-  
-        // Calculate rentPerMonth
+        const rentPerMonthRsPerSqFt =
+          parseFloat(updatedData.rentPerMonthRsPerSqFt) || 0;
+
         updatedData.rentPerMonth = buArea * rentPerMonthRsPerSqFt;
       }
-  
+
       return updatedData;
     });
   };
-  
-
 
   const handleFileChange = (e) => {
-    setFiles(e.target.files);
+    const files = Array.from(e.target.files);
+    const newImages = files.map((file) => ({
+      file,
+      url: URL.createObjectURL(file),
+    }));
+    setImages((prevImages) => [...prevImages, ...newImages]);
+  };
+
+  const removeImage = (url) => {
+    setImages((prevImages) => prevImages.filter((img) => img.url !== url));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formDataToSend = new FormData();
-
+  
     // Append form data
     for (const [key, value] of Object.entries(formData)) {
       formDataToSend.append(key, value);
     }
-
+  
     // Append files
-    for (const file of files) {
-      formDataToSend.append('multiplePropertyImages', file);
-    }
-
+    images.forEach((image) => {
+      formDataToSend.append('multiplePropertyImages', image.file);
+    });
+  
     try {
       const response = await axios.post('https://cfrecpune.com/cfreproperties', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+  
       console.log('Success:', response.data);
-
+  
       toast.success('Property added successfully!', {
         position: "top-center",
       });
-
-      // Reset the form and files
+  
+      // Refresh the page after success
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000); // Optional delay for the user to see the success message
+  
+      // Reset the form and files (optional if you're refreshing the page)
       setFormData({
         buildingName: '',
         unitNo: '',
@@ -158,7 +168,7 @@ const AddNewProperty = () => {
         amenities: '',
         availableFor: '',
       });
-      setFiles([]);
+      setImages([]);
     } catch (error) {
       if (error.response) {
         console.error('Error:', error.response.data);
@@ -173,6 +183,7 @@ const AddNewProperty = () => {
       }
     }
   };
+  
   return (
     <>
       {/* <AdminNavbar /> */}
@@ -197,20 +208,75 @@ const AddNewProperty = () => {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
-              <div className="sm:col-span-3">
-                <label htmlFor="propertyImages" className="block text-sm font-medium leading-6 text-gray-900">
-                  Property Images
-                </label>
-                <input
-                  id="propertyImages"
-                  name="propertyImages"
-                  type="file"
-                  multiple
+              {/* <div className="sm:col-span-3">
+      <label htmlFor="propertyImages" className="block text-sm font-medium leading-6 text-gray-900">
+        Property Images
+      </label>
+      <input
+        id="propertyImages"
+        name="propertyImages"
+        type="file"
+        multiple
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
-                />
-              </div>
+        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+      />
+    </div> */}
+    <div>
+      <div className="sm:col-span-3">
+        <label
+          htmlFor="multiplePropertyImages"
+          className="block text-sm font-medium leading-6 text-gray-900"
+        >
+          Multiple Property Images
+        </label>
+        <input
+        type="file"
+        multiple
+        accept="image/*"
+        onChange={handleFileChange}
+      />
+      </div>
 
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        {images.map((image) => (
+          <div
+            key={image.url}
+            style={{
+              position: 'relative',
+              width: '70px',
+              height: '70px',
+            }}
+          >
+            <img
+              src={image.url}
+              alt="uploaded"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+            />
+            <button
+              type="button"
+              onClick={() => removeImage(image.url)}
+              style={{
+                position: 'absolute',
+                top: '5px',
+                right: '5px',
+                backgroundColor: 'red',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '20px',
+                height: '20px',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
               <div className="sm:col-span-3">
                 <label htmlFor="unitNo" className="block text-sm font-medium leading-6 text-gray-900">
                   Unit No
@@ -795,23 +861,8 @@ const AddNewProperty = () => {
               </div>
 
 
-              <div className="sm:col-span-3">
-                <label htmlFor="multiplePropertyImages" className="block text-sm font-medium leading-6 text-gray-900">
-                  Multiple Property Images
-                </label>
-                <input
-                  id="multiplePropertyImages"
-                  name="multiplePropertyImages"
-                  type="file"
-                  multiple
-                  onChange={handleFileChange}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
-                />
-              </div>
-              <div>
-                <label >Property Images :</label>
-                <input type="file" name="multiplePropertyImages" multiple onChange={handleFileChange} />
-              </div>
+             
+              
               {/* <h2 className="text-base font-semibold leading-7 text-gray-900 text-center mt-10">Seo Details</h2> */}
 
 
@@ -876,9 +927,13 @@ const AddNewProperty = () => {
 
 
         <div className="mt-6 flex items-center justify-center gap-x-6">
-          <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            to="/dashboard">
+              <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
             Cancel
           </button>
+            </Link>
+           
           <button
             type="submit"
             className="rounded-md bg-[#d84a48] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#b03b3a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 pl-3"

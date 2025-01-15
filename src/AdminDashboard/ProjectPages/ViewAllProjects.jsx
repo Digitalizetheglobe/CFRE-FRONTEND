@@ -39,63 +39,65 @@ const ProjectModal = ({ project, onSave, onClose }) => {
     };
 
     const handleFileChange = (e) => {
-        const files = Array.from(e.target.files);
-        setProjectImages(files); // Store the selected files
-        setEditedProject((prev) => ({
-            ...prev,
-            projectImages: files,
-        }));
-    };
+    const files = Array.from(e.target.files);
+    const validFiles = files.filter(file => file.type.startsWith('image/') && file.size <= 5 * 1024 * 1024); // Example: max 5MB
+
+    if (validFiles.length !== files.length) {
+        alert('Some files were not valid images or exceeded the size limit.');
+    }
+
+    setProjectImages(validFiles);
+    setEditedProject((prev) => ({
+        ...prev,
+        projectImages: validFiles,
+    }));
+};
+
 
     const handleSave = async () => {
-        if (!editedProject.projectName || !editedProject.city || !editedProject.location) {
-            alert("Project Name, City, and Location are required.");
-            return;
-        }
-
-        setLoading(true);
-
-        // Prepare FormData for API submission
-        const formData = new FormData();
-        formData.append('reraRegdNo', editedProject.reraRegdNo || '');
-        formData.append('projectName', editedProject.projectName || '');
-        formData.append('projectDetails', editedProject.projectDetails || '');
-        formData.append('specification', editedProject.specification || '');
-        formData.append('city', editedProject.city || '');
-        formData.append('location', editedProject.location || '');
-        formData.append('area', editedProject.area || '');
-        formData.append('projectArea', editedProject.projectArea || '');
-        formData.append('slug', editedProject.slug || '');
-        formData.append('seoTitle', editedProject.seoTitle || '');
-        formData.append('seoDescription', editedProject.seoDescription || '');
-        formData.append('seoKeywords', editedProject.seoKeywords || '');
-
-        // Append project images
-        projectImages.forEach((file) => {
-            formData.append('projectImages', file); // Append each file
-        });
-
-        // Append project plans
-        editedProject.projectPlans.forEach((plan, index) => {
-            formData.append(`projectPlans[${index}][Type]`, plan.Type);
-            formData.append(`projectPlans[${index}][UnitCost]`, plan.UnitCost);
-            formData.append(`projectPlans[${index}][CarpetArea]`, plan.CarpetArea);
-        });
-
+        const payload = {
+            projectName: editedProject.projectName,
+            projectDetails: editedProject.projectDetails,
+            reraRegdNo: editedProject.reraRegdNo,
+            specification: editedProject.specification,
+            area: editedProject.area,
+            projectArea: editedProject.projectArea,
+            seoTitle: editedProject.seoTitle,
+            seoDescription: editedProject.seoDescription,
+            seoKeywords: editedProject.seoKeywords,
+            projectImages: editedProject.projectImages,
+            city: editedProject.city,
+            location: editedProject.location,
+            slug: editedProject.slug,
+            projectPlans: editedProject.projectPlans,
+        };
+    
         try {
-            const response = await fetch('https://cfrecpune.com/cfreprojects/', {
-                method: 'POST',
-                body: formData,
+            const response = await fetch(`https://cfrecpune.com/cfreprojects/${editedProject.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
             });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to update project. Status: ${response.status}`);
+            }
+    
             const data = await response.json();
-            console.log('Saved successfully:', data);
-            setLoading(false);
-            onSave(data); // Call onSave with response data
+            console.log('Project updated successfully:', data);
+            onSave(data);
         } catch (error) {
-            console.error('Failed to save:', error);
-            setLoading(false);
+            console.error('Error updating project:', error);
         }
     };
+    
+    
+    
+    
+    
+
 
     const addProjectPlan = () => {
         setEditedProject((prev) => ({
@@ -371,87 +373,90 @@ const ViewAllProjects = () => {
         fetch('https://cfrecpune.com/cfreprojects/')
             .then((response) => response.json())
             .then((data) => {
-                setProjects(data);
+                // Ensure data is processed based on 'id'
+                const projectsWithIds = data.filter((item) => item.id); // Ensure only items with an 'id' are processed
+                setProjects(projectsWithIds);
+    
                 const initialToggleState = {};
-                data.forEach((property, index) => {
-                    initialToggleState[index] = true; // Initially, all toggles are "On"
+                projectsWithIds.forEach((project) => {
+                    initialToggleState[project.id] = true; // Use 'id' as the key
                 });
                 setToggleStatus(initialToggleState);
-                console.log('Projects fetched:', data);
+                console.log('Projects fetched:', projectsWithIds);
             })
             .catch((error) => {
                 console.error('Error fetching projects:', error);
             });
     }, []);
-
-    const handleToggle = (index) => {
-        setToggleStatus({
-            ...toggleStatus,
-            [index]: !toggleStatus[index], // Toggle the state
-        });
+    
+    const handleToggle = (id) => {
+        setToggleStatus((prev) => ({
+            ...prev,
+            [id]: !prev[id], // Use 'id' as the key for toggling
+        }));
     };
-
+    
     const handleEditClick = (project) => {
+        console.log('Selected project:', project);
         setSelectedProject(project);
         setShowModal(true);
     };
-
-    const handleSaveChanges = async (slug) => {
+    
+    const handleSaveChanges = async (updatedProject) => {
+        console.log('Updated Project111:', updatedProject); // Debugging
+        console.log('Updated Project ID:', updatedProject.project.id); // Debugging
+        
+        // Check if the project ID exists
+        if (!updatedProject.project.id) {
+            alert('Invalid project ID. Please refresh and try again.');
+            return;
+        }
+    
         try {
-            // Assuming you need to send some property values to update
-            const updatedPropertyData = {
-                // Include the properties you want to update, e.g., title, description, etc.
-              
-                // Add other properties as needed
-            };
-    
-            // Sending the PUT request with slug and updated data
-            const response = await fetch(`https://cfrecpune.com/cfreprojects/${slug}`, {
-                method: 'PUT', // Switch to POST if the API only supports POST for updates
+            const response = await fetch(`https://cfrecpune.com/cfreprojects/${updatedProject.project.id}`, {
+                method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+                    'Content-Type': 'application/json', // Removed 'Authorization' header
                 },
-                body: JSON.stringify(updatedPropertyData),
+                body: JSON.stringify(updatedProject),
             });
-            
     
+            // Handle non-success responses
             if (!response.ok) {
                 throw new Error(`Failed to update project. Status: ${response.status}`);
             }
     
             const data = await response.json();
     
-            // Update state with the new data after a successful response
+            // Update the projects state with the new data
             setProjects((prev) =>
-                prev.map((p) => (p.id === data.id ? data : p))
+                prev.map((project) => (project.id === data.id ? data : project))
             );
-            setShowModal(false); // Close modal after saving
+            setShowModal(false);
         } catch (error) {
-            console.error('Error updating property:', error);
+            console.error('Error updating project:', error);
             alert('Failed to save changes. Please try again.');
         }
     };
     
     
     
-    
-    const handleDeleteClick = async (slug, index) => {
+    const handleDeleteClick = async (id) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this project?");
         if (confirmDelete) {
             try {
-                // Log the URL for debugging
-                console.log(`Deleting project with slug: ${slug}`);
+                console.log(`Deleting project with id: ${id}`);
     
-                const response = await axios.delete(`https://cfrecpune.com/cfreprojects/${slug}`, {
+                const response = await fetch(`https://cfrecpune.com/cfreprojects/${id}`, {
+                    method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,
-                    }
+                    },
                 });
     
-                if (response.status === 200 || response.status === 204) {
+                if (response.ok) {
                     // Remove project from state
-                    setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
+                    setProjects((prevProjects) => prevProjects.filter((project) => project.id !== id));
                 } else {
                     throw new Error('Failed to delete the project.');
                 }
@@ -462,6 +467,7 @@ const ViewAllProjects = () => {
         }
     };
     
+
     
     
 
@@ -483,7 +489,7 @@ const ViewAllProjects = () => {
         >
             {/* <h3 className="text-gray-700 mt-2 mb-2">{project.buildingName}</h3> */}
             <p className="text-gray-700 mb-2">
-                <strong>Building Name:</strong> {project.buildingName}
+                <strong>Project Name:</strong> {project.projectName}
             </p>
             <p className="text-gray-700 mb-2">
                 <strong>Location:</strong> {project.location}
@@ -531,11 +537,12 @@ const ViewAllProjects = () => {
                 {/* Modal for editing property */}
                 {showModal && selectedProject && (
                     <ProjectModal
-                        project={selectedProject} // Pass the selected project correctly
+                        project={selectedProject}
                         onSave={handleSaveChanges}
                         onClose={() => setShowModal(false)}
                     />
                 )}
+
             </div>
         </>
     );

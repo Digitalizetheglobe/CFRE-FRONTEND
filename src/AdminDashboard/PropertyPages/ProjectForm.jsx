@@ -88,6 +88,9 @@ const ProjectForm = () => {
     
             if (response.ok) {
                 setMessage('Project data submitted successfully!');
+                setTimeout(() => {
+                    window.location.reload(); // Automatically refresh the page
+                }, 2000); // Optional delay to allow user to see the message
             } else {
                 setMessage('Failed to submit project data.');
             }
@@ -97,6 +100,7 @@ const ProjectForm = () => {
     
         setLoading(false);
     };
+    
     
 
     return (

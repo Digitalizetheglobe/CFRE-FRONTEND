@@ -62,11 +62,16 @@ const PropertyDetailInRent = () => {
         const fetchProperty = async () => {
             try {
                 const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
-                setProperty(response.data);
+                const data = response.data;
+                // Ensure multiplePropertyImages is an array
+                data.multiplePropertyImages = Array.isArray(data.multiplePropertyImages) ? data.multiplePropertyImages : [];
+                setProperty(data);
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
         };
+    
+        
     
         const fetchProperties = async () => {
             try {
@@ -115,9 +120,9 @@ const PropertyDetailInRent = () => {
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
         { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
         { label: 'Security Deposit', value: property.deposit },
-        { label: 'Escalation (on rent)', value: `${property.yearlyEscalation}%` },
-        { label: 'Agreement Period', value: `${property.agreementPeriod} years` },
-        { label: 'Locking Period', value: `${property.lockingPeriod} years` },
+        { label: 'Escalation (on rent)', value: `${property.yearlyEscalation}` },
+        { label: 'Agreement Period', value: `${property.agreementPeriod} ` },
+        { label: 'Locking Period', value: `${property.lockingPeriod} ` },
         // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
         { label: 'Property Taxes', value: property.propertyTax },
         { label: 'GST on rent and maintenance', value: property.gstOnRent },
@@ -186,27 +191,28 @@ const PropertyDetailInRent = () => {
                         <div className="flex flex-wrap lg:flex-nowrap">
                         <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
       {/* Check if images are available */}
-                                {property?.multiplePropertyImages?.length > 0 ? (
-                                    <Slider {...settings}>
-                                    {property.multiplePropertyImages.map((image, index) => (
-                                        <div key={index}>
-                                        <img
-                                            src={`https://cfrecpune.com/${image}`}
-                                            alt={`Property ${index + 1}`}
-                                            className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                            loading="lazy" // Improve performance by lazy loading
-                                        />
-                                        </div>
-                                    ))}
-                                    </Slider>
-                                ) : (
-                                    // Default image if no property images are available
-                                    <img
-                                    src={Image}
-                                    alt="Property"
-                                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                    />
-                                )}
+      {Array.isArray(property?.multiplePropertyImages) && property.multiplePropertyImages.length > 0 ? (
+    <Slider {...settings}>
+        {property.multiplePropertyImages.map((image, index) => (
+            <div key={index}>
+                <img
+                    src={`https://cfrecpune.com/${image}`}
+                    alt={`Property ${index + 1}`}
+                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                    loading="lazy" 
+                />
+            </div>
+        ))}
+    </Slider>
+) : (
+    <img
+        src={Image}
+        alt="Property"
+        className="w-full md:h-72 object-cover rounded-lg shadow-md"
+    />
+)}
+
+                                
                                 </div>
 
 

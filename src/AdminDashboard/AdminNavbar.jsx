@@ -8,9 +8,10 @@ const AdminNavbar = () => {
     
     <header className='flex shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[80px] tracking-wide relative z-50'>
   <div className='flex flex-wrap items-center gap-5 w-full'>
-    <a href="javascript:void(0)"><img src={logo} alt="logo"
+   <Link
+               to="/dashboard"><img src={logo} alt="logo"
         className='w-20 max-lg:mr-5' />
-    </a>
+    </Link>
 
     <div id="collapseMenu"
       className='max-lg:hidden lg:!flex lg:ml-auto max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50 align-center'>

@@ -439,7 +439,7 @@ const SearchBar = () => {
                 className="border p-2 rounded focus:outline-none w-full sm:w-auto mb-2 sm:mb-0"
             >
                 <option value="Ahmedabad">Ahmedabad</option>
-                <option value="Bangalore">Bangalore</option>
+                
                 <option value="Bhopal">Bhopal</option>
                 <option value="Bhubaneswar">Bhubaneswar</option>
                 <option value="Chennai">Chennai</option>
@@ -449,17 +449,22 @@ const SearchBar = () => {
                 <option value="Gurgaon">Gurgaon</option>
                 <option value="Goa">Goa</option>
                 <option value="Guwahati">Guwahati</option>
-                <option value="Hyderabad">Hyderabad</option>
+                
                 <option value="Indore">Indore</option>
                 <option value="Jaipur">Jaipur</option>
                 <option value="Jodhpur">Jodhpur</option>
                 <option value="Kolkata">Kolkata</option>
                 <option value="Kochi">Kochi</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Navi Mumbai">Navi Mumbai</option>
+                
                 <option value="Nashik">Nashik</option>
                 <option value="Nagpur">Nagpur</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Navi Mumbai">Navi Mumbai</option>
                 <option value="Pune">Pune</option>
+               
+                
                 <option value="Raipur">Raipur</option>
                 <option value="Rajkot">Rajkot</option>
                 <option value="Ranchi">Ranchi</option>

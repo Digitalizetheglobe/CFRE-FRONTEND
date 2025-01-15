@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef} from 'react';
 import AdminNavbar from '../AdminNavbar';
 import { FaSearch } from "react-icons/fa"; 
-import { ToastContainer, toast } from 'react-toastify';
 
 // Modal Component
 const PropertyModal = ({ property, onSave, onClose }) => {
-  // const [editedProperty, setEditedProperty] = useState({
-  //   ...property,
-  //   multiplePropertyImages: property.multiplePropertyImages || [],
-  // });
-  const [editedProperty, setEditedProperty] = useState(property);
+  const fileInputRef = useRef(null);
+  const [editedProperty, setEditedProperty] = useState({
+    ...property,
+    multiplePropertyImages: property.multiplePropertyImages || [],
+  });
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
     setEditedProperty((prev) => {
-      const updatedProperty = { ...prev };
+      let updatedProperty = { ...prev };
 
-      if (name === 'multiplePropertyImages') {
+      if (name === 'propertyImages') {
         const images = Array.from(files);
         updatedProperty.multiplePropertyImages = [
           ...(prev.multiplePropertyImages || []),
@@ -30,123 +29,137 @@ const PropertyModal = ({ property, onSave, onClose }) => {
       return updatedProperty;
     });
   };
-
+  const handleImageChange = (index, file) => {
+    setEditedProperty((prev) => {
+      const updatedImages = [...prev.propertyImages];
+      updatedImages[index] = file; // Replace the specific image
+      return { ...prev, propertyImages: updatedImages };
+    });
+  };
+  const handleAddImage = (event) => {
+    const files = event.target.files;
+    if (files) {
+      const updatedImages = [...editedProperty.multiplePropertyImages, ...Array.from(files)];
+      setEditedProperty({ ...editedProperty, multiplePropertyImages: updatedImages });
+    }
+  };
   const handleRemoveImage = (index) => {
     setEditedProperty((prev) => {
-      const updatedImages = Array.isArray(prev.multiplePropertyImages)
-        ? [...prev.multiplePropertyImages]
-        : [];
+      const updatedImages = [...prev.multiplePropertyImages];
       updatedImages.splice(index, 1);
-
       return { ...prev, multiplePropertyImages: updatedImages };
     });
   };
 
-  
-
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-
-    // Map through new files to prepare them for display
-    const newImages = files.map((file) => ({
-      file,
-      url: URL.createObjectURL(file), // Temporary preview URL for the image
-    }));
-
-    // Update the editedProperty's multiplePropertyImages field
-    setEditedProperty((prevProperty) => ({
-      ...prevProperty,
-      multiplePropertyImages: [
-        ...prevProperty.multiplePropertyImages, // Retain existing images
-        ...newImages, // Add new images
-      ],
-    }));
-  };
+  if (fileInputRef.current) {
+    fileInputRef.current.value = null;
+  }
 
   const handleSave = () => {
-    const preparedProperty = {
-      ...editedProperty,
-      multiplePropertyImages: editedProperty.multiplePropertyImages.map((image) =>
-        image.file ? `uploads/${image.file.name}` : image // Check if it's a File object
-      ),
-    };
-
-    onSave(preparedProperty);
+    onSave(editedProperty); // Save the updated property
   };
-  
 
-  useEffect(() => {
-    // Cleanup object URLs to prevent memory leaks
-    return () => {
-      if (Array.isArray(editedProperty.multiplePropertyImages)) {
-        editedProperty.multiplePropertyImages.forEach((image) => {
-          if (image instanceof File) {
-            URL.revokeObjectURL(image);
-          }
-        });
-      }
-    };
-  }, [editedProperty.multiplePropertyImages]);
+  // };
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-lg max-h-screen overflow-y-auto">
-      <h2 className="text-xl font-bold text-center mb-4">Edit Property Details</h2>
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-lg max-h-screen overflow-y-auto">
+        <h2 className="text-xl font-bold text-center mb-4">Edit Property Details</h2>
 
-      <div className="grid grid-cols-2 gap-4">
-        
+        <div className="grid grid-cols-2 gap-4">
         <div className="mb-4">
-            <label className="block text-gray-700">Building Name:</label>
-            <input
-              type="text"
-              name="buildingName"
-              value={editedProperty.buildingName}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
-            />
-          </div>
+    <label className="block text-gray-700">Building Name:</label>
+    <input
+        type="text"
+        name="buildingName"
+        value={
+            editedProperty.buildingName.startsWith("SHOW_")
+                ? editedProperty.buildingName.replace("SHOW_", "") // Remove "SHOW_" for display
+                : editedProperty.buildingName
+        }
+        onChange={(e) =>
+            handleChange({
+                target: {
+                    name: "buildingName",
+                    value:
+                        "SHOW_" + e.target.value.trim(), // Trim and re-add "SHOW_"
+                },
+            })
+        }
+        className="w-full p-2 border rounded"
+    />
+</div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700">Multiple Property Images:</label>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            name="multiplePropertyImages"
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-        </div>
 
-        <div className="flex flex-wrap gap-4">
-          {editedProperty.multiplePropertyImages.map((image, index) => {
-            const imageUrl = image instanceof File
-              ? URL.createObjectURL(image)
-              : image;
+      <div className="mb-4">
+        <label className="block text-gray-700">Property Images:</label>
+        <input
+          type="file"
+          name="propertyImages"
+          multiple
+          onChange={handleChange}
+          ref={fileInputRef}
+          className="w-full p-2 border rounded"
+        />
+      </div>
+
+      <div>
+      {/* Upload Button */}
+      <div className="mb-4">
+        <label htmlFor="imageUpload" className="cursor-pointer text-blue-500 underline">
+          Upload Images
+        </label>
+        <input
+          id="imageUpload"
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={handleAddImage}
+          className="hidden"
+        />
+      </div>
+
+      {/* Image Previews */}
+      <div className="flex flex-wrap gap-4">
+        {editedProperty.multiplePropertyImages &&
+          editedProperty.multiplePropertyImages.map((image, index) => {
+            const imageUrl =
+              image instanceof File
+                ? URL.createObjectURL(image)
+                : `https://cfrecpune.com/${image}`;
 
             return (
-              <div key={index} className="relative">
+              <div
+                key={index}
+                className="relative flex flex-col items-center"
+              >
+                {/* Image Display */}
                 <img
                   src={imageUrl}
-                  alt={`property-${index}`}
+                  alt={`Property ${index + 1}`}
                   className="border rounded"
-                  style={{ width: "70px", height: "70px", objectFit: "cover" }}
+                  style={{
+                    width: "70px",
+                    height: "70px",
+                    objectFit: "cover",
+                  }}
                 />
+                {/* Remove Button */}
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(index)}
-                  className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
+                  className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center shadow-md hover:bg-red-600"
+                  aria-label={`Remove Image ${index + 1}`}
                 >
-                  x
+                  &times;
                 </button>
               </div>
             );
           })}
-        </div>
+      </div>
+    </div>
 
 
-      
-      
-    
 
           <div className="mb-4">
             <label className="block text-gray-700">Unit No:</label>
@@ -520,8 +533,28 @@ const PropertyModal = ({ property, onSave, onClose }) => {
             />
           </div>
 
-          
-         
+          <div className="mb-4">
+            <label className="block text-gray-700">Multiple Property Images:</label>
+            <input
+              type="file"
+              multiple
+              name="multiplePropertyImages"
+
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700">Property Images:</label>
+            <input
+              type="file"
+              name="multiplePropertyImages"
+              multiple
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
 
 
 
@@ -733,7 +766,6 @@ const deletePropertyById = async (id) => {
     });
     if (response.ok) {
       console.log("Property deleted successfully");
-      alert("Property deleted successfully");
       // Remove the deleted property from state
       setProperties((prev) => prev.filter((property) => property.id !== id));
       setFilteredProperties((prev) =>
@@ -747,24 +779,9 @@ const deletePropertyById = async (id) => {
   }
 };
 const handleSaveChanges = (updatedProperty) => {
-  const formData = new FormData();
-
-  // Add all property fields to FormData
-  for (const key in updatedProperty) {
-    if (key === "multiplePropertyImages") {
-      updatedProperty.multiplePropertyImages.forEach((image) => {
-        if (image instanceof File) {
-          formData.append("multiplePropertyImages", image);
-        }
-      });
-    } else {
-      formData.append(key, updatedProperty[key]);
-    }
-  }
-
-  fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
+  fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.get('id')}`, {
     method: "PUT",
-    body: formData,
+    body: updatedProperty, // Use FormData directly
   })
     .then((response) => response.json())
     .then((data) => {
@@ -777,6 +794,7 @@ const handleSaveChanges = (updatedProperty) => {
       console.error("Error updating property:", error);
     });
 };
+
 
 
   return (

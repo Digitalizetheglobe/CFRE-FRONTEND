@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import ContactForm from '../MainBody/ContactForm';
-import image from '../assets/RecentProperty.jpg';
+import defaultImage from '../assets/ABZ.jpg';
 import Header from '../Header/header.jsx';
 import Image from '../assets/ABC.jpeg';
 import { Helmet } from 'react-helmet-async';
@@ -54,25 +54,34 @@ const InvestPropertyDetail = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);  // Update API call to use slug
+                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
                 setProperty(response.data);
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
         };
-
+    
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                setRecentProperties(response.data);
+                // Filter properties based on required conditions
+                const filteredProperties = response.data
+                    .filter(
+                        (property) =>
+                            property.availableFor === "Invest" &&
+                            property.propertySubtype === "preLeased"
+                    )
+                    .slice(0, 4); // Get the recent 5 properties
+                setRecentProperties(filteredProperties);
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
         };
-
+    
         fetchProperty();
         fetchProperties();
     }, [slug]);
+    
 
     if (!property) return <p className="text-center text-gray-500 mt-4">Property not found</p>;
 
@@ -196,10 +205,10 @@ const InvestPropertyDetail = () => {
         </Slider>
       ) : (
         <img
-          src="../assets/ABC.jpeg"  // Provide a default image path
-          alt="Property"
-          className="w-full md:h-72 object-cover rounded-lg shadow-md"
-        />
+                                    src={Image}
+                                    alt="Property"
+                                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                                    />
       )}
     </div>
                             </div>
@@ -339,29 +348,38 @@ const InvestPropertyDetail = () => {
                 </div>
 
                 <div className="w-full lg:w-1/3 px-0 lg:px-4">
-                    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
-                    <div className="space-y-4">
-                        {recentProperties.slice(0, 5).map((recentProperty, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                                onClick={() => handlePropertyClick(recentProperty.slug)} // Navigate on click
-                            >
-                                <img
-                                    src={image}
-                                    alt={recentProperty.title}
-                                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
-                                />
-                          <div>
-                                    <div className="md:text-lg text-sm font-bold text-gray-800">{recentProperty.carpetArea} sq.ft</div>
-                                    <div className="text-gray-600 md:text-lg text-sm">Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b></div>
-                                    {/* <div className="text-gray-600 md:text-lg text-sm"></div> */}
-                                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">₹<b>{recentProperty.rentPerMonth}</b></div>
-                                </div>
-                            </div>
-                        ))}
+    <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">
+        Recent Preleased Properties
+    </h3>
+    <div className="space-y-4">
+        {recentProperties.map((recentProperty, index) => (
+            <div
+                key={index}
+                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
+                onClick={() => handlePropertyClick(recentProperty.slug)}
+            >
+                <img
+    src={`${recentProperty.multiplePropertyImages ? `https://cfrecpune.com/${recentProperty.multiplePropertyImages}` : defaultImage}`}
+    alt={recentProperty.title}
+    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+/>
+
+                <div>
+                    <div className="md:text-lg text-sm font-bold text-gray-800">
+                        {recentProperty.carpetArea} sq.ft
+                    </div>
+                    <div className="text-gray-600 md:text-lg text-sm">
+                        Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
+                    </div>
+                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
+                        ₹<b>{recentProperty.basePrice}</b>
                     </div>
                 </div>
+            </div>
+        ))}
+    </div>
+</div>
+
             </div>
 
             {isFormVisible && (

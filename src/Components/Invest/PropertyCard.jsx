@@ -22,10 +22,17 @@ const PropertyCard = ({ property, onEnquire }) => {
             </div>
         
             <Link to={`/property-detail-invest/${property.slug}`} className="relative">
-                <img className="w-full md:h-48 h-32 object-cover" 
-            src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
-            alt="Property" 
+            <img
+                className="w-full md:h-48 h-32 object-cover"
+                src={
+                    property.multiplePropertyImages && property.multiplePropertyImages.length > 0
+                    ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
+                    : Image
+                }
+                alt="Property"
                 />
+
+                
             </Link>
 
             <Link to={`/property-detail-invest/${property.slug}`}  className="px-6 py-4">
@@ -43,7 +50,7 @@ const PropertyCard = ({ property, onEnquire }) => {
                 <Link className="bg-[#d84a48] hover:bg-black-700 text-white font-bold py-2  px-8 rounded w-4/5"
                     to={`/property-detail-invest/${property.slug}`}
                 >
-                    See Details
+                    View Details
                 </Link>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-1 rounded flex items-center h-10 w-10">
                     <FaWhatsapp className="ml-2" />
