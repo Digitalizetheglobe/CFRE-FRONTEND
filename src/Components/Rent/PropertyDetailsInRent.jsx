@@ -118,11 +118,11 @@ const PropertyDetailInRent = () => {
         { label: 'Possession', value: 'Immediate' },
         { label: 'DG Back Up', value: property.dgBackup },
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
-        { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft },
+        { label: 'Maintenance/SqFt on built-up', value: property.maintenancePersqft },
         { label: 'Security Deposit', value: property.deposit },
         { label: 'Escalation (on rent)', value: `${property.yearlyEscalation}` },
         { label: 'Agreement Period', value: `${property.agreementPeriod} ` },
-        { label: 'Locking Period', value: `${property.lockingPeriod} ` },
+        { label: 'Lock-in Period', value: `${property.lockingPeriod} ` },
         // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
         { label: 'Property Taxes', value: property.propertyTax },
         { label: 'GST on rent and maintenance', value: property.gstOnRent },
@@ -170,7 +170,8 @@ const PropertyDetailInRent = () => {
 
 
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
-            <div className="sticky md:top-28 top-16 bg-white  shadow-md flex justify-center space-x-4 py-2">
+            <div className="sticky md:top-28 top-16 bg-white shadow-md flex justify-center space-x-4 py-2 z-[100]">
+
                 <button
                     className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
                     onClick={() => handleScrollTo(overviewRef)}
@@ -292,12 +293,24 @@ const PropertyDetailInRent = () => {
                                     )}
                                     {property?.rentPerMonth && (
                                         <div>
-                                            <div className="font-semibold">
-                                            {property.availableFor?.toLowerCase() === "rent" ? "Rent" : "Cost"}
+                                           <div className="font-semibold">
+                                                {property.availableFor?.toLowerCase() === "rent" ? (
+                                                    <>
+                                                        Rent
+                                                        <div className="font-bold">
+                                                            {formatIndianPrice(property.rentPerMonth)}
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        Price
+                                                        <div className="font-bold">
+                                                            {formatIndianPrice(property.basePrice)}
+                                                        </div>
+                                                    </>
+                                                )}
                                             </div>
-                                            <div className="font-bold">
-                                            {formatIndianPrice(property.rentPerMonth)}
-                                            </div>
+                                           
                                         </div>
                                         )}
 
@@ -333,7 +346,7 @@ const PropertyDetailInRent = () => {
                             </div>
 
                             {/* SEO Description */}
-                            <span className="text-xs text-gray-500 block mt-4">{property.seoDiscription}</span>
+                            {/* <span className="text-xs text-gray-500 block mt-4">{property.seoDiscription}</span> */}
 
                             <button
                                 className="mt-4 text-[#d84a48] hover:underline"

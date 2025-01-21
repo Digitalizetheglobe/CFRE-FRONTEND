@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -17,20 +18,48 @@ import { MdOutlineVisibility } from 'react-icons/md';
 import { FiWifi } from 'react-icons/fi';  // For Wi-Fi (Internet Connection)
 import { MdOutlineSmokeFree } from 'react-icons/md';  // For Fire Detection and Alarm System
 import { FaParking } from 'react-icons/fa';  // For Parking
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const ProjectDetails = () => {
     const { slug } = useParams();  // Get slug from URL params
     const navigate = useNavigate();
     const [project, setProject] = useState(null);
     const [isFormVisible, setFormVisible] = useState(false);
+    const [showAllDetails, setShowAllDetails] = useState(false);  // Added this line
+    const overviewRef = useRef(null);
+    const moreDetailsRef = useRef(null);
+    const nearbyPropertiesRef = useRef(null);
 
     const handleButtonClick = () => {
         setFormVisible(true);
     };
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: true,
+        adaptiveHeight: true,
+    };
+
+    const toggleDetails = () => {
+        setShowAllDetails(!showAllDetails);
+    };
+
+    const handleScrollTo = (ref) => {
+        ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
     const handleCloseForm = () => {
         setFormVisible(false);
     };
+
     const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -43,7 +72,6 @@ const ProjectDetails = () => {
 
     const validateForm = () => {
         const newErrors = {};
-
         if (!formData.name.trim()) newErrors.name = 'Name is required';
         if (!formData.mobileNumber.trim()) {
             newErrors.mobileNumber = 'Phone number is required';
@@ -88,32 +116,30 @@ const ProjectDetails = () => {
             try {
                 const response = await axios.get(`https://cfrecpune.com/cfreprojects/${slug}`);
                 setProject(response.data);
-                console.log('Project Data:', response.data); // Log the project data to inspect it
+                console.log('Project Data:', response.data);
             } catch (error) {
                 console.error('Error fetching project:', error);
             }
         };
         fetchProject();
-    }, [slug]);  // Fetch project data when the slug changes
+    }, [slug]);
 
     if (!project) return <p>Project not found</p>;
 
-    // Handle WhatsApp button click
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
 
-    // Parse the amenities JSON string
     let amenities = [];
     try {
         if (typeof project.amenities === 'string') {
-            amenities = JSON.parse(project.amenities); // Parse if it's a string
+            amenities = JSON.parse(project.amenities);
         } else {
-            amenities = project.amenities; // Use directly if it's already an object
+            amenities = project.amenities;
         }
     } catch (error) {
         console.error('Error parsing amenities:', error);
-        amenities = []; // Fallback
+        amenities = [];
     }
 
     const specification = project.specification;
@@ -139,13 +165,28 @@ const ProjectDetails = () => {
                             {/* Image Section */}
                             <div className="relative flex-none w-full lg:w-3/5">
                                 <div className="relative w-full h-40 md:h-96 overflow-hidden rounded-lg shadow-lg">
-                                    <img
-                                        className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-105"
-                                        src={Image}
-                                        alt="Project"
-                                    />
+                                {project?.ProjectImages?.length > 0 ? (
+                                        <Slider {...settings}>
+                                        {project.ProjectImages.map((image, index) => (
+                                            <div key={index}>
+                                            <img
+                                                src={`https://cfrecpune.com/${image}`}
+                                                alt={`Project ${index + 1}`}
+                                                className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                                            />
+                                            </div>
+                                        ))}
+                                        </Slider>
+                                    ) : (
+                                        <img
+                                                                    src={Image}
+                                                                    alt="Project Image"
+                                                                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                                                                    />
+                                    )}
                                 </div>
                             </div>
+
 
                             {/* Details Section */}
                             <div className="flex-1 w-full lg:w-2/5">
@@ -184,9 +225,9 @@ const ProjectDetails = () => {
                     {/* Additional Details and Amenities Section */}
                     <div className="w-full bg-white border border-gray-500 shadow-md rounded-lg overflow-hidden p-6">
                         <div className="mb-6">
-                            <h4 className="md:text-xl font-semibold mb-2">About Project</h4>
+                            <h4 className="md:text-xl font-semibold mb-2"> Project Details</h4>
                             <p className="text-gray-700 md:text-base text-sm">
-                                This commercial project is designed to meet the dynamic needs of modern businesses. Located in a prime business district, it offers excellent visibility and accessibility.
+                            {project.projectDetails}
                             </p>
                         </div>
 
@@ -200,10 +241,10 @@ const ProjectDetails = () => {
                                     <p className="text-gray-500 text-xs font-semibold">Project Area:</p>
                                     <p className="md:text-lg font-medium">{project.projectArea}Sq.ft</p>
                                 </div>
-                                <div className="p-4 border border-gray-400 rounded-md">
+                                {/* <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Area:</p>
                                     <p className="md:text-lg font-medium">{project.area}Sq.ft</p>
-                                </div>
+                                </div> */}
                                 {/* <div className="p-4 border border-gray-400 rounded-md">
                                     <p className="text-gray-500 text-xs font-semibold">Basic Price:</p>
                                     <p className="md:text-lg font-medium">{project.price} Cr</p>
@@ -247,10 +288,7 @@ const ProjectDetails = () => {
                                     <GiWaterDrop className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Water Supply */}
                                     <span>24/7 Water Supply</span>
                                 </div>
-                                <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
-                                    <FiWifi className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Internet Connection */}
-                                    <span>Internet Connection</span>
-                                </div>
+                                
                                 <div className="flex items-center p-4 bg-gray-100 rounded shadow-md">
                                     <MdOutlineSmokeFree className="md:text-lg text-[#d84a48] mr-2" /> {/* Icon for Fire Detection */}
                                     <span>Fire Detection and Alarm System</span>
@@ -278,26 +316,27 @@ const ProjectDetails = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {project.projectPlans && project.projectPlans.length > 0 ? (
-                                            project.projectPlans.map((plan, index) => (
-                                                <tr key={index} className="text-center">
-                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan.Type}</td>
-                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">
-                                                        {plan.UnitCost !== undefined ? plan.UnitCost : plan["Unit Cost"]}
-                                                    </td>
-                                                    <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">
-                                                        {plan.CarpetArea !== undefined ? plan.CarpetArea : plan["Carpet Area"]}
-                                                    </td>
-                                                </tr>
-                                            ))
-                                        ) : (
-                                            <tr>
-                                                <td colSpan="3" className="py-4 px-4 text-center text-gray-700">
-                                                    No project plans available
-                                                </td>
-                                            </tr>
-                                        )}
-                                    </tbody>
+    {Array.isArray(project.projectPlans) && project.projectPlans.length > 0 ? (
+        project.projectPlans.map((plan, index) => (
+            <tr key={index} className="text-center">
+                <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">{plan.Type}</td>
+                <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">
+                    {plan.UnitCost !== undefined ? plan.UnitCost : plan["Unit Cost"]}
+                </td>
+                <td className="py-2 px-4 border border-gray-300 text-sm md:text-base">
+                    {plan.CarpetArea !== undefined ? plan.CarpetArea : plan["Carpet Area"]}
+                </td>
+            </tr>
+        ))
+    ) : (
+        <tr>
+            <td colSpan="3" className="py-4 px-4 text-center text-gray-700">
+                No project plans available
+            </td>
+        </tr>
+    )}
+</tbody>
+
 
                                 </table>
                             </div>
@@ -313,12 +352,28 @@ const ProjectDetails = () => {
                                 <div className="flex flex-col md:flex-row gap-4">
                                     {/* Image 1 */}
                                     <div className="relative w-full md:w-1/2">
-                                        <img src={cpFP1} alt="Floor Plan 1 " className="w-full h-56 rounded-md shadow-md blur-sm" />
+                                       {project?.floorPlanImages?.length > 0 ? (
+                                        <Slider {...settings}>
+                                        {project.floorPlanImages.map((image, index) => (
+                                            <div key={index}>
+                                            <img
+                                                src={`https://cfrecpune.com/${image}`}
+                                                alt={`Project ${index + 1}`}
+                                                className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                                            />
+                                            </div>
+                                        ))}
+                                        </Slider>
+                                    ) : (
+                                        <div className="flex gap-10 relative w-full md:w-1/2">
+                                        <img src={cpFP1} alt="Floor Plan 1 " className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
+                                        <img src={cpFP2} alt="Floor Plan 1 " className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
+
                                     </div>
-                                    {/* Image 2 */}
-                                    <div className="relative w-full md:w-1/2">
-                                        <img src={cpFP2} alt="Floor Plan 2" className="w-full h-56 rounded-md shadow-md blur-sm" />
+                                    )}
+                                
                                     </div>
+                                   
                                 </div>
                             </div>
             </button>

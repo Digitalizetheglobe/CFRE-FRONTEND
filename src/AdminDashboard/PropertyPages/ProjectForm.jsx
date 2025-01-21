@@ -22,13 +22,14 @@ const ProjectForm = () => {
         seoDescription: '',
         seoKeywords: '',
         floorPlanImages: null,
-        multiplePropertyImages: null,
+        ProjectImages: null,
         video: '',
         virtualVideoTour: '',
     });
 
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+     const [images, setImages] = useState([]);
 
     const convertToSlug = (text) => {
         return text
@@ -66,13 +67,24 @@ const ProjectForm = () => {
             projectPlans: [...formData.projectPlans, { Type: '', UnitCost: '', CarpetArea: '' }],
         });
     };
-
-    const handleSubmit = async (e) => {
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
+        const newImages = files.map((file) => ({
+          file,
+          url: URL.createObjectURL(file),
+        }));
+        setImages((prevImages) => [...prevImages, ...newImages]);
+      };
+    
+      const removeImage = (url) => {
+        setImages((prevImages) => prevImages.filter((img) => img.url !== url));
+      };
+      
+      const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setMessage('');
     
-        // Check if 'Project Name' and 'Slug' are filled
         if (!formData.projectName || !formData.slug) {
             setMessage('Project Name and Slug are required.');
             setLoading(false);
@@ -80,17 +92,32 @@ const ProjectForm = () => {
         }
     
         try {
+            // Create FormData object
+            const formDataToSend = new FormData();
+    
+            // Append text fields
+            Object.keys(formData).forEach((key) => {
+                if (key !== "floorPlanImages" && key !== "ProjectImages") {
+                    formDataToSend.append(key, formData[key]);
+                }
+            });
+    
+            // Append images (floorPlanImages & ProjectImages)
+            images.forEach((image) => {
+                formDataToSend.append('ProjectImages', image.file);
+            });
+    
+            // Send data using fetch
             const response = await fetch('https://cfrecpune.com/cfreprojects/', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
             });
     
             if (response.ok) {
                 setMessage('Project data submitted successfully!');
                 setTimeout(() => {
-                    window.location.reload(); // Automatically refresh the page
-                }, 2000); // Optional delay to allow user to see the message
+                    window.location.reload();
+                }, 2000);
             } else {
                 setMessage('Failed to submit project data.');
             }
@@ -100,6 +127,8 @@ const ProjectForm = () => {
     
         setLoading(false);
     };
+
+    
     
     
 
@@ -146,17 +175,63 @@ const ProjectForm = () => {
                         className="w-full p-2 border border-gray-300 rounded-md"
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-sm font-semibold mb-2">Project Images:</label>
-                    <input
-                        type="file"
-                        mu
-                        name="multiplePropertyImages"
-                        value={formData.multiplePropertyImages}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>                    <div className="mb-4">
+                <div>
+      <div className="sm:col-span-3">
+        <label
+          htmlFor="ProjectImages"
+          className="block text-sm font-medium leading-6 text-gray-900"
+        >
+          Multiple Project Images
+        </label>
+        <input
+        type="file"
+        multiple
+        accept="image/*"
+        onChange={handleFileChange}
+      />
+      </div>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        {images.map((image) => (
+          <div
+            key={image.url}
+            style={{
+              position: 'relative',
+              width: '70px',
+              height: '70px',
+            }}
+          >
+            <img
+              src={image.url}
+              alt="uploaded"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+            />
+            <button
+              type="button"
+              onClick={() => removeImage(image.url)}
+              style={{
+                position: 'absolute',
+                top: '5px',
+                right: '5px',
+                backgroundColor: 'red',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '20px',
+                height: '20px',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+                                <div className="mb-4">
                         <label className="block text-sm font-semibold mb-2">Project Plans:</label>
                         {formData.projectPlans.map((plan, index) => (
                             <div key={index} className="mb-2">

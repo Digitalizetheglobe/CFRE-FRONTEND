@@ -6,15 +6,15 @@ import Showroom from "./showroom1.jpg";
 const categories = [
   {
     name: "Offices",
-    description: "Invest/Rent in pre-leased offices",
+    description: "Invest in pre-leased offices",
     imageUrl: Office,
-    path: "/office",
+    path: "/preleased",
   },
   {
     name: "Showrooms",
-    description: "Invest/Rent in pre-leased showrooms",
+    description: "Invest in pre-leased showrooms",
     imageUrl: Showroom,
-    path: "/Showroom",
+    path: "/preleased",
   },
 ];
 

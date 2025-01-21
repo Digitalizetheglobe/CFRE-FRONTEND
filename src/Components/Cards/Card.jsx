@@ -7,7 +7,7 @@ import { useState } from "react";
 import Header from "../Header/header.jsx";
 import cfre from "../assets/icons/cfre-img.jpg";
 import cfre1 from "../assets/icons/cfre-img1.jpg";
-
+import { Link } from "react-router-dom";
 const Card = () => {
   const navigate = useNavigate(); // Initialize the navigate hook
   const [isFormVisible, setFormVisible] = useState(false);
@@ -80,13 +80,15 @@ const Card = () => {
                 elevate your business operations.
               </p>
             </div>
+            <Link to="/contactUs">
             <button
               type="button"
               className="md:mt-8 md:w-40 w-auto md:px-6 md:py-4 py-2 rounded-lg text-sm border-none outline-none bg-[#d84a48] hover:bg-[#ca3c39]"
-              onClick={handleButtonClick}
+              
             >
               Contact Us
             </button>
+            </Link>
           </div>
         </div>
         {isFormVisible && (

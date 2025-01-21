@@ -293,7 +293,7 @@ const SaleInvestPropertyDetail = () => {
                                                     <>
                                                         Price
                                                         <div className="font-bold">
-                                                            {formatIndianPrice(property.rentPerMonth)}
+                                                            {formatIndianPrice(property.basePrice)}
                                                         </div>
                                                     </>
                                                 )}
@@ -334,7 +334,7 @@ const SaleInvestPropertyDetail = () => {
                             </div>
 
                             {/* SEO Description */}
-                            <span className="text-xs text-gray-500 block mt-4">{property.seoDiscription}</span>
+                            {/* <span className="text-xs text-gray-500 block mt-4">{property.seoDiscription}</span> */}
 
                             <button
                                 className="mt-4 text-[#d84a48] hover:underline"
@@ -378,7 +378,9 @@ const SaleInvestPropertyDetail = () => {
          
              {/* Rent */}
              <div className="text-sm md:text-lg font-semibold text-gray-900 mt-2">
-               ₹<b>{recentProperty.rentPerMonth}</b>
+                    <div className="font-bold">
+                                                            {formatIndianPrice(property.basePrice)}
+                                                        </div>
              </div>
            </div>
          </div>

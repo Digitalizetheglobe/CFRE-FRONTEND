@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
 import Image from './Office space image.jpg';
 
 const OfficeCard = ({ property, onEnquireClick }) => {
+    // Filter logic
+    if (
+        property.availableFor !== "Invest" || 
+        property.propertyType !== "OfficeSpace" || 
+        property.propertySubtype !== "preLeased"
+    ) {
+        return null; // Skip rendering this property
+    }
+
     const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`;
     const title = property.title;
 
@@ -48,11 +57,6 @@ const OfficeCard = ({ property, onEnquireClick }) => {
                 </div>
             </div>
 
-            <div className="px-6 flex text-center items-center">
-                <p className="text-gray-800 text-base ml-10">
-                    Monthly rental: ₹{property.rentPerMonth}
-                </p>
-            </div>
             <div className="px-6 pt-1 pb-2 flex justify-between items-center">
                 <button 
                     className="bg-[#d84a48] hover:bg-[#a33735] text-white font-bold md:py-2 py-1 px-4 md:px-8 rounded w-4/5"

@@ -86,12 +86,12 @@ function PropertyCardInvest({ property }) {
                     >
                         <FaWhatsapp className="ml-1" />
                     </button>
-                    <button
+                    {/* <button
                         onClick={handlePhoneClick}
                         className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded flex items-center"
                     >
                         <FaPhoneAlt className="ml-1" />
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>

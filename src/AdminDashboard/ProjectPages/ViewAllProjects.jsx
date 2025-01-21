@@ -10,6 +10,8 @@ const ProjectModal = ({ project, onSave, onClose }) => {
     });
     const [projectImages, setProjectImages] = useState([]); // State for project images
     const [loading, setLoading] = useState(false);
+   
+
 
     useEffect(() => {
         if (project) {
@@ -189,7 +191,7 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                         />
                     </div>
 
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                         <label className="block text-gray-700">Total Area:</label>
                         <input
                             type="text"
@@ -198,7 +200,7 @@ const ProjectModal = ({ project, onSave, onClose }) => {
                             onChange={handleChange}
                             className="w-full p-2 border rounded"
                         />
-                    </div>
+                    </div> */}
 
                     <div className="mb-4">
                         <label className="block text-gray-700">Project Area:</label>

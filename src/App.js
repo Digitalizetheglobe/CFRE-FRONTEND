@@ -73,6 +73,7 @@ import NewprojectForm from './Components/NewprojectForm.js';
 import ListProperty from './AdminDashboard/ListProperty/ListProperty.jsx';
 import PropertyModal from './AdminDashboard/ListProperty/PropertyModal.jsx';
 import TestNewproject from './Components/Projects/TestProject.jsx';
+import EditProperty from './AdminDashboard/PropertyPages/EditProperty.jsx';
 // import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
@@ -137,18 +138,12 @@ function App() {
           <Route path='/ListProperty/:id' element={<PropertyModal/>}/>
           {/* <Route path="/property/:id" element={<ListPropertyDetail />} /> */}
           <Route path="/ListProperty" element={<ListProperty />} />
+          
 
 <Route path='/testproject' element={<TestNewproject/>} />
           {/* below admin panal routes */}
           <Route path='/adminlogin' element={<AdminLogin />} />
-          {/* <Route path='/addnewproperty' element ={ <AddNewProperty />} />
-          <Route path='/addproperty' element ={ <AddNewProperty />} />
-          <Route path='/dashboard' element= {<Dashboard/>} />
-          <Route path='/bulkproperty' element= {<BulkUploadForm />} />
-          <Route path='/basicform' element= {<BasicForm />} />
-          <Route path='/view'  element= {<BasicFormView />} />
-          <Route path='/enquirydetails' element={<EnquiryDetails/>} /> */}
-{/* mata jdklj */}
+          
 
 
           {/* Private routes (Protected) */}
@@ -225,6 +220,14 @@ function App() {
             element={
               <PrivateRoute>
                 <ViewAllProperty />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/EditProperty'
+            element={
+              <PrivateRoute>
+                <EditProperty />
               </PrivateRoute>
             }
           />

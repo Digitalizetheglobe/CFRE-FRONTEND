@@ -158,7 +158,7 @@ const ReviewCard = ({ img }) => {
   return (
     <figure className="relative w-64 h-24 cursor-pointer overflow-hidden rounded-xl mb-5 bg-white flex flex-col ">
   <img
-    className="object-cover w-full h-full mb-0 ml-0 mr-0 transition duration-300 ease-in-out filter grayscale hover:filter-none"
+    className="object-cover w-full h-full mb-0 ml-0 mr-0 transition duration-300 ease-in-out  hover:filter-none"
     alt="Client Logo"
     src={img}
   />

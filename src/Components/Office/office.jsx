@@ -51,6 +51,37 @@ const Office = () => {
         setSelectedProperty(null);
     };
 
+
+    const applyFilters = () => {
+        let filtered = properties;
+    
+        // Filter properties for investment, pre-leased office spaces
+        filtered = filtered.filter(property => 
+            property.availableFor === "Invest" && 
+            property.propertyType === "OfficeSpace" &&
+            property.propertySubtype === "preLeased"
+        );
+    
+        // Apply other filters (if any)
+        if (filters.city) {
+            filtered = filtered.filter(property => property.city.toLowerCase().includes(filters.city.toLowerCase()));
+        }
+    
+        if (filters.location) {
+            filtered = filtered.filter(property => property.location.toLowerCase().includes(filters.location.toLowerCase()));
+        }
+    
+        // Apply sorting based on price if required (although it won't be needed for 'Invest' properties)
+        if (sortOrder === 'low-to-high') {
+            filtered = filtered.sort((a, b) => a.rentPerMonth - b.rentPerMonth);
+        } else if (sortOrder === 'high-to-low') {
+            filtered = filtered.sort((a, b) => b.rentPerMonth - a.rentPerMonth);
+        }
+    
+        setFilteredProperties(filtered);
+    };
+    
+    // Remove the rentPerMonth filtering logic since we don't need rent
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters({
@@ -58,31 +89,7 @@ const Office = () => {
             [name]: value
         });
     };
-
-    const applyFilters = () => {
-        let filtered = properties;
-
-        if (filters.price) {
-            filtered = filtered.filter(property => property.rentPerMonth <= filters.price);
-        }
-
-        if (filters.city) {
-            filtered = filtered.filter(property => property.city.toLowerCase().includes(filters.city.toLowerCase()));
-        }
-
-        if (filters.location) {
-            filtered = filtered.filter(property => property.location.toLowerCase().includes(filters.location.toLowerCase()));
-        }
-
-        // Apply sorting
-        if (sortOrder === 'low-to-high') {
-            filtered = filtered.sort((a, b) => a.rentPerMonth - b.rentPerMonth);
-        } else if (sortOrder === 'high-to-low') {
-            filtered = filtered.sort((a, b) => b.rentPerMonth - a.rentPerMonth);
-        }
-
-        setFilteredProperties(filtered);
-    };
+    
 
     useEffect(() => {
         applyFilters();
