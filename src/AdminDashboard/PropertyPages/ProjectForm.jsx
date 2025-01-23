@@ -67,14 +67,14 @@ const ProjectForm = () => {
             projectPlans: [...formData.projectPlans, { Type: '', UnitCost: '', CarpetArea: '' }],
         });
     };
-    // const handleFileChange = (e) => {
-    //     const files = Array.from(e.target.files);
-    //     const newImages = files.map((file) => ({
-    //       file,
-    //       url: URL.createObjectURL(file),
-    //     }));
-    //     setImages((prevImages) => [...prevImages, ...newImages]);
-    //   };
+    const handleFileChange1 = (e) => {
+        const files = Array.from(e.target.files);
+        const newImages = files.map((file) => ({
+          file,
+          url: URL.createObjectURL(file),
+        }));
+        setImages((prevImages) => [...prevImages, ...newImages]);
+      };
     
       const removeImage = (url) => {
         setImages((prevImages) => prevImages.filter((img) => img.url !== url));
@@ -262,7 +262,7 @@ const handleSubmit = async (e) => {
         type="file"
         multiple
         accept="image/*"
-        onChange={handleFileChange}
+        onChange={handleFileChange1}
       />
       </div>
 

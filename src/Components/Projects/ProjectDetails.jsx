@@ -345,37 +345,41 @@ const ProjectDetails = () => {
                         {/* Floor Plans Section */}
                         <button onClick={() => setShowModal(true)}>
                         <div className="mb-6">
-                                <div className="flex items-center mb-4">
-                                    <AiFillRead className="text-xl text-[#d84a48] mr-2" />
-                                    <h4 className="md:text-xl font-semibold">Floor Plans</h4>
-                                </div>
-                                <div className="flex flex-col md:flex-row gap-4">
-                                    {/* Image 1 */}
-                                    <div className="relative w-full md:w-1/2">
-                                    {project?.floorPlanImages?.length > 0 ? (
-                                        <Slider {...settings}>
-                                            {project.floorPlanImages.map((image, index) => (
-                                                <div key={index}>
-                                                    <img
-                                                        src={`https://cfrecpune.com/${image}`}
-                                                        alt={`Project ${index + 1}`}
-                                                        className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                                    />
-                                                </div>
-                                            ))}
-                                        </Slider>
-                                    ) : (
-                                        <div className="flex gap-10 relative w-full md:w-1/2">
-                                            <img src={cpFP1} alt="Floor Plan 1" className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
-                                            <img src={cpFP2} alt="Floor Plan 2" className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
-                                        </div>
-                                    )}
+    <div className="flex items-center mb-4">
+        <AiFillRead className="text-xl text-[#d84a48] mr-2" />
+        <h4 className="md:text-xl font-semibold">Floor Plans</h4>
+    </div>
+    <div className="flex flex-wrap gap-4">
+        {/* Image Section */}
+        {project?.floorPlanImages?.length > 0 ? (
+            <div className="flex flex-wrap gap-4">
+                {project.floorPlanImages.map((image, index) => (
+                    <div key={index} className="flex-shrink-0">
+                        <img
+                            src={`https://cfrecpune.com/${image}`}
+                            alt={`Project ${index + 1}`}
+                            className="w-[300px] h-[220px] object-cover rounded-lg shadow-md"
+                        />
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <div className="flex gap-4">
+                <img
+                    src={cpFP1}
+                    alt="Floor Plan 1"
+                    className="w-[300px] h-[220px] object-cover rounded-md shadow-md"
+                />
+                <img
+                    src={cpFP2}
+                    alt="Floor Plan 2"
+                    className="w-[300px] h-[220px] object-cover rounded-md shadow-md"
+                />
+            </div>
+        )}
+    </div>
+</div>
 
-                                
-                                    </div>
-                                   
-                                </div>
-                            </div>
             </button>
 
             {showModal && (
