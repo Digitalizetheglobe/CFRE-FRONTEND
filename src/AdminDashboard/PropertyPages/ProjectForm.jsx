@@ -67,66 +67,97 @@ const ProjectForm = () => {
             projectPlans: [...formData.projectPlans, { Type: '', UnitCost: '', CarpetArea: '' }],
         });
     };
-    const handleFileChange = (e) => {
-        const files = Array.from(e.target.files);
-        const newImages = files.map((file) => ({
-          file,
-          url: URL.createObjectURL(file),
-        }));
-        setImages((prevImages) => [...prevImages, ...newImages]);
-      };
+    // const handleFileChange = (e) => {
+    //     const files = Array.from(e.target.files);
+    //     const newImages = files.map((file) => ({
+    //       file,
+    //       url: URL.createObjectURL(file),
+    //     }));
+    //     setImages((prevImages) => [...prevImages, ...newImages]);
+    //   };
     
       const removeImage = (url) => {
         setImages((prevImages) => prevImages.filter((img) => img.url !== url));
       };
-      
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setMessage('');
-    
-        if (!formData.projectName || !formData.slug) {
-            setMessage('Project Name and Slug are required.');
-            setLoading(false);
-            return;
-        }
-    
-        try {
-            // Create FormData object
-            const formDataToSend = new FormData();
-    
-            // Append text fields
-            Object.keys(formData).forEach((key) => {
-                if (key !== "floorPlanImages" && key !== "ProjectImages") {
-                    formDataToSend.append(key, formData[key]);
-                }
-            });
-    
-            // Append images (floorPlanImages & ProjectImages)
-            images.forEach((image) => {
-                formDataToSend.append('ProjectImages', image.file);
-            });
-    
-            // Send data using fetch
-            const response = await fetch('https://cfrecpune.com/cfreprojects/', {
-                method: 'POST',
-                body: formDataToSend,
-            });
-    
-            if (response.ok) {
-                setMessage('Project data submitted successfully!');
-                setTimeout(() => {
-                    window.location.reload();
-                }, 2000);
-            } else {
-                setMessage('Failed to submit project data.');
-            }
-        } catch (error) {
-            setMessage('An error occurred while submitting the form.');
-        }
-    
+      const [floorPlanImages, setFloorPlanImages] = useState([]);
+
+
+
+const removeFloorPlanImage = (url) => {
+  setFloorPlanImages((prev) => prev.filter((image) => image.url !== url));
+};
+
+const handleFileChange = (e) => {
+    const { name } = e.target;
+    const files = Array.from(e.target.files);
+    const newImages = files.map((file) => ({
+        file,
+        url: URL.createObjectURL(file),
+    }));
+
+    if (name === 'floorPlanImages') {
+        setFloorPlanImages((prevImages) => [...prevImages, ...newImages]);
+    } else if (name === 'ProjectImages') {
+        setImages((prevImages) => [...prevImages, ...newImages]);
+    }
+};
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+
+    if (!formData.projectName || !formData.slug) {
+        setMessage('Project Name and Slug are required.');
         setLoading(false);
-    };
+        return;
+    }
+
+    try {
+        // Create FormData object
+        const formDataToSend = new FormData();
+
+        // Append text fields
+        Object.keys(formData).forEach((key) => {
+            if (key !== "floorPlanImages" && key !== "ProjectImages") {
+                formDataToSend.append(key, formData[key]);
+            }
+        });
+
+        // Append images
+        floorPlanImages.forEach((image) => {
+            formDataToSend.append('floorPlanImages', image.file);
+        });
+
+        images.forEach((image) => {
+            formDataToSend.append('ProjectImages', image.file);
+        });
+
+        // Send data using fetch
+        const response = await fetch('https://cfrecpune.com/cfreprojects/', {
+            method: 'POST',
+            body: formDataToSend,
+        });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+            setMessage('Project data submitted successfully!');
+            console.log('Server Response:', responseData);
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        } else {
+            setMessage('Failed to submit project data.');
+        }
+    } catch (error) {
+        setMessage('An error occurred while submitting the form.');
+        console.error('Submission Error:', error);
+    }
+
+    setLoading(false);
+};
+
 
     
     
@@ -165,16 +196,60 @@ const ProjectForm = () => {
             ))}
 
 <div className="mb-4">
-                    <label className="block text-sm font-semibold mb-2">floor Plan Image:</label>
-                    <input
-                        type="file"
-                        multiple
-                        name="floorPlanImages"
-                        value={formData.floorPlanImages}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
+  <label className="block text-sm font-semibold mb-2">Floor Plan Images:</label>
+  <input
+    type="file"
+    multiple
+    name="floorPlanImages"
+    onChange={handleFileChange}
+    className="w-full p-2 border border-gray-300 rounded-md"
+  />
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px' }}>
+    {floorPlanImages.map((image) => (
+      <div
+        key={image.url}
+        style={{
+          position: 'relative',
+          width: '70px',
+          height: '70px',
+        }}
+      >
+        <img
+          src={image.url}
+          alt="uploaded"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: '4px',
+          }}
+        />
+        <button
+          type="button"
+          onClick={() => removeFloorPlanImage(image.url)}
+          style={{
+            position: 'absolute',
+            top: '5px',
+            right: '5px',
+            backgroundColor: 'red',
+            color: 'white',
+            border: 'none',
+            borderRadius: '50%',
+            width: '20px',
+            height: '20px',
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          ×
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+
                 <div>
       <div className="sm:col-span-3">
         <label

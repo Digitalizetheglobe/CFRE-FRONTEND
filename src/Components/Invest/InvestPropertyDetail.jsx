@@ -99,47 +99,52 @@ const InvestPropertyDetail = () => {
     
     
 
+// Function to determine if a value is valid
+function isValidValue(value) {
+    return value !== null && value !== undefined && value !== '';
+}
 
-    // Define all details with conditional formatting where necessary
-const allDetails = [
-    { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
-    { label: 'Property Type', value: property.propertyType },
-    { label: 'Purpose', value: property.availableFor },
-    { label: 'Rent per Month', value: property.rentPerMonth ? formatIndianPrice(property.rentPerMonth) : null },
-    { label: 'Tenant Name', value: property.seoDiscription },
-    { label: 'Floor', value: property.floor },
-    { label: 'Car Parking', value: property.carParking },
-    { label: 'Bike Parking', value: property.bikeParking },
-    { label: 'DG Back Up', value: property.dgBackup },
-    { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea ? formatIndianPrice(property.rentPerSqFtBuiltUpArea) : null },
-    { label: 'Maintenance/SqFt on Built-up', value: property.maintenancePersqft ? formatIndianPrice(property.maintenancePersqft) : null },
-    { label: 'Security Deposit', value: property.deposit ? formatIndianPrice(property.deposit) : null },
-    { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation },
-    { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
-    { label: 'Property Taxes', value: property.propertyTax },
-    { label: 'GST on rent and maintenance', value: property.gstOnRent },
-    { label: 'Furniture Done by', value: property.furnitureDoneBy },
-];
-
-// Filter out any details where the value is null, undefined, or an empty string
-const filteredDetails = allDetails.filter(detail => detail.value !== null && detail.value !== undefined && detail.value !== '');
-
-// Determine the details to display
-const displayedDetails = showAllDetails ? filteredDetails : filteredDetails.slice(0, 6);
-
-// Function to format price in Indian currency style
+// Format Indian currency style
 function formatIndianPrice(price) {
     if (price >= 10000000) {
-        // Convert to Crores
         return `${(price / 10000000).toFixed(2)} Cr`;
     } else if (price >= 100000) {
-        // Convert to Lakhs
         return `${(price / 100000).toFixed(2)} Lac`;
     } else {
-        // Return the price as is
         return `₹${price.toLocaleString("en-IN")}`;
     }
 }
+
+// Property details array
+const allDetails = [
+    { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
+    { label: 'Property Type', value: property.propertyType || null },
+    { label: 'Purpose', value: property.availableFor || null },
+    { label: 'Rent per Month', value: property.rentPerMonth ? formatIndianPrice(property.rentPerMonth) : null },
+    { label: 'Tenant Name', value: property.seoDiscription || null },
+    { label: 'Floor', value: property.floor || null },
+    { label: 'Car Parking', value: property.carParking || null },
+    { label: 'Bike Parking', value: property.bikeParking || null },
+    { label: 'DG Back Up', value: property.dgBackup || null },
+    { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea || null },
+    { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft || null },
+    { label: 'Security Deposit', value: property.deposit || null },
+    { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation || null },
+    { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
+    { label: 'Property Taxes', value: property.propertyTax || null },
+    { label: 'GST on rent and maintenance', value: property.gstOnRent || null },
+    { label: 'Furniture Done by', value: property.furnitureDoneBy || null },
+];
+
+const filteredDetails = allDetails.filter(
+    detail => detail.value && detail.value.toLowerCase() !== 'null'
+  );
+  
+  const displayedDetails = showAllDetails ? filteredDetails : filteredDetails.slice(0, 6);
+  
+// Render logic or UI rendering follows.
+
+
 
 
     return (
@@ -363,7 +368,8 @@ function formatIndianPrice(price) {
                         Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
                     </div>
                     <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
-                        ₹<b>{recentProperty.basePrice}</b>
+                   { formatIndianPrice(property.rentPerMonth)}
+                        {/* ₹<b>{recentProperty.rentPerMonth}</b> */}
                     </div>
                 </div>
             </div>

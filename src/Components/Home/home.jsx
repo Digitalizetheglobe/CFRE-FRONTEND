@@ -14,8 +14,8 @@ import StickyButton from '../StickyButton/StickyButton.jsx';
 const Home = () => {
   return (
     <>
-    
-      {/* <StickyButton/> */}
+      <Header />
+      <StickyButton/>
       <Hero />
       <Blogslider />
       <Card />

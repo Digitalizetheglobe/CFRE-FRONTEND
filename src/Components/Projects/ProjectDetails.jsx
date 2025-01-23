@@ -352,25 +352,25 @@ const ProjectDetails = () => {
                                 <div className="flex flex-col md:flex-row gap-4">
                                     {/* Image 1 */}
                                     <div className="relative w-full md:w-1/2">
-                                       {project?.floorPlanImages?.length > 0 ? (
+                                    {project?.floorPlanImages?.length > 0 ? (
                                         <Slider {...settings}>
-                                        {project.floorPlanImages.map((image, index) => (
-                                            <div key={index}>
-                                            <img
-                                                src={`https://cfrecpune.com/${image}`}
-                                                alt={`Project ${index + 1}`}
-                                                className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                            />
-                                            </div>
-                                        ))}
+                                            {project.floorPlanImages.map((image, index) => (
+                                                <div key={index}>
+                                                    <img
+                                                        src={`https://cfrecpune.com/${image}`}
+                                                        alt={`Project ${index + 1}`}
+                                                        className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                                                    />
+                                                </div>
+                                            ))}
                                         </Slider>
                                     ) : (
                                         <div className="flex gap-10 relative w-full md:w-1/2">
-                                        <img src={cpFP1} alt="Floor Plan 1 " className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
-                                        <img src={cpFP2} alt="Floor Plan 1 " className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
-
-                                    </div>
+                                            <img src={cpFP1} alt="Floor Plan 1" className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
+                                            <img src={cpFP2} alt="Floor Plan 2" className="w-[600px] h-48 rounded-md shadow-md blur-sm" />
+                                        </div>
                                     )}
+
                                 
                                     </div>
                                    

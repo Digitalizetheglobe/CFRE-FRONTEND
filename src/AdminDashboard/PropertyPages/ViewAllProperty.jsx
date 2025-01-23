@@ -23,28 +23,43 @@ import { ToastContainer, toast } from 'react-toastify';
       }));
     };
     
+    // const handleFileChange = (e) => {
+    //   const files = Array.from(e.target.files);
+  
+    //   const newImages = files.map((file) => ({
+    //     file,
+    //     url: URL.createObjectURL(file),
+    //   }));
+  
+    //   setEditedProperty((prev) => ({
+    //     ...prev,
+    //     multiplePropertyImages: [...(prev.multiplePropertyImages || []), ...newImages],
+    //   }));
+    // };
+  
+    // const handleRemoveImage = (index) => {
+    //   setEditedProperty((prev) => {
+    //     const updatedImages = [...prev.multiplePropertyImages];
+    //     updatedImages.splice(index, 1);
+    //     return { ...prev, multiplePropertyImages: updatedImages };
+    //   });
+    // };
     const handleFileChange = (e) => {
       const files = Array.from(e.target.files);
-  
-      const newImages = files.map((file) => ({
-        file,
-        url: URL.createObjectURL(file),
-      }));
-  
       setEditedProperty((prev) => ({
         ...prev,
-        multiplePropertyImages: [...(prev.multiplePropertyImages || []), ...newImages],
+        multiplePropertyImages: [...(prev.multiplePropertyImages || []), ...files],
       }));
     };
-  
-    const handleRemoveImage = (index) => {
-      setEditedProperty((prev) => {
-        const updatedImages = [...prev.multiplePropertyImages];
-        updatedImages.splice(index, 1);
-        return { ...prev, multiplePropertyImages: updatedImages };
-      });
+    
+    const handleRemoveImage = (indexToRemove) => {
+      setEditedProperty((prev) => ({
+        ...prev,
+        multiplePropertyImages: prev.multiplePropertyImages.filter(
+          (_, index) => index !== indexToRemove
+        ),
+      }));
     };
-  
     const handleSave = () => {
       if (!editedProperty.buildingName) {
         alert("Building name is required!");
@@ -107,12 +122,21 @@ import { ToastContainer, toast } from 'react-toastify';
 
                 return (
                   <div key={index} className="relative">
-                    <img
+                   <img
                       src={imageUrl}
                       alt={`property-${index}`}
                       className="border rounded"
-                      style={{ width: "70px", height: "70px", objectFit: "cover" }}
+                      style={{
+                        width: "70px",
+                        height: "70px",
+                        objectFit: "cover",
+                      }}
+                      onError={(e) => {
+                        e.target.onerror = null; // Prevents infinite loop if fallback also fails
+                        e.target.src = "https://via.placeholder.com/70"; // Fallback image
+                      }}
                     />
+
                     <button
                       type="button"
                       onClick={() => handleRemoveImage(index)}
@@ -732,6 +756,8 @@ const handleSaveChanges = (updatedProperty) => {
       updatedProperty.multiplePropertyImages.forEach((image) => {
         if (image instanceof File) {
           formData.append("multiplePropertyImages", image);
+        } else {
+          formData.append("existingImages[]", image); // Existing URL
         }
       });
     } else {
