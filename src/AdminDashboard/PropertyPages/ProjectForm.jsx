@@ -13,6 +13,7 @@ const ProjectForm = () => {
         city: '',
         location: '',
         commencementCertificate: '',
+        maintenancePersqf: '',
         occupancyCertificate: '',
         approvedBy: '',
         specification: '',
@@ -50,6 +51,16 @@ const ProjectForm = () => {
             if (name === 'projectName') {
                 updatedData.slug = convertToSlug(value);
             }
+
+            if (['projectArea', 'price'].includes(name)) {
+              const { projectArea, price } = updatedData;
+              if (projectArea && price) {
+                  // Example calculation: price per square foot
+                  updatedData.maintenancePersqf = (price / projectArea).toFixed(2);
+              } else {
+                  updatedData.maintenancePersqf = ''; // Clear if not calculable
+              }
+          }
             return updatedData;
         });
     };

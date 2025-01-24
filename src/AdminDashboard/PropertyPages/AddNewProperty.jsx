@@ -2,53 +2,54 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
 // import AdminNavbar from '../AdminNavbar';
 const AddNewProperty = () => {
   const [formData, setFormData] = useState({
-    buildingName: '',
-    unitNo: '',
-    propertyType: '',
-    propertySubtype: '',
-    floor: '',
-    location: '',
-    city: '',
-    buArea: '',
-    carpetArea: '',
-    carParking: '',
-    bikeParking: '',
-    dgBackup: '',
-    cafeteria: '',
-    furnishing: '',
-    meetingRoom: '',
-    ws: '',
-    cabin: '',
-    conferenceRoom: '',
-    otherFurniture: '',
-    furnitureDoneBy: '',
-    agreementPeriod: '',
-    lockInPeriod: '',
-    rentStartFrom: '',
-    lockingPeriod: '',
-    rentPerMonthRsPerSqFt: '',
-    rentPerMonth: '',
-    deposit: '',
-    yearlyEscalation: '',
-    rentPerSqFtBuiltUpArea: '',
-    maintenancePerSqFt: '',
-    agreementCharges: '',
-    propertyTax: '',
-    gstOnRent: '',
-    basePrice: '',
-    governmentTaxes: '',
-    slug: '',
-    seoKeywords: '',
-    seoDescription: '',
-    seoTitle: '',
-    amenities: '',
-    availableFor: '',
+    buildingName: "",
+    aboutProperty: "",
+    unitNo: "",
+    propertyType: "",
+    propertySubtype: "",
+    floor: "",
+    location: "",
+    city: "",
+    buArea: "",
+    carpetArea: "",
+    carParking: "",
+    bikeParking: "",
+    dgBackup: "",
+    cafeteria: "",
+    furnishing: "",
+    meetingRoom: "",
+    ws: "",
+    cabin: "",
+    conferenceRoom: "",
+    otherFurniture: "",
+    furnitureDoneBy: "",
+    agreementPeriod: "",
+    lockInPeriod: "",
+    rentStartFrom: "",
+    lockingPeriod: "",
+    rentPerMonthRsPerSqFt: "",
+    rentPerMonth: "",
+    deposit: "",
+    yearlyEscalation: "",
+    rentPerSqFtBuiltUpArea: "",
+    maintenancePerSqFt: "",
+    agreementCharges: "",
+    propertyTax: "",
+    gstOnRent: "",
+    basePrice: "",
+    governmentTaxes: "",
+    slug: "",
+    seoKeywords: "",
+    seoDescription: "",
+    seoTitle: "",
+    amenities: "",
+    availableFor: "",
   });
 
+  const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
 
   const handleChange = (e) => {
@@ -85,105 +86,122 @@ const AddNewProperty = () => {
       url: URL.createObjectURL(file),
     }));
     setImages((prevImages) => [...prevImages, ...newImages]);
+    setFiles((prevFiles) => [...prevFiles, ...files]);
   };
 
   const removeImage = (url) => {
     setImages((prevImages) => prevImages.filter((img) => img.url !== url));
+    setFiles((prevFiles) =>
+      prevFiles.filter(
+        (file, index) =>
+          URL.createObjectURL(file) !== url // Match file URL to remove the correct file
+      )
+    );
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const formDataToSend = new FormData();
-  
-    // Append form data
-    for (const [key, value] of Object.entries(formData)) {
-      formDataToSend.append(key, value);
-    }
-  
-    // Append files
-    images.forEach((image) => {
-      formDataToSend.append('multiplePropertyImages', image.file);
-    });
-  
-    try {
-      const response = await axios.post('https://cfrecpune.com/cfreproperties', formDataToSend, {
+  e.preventDefault();
+
+  const formDataToSend = new FormData();
+
+  // Append all form fields
+  for (const [key, value] of Object.entries(formData)) {
+    formDataToSend.append(key, value);
+  }
+
+  // Append all images/files
+  for (const file of files) {
+    formDataToSend.append("multiplePropertyImages", file);
+  }
+
+  // Debug: Log payload before sending
+  for (let pair of formDataToSend.entries()) {
+    console.log(`${pair[0]}: ${pair[1]}`);
+  }
+
+  try {
+    const response = await axios.post(
+      "https://cfrecpune.com/cfreproperties",
+      formDataToSend,
+      {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
-      });
-  
-      console.log('Success:', response.data);
-  
-      toast.success('Property added successfully!', {
+      }
+    );
+
+    console.log("Success:", response.data);
+
+    toast.success("Property added successfully!", {
+      position: "top-center",
+    });
+
+    // Reset form and state
+    setFormData({
+      buildingName: "",
+      aboutProperty: "",
+      unitNo: "",
+      propertyType: "",
+      propertySubtype: "",
+      floor: "",
+      location: "",
+      city: "",
+      buArea: "",
+      carpetArea: "",
+      carParking: "",
+      bikeParking: "",
+      dgBackup: "",
+      cafeteria: "",
+      furnishing: "",
+      meetingRoom: "",
+      ws: "",
+      cabin: "",
+      conferenceRoom: "",
+      otherFurniture: "",
+      furnitureDoneBy: "",
+      agreementPeriod: "",
+      lockInPeriod: "",
+      rentStartFrom: "",
+      lockingPeriod: "",
+      rentPerMonthRsPerSqFt: "",
+      rentPerMonth: "",
+      deposit: "",
+      yearlyEscalation: "",
+      rentPerSqFtBuiltUpArea: "",
+      maintenancePerSqFt: "",
+      agreementCharges: "",
+      propertyTax: "",
+      gstOnRent: "",
+      basePrice: "",
+      governmentTaxes: "",
+      slug: "",
+      seoKeywords: "",
+      seoDescription: "",
+      seoTitle: "",
+      amenities: "",
+      availableFor: "",
+    });
+    setFiles([]);
+    setImages([]);
+  } catch (error) {
+    // Handle errors
+    if (error.response) {
+      console.error("Error:", error.response.data);
+      toast.error(
+        `Failed to add property: ${error.response.data.message}`,
+        {
+          position: "top-center",
+        }
+      );
+    } else {
+      console.error("Error:", error.message);
+      toast.error("Failed to add property. Please try again.", {
         position: "top-center",
       });
-  
-      // Refresh the page after success
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000); // Optional delay for the user to see the success message
-  
-      // Reset the form and files (optional if you're refreshing the page)
-      setFormData({
-        buildingName: '',
-        unitNo: '',
-        propertyType: '',
-        propertySubtype: '',
-        floor: '',
-        location: '',
-        city: '',
-        buArea: '',
-        carpetArea: '',
-        carParking: '',
-        bikeParking: '',
-        dgBackup: '',
-        cafeteria: '',
-        furnishing: '',
-        meetingRoom: '',
-        ws: '',
-        cabin: '',
-        conferenceRoom: '',
-        otherFurniture: '',
-        furnitureDoneBy: '',
-        agreementPeriod: '',
-        lockInPeriod: '',
-        rentStartFrom: '',
-        lockingPeriod: '',
-        rentPerMonthRsPerSqFt: '',
-        rentPerMonth: '',
-        deposit: '',
-        yearlyEscalation: '',
-        rentPerSqFtBuiltUpArea: '',
-        maintenancePerSqFt: '',
-        agreementCharges: '',
-        propertyTax: '',
-        gstOnRent: '',
-        basePrice: '',
-        governmentTaxes: '',
-        slug: '',
-        seoKeywords: '',
-        seoDescription: '',
-        seoTitle: '',
-        amenities: '',
-        availableFor: '',
-      });
-      setImages([]);
-    } catch (error) {
-      if (error.response) {
-        console.error('Error:', error.response.data);
-        toast.error(`Failed to add property: ${error.response.data.message}`, {
-          position: "top-center",
-        });
-      } else {
-        console.error('Error:', error.message);
-        toast.error('Failed to add property. Please try again.', {
-          position: "top-center",
-        });
-      }
     }
-  };
-  
+  }
+};
+
   return (
     <>
       {/* <AdminNavbar /> */}
@@ -208,6 +226,7 @@ const AddNewProperty = () => {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 />
               </div>
+              
               {/* <div className="sm:col-span-3">
       <label htmlFor="propertyImages" className="block text-sm font-medium leading-6 text-gray-900">
         Property Images
@@ -230,48 +249,28 @@ const AddNewProperty = () => {
           Multiple Property Images
         </label>
         <input
-        type="file"
-        multiple
-        accept="image/*"
-        onChange={handleFileChange}
-      />
+          id="multiplePropertyImages"
+          name="multiplePropertyImages"
+          type="file"
+          multiple
+          onChange={handleFileChange}
+          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+        />
       </div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-        {images.map((image) => (
-          <div
-            key={image.url}
-            style={{
-              position: 'relative',
-              width: '70px',
-              height: '70px',
-            }}
-          >
+      <div className="mt-4 flex flex-wrap gap-4">
+        {images.map((img, index) => (
+          <div key={index} className="relative group">
             <img
-              src={image.url}
-              alt="uploaded"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+              src={img.url}
+              alt={`Uploaded ${index}`}
+              className="w-[70px] h-auto rounded shadow"
             />
             <button
-              type="button"
-              onClick={() => removeImage(image.url)}
-              style={{
-                position: 'absolute',
-                top: '5px',
-                right: '5px',
-                backgroundColor: 'red',
-                color: 'white',
-                border: 'none',
-                borderRadius: '50%',
-                width: '20px',
-                height: '20px',
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
+              onClick={() => removeImage(img.url)}
+              className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
             >
-              ×
+              X
             </button>
           </div>
         ))}
@@ -384,6 +383,23 @@ const AddNewProperty = () => {
                 </select>
               </div>
 
+              <div className="sm:col-span-3">
+      <label
+        htmlFor="aboutProperty"
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        ROI
+      </label>
+      <input
+        id="aboutProperty" // Use consistent ID
+        name="aboutProperty" // Name should match the formData key
+        type="text"
+        value={formData.aboutProperty} // Controlled input
+        onChange={handleChange} // Update state on change
+        required
+        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+      />
+    </div>
               <div className="sm:col-span-3">
   <label htmlFor="availableFor" className="block text-sm font-medium leading-6 text-gray-900">
     Available For
@@ -927,13 +943,9 @@ const AddNewProperty = () => {
 
 
         <div className="mt-6 flex items-center justify-center gap-x-6">
-          <Link
-            to="/dashboard">
-              <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+          <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
             Cancel
           </button>
-            </Link>
-           
           <button
             type="submit"
             className="rounded-md bg-[#d84a48] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#b03b3a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 pl-3"
