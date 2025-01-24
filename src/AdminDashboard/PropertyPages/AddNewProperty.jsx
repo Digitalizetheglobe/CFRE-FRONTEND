@@ -35,7 +35,7 @@ const AddNewProperty = () => {
     deposit: "",
     yearlyEscalation: "",
     rentPerSqFtBuiltUpArea: "",
-    maintenancePerSqFt: "",
+    maintenancePersqft: "",
     agreementCharges: "",
     propertyTax: "",
     gstOnRent: "",
@@ -168,7 +168,7 @@ const AddNewProperty = () => {
       deposit: "",
       yearlyEscalation: "",
       rentPerSqFtBuiltUpArea: "",
-      maintenancePerSqFt: "",
+      maintenancePersqft: "",
       agreementCharges: "",
       propertyTax: "",
       gstOnRent: "",
@@ -739,14 +739,14 @@ const AddNewProperty = () => {
               </div>
 
               <div className="sm:col-span-3">
-                <label htmlFor="maintenancePerSqFt" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="maintenancePersqft" className="block text-sm font-medium leading-6 text-gray-900">
                   Maintenance per sq. ft. (On Chargeable Area)
                 </label>
                 <input
-                  id="maintenancePerSqFt"
-                  name="maintenancePerSqFt"
+                  id="maintenancePersqft"
+                  name="maintenancePersqft"
                   type="text"
-                  value={formData.maintenancePerSqFt}
+                  value={formData.maintenancePersqft}
                   onChange={handleChange}
 
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
