@@ -368,11 +368,10 @@ const SaleInvestPropertyDetail = () => {
            onClick={() => handlePropertyClick(recentProperty.slug)}
          >
            <img
-  src={`${recentProperty.multiplePropertyImages && recentProperty.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${recentProperty.multiplePropertyImages[0]}` : defaultImage}`}
-  alt={recentProperty.title}
-  className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+    src={defaultImage} 
+    alt={recentProperty.title}
+    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
 />
-
          
            {/* Property Details */}
            <div>
