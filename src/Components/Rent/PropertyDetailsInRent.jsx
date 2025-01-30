@@ -80,7 +80,23 @@ const PropertyDetailInRent = () => {
             }
         };
     
+        
+    
+        const fetchProperties = async () => {
+            try {
+                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                // Sort properties by 'createdAt' in descending order and take the latest 5
+                const sortedProperties = response.data
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                    .slice(0, 5);
+                setRecentProperties(sortedProperties);
+            } catch (error) {
+                console.error('Error fetching properties:', error);
+            }
+        };
+    
         fetchProperty();
+        fetchProperties();
     }, [slug]);
     
     

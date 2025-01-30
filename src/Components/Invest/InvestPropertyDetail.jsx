@@ -354,11 +354,12 @@ const filteredDetails = allDetails.filter(
                 className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
                 onClick={() => handlePropertyClick(recentProperty.slug)}
             >
-                <img
-    src={`${recentProperty.multiplePropertyImages ? `https://cfrecpune.com/${recentProperty.multiplePropertyImages}` : defaultImage}`}
-    alt={recentProperty.title}
-    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+              <img
+  src={`${recentProperty.multiplePropertyImages && recentProperty.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${recentProperty.multiplePropertyImages[0]}` : defaultImage}`}
+  alt={recentProperty.title}
+  className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
 />
+
 
                 <div>
                     <div className="md:text-lg text-sm font-bold text-gray-800">

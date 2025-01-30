@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../AdminNavbar';
-
+import { FaSearch } from "react-icons/fa"; 
 // Modal Component
-const PropertyModal = ({ property, onSave, onClose , initialImages = []  } ) => {
+const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
   const [editedProperty, setEditedProperty] = useState({ ...property });
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [multiplePropertyImages, setMultiplePropertyImages] = useState(initialImages);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,13 +15,9 @@ const PropertyModal = ({ property, onSave, onClose , initialImages = []  } ) => 
     }));
   };
 
-  
-  const [multiplePropertyImages, setMultiplePropertyImages] = useState(
-    initialImages
-  );
-
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
+    setSelectedFiles(files); // Store new selected files separately
     setMultiplePropertyImages((prev) => [...prev, ...files]);
   };
 
@@ -29,17 +26,15 @@ const PropertyModal = ({ property, onSave, onClose , initialImages = []  } ) => 
       prev.filter((_, index) => index !== indexToRemove)
     );
   };
-  
 
   const handleSave = () => {
-    const images = editedProperty.multiplePropertyImages || [];
+    const images = multiplePropertyImages; // Use updated images array
     setEditedProperty((prev) => ({
       ...prev,
       multiplePropertyImages: images,
     }));
     onSave(editedProperty, selectedFiles);
   };
-
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -590,9 +585,12 @@ const PropertyModal = ({ property, onSave, onClose , initialImages = []  } ) => 
 
 
 const ViewAllProperty = () => {
-  const [properties, setProperties] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [properties, setProperties] = useState([]); // All properties
+  const [filteredProperties, setFilteredProperties] = useState([]); // Filtered properties for search
+  const [toggleStatus, setToggleStatus] = useState({}); // Toggle state
+  const [selectedProperty, setSelectedProperty] = useState(null); // Selected property for editing
+  const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const [searchQuery, setSearchQuery] = useState(""); // Search query
 
   useEffect(() => {
     fetch('https://cfrecpune.com/cfreproperties')
@@ -606,6 +604,7 @@ const ViewAllProperty = () => {
         console.log('Fetched properties:', data); // Debugging log
         if (Array.isArray(data)) {
           setProperties(data);
+          setFilteredProperties(data); 
         } else {
           console.error('Unexpected response format:', data);
           setProperties([]); // Default to empty array
@@ -621,7 +620,25 @@ const ViewAllProperty = () => {
     setSelectedProperty(property);
     setShowModal(true);
   };
+  const handleSearchChange = (e) => {
+    const query = e.target.value?.toLowerCase() || ""; // Convert input to lowercase or default to an empty string
+    setSearchQuery(query);
 
+  
+  // Filter properties safely
+    const filtered = properties.filter((property) => {
+      return (
+        property.buildingName?.toLowerCase().includes(query) || // Match building name
+        property.location?.toLowerCase().includes(query) || // Match location
+        property.city?.toLowerCase().includes(query) || // Match city
+        property.propertySubtype?.toLowerCase().includes(query) || // Match property subtype
+        property.cpropertyType?.toLowerCase().includes(query) || // Match property type
+        property.availableFor?.toLowerCase().includes(query) // Match availability
+      );
+    });
+  
+    setFilteredProperties(filtered); // Update the filtered list
+  };
   const handleSaveChanges = (updatedProperty, files) => {
     const formData = new FormData();
   
@@ -670,6 +687,9 @@ const ViewAllProperty = () => {
       }
   
       setProperties((prev) => prev.filter((property) => property.id !== id)); // Update state after deletion
+      setFilteredProperties((prev) =>
+        prev.filter((property) => property.id !== id)
+      );
       console.log("Property deleted successfully.");
     } catch (error) {
       console.error("Error deleting property:", error);
@@ -680,12 +700,24 @@ const ViewAllProperty = () => {
     <>
       <AdminNavbar />
       <div className="container mx-auto p-8">
+      <div className="flex justify-center mb-6">
+          <div className="relative w-full max-w-md">
+            <input
+              type="text"
+              placeholder="Search by Building Name, Location, or City"
+              value={searchQuery}
+              onChange={handleSearchChange} // Update on every keypress
+              className="w-full border rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
+            />
+            <FaSearch className="absolute top-3 right-3 text-gray-400" />
+          </div>
+        </div>
         <h2 className="text-base font-bold leading-7 text-gray-900 text-center" style={{ fontSize: '20px' }}>
           All Properties
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
-          {properties.length > 0 ? (
-            properties.map((property) => (
+          {filteredProperties.length > 0 ? (
+            filteredProperties.map((property) => (
               <div key={property.id} className="bg-white shadow-md rounded-lg p-6 border">
                 <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
                 <p className="text-gray-700 mb-2">

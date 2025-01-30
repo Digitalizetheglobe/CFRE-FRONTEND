@@ -53,7 +53,14 @@ const SaleInvestPropertyDetail = () => {
         const fetchProperty = async () => {
             try {
                 const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
-                setProperty(response.data);
+                const propertyData = response.data;
+    
+                // Check if the multiplePropertyImages is a string and parse it
+                if (typeof propertyData.multiplePropertyImages === 'string') {
+                    propertyData.multiplePropertyImages = JSON.parse(propertyData.multiplePropertyImages);
+                }
+    
+                setProperty(propertyData);
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
@@ -80,17 +87,13 @@ const SaleInvestPropertyDetail = () => {
         fetchProperties();
     }, [slug]);
     
+    
 
     if (!property) return <p className="text-center text-gray-500 mt-4">Property not found</p>;
 
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
-    const imageBaseURL = "https://cfrecpune.com/"; // Update this with your actual base URL
-
-const propertyImages = property?.multiplePropertyImages
-  ? JSON.parse(property.multiplePropertyImages).map(img => `${imageBaseURL}${img}`)
-  : [defaultImage]; // Fallback to a default image if no images are available
 
     const handlePropertyClick = (propertySlug) => {
         setLoading(true); // Set loading to true
@@ -197,23 +200,27 @@ const propertyImages = property?.multiplePropertyImages
                         <div className="flex flex-wrap lg:flex-nowrap">
                             <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
                             <div className="property-images">
-      {property?.multiplePropertyImages?.length > 0 ? (
-        <Slider {...settings}>
-        {propertyImages.map((image, index) => (
-          <div key={index} className="w-full">
-            <img src={image} alt={`Property Image ${index + 1}`} className="w-full h-auto rounded-lg" />
-          </div>
-        ))}
-      </Slider>
-      
-      ) : (
-        <img
-          src={Image}  // Provide a default image path
-          alt="Property"
-          className="w-full md:h-72 object-cover rounded-lg shadow-md"
-        />
-      )}
-    </div>
+  {property?.multiplePropertyImages?.length > 0 ? (
+    <Slider {...settings}>
+      {property.multiplePropertyImages.map((image, index) => (
+        <div key={index}>
+          <img
+            src={`https://cfrecpune.com/${image}`}
+            alt={`Property ${index + 1}`}
+            className="w-full md:h-72 object-cover rounded-lg shadow-md"
+          />
+        </div>
+      ))}
+    </Slider>
+  ) : (
+    <img
+      src={Image}  // Provide a default image path
+      alt="Property"
+      className="w-full md:h-72 object-cover rounded-lg shadow-md"
+    />
+  )}
+</div>
+
                             </div>
 
 
@@ -361,10 +368,11 @@ const propertyImages = property?.multiplePropertyImages
            onClick={() => handlePropertyClick(recentProperty.slug)}
          >
            <img
-    src={defaultImage} 
-    alt={recentProperty.title}
-    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+  src={`${recentProperty.multiplePropertyImages && recentProperty.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${recentProperty.multiplePropertyImages[0]}` : defaultImage}`}
+  alt={recentProperty.title}
+  className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
 />
+
          
            {/* Property Details */}
            <div>
