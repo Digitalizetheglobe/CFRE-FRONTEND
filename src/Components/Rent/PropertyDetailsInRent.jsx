@@ -63,32 +63,26 @@ const PropertyDetailInRent = () => {
             try {
                 const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
                 const data = response.data;
-                // Ensure multiplePropertyImages is an array
-                data.multiplePropertyImages = Array.isArray(data.multiplePropertyImages) ? data.multiplePropertyImages : [];
+    
+                // Parse multiplePropertyImages if it's a string
+                if (typeof data.multiplePropertyImages === "string") {
+                    try {
+                        data.multiplePropertyImages = JSON.parse(data.multiplePropertyImages);
+                    } catch (error) {
+                        console.error("Error parsing images:", error);
+                        data.multiplePropertyImages = []; // Set default empty array if parsing fails
+                    }
+                }
+    
                 setProperty(data);
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
         };
     
-        
-    
-        const fetchProperties = async () => {
-            try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                // Sort properties by 'createdAt' in descending order and take the latest 5
-                const sortedProperties = response.data
-                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                    .slice(0, 5);
-                setRecentProperties(sortedProperties);
-            } catch (error) {
-                console.error('Error fetching properties:', error);
-            }
-        };
-    
         fetchProperty();
-        fetchProperties();
     }, [slug]);
+    
     
 
     if (!property) return <p className="text-center text-gray-500 mt-4">Property not found</p>;

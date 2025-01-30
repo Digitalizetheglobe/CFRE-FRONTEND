@@ -1,96 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../AdminNavbar';
-import { FaSearch } from "react-icons/fa"; 
-import { ToastContainer, toast } from 'react-toastify';
 
 // Modal Component
+const PropertyModal = ({ property, onSave, onClose , initialImages = []  } ) => {
+  const [editedProperty, setEditedProperty] = useState({ ...property });
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
-  const PropertyModal = ({ property, onSave, onClose }) => {
-    const [editedProperty, setEditedProperty] = useState({
-      ...property,
-      multiplePropertyImages: Array.isArray(property.multiplePropertyImages)
-        ? property.multiplePropertyImages
-        : [],
-    });
-    
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProperty((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   
-    const handleChange = (e) => {
-      const { name, value } = e.target;
+  const [multiplePropertyImages, setMultiplePropertyImages] = useState(
+    initialImages
+  );
+
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    setMultiplePropertyImages((prev) => [...prev, ...files]);
+  };
+
+  const handleRemoveImage = (indexToRemove) => {
+    setMultiplePropertyImages((prev) =>
+      prev.filter((_, index) => index !== indexToRemove)
+    );
+  };
   
-      setEditedProperty((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    };
-    
-    // const handleFileChange = (e) => {
-    //   const files = Array.from(e.target.files);
-  
-    //   const newImages = files.map((file) => ({
-    //     file,
-    //     url: URL.createObjectURL(file),
-    //   }));
-  
-    //   setEditedProperty((prev) => ({
-    //     ...prev,
-    //     multiplePropertyImages: [...(prev.multiplePropertyImages || []), ...newImages],
-    //   }));
-    // };
-  
-    // const handleRemoveImage = (index) => {
-    //   setEditedProperty((prev) => {
-    //     const updatedImages = [...prev.multiplePropertyImages];
-    //     updatedImages.splice(index, 1);
-    //     return { ...prev, multiplePropertyImages: updatedImages };
-    //   });
-    // };
-    const handleFileChange = (e) => {
-      const files = Array.from(e.target.files);
-      setEditedProperty((prev) => ({
-        ...prev,
-        multiplePropertyImages: [...(prev.multiplePropertyImages || []), ...files],
-      }));
-    };
-    
-    const handleRemoveImage = (indexToRemove) => {
-      setEditedProperty((prev) => ({
-        ...prev,
-        multiplePropertyImages: prev.multiplePropertyImages.filter(
-          (_, index) => index !== indexToRemove
-        ),
-      }));
-    };
-    const handleSave = () => {
-      if (!editedProperty.buildingName) {
-        alert("Building name is required!");
-        return;
-      }
-  
-      const preparedProperty = {
-        ...editedProperty,
-        multiplePropertyImages: editedProperty.multiplePropertyImages.map((image) =>
-          image.file ? `uploads/${image.file.name}` : image
-        ),
-      };
-  
-      onSave(preparedProperty);
-    };
-  
-    useEffect(() => {
-      return () => {
-        editedProperty.multiplePropertyImages.forEach((image) => {
-          if (image.file) URL.revokeObjectURL(image.url);
-        });
-      };
-    }, [editedProperty.multiplePropertyImages]);
+
+  const handleSave = () => {
+    const images = editedProperty.multiplePropertyImages || [];
+    setEditedProperty((prev) => ({
+      ...prev,
+      multiplePropertyImages: images,
+    }));
+    onSave(editedProperty, selectedFiles);
+  };
+
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-lg max-h-screen overflow-y-auto">
-      <h2 className="text-xl font-bold text-center mb-4">Edit Property Details</h2>
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-screen-lg max-h-screen overflow-y-auto">
+        <h2 className="text-xl font-bold text-center mb-4">Edit Property Details</h2>
 
-      <div className="grid grid-cols-2 gap-4">
-        
-        <div className="mb-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="mb-4">
             <label className="block text-gray-700">Building Name:</label>
             <input
               type="text"
@@ -101,61 +58,50 @@ import { ToastContainer, toast } from 'react-toastify';
             />
           </div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700">Multiple Property Images:</label>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            name="multiplePropertyImages"
-            onChange={handleFileChange}
-            className="w-full p-2 border rounded"
-          />
+          <div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Property Images:</label>
+        <input
+          type="file"
+          multiple
+          onChange={handleFileChange}
+          className="w-full p-2 border rounded"
+        />
+      </div>
 
-        </div>
+      {/* Display Uploaded & API Response Images */}
+      <div className="flex flex-wrap gap-4">
+        {multiplePropertyImages.map((image, index) => {
+          const imageUrl =
+            typeof image === "string"
+              ? `https://cfrecpune.com/${image}`
+              : URL.createObjectURL(image);
 
-        <div className="flex flex-wrap gap-4">
-            {Array.isArray(editedProperty.multiplePropertyImages) &&
-              editedProperty.multiplePropertyImages.map((image, index) => {
-                const imageUrl =
-                  image instanceof File ? URL.createObjectURL(image) : image;
-
-                return (
-                  <div key={index} className="relative">
-                   <img
-                      src={imageUrl}
-                      alt={`property-${index}`}
-                      className="border rounded"
-                      style={{
-                        width: "70px",
-                        height: "70px",
-                        objectFit: "cover",
-                      }}
-                      onError={(e) => {
-                        e.target.onerror = null; // Prevents infinite loop if fallback also fails
-                        e.target.src = "https://via.placeholder.com/70"; // Fallback image
-                      }}
-                    />
-
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveImage(index)}
-                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
-                    >
-                      x
-                    </button>
-                  </div>
-                );
-              })}
-          </div>
+          return (
+            <div key={index} className="relative w-20 h-20">
+              <img
+                src={imageUrl}
+                alt={`property-${index}`}
+                className="w-full h-full object-cover rounded border"
+              />
+              <button
+                onClick={() => handleRemoveImage(index)}
+                className="absolute top-0 right-0 bg-red-500 text-white text-xs p-1 rounded"
+              >
+                X
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
 
 
 
 
-      
-      
-    
 
+
+          {/* all field */}
           <div className="mb-4">
             <label className="block text-gray-700">Unit No:</label>
             <input
@@ -615,248 +561,147 @@ import { ToastContainer, toast } from 'react-toastify';
               className="w-full p-2 border rounded"
             />
           </div>
-        </div>
 
-        {/* Add more form fields as needed */}
+
+
+
+
+        </div>
 
         <div className="flex items-center justify-between mt-4">
-            <div className="flex space-x-2">
-              <button
-                onClick={handleSave}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
-              >
-                Update
-              </button>
-              {/* <button
-                onClick={handleDelete}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-              >
-                Delete
-              </button> */}
-            </div>
-
-            {/* Right-aligned button */}
-            <button
-              onClick={onClose}
-              className="bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded"
-            >
-              Cancel
-            </button>
+          <button
+            onClick={handleSave}
+            className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+          >
+            Update
+          </button>
+          <button
+            onClick={onClose}
+            className="bg-gray-500 hover:bg-gray-700 text-white px-4 py-2 rounded"
+          >
+            Cancel
+          </button>
         </div>
-
       </div>
     </div>
-
-
   );
 };
 
+
+
 const ViewAllProperty = () => {
-  const [properties, setProperties] = useState([]); // All properties
-  const [filteredProperties, setFilteredProperties] = useState([]); // Filtered properties for search
-  const [toggleStatus, setToggleStatus] = useState({}); // Toggle state
-  const [selectedProperty, setSelectedProperty] = useState(null); // Selected property for editing
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
-  const [searchQuery, setSearchQuery] = useState(""); // Search query
+  const [properties, setProperties] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
   useEffect(() => {
-    fetch("https://cfrecpune.com/cfreproperties")
-      .then((response) => response.json())
+    fetch('https://cfrecpune.com/cfreproperties')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
-        setProperties(data); // Set the full list of properties
-        setFilteredProperties(data); // Initially show all properties
-        const initialToggleState = {};
-        data.forEach((property, index) => {
-          initialToggleState[index] = true; // Set all toggles to "On"
-        });
-        setToggleStatus(initialToggleState);
+        console.log('Fetched properties:', data); // Debugging log
+        if (Array.isArray(data)) {
+          setProperties(data);
+        } else {
+          console.error('Unexpected response format:', data);
+          setProperties([]); // Default to empty array
+        }
       })
       .catch((error) => {
-        console.error("Error fetching properties:", error);
+        console.error('Error fetching properties:', error);
+        setProperties([]); // Fallback to prevent map issues
       });
   }, []);
-
-  const handleToggle = (index) => {
-    setToggleStatus({
-      ...toggleStatus,
-      [index]: !toggleStatus[index], // Toggle the state
-    });
-  };
 
   const handleEditClick = (property) => {
     setSelectedProperty(property);
     setShowModal(true);
   };
 
-  // Handle search input
-  const handleSearchChange = (e) => {
-    const query = e.target.value?.toLowerCase() || ""; // Convert input to lowercase or default to an empty string
-    setSearchQuery(query);
+  const handleSaveChanges = (updatedProperty, files) => {
+    const formData = new FormData();
   
-    // Filter properties safely
-    const filtered = properties.filter((property) => {
-      return (
-        property.buildingName?.toLowerCase().includes(query) || // Match building name
-        property.location?.toLowerCase().includes(query) || // Match location
-        property.city?.toLowerCase().includes(query) || // Match city
-        property.propertySubtype?.toLowerCase().includes(query) || // Match property subtype
-        property.cpropertyType?.toLowerCase().includes(query) || // Match property type
-        property.availableFor?.toLowerCase().includes(query) // Match availability
-      );
+    // Append all fields except images
+    Object.entries(updatedProperty).forEach(([key, value]) => {
+      if (key !== 'multiplePropertyImages') {
+        formData.append(key, value);
+      }
     });
   
-    setFilteredProperties(filtered); // Update the filtered list
+    // Append the multiplePropertyImages as a JSON string
+    formData.append('multiplePropertyImages', JSON.stringify(updatedProperty.multiplePropertyImages));
+  
+    // Append new images
+    Array.from(files).forEach((file) => formData.append('propertyImages', file));
+  //https://cfrecpune.com
+    fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
+      method: 'PUT',
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProperties((prev) => prev.map((p) => (p.id === data.id ? data : p))); // Update local state
+        setShowModal(false); // Close the modal
+      })
+      .catch((error) => {
+        console.error('Error updating property:', error);
+      });
+  };
+
+  const deletePropertyById = async (id) => {
+    if (!id) return;
+  
+    try {
+      const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
+        method: "DELETE",
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      setProperties((prev) => prev.filter((property) => property.id !== id)); // Update state after deletion
+      console.log("Property deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting property:", error);
+    }
   };
   
-
-
-  function formatIndianPrice(price) {
-    if (price >= 10000000) {
-        // Convert to Crores
-        return `${(price / 10000000).toFixed(2)} Cr`;
-      } else if (price >= 100000) {
-        // Convert to Lakhs
-        return `${(price / 100000).toFixed(2)} Lac`;
-      } else {
-        // Return the price as is
-        return `₹${price.toLocaleString("en-IN")}`;
-      }
-    // const x = price.toString();
-    // const lastThree = x.substring(x.length - 3);
-    // const otherNumbers = x.substring(0, x.length - 3);
-    // const formatted = otherNumbers !== '' ? otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + lastThree : lastThree;
-    // return formatted;
-}
-const deletePropertyById = async (id) => {
-  try {
-    const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      console.log("Property deleted successfully");
-      alert("Property deleted successfully");
-      // Remove the deleted property from state
-      setProperties((prev) => prev.filter((property) => property.id !== id));
-      setFilteredProperties((prev) =>
-        prev.filter((property) => property.id !== id)
-      );
-    } else {
-      console.error("Failed to delete property");
-    }
-  } catch (error) {
-    console.error("Error deleting property:", error);
-  }
-};
-const handleSaveChanges = (updatedProperty) => {
-  const formData = new FormData();
-
-  // Add all property fields to FormData
-  for (const key in updatedProperty) {
-    if (key === "multiplePropertyImages") {
-      updatedProperty.multiplePropertyImages.forEach((image) => {
-        if (image instanceof File) {
-          formData.append("multiplePropertyImages", image);
-        } else {
-          formData.append("existingImages[]", image); // Existing URL
-        }
-      });
-    } else {
-      formData.append(key, updatedProperty[key]);
-    }
-  }
-
-  fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
-    method: "PUT",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      setProperties((prev) =>
-        prev.map((p) => (p.id === data.id ? data : p))
-      );
-      setShowModal(false); // Close modal
-    })
-    .catch((error) => {
-      console.error("Error updating property:", error);
-    });
-};
-
-
   return (
     <>
       <AdminNavbar />
       <div className="container mx-auto p-8">
-        {/* Search Bar */}
-        <div className="flex justify-center mb-6">
-          <div className="relative w-full max-w-md">
-            <input
-              type="text"
-              placeholder="Search by Building Name, Location, or City"
-              value={searchQuery}
-              onChange={handleSearchChange} // Update on every keypress
-              className="w-full border rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
-            />
-            <FaSearch className="absolute top-3 right-3 text-gray-400" />
-          </div>
-        </div>
-
-        <h2
-          className="text-base font-bold leading-7 text-gray-900 text-center"
-          style={{ fontSize: "20px" }}
-        >
+        <h2 className="text-base font-bold leading-7 text-gray-900 text-center" style={{ fontSize: '20px' }}>
           All Properties
         </h2>
-
-        {/* Render Filtered Properties */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
-  {filteredProperties.length > 0 ? (
-    filteredProperties.map((property, index) => (
-      <div
-        key={index}
-        className="bg-white shadow-md rounded-lg p-6 transform hover:scale-105 transition-transform duration-300 border"
-        style={{ borderColor: "#d84a48", borderWidth: "1px" }}
-      >
-        <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
-        <p className="text-gray-700 mb-2">
-          <strong>Location:</strong> {property.location}
-        </p>
-        <p className="text-gray-700 mb-2">
-          <strong>City:</strong> {property.city}
-        </p>
-        <p className="text-gray-700 mb-4">
-          <strong>Carpet Area:</strong> {property.carpetArea} sq. ft.
-        </p>
-        <p className="text-gray-700 mb-4">
-          <strong>Price:</strong> {formatIndianPrice(property.rentPerMonth)}
-        </p>
-        <p className="text-gray-700 mb-4">
-          <strong>Available For:</strong> {property.availableFor}
-        </p>
-
-        {/* Toggle Button */}
-        <div className="flex items-center justify-between">
-          <label className="inline-flex items-center">
-            <span className="mr-2 text-gray-700">Available</span>
-            <input
-              type="checkbox"
-              className="form-checkbox h-5 w-5 text-indigo-600"
-              checked={toggleStatus[index]}
-              onChange={() => handleToggle(index)}
-            />
-          </label>
-          <span
-            className={`ml-4 text-sm ${
-              toggleStatus[index] ? "text-green-500" : "text-red-500"
-            }`}
-          >
-            {toggleStatus[index] ? "On" : "Off"}
-          </span>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex justify-between mt-4">
-          {/* Delete Button */}
-          <button
+          {properties.length > 0 ? (
+            properties.map((property) => (
+              <div key={property.id} className="bg-white shadow-md rounded-lg p-6 border">
+                <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
+                <p className="text-gray-700 mb-2">
+                  <strong>Location:</strong> {property.location}
+                </p>
+                <p className="text-gray-700 mb-2">
+                  <strong>City:</strong> {property.city}
+                </p>
+                <div className="flex justify-between mt-4">
+                <button
+                  onClick={() => handleEditClick(property)}
+                  className="text-gray-600 hover:text-gray-900 mt-4"
+                >
+                  <i className="fas fa-edit"></i> Edit
+                </button>
+                <button
             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
             onClick={() => {
               if (window.confirm("Are you sure you want to delete this property?")) {
@@ -866,26 +711,14 @@ const handleSaveChanges = (updatedProperty) => {
           >
             Delete
           </button>
-
-          {/* Edit Button */}
-          <button
-            onClick={() => handleEditClick(property)}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Edit
-          </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-600 text-center">No properties available.</p>
+          )}
         </div>
-      </div>
-    ))
-  ) : (
-    <p className="text-center text-gray-500">
-      No properties found matching your search.
-    </p>
-  )}
-</div>
 
-
-        {/* Modal for editing property */}
         {showModal && selectedProperty && (
           <PropertyModal
             property={selectedProperty}
@@ -899,3 +732,6 @@ const handleSaveChanges = (updatedProperty) => {
 };
 
 export default ViewAllProperty;
+
+
+

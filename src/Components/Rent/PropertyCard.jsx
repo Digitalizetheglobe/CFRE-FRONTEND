@@ -9,7 +9,17 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
+    const imageArray = Array.isArray(property.multiplePropertyImages)
+    ? property.multiplePropertyImages
+    : property.multiplePropertyImages?.startsWith("[")
+    ? JSON.parse(property.multiplePropertyImages)
+    : property.multiplePropertyImages?.split(",") || [];
 
+// Get the first image or fallback image bhavik
+const firstImage = imageArray.length > 0 ? `https://cfrecpune.com/${imageArray[0].trim()}` : Image;
+
+// Debugging (optional)
+console.log("Parsed Image Array:", imageArray);
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] transition-transform duration-300 ease-in-out relative">
             {/* Share button */}
@@ -27,11 +37,13 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
             <div className="relative">
                 {/* Property image with a link to detailed view */}
                 <Link to={`/property-detail/${property.slug || property.id || ''}`}>
-                    <img
+                    {/* <img
                         className="w-full md:h-48 h-36 object-cover"
                         src={property.multiplePropertyImages && property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
                         alt={title}
-                    />
+                    /> */}
+                    <img className="w-full md:h-48 h-36 object-cover" src={firstImage} alt={title} />
+
                 </Link>
             </div>
 

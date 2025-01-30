@@ -86,6 +86,11 @@ const SaleInvestPropertyDetail = () => {
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
     };
+    const imageBaseURL = "https://cfrecpune.com/"; // Update this with your actual base URL
+
+const propertyImages = property?.multiplePropertyImages
+  ? JSON.parse(property.multiplePropertyImages).map(img => `${imageBaseURL}${img}`)
+  : [defaultImage]; // Fallback to a default image if no images are available
 
     const handlePropertyClick = (propertySlug) => {
         setLoading(true); // Set loading to true
@@ -194,16 +199,13 @@ const SaleInvestPropertyDetail = () => {
                             <div className="property-images">
       {property?.multiplePropertyImages?.length > 0 ? (
         <Slider {...settings}>
-          {property.multiplePropertyImages.map((image, index) => (
-            <div key={index}>
-              <img
-                src={`https://cfrecpune.com/${image}`}
-                alt={`Property ${index + 1}`}
-                className="w-full md:h-72 object-cover rounded-lg shadow-md"
-              />
-            </div>
-          ))}
-        </Slider>
+        {propertyImages.map((image, index) => (
+          <div key={index} className="w-full">
+            <img src={image} alt={`Property Image ${index + 1}`} className="w-full h-auto rounded-lg" />
+          </div>
+        ))}
+      </Slider>
+      
       ) : (
         <img
           src={Image}  // Provide a default image path

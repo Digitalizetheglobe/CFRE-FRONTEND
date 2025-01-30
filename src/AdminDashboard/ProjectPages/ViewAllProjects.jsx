@@ -56,44 +56,49 @@ const ProjectModal = ({ project, onSave, onClose }) => {
 };
 
 
-    const handleSave = async () => {
-        const payload = {
-            projectName: editedProject.projectName,
-            projectDetails: editedProject.projectDetails,
-            reraRegdNo: editedProject.reraRegdNo,
-            specification: editedProject.specification,
-            area: editedProject.area,
-            projectArea: editedProject.projectArea,
-            seoTitle: editedProject.seoTitle,
-            seoDescription: editedProject.seoDescription,
-            seoKeywords: editedProject.seoKeywords,
-            projectImages: editedProject.projectImages,
-            city: editedProject.city,
-            location: editedProject.location,
-            slug: editedProject.slug,
-            projectPlans: editedProject.projectPlans,
-        };
-    
-        try {
-            const response = await fetch(`https://cfrecpune.com/cfreprojects/${editedProject.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-    
-            if (!response.ok) {
-                throw new Error(`Failed to update project. Status: ${response.status}`);
-            }
-    
-            const data = await response.json();
-            console.log('Project updated successfully:', data);
-            onSave(data);
-        } catch (error) {
-            console.error('Error updating project:', error);
+const handleSave = async () => {
+    const formData = new FormData();
+
+    // Add non-file fields to FormData
+    formData.append("projectName", editedProject.projectName);
+    formData.append("projectDetails", editedProject.projectDetails);
+    formData.append("reraRegdNo", editedProject.reraRegdNo);
+    formData.append("specification", editedProject.specification);
+    formData.append("area", editedProject.area);
+    formData.append("projectArea", editedProject.projectArea);
+    formData.append("seoTitle", editedProject.seoTitle);
+    formData.append("seoDescription", editedProject.seoDescription);
+    formData.append("seoKeywords", editedProject.seoKeywords);
+    formData.append("city", editedProject.city);
+    formData.append("location", editedProject.location);
+    formData.append("slug", editedProject.slug);
+
+    // Add project plans
+    formData.append("projectPlans", JSON.stringify(editedProject.projectPlans));
+
+    // Add images to FormData
+    projectImages.forEach((image, index) => {
+        formData.append(`projectImages[${index}]`, image);
+    });
+
+    try {
+        const response = await fetch(`https://cfrecpune.com/cfreprojects/${editedProject.id}`, {
+            method: 'PUT',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to update project. Status: ${response.status}`);
         }
-    };
+
+        const data = await response.json();
+        console.log('Project updated successfully:', data);
+        onSave(data);
+    } catch (error) {
+        console.error('Error updating project:', error);
+    }
+};
+
     
     
     
