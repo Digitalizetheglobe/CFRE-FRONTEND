@@ -203,7 +203,7 @@ const RentYourProperty = () => {
     <>
       <Header />
       <Helmet>
-                    <title>Sell Your Property with CFRE Realty - Trusted Real Estate Services</title>
+                    <title>Rent Your Property with CFRE Realty - Trusted Real Estate Services</title>
                     <meta name="description" content="Unlock the potential of your property with CFR Realty. Our expert team provides comprehensive services to help you sell your property efficiently and at the best price. Contact us today for a free consultation!" />
                     <meta property="og:description" content="Unlock the potential of your property with CFR Realty. Our expert team provides comprehensive services to help you sell your property efficiently and at the best price. Contact us today for a free consultation!" />
                     <meta property="og:url" content="https://www.cfrerealty.com/SellYourProperty" />

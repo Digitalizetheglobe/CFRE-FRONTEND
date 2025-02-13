@@ -726,6 +726,15 @@ const ViewAllProperty = () => {
                 <p className="text-gray-700 mb-2">
                   <strong>City:</strong> {property.city}
                 </p>
+                <p className="text-gray-700 mb-2">
+                  <strong>Carpet Area:</strong> {property.city}
+                </p>
+                <p className="text-gray-700 mb-2">
+                  <strong>Price:</strong> {property.rentPerMonth}
+                </p>
+                <p className="text-gray-700 mb-2">
+                  <strong>Available For:</strong> {property.availableFor}
+                </p>
                 <div className="flex justify-between mt-4">
                 <button
                   onClick={() => handleEditClick(property)}
