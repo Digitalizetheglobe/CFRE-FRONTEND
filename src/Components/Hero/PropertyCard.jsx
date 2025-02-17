@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import OfficeImage from './Office space.jpeg';
 
 const PropertyCard = ({ property }) => {
-    const shareUrl = `https://www.cfrerealty.com/property-detail/${property.slug}`; // Use slug for share URL
+    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`; // Use slug for share URL
     const title = property.title;
 
     // Safely handle multiplePropertyImages
@@ -26,11 +26,13 @@ const PropertyCard = ({ property }) => {
 
             {/* Image with link to property detail */}
             <Link to={`/property-detail/${property.slug}`} className="relative block"> {/* Updated link */}
-                <img 
+            <img 
                     className="w-full h-48 object-cover cursor-pointer" 
-                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : OfficeImage}
+                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : OfficeImage} 
                     alt="Property" 
+                    onError={(e) => { e.target.src = OfficeImage; }} // Fallback to default image on error
                 />
+
             </Link>
 
             <div className="px-4 py-2">

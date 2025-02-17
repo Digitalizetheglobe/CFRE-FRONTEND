@@ -1,12 +1,12 @@
 import React from 'react';
 import { FaWhatsapp, FaShareAlt } from 'react-icons/fa'; // Importing Share icon from react-icons\
 import { Link } from 'react-router-dom'; // Import Link for navigation
-import Image from '../assets/ABC.jpeg'
+import  OfficeImage from '../assets/ABC.jpeg';
 
 const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail-invest/${property.slug}`;
     const title = property.title;
-
+    const images = property.multiplePropertyImages || [];
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg border border-gray-400  hover:scale-[1.02] relative">
             {/* Share button */}
@@ -22,14 +22,11 @@ const PropertyCard = ({ property, onEnquire }) => {
             </div>
         
             <Link to={`/property-detail-invest/${property.slug}`} className="relative">
-            <img
-                className="w-full md:h-48 h-32 object-cover"
-                src={
-                    property.multiplePropertyImages && property.multiplePropertyImages.length > 0
-                    ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
-                    : Image
-                }
-                alt="Property"
+            <img 
+                    className="w-full h-48 object-cover cursor-pointer" 
+                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : OfficeImage} 
+                    alt="Property" 
+                    onError={(e) => { e.target.src = OfficeImage; }} // Fallback to default image on error
                 />
 
                 
