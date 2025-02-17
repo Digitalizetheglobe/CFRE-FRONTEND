@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import Image from '../assets/ABC.jpeg';
 
 const PropertyCardSale = ({ property, onEnquire }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`;
+    const shareUrl = `https://www.cfrerealty.com/property-detail-sale/${property.slug}`;
     const title = property.title;
 
     // Safely parse the multiplePropertyImages

@@ -17,7 +17,10 @@ const InvestPropertyDetail = () => {
     const [isFormVisible, setFormVisible] = useState(false);
     const [showAllDetails, setShowAllDetails] = useState(false);
     const [loading, setLoading] = useState(false); 
-
+    const images = Array.isArray(property?.multiplePropertyImages)
+    ? property.multiplePropertyImages
+    : Object.values(property?.multiplePropertyImages || {});
+  
     const navigate = useNavigate(); // Initialize the navigate hook
     const settings = {
         dots: true,
@@ -116,24 +119,51 @@ function formatIndianPrice(price) {
 }
 
 // Property details array
+// const allDetails = [
+//     { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
+//     { label: 'Property Type', value: property.propertyType || null },
+//     { label: 'Purpose', value: property.availableFor || null },
+//     { label: 'Rent per Month', value: property.rentPerMonth ? formatIndianPrice(property.rentPerMonth) : null },
+//     { label: 'Tenant Name', value: property.seoDiscription || null },
+//     { label: 'Floor', value: property.floor || null },
+//     { label: 'Car Parking', value: property.carParking || null },
+//     { label: 'Bike Parking', value: property.bikeParking || null },
+//     { label: 'DG Back Up', value: property.dgBackup || null },
+//     { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea || null },
+//     { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft || null },
+//     { label: 'Security Deposit', value: property.deposit || null },
+//     { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation || null },
+//     { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
+//     { label: 'Agreement period', value: property.agreementPeriod },
+//     { label: 'Locking period', value: property.lockingPeriod },
+//     { label: 'Property Taxes', value: property.propertyTax || null },
+//     { label: 'GST on rent and maintenance', value: property.gstOnRent || null },
+//     { label: 'Furniture Done by', value: property.furnitureDoneBy || null },
+// ];
+
+// sonali changes 15 feb .
 const allDetails = [
     { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
-    { label: 'Property Type', value: property.propertyType || null },
-    { label: 'Purpose', value: property.availableFor || null },
+    { label: 'Property Type', value: property.propertyType },
+    { label: 'Unit No.', value: property.unitNo },
+    { label: 'Purpose', value: property.availableFor },
     { label: 'Rent per Month', value: property.rentPerMonth ? formatIndianPrice(property.rentPerMonth) : null },
-    { label: 'Tenant Name', value: property.seoDiscription || null },
-    { label: 'Floor', value: property.floor || null },
-    { label: 'Car Parking', value: property.carParking || null },
-    { label: 'Bike Parking', value: property.bikeParking || null },
-    { label: 'DG Back Up', value: property.dgBackup || null },
-    { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea || null },
-    { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft || null },
-    { label: 'Security Deposit', value: property.deposit || null },
-    { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation || null },
+    { label: 'Tenant Name', value: property.seoDiscription },
+    { label: 'Floor', value: property.floor },
+    { label: 'Car Parking', value: property.carParking },
+    { label: 'Bike Parking', value: property.bikeParking },
+    { label: 'DG Back Up', value: property.dgBackup },
+    { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea ? formatIndianPrice(property.rentPerSqFtBuiltUpArea): null },
+    { label: 'Maintenance/SqFt on Built-up', value: property.maintenancePersqft }, 
+    { label: 'Security Deposit', value: property.deposit ? formatIndianPrice(property.deposit) : null },
+    { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation },
     { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
-    { label: 'Property Taxes', value: property.propertyTax || null },
-    { label: 'GST on rent and maintenance', value: property.gstOnRent || null },
-    { label: 'Furniture Done by', value: property.furnitureDoneBy || null },
+    { label: 'Agreement Period', value: `${property.agreementPeriod} year` },
+    { label: 'Lock-In Period', value: `${property.lockingPeriod} year` },
+    { label: 'Rent Start From', value: `${property.rentStartFrom} ` },
+    { label: 'Property Taxes', value: property.propertyTax },
+    { label: 'GST on rent and maintenance', value: property.gstOnRent },
+    { label: 'Furniture Done by', value: property.furnitureDoneBy },
 ];
 
 const filteredDetails = allDetails.filter(
@@ -187,26 +217,27 @@ const filteredDetails = allDetails.filter(
                         <div className="flex flex-wrap lg:flex-nowrap">
                             <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
                             <div className="property-images">
-      {property?.multiplePropertyImages?.length > 0 ? (
-        <Slider {...settings}>
-          {property.multiplePropertyImages.map((image, index) => (
-            <div key={index}>
-              <img
-                src={`https://cfrecpune.com/${image}`}
-                alt={`Property ${index + 1}`}
-                className="w-full md:h-72 object-cover rounded-lg shadow-md"
-              />
-            </div>
-          ))}
-        </Slider>
-      ) : (
-        <img
-                                    src={Image}
-                                    alt="Property"
-                                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                    />
-      )}
-    </div>
+  {Array.isArray(property?.multiplePropertyImages) && property.multiplePropertyImages.length > 0 ? (
+    <Slider {...settings}>
+      {property.multiplePropertyImages.map((image, index) => (
+        <div key={index}>
+          <img
+            src={`https://cfrecpune.com/${image}`}
+            alt={`Property ${index + 1}`}
+            className="w-full md:h-72 object-cover rounded-lg shadow-md"
+          />
+        </div>
+      ))}
+    </Slider>
+  ) : (
+    <img
+      src={Image}
+      alt="Property"
+      className="w-full md:h-72 object-cover rounded-lg shadow-md"
+    />
+  )}
+</div>
+
                             </div>
 
 

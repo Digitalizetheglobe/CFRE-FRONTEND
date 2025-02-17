@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import Image from '../assets/ABC.jpeg';
 
 const PropertyCard = ({ property = {}, onEnquire }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug || property.id || ''}`;
+    const shareUrl = `https://www.cfrerealty.com/property-detail/${property.slug || property.id || ''}`;
     const title = property.buildingName || 'Property';
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
