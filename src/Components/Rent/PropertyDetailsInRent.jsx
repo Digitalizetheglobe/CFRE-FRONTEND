@@ -128,7 +128,7 @@ const PropertyDetailInRent = () => {
         { label: 'Possession', value: 'Immediate' },
         { label: 'DG Back Up', value: property.dgBackup },
         { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea },
-        { label: 'Maintenance/SqFt on built-up', value: property.maintenancePersqft },
+        { label: 'Maintenance/SqFt on Built-up', value: property.maintenancePersqft }, 
         { label: 'Security Deposit', value: property.deposit },
         { label: 'Escalation (on rent)', value: `${property.yearlyEscalation}` },
         { label: 'Agreement Period', value: `${property.agreementPeriod} ` },
@@ -140,11 +140,12 @@ const PropertyDetailInRent = () => {
         { label: 'Agreement charges', value: property.agreementCharges },
     ];
 
-    // Filter out any details where the value is null, undefined, or an empty string
-    const filteredDetails = allDetails.filter(detail => detail.value !== null && detail.value !== undefined && detail.value !== '');
-
-    const displayedDetails = showAllDetails ? filteredDetails : filteredDetails.slice(0, 6);
-
+    const filteredDetails = allDetails.filter(
+        detail => detail.value && detail.value.trim().toLowerCase() !== 'null'
+      );
+      
+      const displayedDetails = showAllDetails ? filteredDetails : filteredDetails.slice(0, 6);
+      
 
     function formatIndianPrice(price) {
         if (price >= 10000000) {

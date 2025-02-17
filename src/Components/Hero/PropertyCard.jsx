@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import OfficeImage from './Office space.jpeg';
 
 const PropertyCard = ({ property }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`; // Use slug for share URL
+    const shareUrl = `https://www.cfrerealty.com/property-detail/${property.slug}`; // Use slug for share URL
     const title = property.title;
 
     // Safely handle multiplePropertyImages
