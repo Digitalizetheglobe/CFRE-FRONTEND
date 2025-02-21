@@ -539,12 +539,13 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <label className="block text-gray-700">Description:</label>
             <input
               type="text"
-              name="seoDiscription"
-              value={editedProperty.seoDiscription}
+              name="seoDescription"
+              value={editedProperty.seoDescription || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
+
 
           <div className="mb-4">
             <label className="block text-gray-700">Seo Keywords:</label>

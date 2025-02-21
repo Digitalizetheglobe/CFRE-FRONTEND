@@ -58,7 +58,14 @@ const InvestPropertyDetail = () => {
         const fetchProperty = async () => {
             try {
                 const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
-                setProperty(response.data);
+                const propertyData = response.data;
+    
+                // Check if the multiplePropertyImages is a string and parse it
+                if (typeof propertyData.multiplePropertyImages === 'string') {
+                    propertyData.multiplePropertyImages = JSON.parse(propertyData.multiplePropertyImages);
+                }
+    
+                setProperty(propertyData);
             } catch (error) {
                 console.error('Error fetching property:', error);
             }
@@ -72,9 +79,9 @@ const InvestPropertyDetail = () => {
                     .filter(
                         (property) =>
                             property.availableFor === "Invest" &&
-                            property.propertySubtype === "preLeased"
+                            property.propertySubtype === "unLeased"
                     )
-                    .slice(0, 4); // Get the recent 5 properties
+                    .slice(0, 5); // Get the recent 5 properties
                 setRecentProperties(filteredProperties);
             } catch (error) {
                 console.error('Error fetching properties:', error);
@@ -84,6 +91,7 @@ const InvestPropertyDetail = () => {
         fetchProperty();
         fetchProperties();
     }, [slug]);
+    
     
 
     if (!property) return <p className="text-center text-gray-500 mt-4">Property not found</p>;
@@ -215,9 +223,9 @@ const filteredDetails = allDetails.filter(
                 <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
-                            <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
+                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
                             <div className="property-images">
-  {Array.isArray(property?.multiplePropertyImages) && property.multiplePropertyImages.length > 0 ? (
+  {property?.multiplePropertyImages?.length > 0 ? (
     <Slider {...settings}>
       {property.multiplePropertyImages.map((image, index) => (
         <div key={index}>
@@ -231,7 +239,7 @@ const filteredDetails = allDetails.filter(
     </Slider>
   ) : (
     <img
-      src={Image}
+      src={Image}  // Provide a default image path
       alt="Property"
       className="w-full md:h-72 object-cover rounded-lg shadow-md"
     />

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import OfficeImage from './Office space.jpeg';
 
 const PropertyCard = ({ property }) => {
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`; // Use slug for share URL
+    const shareUrl = `/https://www.cfrerealty.com/property-detail/${property.slug}`; // Use slug for share URL
     const title = property.title;
 
     // Safely handle multiplePropertyImages
@@ -13,16 +13,16 @@ const PropertyCard = ({ property }) => {
     return (
         <div className="max-w-xs rounded overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
             {/* Share button */}
-            <div className="absolute top-2 right-2 z-10 p-1">
-                <a
-                    href={`https://wa.me/?text=${encodeURIComponent(title + ' ' + shareUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white font-normal py-1 px-1 rounded flex items-center"
-                >
-                    <FaShareAlt className='hover:scale-125' size={16} />
-                </a>
-            </div>
+              <div className="absolute top-0 right-0 z-10 p-2 ">
+                           <a
+                               href={`https://wa.me/?text=${encodeURIComponent(title + ' ' + shareUrl)}`}
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               className="  text-white font-normal py-2 px-2 rounded flex items-center"
+                           >
+                               <FaShareAlt className=' hover:scale-125' size={18} />
+                           </a>
+                       </div>
 
             {/* Image with link to property detail */}
             <Link to={`/property-detail/${property.slug}`} className="relative block"> {/* Updated link */}

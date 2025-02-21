@@ -6,7 +6,15 @@ import  OfficeImage from '../assets/ABC.jpeg';
 const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail-invest/${property.slug}`;
     const title = property.title;
-    const images = property.multiplePropertyImages || [];
+    let images = [];
+    try {
+        // Safely attempt to parse the JSON string only if it's not empty
+        images = property.multiplePropertyImages ? JSON.parse(property.multiplePropertyImages) : [];
+    } catch (error) {
+        // Handle error in case the string is not valid JSON
+        console.error('Error parsing images:', error);
+    }
+    // const images = property.multiplePropertyImages || [];
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg border border-gray-400  hover:scale-[1.02] relative">
             {/* Share button */}
@@ -22,11 +30,10 @@ const PropertyCard = ({ property, onEnquire }) => {
             </div>
         
             <Link to={`/property-detail-invest/${property.slug}`} className="relative">
-            <img 
-                    className="w-full h-48 object-cover cursor-pointer" 
-                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : OfficeImage} 
-                    alt="Property" 
-                    onError={(e) => { e.target.src = OfficeImage; }} // Fallback to default image on error
+            <img
+                    className="w-full md:h-48 h-32 object-cover"
+                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : Image} 
+                    alt="Property"
                 />
 
                 
@@ -34,7 +41,7 @@ const PropertyCard = ({ property, onEnquire }) => {
 
             <Link to={`/property-detail-invest/${property.slug}`}  className="px-6 py-4">
                 {/* Property cost */}
-                <div className="font-bold md:text-xl text-gray-800 ml-4"> {property.aboutProperty} % ROI | 
+                <div className="font-bold md:text-xl text-gray-800 ml-4"> 
                 Commercial {property.propertyType} for {property.availableFor} {property.buArea}sq.ft 
                     </div>
 
