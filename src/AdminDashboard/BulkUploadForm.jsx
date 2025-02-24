@@ -6,54 +6,72 @@ import AdminNavbar from '../AdminDashboard/AdminNavbar';
 const BulkUploadForm = () => {
   const [file, setFile] = useState(null);
   const [data, setData] = useState([]);
-  const [message, setMessage] = useState('');
   const [columns, setColumns] = useState([]);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
+  // Handle file selection and preview
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+    if (!selectedFile) {
+      setFile(null);
+      setData([]);
+      setColumns([]);
+      return;
+    }
+  
     setFile(selectedFile);
-
+    
     const reader = new FileReader();
     reader.onload = (event) => {
       const binaryStr = event.target.result;
       const workbook = XLSX.read(binaryStr, { type: 'binary' });
+      
+      // Read the first sheet
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
-      const jsonData = XLSX.utils.sheet_to_json(sheet);
       
-      // Extract all columns for consistency
-      const allColumns = Array.from(
-        new Set(jsonData.flatMap(Object.keys)) // To get all unique columns across rows
-      );
-      setColumns(allColumns);
-
-      // Normalize data to ensure every row has all columns
-      const normalizedData = jsonData.map(row => {
-        const normalizedRow = {};
-        allColumns.forEach(col => {
-          normalizedRow[col] = row[col] || 'N/A'; // Default missing data to "N/A"
-        });
-        return normalizedRow;
-      });
-
-      setData(normalizedData);
+      // Convert to JSON
+      const jsonData = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+  
+      // Ensure only the new file data is shown
+      setColumns([]);
+      setData([]);
+      
+      if (jsonData.length > 0) {
+        setColumns(Object.keys(jsonData[0]));
+        setData(jsonData);
+      }
     };
+  
     reader.readAsBinaryString(selectedFile);
   };
 
+  // Handle file upload to server
   const handleUpload = async () => {
+    if (!file) {
+      setMessage('No file selected.');
+      return;
+    }
+
+    setUploading(true);
     const formData = new FormData();
     formData.append('file', file);
-    // admin bulk upload
+
     try {
-      const response = await axios.post('https://cfrecpune.com/cfreproperties/bulk-upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      await axios.post('https://cfrecpune.com/cfreproperties/bulk-upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setMessage('File uploaded successfully.');
+      setMessage('✅ File uploaded successfully.');
+      setData([]); // Clear preview after upload
+      setFile(null);
+      setColumns([]);
     } catch (error) {
-      setMessage('Error uploading file. Please try again.');
+      setMessage('❌ Error uploading file. Please try again.');
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -63,9 +81,13 @@ const BulkUploadForm = () => {
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-6 px-4">
         <div className="bg-white p-6 rounded shadow-md w-full max-w-7xl">
           <h1 className="text-2xl font-bold mb-4 text-center text-gray-700">Bulk Property Upload</h1>
+
           <form>
+            {/* File Input */}
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-2" htmlFor="file">Upload Excel/CSV File:</label>
+              <label className="block text-gray-700 font-semibold mb-2" htmlFor="file">
+                Upload Excel/CSV File:
+              </label>
               <input
                 type="file"
                 id="file"
@@ -73,7 +95,11 @@ const BulkUploadForm = () => {
                 className="w-full p-2 border border-gray-300 rounded"
                 onChange={handleFileChange}
               />
+              {loading && <p className="text-blue-600 text-sm mt-2">Processing file...</p>}
+              {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
             </div>
+
+            {/* Data Preview */}
             {data.length > 0 && (
               <>
                 <h2 className="text-xl font-semibold mb-2 text-gray-700">Preview Data:</h2>
@@ -82,10 +108,7 @@ const BulkUploadForm = () => {
                     <thead className="bg-gray-50 border-b border-gray-300">
                       <tr>
                         {columns.map((col, idx) => (
-                          <th
-                            key={idx}
-                            className="text-left p-3 font-medium text-gray-500 border-r border-gray-300"
-                          >
+                          <th key={idx} className="text-left p-3 font-medium text-gray-600 border-r border-gray-300">
                             {col}
                           </th>
                         ))}
@@ -93,12 +116,9 @@ const BulkUploadForm = () => {
                     </thead>
                     <tbody>
                       {data.map((row, idx) => (
-                        <tr key={idx} className="border-b border-gray-300">
+                        <tr key={idx} className={`border-b border-gray-300 ${idx % 2 === 0 ? 'bg-gray-50' : ''}`}>
                           {columns.map((col, index) => (
-                            <td
-                              key={index}
-                              className="p-3 text-gray-700 border-r border-gray-300"
-                            >
+                            <td key={index} className="p-3 text-gray-700 border-r border-gray-300">
                               {row[col]}
                             </td>
                           ))}
@@ -107,17 +127,30 @@ const BulkUploadForm = () => {
                     </tbody>
                   </table>
                 </div>
+
+                {/* Upload Button */}
                 <button
                   type="button"
-                  className="w-full bg-blue-600 text-white py-2 rounded hover:bg-green-700  transition duration-200"
+                  className={`w-full py-2 rounded transition duration-200 ${
+                    uploading
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-blue-600 text-white hover:bg-green-700'
+                  }`}
                   onClick={handleUpload}
+                  disabled={uploading}
                 >
-                  Upload Properties
+                  {uploading ? 'Uploading...' : 'Upload Properties'}
                 </button>
               </>
             )}
           </form>
-          {message && <p className="mt-4 text-center text-white bg-green-700">{message}</p>}
+
+          {/* Success/Error Message */}
+          {message && (
+            <p className={`mt-4 text-center p-2 rounded text-white ${message.includes('Error') ? 'bg-red-600' : 'bg-green-700'}`}>
+              {message}
+            </p>
+          )}
         </div>
       </div>
     </>
@@ -125,4 +158,3 @@ const BulkUploadForm = () => {
 };
 
 export default BulkUploadForm;
- 
