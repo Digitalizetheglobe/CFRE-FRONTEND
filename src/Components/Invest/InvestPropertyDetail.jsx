@@ -227,7 +227,7 @@ const filteredDetails = allDetails.filter(
                 <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
-                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0 z-10">
+                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0 ">
       <div className="property-images">
         {property?.multiplePropertyImages?.length > 0 ? (
           <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
