@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
+import Modal from "react-modal";
 const InvestPropertyDetail = () => {
     // const { id } = useParams();
     const { slug } = useParams();
@@ -17,22 +18,25 @@ const InvestPropertyDetail = () => {
     const [isFormVisible, setFormVisible] = useState(false);
     const [showAllDetails, setShowAllDetails] = useState(false);
     const [loading, setLoading] = useState(false); 
+    const [selectedImage, setSelectedImage] = useState(null);
     const images = Array.isArray(property?.multiplePropertyImages)
     ? property.multiplePropertyImages
     : Object.values(property?.multiplePropertyImages || {});
   
     const navigate = useNavigate(); // Initialize the navigate hook
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: true,
-        adaptiveHeight: true,
-      };
+   
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
+    const openModal = (index) => {
+      setSelectedImageIndex(index); // Set the clicked image index before opening modal
+      setIsOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsOpen(false);
+    };
+    
     // References for smooth scrolling
     const overviewRef = useRef(null);
     const moreDetailsRef = useRef(null);
@@ -204,7 +208,7 @@ const filteredDetails = allDetails.filter(
 
 
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
-            <div className="sticky md:top-28 top-16 bg-white  shadow-md flex justify-center space-x-4 py-2">
+            <div className="sticky md:top-28 top-16 bg-white  shadow-md flex justify-center space-x-4 py-2 z-90">
                 <button
                     className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
                     onClick={() => handleScrollTo(overviewRef)}
@@ -223,31 +227,74 @@ const filteredDetails = allDetails.filter(
                 <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
-                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-                            <div className="property-images">
-  {property?.multiplePropertyImages?.length > 0 ? (
-    <Slider {...settings}>
-      {property.multiplePropertyImages.map((image, index) => (
-        <div key={index}>
+                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0 z-10">
+      <div className="property-images">
+        {property?.multiplePropertyImages?.length > 0 ? (
+          <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
+            {property.multiplePropertyImages.map((image, index) => (
+              <div key={index} onClick={() => openModal(index)} className="cursor-pointer">
+                <img
+                  src={`https://cfrecpune.com/${image}`}
+                  alt={`Property ${index + 1}`}
+                  className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                />
+              </div>
+            ))}
+          </Slider>
+        ) : (
           <img
-            src={`https://cfrecpune.com/${image}`}
-            alt={`Property ${index + 1}`}
+            src={Image} // Provide a default image path
+            alt="Property"
             className="w-full md:h-72 object-cover rounded-lg shadow-md"
           />
-        </div>
-      ))}
-    </Slider>
-  ) : (
-    <img
-      src={Image}  // Provide a default image path
-      alt="Property"
-      className="w-full md:h-72 object-cover rounded-lg shadow-md"
-    />
-  )}
-</div>
+        )}
+      </div>
 
-                            </div>
-
+      {/* Modal for Enlarged Images */}
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        contentLabel="Enlarged Property Images"
+        style={{
+          overlay: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          content: {
+            width: "700px",
+            height: "400px",
+            margin: "auto",
+            marginTop: "100px",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "10px",
+            padding: "0",
+            overflow: "hidden",
+          },
+        }}
+      >
+        {property?.multiplePropertyImages?.length > 0 && (
+          <Slider
+            dots={true}
+            infinite={true}
+            speed={500}
+            slidesToShow={1}
+            slidesToScroll={1}
+            initialSlide={selectedImageIndex} // Move inside return block to avoid issues
+          >
+            {property.multiplePropertyImages.map((image, index) => (
+              <div key={index}>
+                <img
+                  src={`https://cfrecpune.com/${image}`}
+                  alt={`Property ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
+        <button onClick={closeModal} className="absolute top-2 right-2 text-white bg-black p-2 rounded-full">
+          ✕
+        </button>
+      </Modal>
+    </div>
 
 
                             <div className="w-full lg:w-1/2">

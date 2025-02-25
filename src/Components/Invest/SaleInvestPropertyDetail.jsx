@@ -28,6 +28,17 @@ const SaleInvestPropertyDetail = () => {
         autoplay: true,
         autoplaySpeed: 3000,
       };
+      const [isOpen, setIsOpen] = useState(false);
+      const [currentIndex, setCurrentIndex] = useState(0);
+    
+      const openModal = (index) => {
+        setCurrentIndex(index);
+        setIsOpen(true);
+      };
+    
+      const closeModal = () => {
+        setIsOpen(false);
+      };
     // References for smooth scrolling
     const overviewRef = useRef(null);
     const moreDetailsRef = useRef(null);
@@ -198,30 +209,54 @@ const SaleInvestPropertyDetail = () => {
                 <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
-                            <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-                            <div className="property-images">
-  {property?.multiplePropertyImages?.length > 0 ? (
-    <Slider {...settings}>
-      {property.multiplePropertyImages.map((image, index) => (
-        <div key={index}>
+                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
+      <div className="property-images">
+        {property?.multiplePropertyImages?.length > 0 ? (
+          <Slider {...settings}>
+            {property.multiplePropertyImages.map((image, index) => (
+              <div key={index} onClick={() => openModal(index)}>
+                <img
+                  src={`https://cfrecpune.com/${image}`}
+                  alt={`Property ${index + 1}`}
+                  className="w-full md:h-72 object-cover rounded-lg shadow-md cursor-pointer"
+                />
+              </div>
+            ))}
+          </Slider>
+        ) : (
           <img
-            src={`https://cfrecpune.com/${image}`}
-            alt={`Property ${index + 1}`}
+            src={defaultImage} // Provide a default image path
+            alt="Property"
             className="w-full md:h-72 object-cover rounded-lg shadow-md"
           />
-        </div>
-      ))}
-    </Slider>
-  ) : (
-    <img
-      src={Image}  // Provide a default image path
-      alt="Property"
-      className="w-full md:h-72 object-cover rounded-lg shadow-md"
-    />
-  )}
-</div>
+        )}
+      </div>
 
-                            </div>
+      {/* Modal */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center ">
+          <div className="relative  p-4 rounded-lg shadow-lg" style={{ width: "700px", height: "auto",  }}>
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-3 py-1 z-50"
+              onClick={closeModal}
+            >
+              X
+            </button>
+            <Slider {...settings} initialSlide={currentIndex}>
+              {property.multiplePropertyImages.map((image, index) => (
+                <div key={index}>
+                  <img
+                    src={`https://cfrecpune.com/${image}`}
+                    alt={`Property ${index + 1}`}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+      )}
+    </div>
 
 
 
