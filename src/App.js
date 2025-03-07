@@ -74,6 +74,8 @@ import ListProperty from './AdminDashboard/ListProperty/ListProperty.jsx';
 import PropertyModal from './AdminDashboard/ListProperty/PropertyModal.jsx';
 import TestNewproject from './Components/Projects/TestProject.jsx';
 import EditProperty from './AdminDashboard/PropertyPages/EditProperty.jsx';
+import ViewAllcoworking from './AdminDashboard/coworking/ViewAllCoworking.jsx';
+import CoworkingForm from './AdminDashboard/coworking/addcoworking.jsx';
 // import DisclaimerPopup from './Components/Disclaimer/DisclaimerPopup .jsx';
 
 
@@ -92,7 +94,6 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/latestblog" element={<Latestblog />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-          {/* <Route path="/projectForm" element={<ProjectForm />} /> */}
           <Route path="/NewpropertyForm" element={<NewprojectForm />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/invest" element={<Invest />} />
@@ -103,8 +104,9 @@ function App() {
           <Route path="/combinedproperties/:slug" element={<PropertyDetails />} />
           <Route path="/property/:slug" element={<PropertyDetail />} />
           <Route path="/property-detail/:slug" element={<PropertyDetailInRent />} />
-             <Route path="/property-detail-invest/:slug" element={<InvestPropertyDetail/>} />
-             <Route path="/property-detail-invest-sale/:slug" element={<SaleInvestPropertyDetail/>} />
+          {/* <Route path="/Coworking-property-detail/:slug" element={<CoworkingPropertyDetails/>} /> */}
+          <Route path="/property-detail-invest/:slug" element={<InvestPropertyDetail/>} />
+          <Route path="/property-detail-invest-sale/:slug" element={<SaleInvestPropertyDetail/>} />
           <Route path='/commercial-properties-for-rent' element={<MainRent />} />
           <Route path='/unfurnished-property-detail/:slug' element={<UnfurnishedPropertyDetailsInRent />} />
           <Route path="/addproperty1" element={<AddProperty1 />} />
@@ -216,6 +218,14 @@ function App() {
             }
           />
           <Route
+            path="/addcoworking"
+            element={
+              <PrivateRoute>
+                < CoworkingForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
             path='/ViewAllProperty'
             element={
               <PrivateRoute>
@@ -228,6 +238,14 @@ function App() {
             element={
               <PrivateRoute>
                 <EditProperty />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/viewallcoworking'
+            element={
+              <PrivateRoute>
+                <ViewAllcoworking/>
               </PrivateRoute>
             }
           />

@@ -62,25 +62,26 @@ const Unfurnished = () => {
         let filtered = properties.filter(property => 
             property.furnishing === 'Unfurnished' && property.availableFor === 'Rent'
         );
-
+    
         if (searchTerm) {
             filtered = filtered.filter(property =>
                 property.location.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
-
-        // First sort by date to show the latest properties
-        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // Adjust based on your date field
-
+    
+        // First, sort by ID to show the latest properties
+        filtered.sort((a, b) => b.id - a.id); 
+    
         // Then apply price sorting if selected
         if (sortOrder === 'asc') {
             filtered.sort((a, b) => a.cost - b.cost);
         } else if (sortOrder === 'desc') {
             filtered.sort((a, b) => b.cost - a.cost);
         }
-
+    
         setFilteredProperties(filtered);
     };
+    
 
     const handlePageChange = (event, value) => {
         setPage(value);
@@ -94,6 +95,7 @@ const Unfurnished = () => {
     if (error) {
         return <Error />; // Render the Error component if there's an error
     }
+
 
     return (
         <>

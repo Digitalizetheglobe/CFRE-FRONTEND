@@ -11,7 +11,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Modal from 'react-modal';    
+
 
 const PropertyDetailInRent = () => {
     // const { id } = useParams();
@@ -215,55 +215,30 @@ const PropertyDetailInRent = () => {
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
                         <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-            {Array.isArray(property?.multiplePropertyImages) && property.multiplePropertyImages.length > 0 ? (
-                <Slider {...settings}>
-                    {property.multiplePropertyImages.map((image, index) => (
-                        <div key={index} onClick={() => openModal(index)} className="cursor-pointer">
-                            <img
-                                src={`https://cfrecpune.com/${image}`}
-                                alt={`Property ${index + 1}`}
-                                className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                                loading="lazy"
-                            />
-                        </div>
-                    ))}
-                </Slider>
-            ) : (
+      {/* Check if images are available */}
+      {Array.isArray(property?.multiplePropertyImages) && property.multiplePropertyImages.length > 0 ? (
+    <Slider {...settings}>
+        {property.multiplePropertyImages.map((image, index) => (
+            <div key={index}>
                 <img
-                    src={Image}
-                    alt="Property"
+                    src={`https://cfrecpune.com/${image}`}
+                    alt={`Property ${index + 1}`}
                     className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                    loading="lazy" 
                 />
-            )}
+            </div>
+        ))}
+    </Slider>
+) : (
+    <img
+        src={Image}
+        alt="Property"
+        className="w-full md:h-72 object-cover rounded-lg shadow-md"
+    />
+)}
 
-            {/* Lightbox Modal */}
-            <Modal
-                isOpen={isOpen}
-                onRequestClose={closeModal}
-                className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-100"
-                ariaHideApp={false}
-            >
-                <div className="relative w-11/12 md:w-3/4 lg:w-1/2">
-                    <button
-                        className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md"
-                        onClick={closeModal}
-                    >
-                        ✖
-                    </button>
-                    <Slider {...settings} initialSlide={currentIndex}>
-                        {property.multiplePropertyImages.map((image, index) => (
-                            <div key={index}>
-                                <img
-                                    src={`https://cfrecpune.com/${image}`}
-                                    alt={`Property ${index + 1}`}
-                                    className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-                                />
-                            </div>
-                        ))}
-                    </Slider>
-                </div>
-            </Modal>
-        </div>
+                                
+                                </div>
 
 
 

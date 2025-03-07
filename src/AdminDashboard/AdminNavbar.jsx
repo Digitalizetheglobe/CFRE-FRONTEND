@@ -6,7 +6,7 @@ const AdminNavbar = () => {
   return (
     <>
     
-    <header className='flex shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[80px] tracking-wide relative z-50'>
+    <header className='flex shadow-md py-4 px-4 sm:px-10 bg-white font-[sans-serif] min-h-[80px] tracking-wide relative z-50 '>
   <div className='flex flex-wrap items-center gap-5 w-full'>
    <Link
                to="/dashboard"><img src={logo} alt="logo"

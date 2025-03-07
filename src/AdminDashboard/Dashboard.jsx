@@ -52,6 +52,17 @@ const Dashboard = () => {
                 Add New Project
               </Link>
             </div>
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <FontAwesomeIcon icon={faBuilding} size="3x" className="text-[#d84a48] mb-4 " />
+              <h2 className="text-xl font-semibold mb-4 text-gray-800">Add Coworking</h2>
+              <p className="text-gray-600 mb-4">Create and manage new Coworking .</p>
+              <Link 
+                to="/addcoworking" 
+                className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
+              >
+                Add New Coworking
+              </Link>
+            </div>
 
             {/* Card 4: View All Property */}
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out transform hover:scale-105">
@@ -73,6 +84,17 @@ const Dashboard = () => {
               <p className="text-gray-600 mb-4">View and manage all listed projects.</p>
               <Link 
                 to="/ViewAllProjects" 
+                className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
+              >
+                View All
+              </Link>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out transform hover:scale-105">
+              <FontAwesomeIcon icon={faEye} size="3x" className="text-[#d84a48] mb-4 " />
+              <h2 className="text-xl font-semibold mb-4 text-gray-800">View All Coworking</h2>
+              <p className="text-gray-600 mb-4">View and manage all listed Coworking.</p>
+              <Link 
+                to="/ViewAllcoworking" 
                 className="inline-block bg-[#d84a48] text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors duration-300 ease-in-out"
               >
                 View All
