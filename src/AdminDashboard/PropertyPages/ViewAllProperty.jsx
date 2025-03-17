@@ -194,6 +194,16 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
               className="w-full p-2 border rounded"
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">ROI:</label>
+            <input
+              type="text"
+              name="floor"
+              value={editedProperty.aboutProperty}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
 
           <div className="mb-4">
             <label className="block text-gray-700">Location:</label>

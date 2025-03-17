@@ -30,14 +30,12 @@ const Prelease = () => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                
+                // Sort properties by date (latest first) without filtering
+                const allProperties = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     
-                // Filter only pre-leased properties and sort by date (latest first)
-                const preLeasedProperties = response.data
-                    .filter(property => property.propertySubtype === "preLeased")
-                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    
-                setProperties(preLeasedProperties);
-                setFilteredProperties(preLeasedProperties); // Default view
+                setProperties(allProperties);
+                setFilteredProperties(allProperties); // Default view
             } catch (error) {
                 setError('Error fetching properties. Please try again later.');
                 console.error('Error fetching properties:', error);
@@ -45,6 +43,7 @@ const Prelease = () => {
         };
         fetchProperties();
     }, []);
+    
 
     useEffect(() => {
         if (!error) {

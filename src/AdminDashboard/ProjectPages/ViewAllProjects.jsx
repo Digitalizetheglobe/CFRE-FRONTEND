@@ -195,6 +195,16 @@ const handleSave = async () => {
                             className="w-full p-2 border rounded"
                         />
                     </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">ROI:</label>
+                        <input
+                            type="text"
+                            name="location"
+                            value={editedProject.Roi || ''}
+                            onChange={handleChange}
+                            className="w-full p-2 border rounded"
+                        />
+                    </div>
 
                     {/* <div className="mb-4">
                         <label className="block text-gray-700">Total Area:</label>
