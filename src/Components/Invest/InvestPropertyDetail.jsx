@@ -130,28 +130,6 @@ function formatIndianPrice(price) {
     }
 }
 
-// Property details array
-// const allDetails = [
-//     { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
-//     { label: 'Property Type', value: property.propertyType || null },
-//     { label: 'Purpose', value: property.availableFor || null },
-//     { label: 'Rent per Month', value: property.rentPerMonth ? formatIndianPrice(property.rentPerMonth) : null },
-//     { label: 'Tenant Name', value: property.seoDiscription || null },
-//     { label: 'Floor', value: property.floor || null },
-//     { label: 'Car Parking', value: property.carParking || null },
-//     { label: 'Bike Parking', value: property.bikeParking || null },
-//     { label: 'DG Back Up', value: property.dgBackup || null },
-//     { label: 'Rent/SqFt Built Up Area', value: property.rentPerSqFtBuiltUpArea || null },
-//     { label: 'Maintenance/SqFt on Carpet', value: property.maintenancePersqft || null },
-//     { label: 'Security Deposit', value: property.deposit || null },
-//     { label: 'Yearly Escalation (on rent)', value: property.yearlyEscalation || null },
-//     { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
-//     { label: 'Agreement period', value: property.agreementPeriod },
-//     { label: 'Locking period', value: property.lockingPeriod },
-//     { label: 'Property Taxes', value: property.propertyTax || null },
-//     { label: 'GST on rent and maintenance', value: property.gstOnRent || null },
-//     { label: 'Furniture Done by', value: property.furnitureDoneBy || null },
-// ];
 
 // sonali changes 15 feb .
 const allDetails = [
