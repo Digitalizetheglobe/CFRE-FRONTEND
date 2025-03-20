@@ -47,7 +47,7 @@ const PropertyCardCoworking = ({ property = {}, onEnquire }) => {
 
     const handleViewDetails = (pdfUrl) => {
         if (pdfUrl) {
-            const fullUrl = `https://cfrecpune.com/${encodeURIComponent(pdfUrl)}`;
+            const fullUrl = `https://cfrecpune.com/${pdfUrl}`;
             window.open(fullUrl, "_blank");
         } else {
             alert("PDF not available");
