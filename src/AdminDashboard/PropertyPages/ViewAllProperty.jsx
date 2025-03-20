@@ -1,56 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../AdminNavbar';
-import { FaSearch } from "react-icons/fa"; 
+import { FaSearch } from "react-icons/fa";
+
 // Modal Component
-const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
+const PropertyModal = ({ property, onSave, onClose }) => {
   const [editedProperty, setEditedProperty] = useState({ ...property });
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [multiplePropertyImages, setMultiplePropertyImages] = useState(initialImages);
+  const [multiplePropertyImages, setMultiplePropertyImages] = useState([]);
 
+  // Initialize property data and images when the modal opens
+  useEffect(() => {
+    setEditedProperty({ ...property });
+    
+    // Handle images - ensure it's always an array
+    if (Array.isArray(property.multiplePropertyImages)) {
+      setMultiplePropertyImages(property.multiplePropertyImages);
+    } else if (property.multiplePropertyImages) {
+      setMultiplePropertyImages([property.multiplePropertyImages]);
+    } else {
+      setMultiplePropertyImages([]);
+    }
+  }, [property]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedProperty((prev) => ({
+    setEditedProperty(prev => ({
       ...prev,
       [name]: value,
     }));
   };
-  useEffect(() => {
-    if (Array.isArray(property.multiplePropertyImages)) {
-      setMultiplePropertyImages(property.multiplePropertyImages);
-    } else {
-      setMultiplePropertyImages([]); // Ensure it's an array
-    }
-  }, [property]);
-  
 
   // Handle file selection
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
-    setSelectedFiles((prev) => [...prev, ...files]); // Store new files
-    setMultiplePropertyImages((prev) => [...prev, ...files]); // Add to displayed images
+    setSelectedFiles(prev => [...prev, ...files]);
+    
+    // Create object URLs for preview
+    const fileObjects = files.map(file => file);
+    setMultiplePropertyImages(prev => [...prev, ...fileObjects]);
   };
 
   // Handle image removal
   const handleRemoveImage = (indexToRemove) => {
-    setMultiplePropertyImages((prev) =>
+    setMultiplePropertyImages(prev =>
       prev.filter((_, index) => index !== indexToRemove)
     );
 
-    // Remove from selected files if it was newly added
-    setSelectedFiles((prev) =>
-      prev.filter((_, index) => index !== indexToRemove)
-    );
+    // Also remove from selectedFiles if it was newly added
+    if (indexToRemove < selectedFiles.length) {
+      setSelectedFiles(prev =>
+        prev.filter((_, index) => index !== indexToRemove)
+      );
+    }
   };
 
   // Save changes
   const handleSave = () => {
-    const imagesToSave = multiplePropertyImages; // Updated images list
-    const updatedProperty = { ...property, multiplePropertyImages: imagesToSave };
+    // Create updated property with all form fields and current images
+    const updatedProperty = {
+      ...editedProperty,
+      multiplePropertyImages: multiplePropertyImages
+    };
 
     onSave(updatedProperty, selectedFiles);
   };
-
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -63,75 +76,65 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="buildingName"
-              value={editedProperty.buildingName}
+              value={editedProperty.buildingName || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
 
           <div className="mb-4">
-        <label className="block text-gray-700">Property Images:</label>
-        <input
-          type="file"
-          multiple
-          onChange={handleFileChange}
-          className="w-full p-2 border rounded"
-        />
-      </div>
+            <label className="block text-gray-700">Property Images:</label>
+            <input
+              type="file"
+              multiple
+              onChange={handleFileChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
 
-      {/* Display Uploaded & API Response Images */}
-      <div className="flex flex-wrap gap-4">
-      {multiplePropertyImages?.map((image, index) => {
-  const imageUrl =
-    typeof image === "string"
-      ? `https://cfrecpune.com/${image}`
-      : URL.createObjectURL(image);
+          {/* Display Uploaded & API Response Images */}
+          <div className="flex flex-wrap gap-4">
+            {multiplePropertyImages?.map((image, index) => {
+              // Handle both string paths and File objects
+              const imageUrl = typeof image === "string"
+                ? `https://cfrecpune.com/${image}`
+                : URL.createObjectURL(image);
 
-  return (
-    <div key={index} className="relative w-20 h-20">
-      <img
-        src={imageUrl}
-        alt={`property-${index}`}
-        className="w-full h-full object-cover rounded border"
-      />
-      <button
-        onClick={() => handleRemoveImage(index)}
-        className="absolute top-0 right-0 bg-red-500 text-white text-xs p-1 rounded"
-      >
-        X
-      </button>
-    </div>
-  );
-})}
+              return (
+                <div key={index} className="relative w-20 h-20">
+                  <img
+                    src={imageUrl}
+                    alt={`property-${index}`}
+                    className="w-full h-full object-cover rounded border"
+                  />
+                  <button
+                    onClick={() => handleRemoveImage(index)}
+                    className="absolute top-0 right-0 bg-red-500 text-white text-xs p-1 rounded"
+                  >
+                    X
+                  </button>
+                </div>
+              );
+            })}
+          </div>
 
-      </div>
-
-
-
-
-
-
-          {/* all field */}
+          {/* All fields - with null/undefined checks */}
           <div className="mb-4">
             <label className="block text-gray-700">Unit No:</label>
             <input
               type="text"
               name="unitNo"
-              value={editedProperty.unitNo}
+              value={editedProperty.unitNo || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
 
-
-
-
           <div className="mb-4">
             <label className="block text-gray-700">Property Type:</label>
             <select
-              type="text"
               name="propertyType"
-              value={editedProperty.propertyType}
+              value={editedProperty.propertyType || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded">
               <option value="">Select Property Type</option>
@@ -150,56 +153,51 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
               <option value="Resdential Land / Plot">Residential Lands / Plot</option>
               <option value="Fractional Investment">Fractional investment</option>
             </select>
-
           </div>
 
           <div className="mb-4">
             <label className="block text-gray-700">Available For:</label>
             <select
-              type="text"
               name="availableFor"
-              value={editedProperty.availableFor}
+              value={editedProperty.availableFor || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             >
               <option value="Invest">Sale</option>
               <option value="Rent">Rent</option>
-
             </select>
           </div>
 
           <div className="mb-4">
             <label className="block text-gray-700">Property Subtype:</label>
             <select
-              type="text"
               name="propertySubtype"
-              value={editedProperty.propertySubtype}
+              value={editedProperty.propertySubtype || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             >
               <option value="preLeased">Pre Leased</option>
               <option value="unLeased">Un Leased</option>
-
             </select>
           </div>
-
 
           <div className="mb-4">
             <label className="block text-gray-700">Floor:</label>
             <input
               type="text"
               name="floor"
-              value={editedProperty.floor}
+              value={editedProperty.floor || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
+          
           <div className="mb-4">
             <label className="block text-gray-700">ROI:</label>
             <input
               type="text"
-              name="floor"
-              value={editedProperty.aboutProperty}
+              name="aboutProperty"
+              value={editedProperty.aboutProperty || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -210,19 +208,18 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="location"
-              value={editedProperty.location}
+              value={editedProperty.location || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
-
 
           <div className="mb-4">
             <label className="block text-gray-700">City:</label>
             <input
               type="text"
               name="city"
-              value={editedProperty.city}
+              value={editedProperty.city || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -233,7 +230,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="carpetArea"
-              value={editedProperty.carpetArea}
+              value={editedProperty.carpetArea || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -244,7 +241,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="carParking"
-              value={editedProperty.carParking}
+              value={editedProperty.carParking || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -255,7 +252,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="bikeParking"
-              value={editedProperty.bikeParking}
+              value={editedProperty.bikeParking || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -266,7 +263,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="dgBackup"
-              value={editedProperty.dgBackup}
+              value={editedProperty.dgBackup || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -277,7 +274,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="cafeteria"
-              value={editedProperty.cafeteria}
+              value={editedProperty.cafeteria || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -286,16 +283,14 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
           <div className="mb-4">
             <label className="block text-gray-700">Furnishing Status:</label>
             <select
-              type="text"
               name="furnishing"
-              value={editedProperty.furnishing}
+              value={editedProperty.furnishing || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             >
               <option value="Furnished">Furnished</option>
               <option value="Unfurnished">Unfurnished</option>
               <option value="Coworking">Coworking / Managed Spaces</option>
-
             </select>
           </div>
 
@@ -304,7 +299,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="ws"
-              value={editedProperty.ws}
+              value={editedProperty.ws || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -315,7 +310,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="cabin"
-              value={editedProperty.cabin}
+              value={editedProperty.cabin || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -326,7 +321,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="conferenceRoom"
-              value={editedProperty.conferenceRoom}
+              value={editedProperty.conferenceRoom || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -337,7 +332,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="meetingRoom"
-              value={editedProperty.meetingRoom}
+              value={editedProperty.meetingRoom || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -348,7 +343,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="otherFurniture"
-              value={editedProperty.otherFurniture}
+              value={editedProperty.otherFurniture || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -359,7 +354,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="furnitureDoneBy"
-              value={editedProperty.furnitureDoneBy}
+              value={editedProperty.furnitureDoneBy || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -370,7 +365,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="amenities"
-              value={editedProperty.amenities}
+              value={editedProperty.amenities || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -381,7 +376,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="buArea"
-              value={editedProperty.buArea}
+              value={editedProperty.buArea || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -392,7 +387,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="rentPerMonthRsPerSqFt"
-              value={editedProperty.rentPerMonthRsPerSqFt}
+              value={editedProperty.rentPerMonthRsPerSqFt || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -403,7 +398,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="rentPerMonth"
-              value={editedProperty.rentPerMonth}
+              value={editedProperty.rentPerMonth || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -414,7 +409,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="rentStartFrom"
-              value={editedProperty.rentStartFrom}
+              value={editedProperty.rentStartFrom || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -425,7 +420,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="basePrice"
-              value={editedProperty.basePrice}
+              value={editedProperty.basePrice || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -436,8 +431,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="maintenancePersqft"
-              value={editedProperty.maintenancePersqft}
-              
+              value={editedProperty.maintenancePersqft || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -448,7 +442,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="deposit"
-              value={editedProperty.deposit}
+              value={editedProperty.deposit || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -459,7 +453,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="yearlyEscalation"
-              value={editedProperty.yearlyEscalation}
+              value={editedProperty.yearlyEscalation || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -470,7 +464,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="agreementPeriod"
-              value={editedProperty.agreementPeriod}
+              value={editedProperty.agreementPeriod || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -481,36 +475,29 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="lockingPeriod"
-              value={editedProperty.lockingPeriod}
+              value={editedProperty.lockingPeriod || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
-
-          
-         
-
-
-
 
           <div className="mb-4">
             <label className="block text-gray-700">Property Tax:</label>
             <input
               type="text"
               name="propertyTax"
-              value={editedProperty.propertyTax}
+              value={editedProperty.propertyTax || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
 
-
           <div className="mb-4">
-            <label className="block text-gray-700">Goverment Taxes:</label>
+            <label className="block text-gray-700">Government Taxes:</label>
             <input
               type="text"
               name="govermentTaxes"
-              value={editedProperty.govermentTaxes}
+              value={editedProperty.govermentTaxes || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -521,7 +508,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="gstOnRent"
-              value={editedProperty.gstOnRent}
+              value={editedProperty.gstOnRent || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -532,7 +519,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="agreementCharges"
-              value={editedProperty.agreementCharges}
+              value={editedProperty.agreementCharges || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -543,7 +530,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="slug"
-              value={editedProperty.slug}
+              value={editedProperty.slug || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -554,7 +541,7 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             <input
               type="text"
               name="seoTitle"
-              value={editedProperty.seoTitle}
+              value={editedProperty.seoTitle || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
@@ -571,22 +558,16 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
             />
           </div>
 
-
           <div className="mb-4">
             <label className="block text-gray-700">Seo Keywords:</label>
             <input
               type="text"
               name="seoKeywords"
-              value={editedProperty.seoKeywords}
+              value={editedProperty.seoKeywords || ""}
               onChange={handleChange}
               className="w-full p-2 border rounded"
             />
           </div>
-
-
-
-
-
         </div>
 
         <div className="flex items-center justify-between mt-4">
@@ -608,184 +589,231 @@ const PropertyModal = ({ property, onSave, onClose, initialImages = [] }) => {
   );
 };
 
-
-
 const ViewAllProperty = () => {
-  const [properties, setProperties] = useState([]); // All properties
-  const [filteredProperties, setFilteredProperties] = useState([]); // Filtered properties for search
-  const [toggleStatus, setToggleStatus] = useState({}); // Toggle state
-  const [selectedProperty, setSelectedProperty] = useState(null); // Selected property for editing
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
-  const [searchQuery, setSearchQuery] = useState(""); // Search query
+  const [properties, setProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Load properties on component mount
   useEffect(() => {
-    fetch('https://cfrecpune.com/cfreproperties')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Fetched properties:', data); // Debugging log
-        if (Array.isArray(data)) {
-          setProperties(data);
-          setFilteredProperties(data); 
-        } else {
-          console.error('Unexpected response format:', data);
-          setProperties([]); // Default to empty array
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching properties:', error);
-        setProperties([]); // Fallback to prevent map issues
-      });
+    fetchProperties();
   }, []);
+
+  const fetchProperties = async () => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('https://cfrecpune.com/cfreproperties');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (Array.isArray(data)) {
+        setProperties(data);
+        setFilteredProperties(data);
+      } else {
+        throw new Error('Unexpected response format');
+      }
+    } catch (error) {
+      console.error('Error fetching properties:', error);
+      setError(error.message);
+      setProperties([]);
+      setFilteredProperties([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleEditClick = (property) => {
     setSelectedProperty(property);
     setShowModal(true);
   };
+
   const handleSearchChange = (e) => {
-    const query = e.target.value?.toLowerCase() || ""; // Convert input to lowercase or default to an empty string
+    const query = e.target.value?.toLowerCase() || "";
     setSearchQuery(query);
 
-  
-  // Filter properties safely
+    // Filter properties safely
     const filtered = properties.filter((property) => {
       return (
-        property.buildingName?.toLowerCase().includes(query) || // Match building name
-        property.location?.toLowerCase().includes(query) || // Match location
-        property.city?.toLowerCase().includes(query) || // Match city
-        property.propertySubtype?.toLowerCase().includes(query) || // Match property subtype
-        property.cpropertyType?.toLowerCase().includes(query) || // Match property type
-        property.availableFor?.toLowerCase().includes(query) // Match availability
+        (property.buildingName || "").toLowerCase().includes(query) ||
+        (property.location || "").toLowerCase().includes(query) ||
+        (property.city || "").toLowerCase().includes(query) ||
+        (property.propertySubtype || "").toLowerCase().includes(query) ||
+        (property.propertyType || "").toLowerCase().includes(query) ||
+        (property.availableFor || "").toLowerCase().includes(query)
       );
     });
-  
-    setFilteredProperties(filtered); // Update the filtered list
+
+    setFilteredProperties(filtered);
   };
-  const handleSaveChanges = (updatedProperty, files) => {
-    const formData = new FormData();
-  
-    // Append all fields except images
-    Object.entries(updatedProperty).forEach(([key, value]) => {
-      if (key !== "multiplePropertyImages") {
-        formData.append(key, value);
-      }
-    });
-  
-    // Send updated images list as JSON
-    formData.append("multiplePropertyImages", JSON.stringify(updatedProperty.multiplePropertyImages));
-  
-    // Append new images separately
-    files.forEach((file) => formData.append("propertyImages", file));
-  
-    fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
-      method: "PUT",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+
+  const handleSaveChanges = async (updatedProperty, newFiles) => {
+    try {
+      const formData = new FormData();
+      
+      // Append all property fields to FormData
+      Object.entries(updatedProperty).forEach(([key, value]) => {
+        // Skip multiplePropertyImages as we'll handle it separately
+        if (key !== "multiplePropertyImages") {
+          // Only append defined values
+          if (value !== undefined && value !== null) {
+            formData.append(key, value);
+          }
         }
-        return response.json();
-      })
-      .then((data) => {
-        setProperties((prev) => prev.map((p) => (p.id === data.id ? data : p))); // Update state
-        setShowModal(false); // Close modal
-      })
-      .catch((error) => {
-        console.error("Error updating property:", error);
       });
+      
+      // Handle existing images (as string paths)
+      const existingImages = updatedProperty.multiplePropertyImages
+        .filter(img => typeof img === "string")
+        .map(img => img.replace('https://cfrecpune.com/', ''));
+      
+      // Append existing images as JSON string
+      formData.append("existingImages", JSON.stringify(existingImages));
+      
+      // Append each new file separately
+      newFiles.forEach(file => {
+        formData.append("propertyImages", file);
+      });
+      
+      // Debug what we're sending
+      console.log("Property ID:", updatedProperty.id);
+      console.log("Existing images:", existingImages);
+      console.log("New files count:", newFiles.length);
+      
+      const response = await fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
+        method: "PUT",
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      
+      const updatedData = await response.json();
+      
+      // Update local state with the server response
+      setProperties(prev => 
+        prev.map(p => p.id === updatedData.id ? updatedData : p)
+      );
+      
+      setFilteredProperties(prev => 
+        prev.map(p => p.id === updatedData.id ? updatedData : p)
+      );
+      
+      setShowModal(false);
+      alert("Property updated successfully!");
+      
+    } catch (error) {
+      console.error("Error updating property:", error);
+      alert("Failed to update property. Please try again.");
+    }
   };
-  
 
   const deletePropertyById = async (id) => {
     if (!id) return;
-  
+    
     try {
       const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
         method: "DELETE",
       });
-  
+      
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
-      setProperties((prev) => prev.filter((property) => property.id !== id)); // Update state after deletion
-      setFilteredProperties((prev) =>
-        prev.filter((property) => property.id !== id)
-      );
-      console.log("Property deleted successfully.");
+      
+      // Update state after successful deletion
+      setProperties(prev => prev.filter(property => property.id !== id));
+      setFilteredProperties(prev => prev.filter(property => property.id !== id));
+      
+      alert("Property deleted successfully.");
     } catch (error) {
       console.error("Error deleting property:", error);
+      alert("Failed to delete property. Please try again.");
     }
   };
-  
+
   return (
     <>
       <AdminNavbar />
       <div className="container mx-auto p-8">
-      <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6">
           <div className="relative w-full max-w-md">
             <input
               type="text"
               placeholder="Search by Building Name, Location, or City"
               value={searchQuery}
-              onChange={handleSearchChange} // Update on every keypress
+              onChange={handleSearchChange}
               className="w-full border rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
             />
             <FaSearch className="absolute top-3 right-3 text-gray-400" />
           </div>
         </div>
+        
         <h2 className="text-base font-bold leading-7 text-gray-900 text-center" style={{ fontSize: '20px' }}>
           All Properties
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
-          {filteredProperties.length > 0 ? (
-            filteredProperties.map((property) => (
-              <div key={property.id} className="bg-white shadow-md rounded-lg p-6 border">
-                <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
-                <p className="text-gray-700 mb-2">
-                  <strong>Location:</strong> {property.location}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <strong>City:</strong> {property.city}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <strong>Carpet Area:</strong> {property.city}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <strong>Price:</strong> {property.rentPerMonth}
-                </p>
-                <p className="text-gray-700 mb-2">
-                  <strong>Available For:</strong> {property.availableFor}
-                </p>
-                <div className="flex justify-between mt-4">
-                <button
-                  onClick={() => handleEditClick(property)}
-                  className="text-gray-600 hover:text-gray-900 mt-4"
-                >
-                  <i className="fas fa-edit"></i> Edit
-                </button>
-                <button
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-            onClick={() => {
-              if (window.confirm("Are you sure you want to delete this property?")) {
-                deletePropertyById(property.id);
-              }
-            }}
-          >
-            Delete
-          </button>
+        
+        {isLoading ? (
+          <div className="text-center py-8">Loading properties...</div>
+        ) : error ? (
+          <div className="text-center py-8 text-red-500">Error: {error}</div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
+            {filteredProperties.length > 0 ? (
+              filteredProperties.map((property) => (
+                <div key={property.id} className="bg-white shadow-md rounded-lg p-6 border">
+                  <h3 className="text-xl font-bold mb-2">{property.buildingName}</h3>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Location:</strong> {property.location}
+                  </p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>City:</strong> {property.city}
+                  </p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Carpet Area:</strong> {property.carpetArea}
+                  </p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Price:</strong> {property.rentPerMonth || property.basePrice}
+                  </p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Available For:</strong> {property.availableFor}
+                  </p>
+                  <div className="flex justify-between mt-4">
+                    <button
+                      onClick={() => handleEditClick(property)}
+                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                      onClick={() => {
+                        if (window.confirm("Are you sure you want to delete this property?")) {
+                          deletePropertyById(property.id);
+                        }
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8 text-gray-600">
+                No properties found. {searchQuery ? "Try a different search term." : ""}
               </div>
-            ))
-          ) : (
-            <p className="text-gray-600 text-center">No properties available.</p>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         {showModal && selectedProperty && (
           <PropertyModal
@@ -800,6 +828,3 @@ const ViewAllProperty = () => {
 };
 
 export default ViewAllProperty;
-
-
-
