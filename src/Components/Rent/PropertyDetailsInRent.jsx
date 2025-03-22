@@ -146,7 +146,7 @@ const PropertyDetailInRent = () => {
         { label: 'Escalation (on rent)', value: `${property.yearlyEscalation}` },
         { label: 'Agreement Period', value: `${property.agreementPeriod} ` },
         { label: 'Lock-in Period', value: `${property.lockingPeriod} ` },
-        // { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
+        { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
         { label: 'Property Taxes', value: property.propertyTax },
         { label: 'GST on rent and maintenance', value: property.gstOnRent },
         { label: 'Electricity Charges / Water Charges', value: 'Borne by the Licensee as per usage directly to Authority' },
@@ -363,9 +363,10 @@ const PropertyDetailInRent = () => {
                             <div className="space-y-4 divide-y divide-gray-200">
                                 {displayedDetails.map((detail, index) => (
                                     <div key={index} className="grid grid-cols-3 gap-x-4 py-2">
-                                        <span className="font-semibold text-gray-700 text-xs md:text-sm">{detail.label}</span>
-                                        <span className="col-span-2 font-bold text-gray-900 text-xs md:text-sm">{detail.value}</span>
-                                    </div>
+                                    <span className="font-semibold text-gray-700 text-xs md:text-sm">{detail.label}</span>
+                                    <span className="col-span-2 font-bold text-gray-900 text-xs md:text-sm text-right">{detail.value}</span>
+                                </div>
+                                
                                 ))}
                             </div>
 

@@ -48,14 +48,15 @@ function Template() {
                     </label>
                 </div>
 
-                <textarea
+                {/* <textarea
                     className="w-full md:h-28 p-3 mt-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 resize-none"
                     placeholder="Tell us your requirements..."
-                ></textarea>
-
+                ></textarea> */}
+                <Link to='/contactUs' className="text-white text-sm underline">
                 <button className="md:w-full bg-[#d84a48] text-white font-semibold md:py-2 py-1 md:px-4 px-2 rounded-lg hover:bg-[#9c2f2d]">
                     Submit
                 </button>
+                </Link>  
             </div>
         </div>
     );

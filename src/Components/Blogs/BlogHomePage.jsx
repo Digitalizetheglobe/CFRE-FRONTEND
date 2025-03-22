@@ -44,20 +44,20 @@ function BlogHomePage() {
                   />
                 </Link>
                 <div className="p-6 flex-grow">
-                  <Link to="/commercial-property-in-baner-2">
+                  <Link to="/commercial-property-in-baner">
                     <h3 className="md:text-2xl font-bold md:mb-2 h-14 hover:text-[#9c2f2d]">
-                      Prime Choice for Business Growth?
+                    How to Evaluate Real Estate
                     </h3>
                   </Link>
                   <p className="text-gray-600 h-16 md:mb-2 text-sm">
-                    If you’re considering expanding or relocating your business...
+                  How to Evaluate Real Estate Investment Opportunities in Warje, Pune
                   </p>
                   <span className="text-sm block text-gray-400 md:mb-4">
                     1 AUG 2024 | BY CFRE REALITY PUNE
                   </span>
                 </div>
                 <div className="p-6 pt-0 flex justify-center">
-                  <Link to="/commercial-property-in-baner-2">
+                  <Link to="/commercial-property-in-baner">
                     <button
                       type="button"
                       className="px-4 py-2 text-sm rounded text-white bg-[#d84a48] hover:bg-[#9c2f2d] transition-colors w-36"

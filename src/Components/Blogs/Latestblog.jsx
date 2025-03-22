@@ -87,7 +87,7 @@ const Latestblog = () => {
                                 <span> July 6, 2024</span>
                             </div>
                         </div>
-                        <Link to="/commercial-property-in-baner-2">
+                        <Link to="/commercial-property-in-baner">
                             <button
                                 type="button"
                                 className="mt-4 md:px-2  py-1.5 md:py-3 text-sm rounded text-white border-none outline-none bg-[#d84a48] hover:text-black hover:bg-gray-300 w-36"
@@ -205,6 +205,7 @@ const Latestblog = () => {
 
 
                             {/* Blog Post 2 */}
+                            <Link to="/commercial-property-in-balewadi">
                             <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300">
                                 <img
                                     src={Image1}
@@ -225,6 +226,7 @@ const Latestblog = () => {
                                     </p>
                                 </div>
                             </div>
+                            </Link>
 
 
 

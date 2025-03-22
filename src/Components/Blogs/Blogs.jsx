@@ -37,7 +37,7 @@ function Blogs() {
                                 <p className="text-sm mt-4">
                                     If you’re considering expanding or relocating your business, commercial property in Baner should be at the top of your list.
                                 </p>
-                                <Link to="/commercial-property-in-baner-2" className="mt-4 inline-block text-blue-600 text-sm hover:underline">Read More</Link>
+                                <Link to="/commercial-property-in-baner" className="mt-4 inline-block text-blue-600 text-sm hover:underline">Read More</Link>
                             </div>
                         </div>
                         <div className="flex max-lg:flex-col bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] hover:scale-105 transition-all duration-300">

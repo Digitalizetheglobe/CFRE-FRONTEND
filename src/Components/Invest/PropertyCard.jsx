@@ -36,13 +36,13 @@ const PropertyCard = ({ property, onEnquire }) => {
                     alt="Property"
                 />
 
-                
+                +
             </Link>
 
             <Link to={`/property-detail-invest/${property.slug}`}  className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold md:text-xl text-gray-800 ml-4"> 
-                {property.aboutProperty}% ROI | Commercial {property.propertyType} for {property.availableFor} {property.buArea}sq.ft 
+                {property.aboutProperty}Commercial {property.propertyType} for {property.availableFor} {property.buArea}sq.ft 
                     </div>
 
                 <div className="text-gray-600 md:mt-1 ml-4">{property.location}, {property.city}</div>

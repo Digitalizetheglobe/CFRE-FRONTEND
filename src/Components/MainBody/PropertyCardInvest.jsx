@@ -19,12 +19,20 @@ function PropertyCardInvest({ property }) {
     };
 
     const handleImageClick = () => {
-        navigate(`/property-detail/${property.slug}`); // Update the path as per the routing for investment properties
+        navigate(`/property-detail/${property.slug}`);
     };
 
-    const imageUrl = property.multiplePropertyImages && property.multiplePropertyImages.length > 0
-        ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}`
-        : Image;
+    // Improved image handling with proper fallback
+    const getImageUrl = () => {
+        // Check if multiplePropertyImages exists and has at least one item
+        if (property.multiplePropertyImages && 
+            Array.isArray(property.multiplePropertyImages) && 
+            property.multiplePropertyImages.length > 0) {
+            return `https://cfrecpune.com/${property.multiplePropertyImages[0]}`;
+        }
+        // Use imported default Image as fallback
+        return Image;
+    };
 
     return (
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
@@ -42,10 +50,16 @@ function PropertyCardInvest({ property }) {
             </div>
 
             <div className="relative">
-                <img className="w-full md:h-52 h-32 object-cover" 
-                src={imageUrl} 
-                alt="Property"
-                onClick={handleImageClick} />
+                <img 
+                    className="w-full md:h-52 h-32 object-cover" 
+                    src={getImageUrl()} 
+                    alt="Property"
+                    onClick={handleImageClick}
+                    onError={(e) => {
+                        console.log("Image failed to load, using fallback");
+                        e.target.src = Image; // Set to fallback image if loading fails
+                    }}
+                />
             </div>
 
             <div className="px-6 py-4">
