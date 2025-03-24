@@ -24,15 +24,27 @@ function PropertyCardInvest({ property }) {
 
     // Improved image handling with proper fallback
     const getImageUrl = () => {
-        // Check if multiplePropertyImages exists and has at least one item
-        if (property.multiplePropertyImages && 
-            Array.isArray(property.multiplePropertyImages) && 
-            property.multiplePropertyImages.length > 0) {
-            return `https://cfrecpune.com/${property.multiplePropertyImages[0]}`;
+        let images = property.multiplePropertyImages;
+    
+        // If images is a string (response1 case), parse it into an array
+        if (typeof images === "string") {
+            try {
+                images = JSON.parse(images.replace(/\\/g, "")); // Remove unnecessary backslashes and parse
+            } catch (error) {
+                console.error("Error parsing multiplePropertyImages:", error);
+                images = []; // Fallback to an empty array if parsing fails
+            }
         }
-        // Use imported default Image as fallback
-        return Image;
+    
+        // Ensure images is an array and has at least one valid entry
+        if (Array.isArray(images) && images.length > 0) {
+            return `https://cfrecpune.com/${images[0]}`;
+        }
+    
+        return Image; // Fallback image
     };
+    
+    
 
     return (
         <div className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-400 hover:scale-[1.02] relative">
