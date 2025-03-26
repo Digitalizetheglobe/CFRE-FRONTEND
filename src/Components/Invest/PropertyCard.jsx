@@ -7,13 +7,19 @@ const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail-invest/${property.slug}`;
     const title = property.title;
     let images = [];
-    try {
-        // Safely attempt to parse the JSON string only if it's not empty
-        images = property.multiplePropertyImages ? JSON.parse(property.multiplePropertyImages) : [];
-    } catch (error) {
-        // Handle error in case the string is not valid JSON
-        console.error('Error parsing images:', error);
-    }
+
+        if (Array.isArray(property.multiplePropertyImages)) {
+            // Response2: Already an array
+            images = property.multiplePropertyImages;
+        } else if (typeof property.multiplePropertyImages === 'string') {
+            // Response1: Parse if it's a string
+            try {
+                images = JSON.parse(property.multiplePropertyImages);
+            } catch (error) {
+                console.error('Error parsing images:', error);
+            }
+        }
+
     // const images = property.multiplePropertyImages || [];
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg border border-gray-400  hover:scale-[1.02] relative">
@@ -36,7 +42,7 @@ const PropertyCard = ({ property, onEnquire }) => {
                     alt="Property"
                 />
 
-                +
+                
             </Link>
 
             <Link to={`/property-detail-invest/${property.slug}`}  className="px-6 py-4">

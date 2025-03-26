@@ -364,7 +364,7 @@ const PropertyDetailInRent = () => {
                                 {displayedDetails.map((detail, index) => (
                                     <div key={index} className="grid grid-cols-3 gap-x-4 py-2">
                                     <span className="font-semibold text-gray-700 text-xs md:text-sm">{detail.label}</span>
-                                    <span className="col-span-2 font-bold text-gray-900 text-xs md:text-sm text-right">{detail.value}</span>
+                                    <span className="col-span-2 font-bold text-gray-900 text-xs md:text-sm text-center">{detail.value}</span>
                                 </div>
                                 
                                 ))}

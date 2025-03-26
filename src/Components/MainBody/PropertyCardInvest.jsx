@@ -26,23 +26,23 @@ function PropertyCardInvest({ property }) {
     const getImageUrl = () => {
         let images = property.multiplePropertyImages;
     
-        // If images is a string (response1 case), parse it into an array
         if (typeof images === "string") {
             try {
-                images = JSON.parse(images.replace(/\\/g, "")); // Remove unnecessary backslashes and parse
+                images = JSON.parse(images.replace(/\\/g, "")); // Remove extra backslashes and parse
             } catch (error) {
                 console.error("Error parsing multiplePropertyImages:", error);
-                images = []; // Fallback to an empty array if parsing fails
+                images = []; // Fallback to empty array
             }
         }
     
-        // Ensure images is an array and has at least one valid entry
+        // Ensure it's an array and pick the first valid image
         if (Array.isArray(images) && images.length > 0) {
             return `https://cfrecpune.com/${images[0]}`;
         }
     
         return Image; // Fallback image
     };
+    
     
     
 
