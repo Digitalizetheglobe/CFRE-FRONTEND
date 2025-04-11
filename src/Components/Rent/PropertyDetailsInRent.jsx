@@ -9,11 +9,12 @@ import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { ZoomIn } from 'lucide-react';
 
 
-const PropertyDetailInRent = () => {
+const PropertyDetailInRent = ({fallbackImage }) => {
     // const { id } = useParams();
     const { slug } = useParams();
     const [property, setProperty] = useState(null);
@@ -21,7 +22,9 @@ const PropertyDetailInRent = () => {
     const [isFormVisible, setFormVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showAllDetails, setShowAllDetails] = useState(false);
-  
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
     // Slider settings
     const settings = {
       dots: true,
@@ -36,25 +39,29 @@ const PropertyDetailInRent = () => {
     };
 
     const navigate = useNavigate(); // Initialize the navigate hook
-    const [isOpen, setIsOpen] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    // Open modal and set current image index
-    const openModal = (index) => {
-        setCurrentIndex(index);
-        setIsOpen(true);
-    };
-
-    // Close modal
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+   
 
     // References for smooth scrolling
     const overviewRef = useRef(null);
     const moreDetailsRef = useRef(null);
     const nearbyPropertiesRef = useRef(null);
-
+    const modalSettings = {
+        ...settings,
+        initialSlide: currentSlide,
+        autoplay: false,
+      };
+      
+      const handleOpenModal = () => {
+        setIsModalOpen(true);
+      };
+      
+      const handleCloseModal = () => {
+        setIsModalOpen(false);
+      };
+      
+      const hasImages = Array.isArray(property?.multiplePropertyImages) && 
+                       property.multiplePropertyImages.length > 0;
+      
     const handleButtonClick = () => {
         setFormVisible(true);
     };
@@ -214,33 +221,86 @@ const PropertyDetailInRent = () => {
                 <div className="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
-                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0">
-      {/* Check if images are available */}
-      {Array.isArray(property?.multiplePropertyImages) && property.multiplePropertyImages.length > 0 ? (
-    <Slider {...settings}>
-        {property.multiplePropertyImages.map((image, index) => (
-            <div key={index}>
+                        <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0 relative">
+      {/* Regular slider */}
+      <div className="relative">
+        {hasImages ? (
+          <Slider {...settings}>
+            {property.multiplePropertyImages.map((image, index) => (
+              <div key={index} className="h-64 md:h-96">
                 <img
-                    src={`https://cfrecpune.com/${image}`}
-                    alt={`Property ${index + 1}`}
-                    className="w-full md:h-72 object-cover rounded-lg shadow-md"
-                    loading="lazy" 
+                  src={`https://cfrecpune.com/${image}`}
+                  alt={`Property ${index + 1}`}
+                  className="w-full h-full object-cover rounded-lg shadow-md"
+                  loading="lazy"
                 />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="h-64 md:h-96">
+            <img
+              src={fallbackImage}
+              alt="Property"
+              className="w-full h-full object-cover rounded-lg shadow-md"
+            />
+          </div>
+        )}
+        
+        {/* Zoom button */}
+        <button 
+          onClick={handleOpenModal}
+          className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none z-10"
+          aria-label="View larger images"
+        >
+          <ZoomIn size={24} />
+        </button>
+      </div>
+      
+      {/* Full-screen modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg w-full max-w-6xl max-h-screen overflow-hidden">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="text-xl font-semibold">Property Images</h3>
+              <button 
+                onClick={handleCloseModal}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                Close
+              </button>
             </div>
-        ))}
-    </Slider>
-) : (
-    <img
-        src={Image}
-        alt="Property"
-        className="w-full md:h-72 object-cover rounded-lg shadow-md"
-    />
-)}
+            
+            <div className="p-4">
+              {hasImages ? (
+                <Slider {...modalSettings}>
+                  {property.multiplePropertyImages.map((image, index) => (
+                    <div key={index} className="h-96 md:h-screen max-h-[70vh]">
+                      <img
+                        src={`https://cfrecpune.com/${image}`}
+                        alt={`Property ${index + 1}`}
+                        className="w-full h-full object-contain mx-auto"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              ) : (
+                <div className="h-96">
+                  <img
+                    src={fallbackImage}
+                    alt="Property"
+                    className="w-full h-full object-contain mx-auto"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
 
-                                
-                                </div>
-
-
+                              
 
                             <div className="w-full lg:w-1/2">
                                 <div className="md:text-2xl font-bold text-gray-900 mb-4">

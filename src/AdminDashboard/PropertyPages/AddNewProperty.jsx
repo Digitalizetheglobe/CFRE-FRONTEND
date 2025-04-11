@@ -47,6 +47,7 @@ const AddNewProperty = () => {
     seoTitle: "",
     amenities: "",
     availableFor: "",
+    Roi: "",
   });
 
   const [files, setFiles] = useState([]);
@@ -395,6 +396,22 @@ const AddNewProperty = () => {
     name="aboutProperty"
     type="text"
     value={formData.aboutProperty}
+    onChange={handleChange}
+    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+  />
+</div>
+              <div className="sm:col-span-3">
+  <label
+    htmlFor="Roi"
+    className="block text-sm font-medium leading-6 text-gray-900"
+  >
+    Tenant Name for preLeased Property
+  </label>
+  <input
+    id="Roi"
+    name="Roi"
+    type="text"
+    value={formData.Roi}
     onChange={handleChange}
     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
   />
@@ -915,13 +932,13 @@ const AddNewProperty = () => {
     htmlFor="seoDescription"
     className="block text-sm font-medium leading-6 text-gray-900"
   >
-    Description
+    Description 
   </label>
   <input
     id="seoDescription"
     name="seoDescription"
     type="text"
-    value={formData.seoDescription || ""}
+    value={formData.seoDiscription}
     onChange={handleChange}
     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
   />

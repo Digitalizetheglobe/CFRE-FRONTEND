@@ -136,9 +136,9 @@ const allDetails = [
     { label: 'Location', value: property.location ? `${property.location}, ${property.city}` : null },
     { label: 'Property Type', value: property.propertyType },
     { label: 'Unit No.', value: property.unitNo },
-    { label: 'Purpose', value: property.availableFor },
+    { label: 'Purpose', value: 'Sale' },
     { label: 'Rent per Month', value: property.rentPerMonth ? formatIndianPrice(property.rentPerMonth) : null },
-    { label: 'Tenant Name', value: property.seoDiscription },
+    { label: 'Tenant Name', value: property.Roi },
     { label: 'Floor', value: property.floor },
     { label: 'Car Parking', value: property.carParking },
     { label: 'Bike Parking', value: property.bikeParking },
@@ -150,7 +150,7 @@ const allDetails = [
     { label: 'Maintenance Per Month', value: 'To be borne by Licensee' },
     { label: 'Agreement Period', value: `${property.agreementPeriod} year` },
     { label: 'Lock-In Period', value: `${property.lockingPeriod} year` },
-    { label: 'Rent Start From', value: `${property.rentStartFrom} ` },
+    { label: 'Rent Start From', value: property.rentStartFrom },
     { label: 'Property Taxes', value: property.propertyTax },
     { label: 'GST on rent and maintenance', value: property.gstOnRent },
     { label: 'Furniture Done by', value: property.furnitureDoneBy },
@@ -206,7 +206,7 @@ const filteredDetails = allDetails.filter(
                     <div ref={overviewRef} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
                         <div className="flex flex-wrap lg:flex-nowrap">
                         <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0 ">
-                        <div className="property-images">
+                       <div className="property-images">
   {property?.multiplePropertyImages?.length > 1 ? (
     <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
       {property.multiplePropertyImages.map((image, index) => (
@@ -214,7 +214,7 @@ const filteredDetails = allDetails.filter(
           <img
             src={`https://cfrecpune.com/${image}`}
             alt={`Property ${index + 1}`}
-            className="w-full md:h-72 object-cover rounded-lg shadow-md"
+            className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md"
           />
         </div>
       ))}
@@ -223,13 +223,13 @@ const filteredDetails = allDetails.filter(
     <img
       src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}
       alt="Property"
-      className="w-full md:h-72 object-cover rounded-lg shadow-md"
+      className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md"
     />
   ) : (
     <img
       src={Image} // Provide a default image path
       alt="Property"
-      className="w-full md:h-72 object-cover rounded-lg shadow-md"
+      className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md"
     />
   )}
 </div>

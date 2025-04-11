@@ -5,7 +5,9 @@ import  OfficeImage from '../assets/ABC.jpeg';
 
 const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail-invest/${property.slug}`;
-    const title = property.title;
+    const title = property.buildingName || 'Property';
+    
+
     let images = [];
 
         if (Array.isArray(property.multiplePropertyImages)) {
@@ -48,7 +50,7 @@ const PropertyCard = ({ property, onEnquire }) => {
             <Link to={`/property-detail-invest/${property.slug}`}  className="px-6 py-4">
                 {/* Property cost */}
                 <div className="font-bold md:text-xl text-gray-800 ml-4"> 
-                {property.aboutProperty}Commercial {property.propertyType} for {property.availableFor} {property.buArea}sq.ft 
+                {property.aboutProperty}Commercial {property.propertyType} for Sale {property.buArea}sq.ft 
                     </div>
 
                 <div className="text-gray-600 md:mt-1 ml-4">{property.location}, {property.city}</div>
