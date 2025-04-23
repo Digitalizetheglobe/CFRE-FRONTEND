@@ -5,7 +5,7 @@ import Image from '../assets/ABC.jpeg';
 
 const PropertyCard = ({ property = {}, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail/${property.slug || property.id || ''}`;
-    const title = property.buildingName || 'Property';
+    const title =  '';
     
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');

@@ -5,7 +5,7 @@ import Image from '../assets/ABC.jpeg';
 
 const PropertyCardSale = ({ property, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail-invest-sale/${property.slug}`;
-    const title = property.buildingName || 'Property';
+    const title =  '';
 
     // Safely parse the multiplePropertyImages
     let images = [];

@@ -22,43 +22,32 @@ const PropertyDetailInRent = ({fallbackImage }) => {
     const [isFormVisible, setFormVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showAllDetails, setShowAllDetails] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Slider settings
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      arrows: true,
-      adaptiveHeight: true,
-    };
-
-    const navigate = useNavigate(); // Initialize the navigate hook
-   
 
     // References for smooth scrolling
     const overviewRef = useRef(null);
     const moreDetailsRef = useRef(null);
-    const nearbyPropertiesRef = useRef(null);
-    const modalSettings = {
-        ...settings,
-        initialSlide: currentSlide,
-        autoplay: false,
-      };
+   const navigate = useNavigate(); // Initialize the navigate hook
+      const settings = {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 3000,
+        };
+        const [isOpen, setIsOpen] = useState(false);
+        const [currentIndex, setCurrentIndex] = useState(0);
       
-      const handleOpenModal = () => {
-        setIsModalOpen(true);
-      };
+        const openModal = (index) => {
+          setCurrentIndex(index);
+          setIsOpen(true);
+        };
       
-      const handleCloseModal = () => {
-        setIsModalOpen(false);
-      };
-      
+        const closeModal = () => {
+          setIsOpen(false);
+        };
       const hasImages = Array.isArray(property?.multiplePropertyImages) && 
                        property.multiplePropertyImages.length > 0;
       
@@ -223,84 +212,62 @@ const PropertyDetailInRent = ({fallbackImage }) => {
                         <div className="flex flex-wrap lg:flex-nowrap">
                         <div className="w-full lg:w-1/2 pr-0 lg:pr-4 mb-4 lg:mb-0 relative">
       {/* Regular slider */}
-      <div className="relative">
-        {hasImages ? (
-          <Slider {...settings}>
-            {property.multiplePropertyImages.map((image, index) => (
-              <div key={index} className="h-64 md:h-96">
-                <img
-                  src={`https://cfrecpune.com/${image}`}
-                  alt={`Property ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg shadow-md"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </Slider>
-        ) : (
-          <div className="h-64 md:h-96">
-            <img
-              src={fallbackImage}
-              alt="Property"
-              className="w-full h-full object-cover rounded-lg shadow-md"
-            />
-          </div>
-        )}
-        
-        {/* Zoom button */}
-        <button 
-          onClick={handleOpenModal}
-          className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none z-10"
-          aria-label="View larger images"
-        >
-          <ZoomIn size={24} />
-        </button>
-      </div>
-      
-      {/* Full-screen modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg w-full max-w-6xl max-h-screen overflow-hidden">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="text-xl font-semibold">Property Images</h3>
-              <button 
-                onClick={handleCloseModal}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                Close
-              </button>
-            </div>
-            
-            <div className="p-4">
-              {hasImages ? (
-                <Slider {...modalSettings}>
-                  {property.multiplePropertyImages.map((image, index) => (
-                    <div key={index} className="h-96 md:h-screen max-h-[70vh]">
-                      <img
-                        src={`https://cfrecpune.com/${image}`}
-                        alt={`Property ${index + 1}`}
-                        className="w-full h-full object-contain mx-auto"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </Slider>
-              ) : (
-                <div className="h-96">
-                  <img
-                    src={fallbackImage}
-                    alt="Property"
-                    className="w-full h-full object-contain mx-auto"
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="property-images">
+  {property?.multiplePropertyImages?.length > 0 ? (
+    <Slider {...settings}>
+      {property.multiplePropertyImages.map((image, index) => (
+        <div key={index} onClick={() => openModal(index)}>
+          <img
+            src={`https://cfrecpune.com/${image}`}
+            alt={`Property ${index + 1}`}
+            className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md cursor-pointer"
+          />
         </div>
-      )}
-    </div>
+      ))}
+    </Slider>
+  ) : (
+    <img
+      src={defaultImage} // Provide a default image path
+      alt="Property"
+      className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md"
+    />
+  )}
 
-                              
+  {/* Modal */}
+  {isOpen && (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
+      <div className="relative p-4 rounded-lg shadow-lg" style={{ 
+        width: "700px",
+        height: "400px",
+        margin: "auto",
+        marginTop: "100px",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "10px",
+        padding: "0",
+      }}>
+        <button
+          className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-3 py-1 z-50"
+          onClick={closeModal}
+        >
+          X
+        </button>
+        <Slider {...settings} initialSlide={currentIndex}>
+          {property.multiplePropertyImages.map((image, index) => (
+            <div key={index}>
+              <img
+                src={`https://cfrecpune.com/${image}`}
+                alt={`Property ${index + 1}`}
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </div>
+  )}
+</div>
+                        </div>
 
                             <div className="w-full lg:w-1/2">
                                 <div className="md:text-2xl font-bold text-gray-900 mb-4">

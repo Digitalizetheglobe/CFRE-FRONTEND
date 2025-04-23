@@ -5,7 +5,7 @@ import  OfficeImage from '../assets/ABC.jpeg';
 
 const PropertyCard = ({ property, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/property-detail-invest/${property.slug}`;
-    const title = property.buildingName || 'Property';
+    const title = '';
     
 
     let images = [];

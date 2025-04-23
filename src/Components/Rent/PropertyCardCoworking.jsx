@@ -4,7 +4,7 @@ import Image from '../assets/ABC.jpeg'; // Default fallback image
 
 const PropertyCardCoworking = ({ property = {}, onEnquire }) => {
     const shareUrl = `https://www.cfrerealty.com/coworking`;
-    const title = property.buildingName || 'Property';
+    const title =  '';
 
     const handleWhatsAppClick = () => {
         window.open('https://wa.me/918149977661', '_blank');
