@@ -121,7 +121,7 @@ const Footer = () => {
 
             {/* Footer Bottom */}
             <div className="bg-gray-800 text-center py-4 mt-8">
-                <p className="text-white md:text-sm text-xs">
+                {/* <p className="text-white md:text-sm text-xs">
                     &copy; {new Date().getFullYear()} CFRE Realty. All rights reserved. 
                     Crafted with care by 
                     <a 
@@ -132,7 +132,7 @@ const Footer = () => {
                     >
                         Digitalize The Globe
                     </a>.
-                </p>
+                </p> */}
             </div>
         </footer>
         </>
