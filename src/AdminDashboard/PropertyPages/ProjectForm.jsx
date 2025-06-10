@@ -17,7 +17,7 @@ const ProjectForm = () => {
         occupancyCertificate: '',
         approvedBy: '',
         specification: '',
-        projectPlans: [{ Type: '', UnitCost: '', CarpetArea: '' }],
+        projectPlans: [{ type: '', unitCost: '', area: '' }], // Changed to lowercase to match API
         slug: '',
         seoTitle: '',
         seoDescription: '',
@@ -75,7 +75,7 @@ const ProjectForm = () => {
     const addProjectPlan = () => {
         setFormData({
             ...formData,
-            projectPlans: [...formData.projectPlans, { Type: '', UnitCost: '', CarpetArea: '' }],
+            projectPlans: [...formData.projectPlans, { type: '', unitCost: '', area: '' }], // Changed to lowercase
         });
     };
     const handleFileChange1 = (e) => {
@@ -131,7 +131,12 @@ const handleSubmit = async (e) => {
         // Append text fields
         Object.keys(formData).forEach((key) => {
             if (key !== "floorPlanImages" && key !== "ProjectImages") {
-                formDataToSend.append(key, formData[key]);
+                if (key === "projectPlans") {
+                    // Convert projectPlans array to JSON string
+                    formDataToSend.append(key, JSON.stringify(formData[key]));
+                } else {
+                    formDataToSend.append(key, formData[key]);
+                }
             }
         });
 
@@ -159,7 +164,8 @@ const handleSubmit = async (e) => {
                 window.location.reload();
             }, 2000);
         } else {
-            setMessage('Failed to submit project data.');
+            setMessage('Failed to submit project data: ' + (responseData.message || 'Unknown error'));
+            console.error('Server Error:', responseData);
         }
     } catch (error) {
         setMessage('An error occurred while submitting the form.');
@@ -168,11 +174,6 @@ const handleSubmit = async (e) => {
 
     setLoading(false);
 };
-
-
-    
-    
-    
 
     return (
         <>
@@ -317,30 +318,50 @@ const handleSubmit = async (e) => {
         ))}
       </div>
     </div>
-                                <div className="mb-4">
-                        <label className="block text-sm font-semibold mb-2">Project Plans:</label>
-                        {formData.projectPlans.map((plan, index) => (
-                            <div key={index} className="mb-2">
-                                {['Type', 'UnitCost', 'CarpetArea'].map((field) => (
-                                    <input
-                                        key={field}
-                                        type={field === 'UnitCost' ? 'number' : 'text'}
-                                        placeholder={field}
-                                        value={plan[field]}
-                                        onChange={(e) => handleProjectPlansChange(e, index, field)}
-                                        className="w-full p-2 mb-2 border border-gray-300 rounded-md"
-                                    />
-                                ))}
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-2">Project Plans:</label>
+                    {formData.projectPlans.map((plan, index) => (
+                        <div key={index} className="mb-2 p-4 border border-gray-300 rounded-md">
+                            <div className="mb-2">
+                                <label className="block text-xs text-gray-600 mb-1">Type (e.g., 1BHK, 2BHK):</label>
+                                <input
+                                    type="text"
+                                    placeholder="Type"
+                                    value={plan.type}
+                                    onChange={(e) => handleProjectPlansChange(e, index, 'type')}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                />
                             </div>
-                        ))}
-                        <button
-                            type="button"
-                            className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                            onClick={addProjectPlan}
-                        >
-                            Add Another Plan
-                        </button>
-                    </div>
+                            <div className="mb-2">
+                                <label className="block text-xs text-gray-600 mb-1">Unit Cost (e.g., ₹75 Lakhs):</label>
+                                <input
+                                    type="text"
+                                    placeholder="Unit Cost"
+                                    value={plan.unitCost}
+                                    onChange={(e) => handleProjectPlansChange(e, index, 'unitCost')}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                />
+                            </div>
+                            <div className="mb-2">
+                                <label className="block text-xs text-gray-600 mb-1">Area (e.g., 1200 sq.ft.):</label>
+                                <input
+                                    type="text"
+                                    placeholder="Area"
+                                    value={plan.area}
+                                    onChange={(e) => handleProjectPlansChange(e, index, 'area')}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                />
+                            </div>
+                        </div>
+                    ))}
+                    <button
+                        type="button"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                        onClick={addProjectPlan}
+                    >
+                        Add Another Plan
+                    </button>
+                </div>
 
                     <div className="mt-6">
                         <button
