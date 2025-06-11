@@ -258,7 +258,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
               <img
                 src={`https://cfrecpune.com/${image}`}
                 alt={`Property ${index + 1}`}
-                className="w-full h-full object-cover rounded-lg"
+                className="w-[550px] h-[450px] object-cover rounded-lg"
               />
             </div>
           ))}
