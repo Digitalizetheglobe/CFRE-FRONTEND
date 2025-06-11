@@ -190,7 +190,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
 
 
             {/* <div className="bg-white p-6 rounded-lg shadow-lg max-w-8xl mx-auto"> */}
-            <div className="sticky md:top-28 top-16 bg-white shadow-md flex justify-center space-x-4 py-2 z-[100]">
+            <div className="sticky md:top-28 top-16 bg-white shadow-md flex justify-center space-x-4 py-2 z-30">
 
                 <button
                     className="text-gray-700 font-semibold px-4 py-2 hover:text-[#d84a48] focus:outline-none"
@@ -235,12 +235,12 @@ const PropertyDetailInRent = ({fallbackImage }) => {
 
   {/* Modal */}
   {isOpen && (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
+    <div className="fixed inset-0 z-90 bg-black bg-opacity-75 flex justify-center items-center">
       <div className="relative p-4 rounded-lg shadow-lg" style={{ 
-        width: "700px",
-        height: "400px",
+        width: "550px",
+        height: "300px",
         margin: "auto",
-        marginTop: "100px",
+        marginTop: "180px",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "10px",
