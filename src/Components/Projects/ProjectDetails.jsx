@@ -337,7 +337,7 @@ const ProjectDetails = () => {
                 <table className="min-w-full bg-white border border-gray-300">
                   <thead>
                     <tr className="bg-gray-100">
-                      <th className="py-2 px-4 border border-gray-300">Type kjasnd</th>
+                      <th className="py-2 px-4 border border-gray-300">Type</th>
                       <th className="py-2 px-4 border border-gray-300">
                         Unit Cost
                       </th>
