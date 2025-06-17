@@ -258,7 +258,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
               <img
                 src={`https://cfrecpune.com/${image}`}
                 alt={`Property ${index + 1}`}
-                className="w-[350px] h-[400px] sm:w-[550px] sm:h-[450px] object-cover rounded-lg"
+                className="w-[550px] h-[450px] ml-0 object-cover rounded-lg sm:w-[300px] sm:h-[400px] sm:ml-[4px]"
 
               />
             </div>
