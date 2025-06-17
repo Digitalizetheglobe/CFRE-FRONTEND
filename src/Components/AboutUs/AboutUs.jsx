@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './ab.jpg';
 import Image from './Untitled123.jpg';
 import CountUp from 'react-countup';
@@ -14,7 +14,28 @@ function AboutUs() {
     const toggleAccordion = (index) => {
         setOpenAccordion(openAccordion === index ? null : index);
     };
+     const [isVisible, setIsVisible] = useState({});
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(prev => ({
+              ...prev,
+              [entry.target.id]: true
+            }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
     return (
         <>
             <Header />
@@ -41,28 +62,28 @@ function AboutUs() {
                     <dl className="md:container grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 gap-y-6 text-center">
                         <div className="flex flex-col items-center justify-center">
                             <dd className="md:text-6xl text-3xl font-semibold tracking-tight text-white">
-                                <CountUp start={0} end={12} duration={7} /> +
+                                <CountUp start={0} end={12} duration={2} /> +
                             </dd>
                             <dt className="md:text-2xl text-sm leading-7 text-white">Years</dt>
                         </div>
 
                         <div className="hidden md:flex flex-col items-center justify-center">
                             <dd className="text-6xl font-semibold tracking-tight text-white">
-                                <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={7} /> +
+                                <CountUp start={0} end={2.5} decimals={1} suffix=" M" duration={2} /> +
                             </dd>
                             <dt className="text-2xl leading-7 text-white">Sq.Ft Delivered</dt>
                         </div>
 
                         <div className="flex flex-col items-center justify-center">
                             <dd className="md:text-6xl text-3xl font-semibold tracking-tight text-white">
-                                <CountUp start={0} end={500} duration={7} /> +
+                                <CountUp start={0} end={500} duration={2} /> +
                             </dd>
                             <dt className="md:text-2xl text-sm leading-7 text-white">Clients</dt>
                         </div>
 
                         <div className="flex flex-col items-center justify-center">
                             <dd className="md:text-6xl text-3xl font-semibold tracking-tight text-white">
-                                <CountUp start={0} end={40} duration={7} /> +
+                                <CountUp start={0} end={40} duration={2} /> +
                             </dd>
                             <dt className="md:text-2xl text-sm leading-7 text-white">Cities</dt>
                         </div>
@@ -70,49 +91,94 @@ function AboutUs() {
                 </div>
             </div>
 
-            <div className="mx-4 md:container md:mx-auto">
-                <div className="w-full flex flex-col">
-                    <h2 className="font-bold md:text-xl text-2xl text-pd-text-1 mb-4 md:mt-14 mt-6">About Us</h2>
-                    <div>
-                        <h3 className="italic text-xl md:text-2xl text-pd-text-1 font-medium md:mt-4 md:mb-6 mt-4">
-                            Welcome to "COMMERCIAL FIELD REAL ESTATE (CFRE)."
-                        </h3>
+            {/* ...rest of your code remains unchanged... */}
+            {/* (No changes below this line) */}
+              <div className="mx-4 md:container md:mx-auto pt-16">
+        <div 
+          className={`w-full flex flex-col transform transition-all duration-700 ${
+            isVisible['about-section'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}
+          id="about-section"
+          data-animate
+        >
+          <h2 className="font-bold md:text-4xl text-3xl bg-gradient-to-r from-gray-800 to-blue-600 bg-clip-text text-transparent mb-6">
+            About Us
+          </h2>
+          
+          <div className="bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <h3 className="italic text-2xl md:text-3xl text-gray-800 font-medium mb-8 leading-relaxed">
+              Welcome to 
+              <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {" "}COMMERCIAL FIELD REAL ESTATE (CFRE).
+              </span>
+            </h3>
 
-                        <div className="flex mb-4 md:mb-6 mt-4">
-                            <a href="https://www.facebook.com/share/V6WUcvRiRnM9AFyU/?mibextid=qi2Omg" target="_blank" rel="noopener noreferrer" className="pr-4">
-                                <svg className="text-blue-600 hover:text-blue-800" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 320 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S264.43 0 225.36 0c-73.14 0-121 44.38-121 124.72v70.62H32v92.66h72.29V512h89.66V288z"></path>
-                                </svg>
-                            </a>
-
-                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="pr-4">
-                                <svg className="text-blue-500 hover:text-blue-700" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
-                                </svg>
-                            </a>
-
-                            <a href="https://www.instagram.com/cfrerealty" target="_blank" rel="noopener noreferrer" className="pr-4">
-                                <svg className="text-pink-500 hover:text-pink-700" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
-                                </svg>
-                            </a>
-
-                            <a href="https://www.linkedin.com/company/cfre-realty/" target="_blank" rel="noopener noreferrer" className="pr-4">
-                                <svg className="text-red-500 hover:text-red-700" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 576 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
-                                </svg>
-                            </a>
-                        </div>
-
-                        <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-700">
-                            CFRE Realty is a leading commercial real estate firm specializing in office space leasing across major Indian business hubs.
-                            With 15 years of experience in the industry, we've established ourselves as trusted advisors for businesses seeking optimal workspace solutions in Pune, Mumbai, Bangalore, and Hyderabad.
-                            Our portfolio includes a diverse range of office properties, from modern high-rises to renovated historic buildings, catering to businesses of all sizes across multiple industries.
-                        </p>
-                    </div>
+            {/* Social Media Links */}
+            <div className="flex mb-8 space-x-6">
+              <a 
+                href="https://www.facebook.com/share/V6WUcvRiRnM9AFyU/?mibextid=qi2Omg" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group transform hover:scale-125 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:bg-blue-700 transition-all duration-300">
+                  <svg className="text-white w-6 h-6" fill="currentColor" viewBox="0 0 320 512">
+                    <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S264.43 0 225.36 0c-73.14 0-121 44.38-121 124.72v70.62H32v92.66h72.29V512h89.66V288z"></path>
+                  </svg>
                 </div>
-                <hr className="h-[1px] my-8 md:my-12 bg-gray-300 mt-10" />
+              </a>
+
+              <a 
+                href="https://www.linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group transform hover:scale-125 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:bg-blue-600 transition-all duration-300">
+                  <svg className="text-white w-6 h-6" fill="currentColor" viewBox="0 0 448 512">
+                    <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
+                  </svg>
+                </div>
+              </a>
+
+              <a 
+                href="https://www.instagram.com/cfrerealty" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group transform hover:scale-125 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">
+                  <svg className="text-white w-6 h-6" fill="currentColor" viewBox="0 0 448 512">
+                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                  </svg>
+                </div>
+              </a>
+
+              <a 
+                href="https://www.linkedin.com/company/cfre-realty/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group transform hover:scale-125 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:bg-red-600 transition-all duration-300">
+                  <svg className="text-white w-6 h-6" fill="currentColor" viewBox="0 0 576 512">
+                    <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
+                  </svg>
+                </div>
+              </a>
             </div>
+
+            <p className="text-lg md:text-xl leading-relaxed text-gray-700 hover:text-gray-900 transition-colors duration-300">
+              CFRE Realty is a leading commercial real estate firm specializing in office space leasing across major Indian business hubs.
+              With <span className="font-semibold text-blue-600">15 years of experience</span> in the industry, we've established ourselves as trusted advisors for businesses seeking optimal workspace solutions in 
+              <span className="font-semibold text-blue-600"> Pune, Mumbai, Bangalore, and Hyderabad</span>.
+              Our portfolio includes a diverse range of office properties, from modern high-rises to renovated historic buildings, catering to businesses of all sizes across multiple industries.
+            </p>
+          </div>
+        </div>
+        
+        {/* <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-16"></div> */}
+      </div>
 
             <div className="mx-4 md:container md:mx-auto">
                 <div className="w-full flex flex-col md:mt-0 mt-4">
@@ -126,7 +192,7 @@ function AboutUs() {
 
             <div className="mx-4 md:container md:mx-auto">
                 <div className="flex flex-col md:mt-0 mt-4">
-                    <h2 className="font-bold text-2xl text-pd-text-1 mb-6 md:mt-14">OUR VALUES</h2>
+                    <h2 className="font-bold text-2xl text-pd-text-1 mb-6 ">OUR VALUES</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                         <div className="md:col-span-7 rounded-3xl">
@@ -168,7 +234,7 @@ function AboutUs() {
                         </div>
                     </div>
                 </div>
-                <hr className="h-[1px] my-8 md:my-12 bg-gray-300 md:mt-10" />
+                <hr className="h-[1px] my-4 bg-gray-300 " />
             </div>
 
             <div className="bg-gray-50 w-full px-4 md:px-0">
