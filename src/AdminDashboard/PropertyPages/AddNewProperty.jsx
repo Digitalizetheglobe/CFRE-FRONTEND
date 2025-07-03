@@ -367,15 +367,15 @@ const AddNewProperty = () => {
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
                 >
                   <option value="">Select Property Type</option>
-                  <option value="OfficeSpace">Office Space</option>
-                  <option value="Showroom">Showroom Space</option>
+                  <option value="OfficeSpace">Office-Space</option>
+                  <option value="Showroom">Showroom-Space</option>
                   <option value="Hospital">Hospital</option>
                   <option value="Independent Building">Independant Building</option>
-                  <option value="Warehouse / Godown">Warehouse / Godown Space</option>
+                  <option value="Warehouse / Godown">Warehouse / Godown-Space</option>
                   <option value="Industrial Factory">Industrial Factory</option>
                   <option value="Industrial Lands / Plot">Industrial Lands / Plot</option>
                   <option value="Commercial Lands / Plot">Commercial Lands / Plot</option>
-                  <option value="Restaurant Space">Restaurant Space</option>
+                  <option value="Restaurant Space">Restaurant-Space</option>
                   <option value="Banquet Hall">Banquet Hall</option>
                   <option value="Commercial Row House">Commercial Row House</option>
                   <option value="Hotel Resort">Hotel / Resort</option>

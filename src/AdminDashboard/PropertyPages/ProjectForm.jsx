@@ -318,6 +318,24 @@ const handleSubmit = async (e) => {
         ))}
       </div>
     </div>
+
+      <div className="sm:col-span-3">
+  <label htmlFor="availableFor" className="block text-sm font-medium leading-6 text-gray-900">
+    Available For
+  </label>
+  <select
+    id="availableFor"
+    name="availableFor"
+    
+    onChange={handleChange}
+    // required
+    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+  >
+    <option value="">Select Available For - Sale / Rent</option>
+    <option value="Invest">Sale</option>
+    <option value="Rent">Rent</option>
+  </select>
+</div>
                 <div className="mb-4">
                     <label className="block text-sm font-semibold mb-2">Project Plans:</label>
                     {formData.projectPlans.map((plan, index) => (
@@ -342,6 +360,7 @@ const handleSubmit = async (e) => {
                                     className="w-full p-2 border border-gray-300 rounded-md"
                                 />
                             </div>
+                            
                             <div className="mb-2">
                                 <label className="block text-xs text-gray-600 mb-1">Area (e.g., 1200 sq.ft.):</label>
                                 <input

@@ -69,6 +69,8 @@ const ProjectDetails = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const [modalImage, setModalImage] = useState(null);
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
@@ -171,15 +173,16 @@ const ProjectDetails = () => {
             <div className="flex flex-col lg:flex-row gap-8 p-4">
               {/* Image Section */}
               <div className="relative flex-none w-full lg:w-3/5">
-                <div className="relative w-full h-40 md:h-96 overflow-hidden rounded-lg shadow-lg">
+                <div className="relative w-full overflow-hidden rounded-lg shadow-lg aspect-[16/9] cursor-pointer">
                   {project?.ProjectImages?.length > 0 ? (
                     <Slider {...settings}>
                       {project.ProjectImages.map((image, index) => (
-                        <div key={index}>
+                        <div key={index} onClick={() => setModalImage(`https://cfrecpune.com/${image}`)}>
                           <img
                             src={`https://cfrecpune.com/${image}`}
                             alt={`Project ${index + 1}`}
-                            className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                            className="w-full h-full object-cover rounded-lg shadow-md"
+                            style={{ minHeight: 250, maxHeight: 400 }}
                           />
                         </div>
                       ))}
@@ -188,7 +191,9 @@ const ProjectDetails = () => {
                     <img
                       src={Image}
                       alt="Project Image"
-                      className="w-full md:h-72 object-cover rounded-lg shadow-md"
+                      className="w-full h-full object-cover rounded-lg shadow-md"
+                      style={{ minHeight: 250, maxHeight: 400 }}
+                      onClick={() => setModalImage(Image)}
                     />
                   )}
                 </div>
@@ -531,6 +536,26 @@ const ProjectDetails = () => {
           </div>
         )}
       </div>
+
+      {/* Modal for full image */}
+      {modalImage && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-80">
+          <div className="relative">
+            <button
+              onClick={() => setModalImage(null)}
+              className="absolute top-2 right-2 bg-white rounded-full p-2 shadow text-black hover:bg-gray-200 z-10"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <img
+              src={modalImage}
+              alt="Full Project"
+              className="max-w-[90vw] max-h-[80vh] rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

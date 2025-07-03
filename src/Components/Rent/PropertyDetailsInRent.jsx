@@ -94,11 +94,12 @@ const PropertyDetailInRent = ({fallbackImage }) => {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get('https://cfrecpune.com/cfreproperties/');
-                // Sort properties by 'createdAt' in descending order and take the latest 5
-                const sortedProperties = response.data
+                // Filter properties to only those available for Rent, sort by 'createdAt', and take the latest 5
+                const filteredProperties = response.data
+                    .filter((property) => property.availableFor === 'Rent')
                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                     .slice(0, 5);
-                setRecentProperties(sortedProperties);
+                setRecentProperties(filteredProperties);
             } catch (error) {
                 console.error('Error fetching properties:', error);
             }
@@ -415,30 +416,43 @@ const PropertyDetailInRent = ({fallbackImage }) => {
                 <div className="w-full lg:w-1/3 px-0 lg:px-4">
     <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">Recent Properties</h3>
     <div className="space-y-4">
-        {recentProperties.map((recentProperty, index) => (
-            <div
-                key={index}
-                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                onClick={() => handlePropertyClick(recentProperty.slug)}
-            >
-               <img           
-                    src={defaultImage} // Handle dynamic or default image
-                    alt={recentProperty.title}
-                    className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
-                />
-                <div>
-                    <div className="md:text-lg text-sm font-bold text-gray-800">
-                        {recentProperty.carpetArea} sq.ft
-                    </div>
-                    <div className="text-gray-600 md:text-lg text-sm">
-                        Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
-                    </div>
-                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
-                        ₹<b>{recentProperty.rentPerMonth}</b>
+        {recentProperties.map((recentProperty, index) => {
+            // Robust image handling for recent properties
+            let images = recentProperty.multiplePropertyImages;
+            if (typeof images === 'string') {
+                try {
+                    images = JSON.parse(images.replace(/\\/g, ''));
+                } catch (error) {
+                    images = [];
+                }
+            }
+            const firstImage = Array.isArray(images) && images.length > 0 ? `https://cfrecpune.com/${images[0]}` : defaultImage;
+            return (
+                <div
+                    key={index}
+                    className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
+                    onClick={() => handlePropertyClick(recentProperty.slug)}
+                >
+                   <img           
+                        src={firstImage}
+                        alt={recentProperty.title}
+                        className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+                        onError={e => { e.target.src = defaultImage; }}
+                    />
+                    <div>
+                        <div className="md:text-lg text-sm font-bold text-gray-800">
+                            {recentProperty.carpetArea} sq.ft
+                        </div>
+                        <div className="text-gray-600 md:text-lg text-sm">
+                            Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
+                        </div>
+                        <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
+                            ₹<b>{recentProperty.rentPerMonth}</b>
+                        </div>
                     </div>
                 </div>
-            </div>
-        ))}
+            );
+        })}
     </div>
 </div>
 
