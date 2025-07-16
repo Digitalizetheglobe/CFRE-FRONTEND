@@ -236,35 +236,28 @@ const PropertyDetailInRent = ({fallbackImage }) => {
 
   {/* Modal */}
   {isOpen && (
-    <div className="fixed inset-0 z-90 bg-black bg-opacity-75 flex justify-center items-center">
-      <div className="relative p-4 rounded-lg shadow-lg" style={{ 
-        width: "550px",
-        height: "300px",
-        margin: "auto",
-        marginTop: "180px",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "10px",
-        padding: "0",
-      }}>
+    <div className="fixed inset-0 z-[9999] bg-black bg-opacity-75 flex justify-center items-center">
+      <div className="relative bg-white rounded-lg shadow-lg w-full max-w-2xl mx-4 sm:mx-auto flex flex-col items-center justify-center p-2 sm:p-4" style={{ maxHeight: '90vh' }}>
         <button
           className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-3 py-1 z-50"
           onClick={closeModal}
         >
           X
         </button>
-        <Slider {...settings} initialSlide={currentIndex}>
-          {property.multiplePropertyImages.map((image, index) => (
-            <div key={index}>
-              <img
-                src={`https://cfrecpune.com/${image}`}
-                alt={`Property ${index + 1}`}
-                className="w-[550px] h-[450px] ml-0 object-cover rounded-lg sm:w-[300px] sm:h-[400px] sm:ml-[4px]"
-
-              />
-            </div>
-          ))}
-        </Slider>
+        <div className="w-full flex items-center justify-center">
+          <Slider {...settings} initialSlide={currentIndex} className="w-full">
+            {property.multiplePropertyImages.map((image, index) => (
+              <div key={index} className="flex items-center justify-center">
+                <img
+                  src={`https://cfrecpune.com/${image}`}
+                  alt={`Property ${index + 1}`}
+                  className="object-contain w-full max-w-[600px] h-auto max-h-[70vh] rounded-lg"
+                  style={{ margin: '0 auto' }}
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
   )}

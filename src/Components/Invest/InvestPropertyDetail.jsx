@@ -83,7 +83,7 @@ const InvestPropertyDetail = () => {
                     .filter(
                         (property) =>
                             property.availableFor === "Invest" &&
-                            property.propertySubtype === "unLeased"
+                            property.propertySubtype === "preLeased"
                     )
                     .slice(0, 5); // Get the recent 5 properties
                 setRecentProperties(filteredProperties);
@@ -416,36 +416,49 @@ const filteredDetails = allDetails.filter(
 
                 <div className="w-full lg:w-1/3 px-0 lg:px-4">
     <h3 className="md:text-2xl text-xl font-semibold text-gray-900 mb-4">
-        Recent Preleased Properties
+        Recent Preleased Properties 
     </h3>
     <div className="space-y-4">
-        {recentProperties.map((recentProperty, index) => (
-            <div
-                key={index}
-                className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
-                onClick={() => handlePropertyClick(recentProperty.slug)}
-            >
-              <img
-  src={`${recentProperty.multiplePropertyImages && recentProperty.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${recentProperty.multiplePropertyImages[0]}` : defaultImage}`}
-  alt={recentProperty.title}
-  className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
-/>
-
-
-                <div>
-                    <div className="md:text-lg text-sm font-bold text-gray-800">
-                        {recentProperty.carpetArea} sq.ft
-                    </div>
-                    <div className="text-gray-600 md:text-lg text-sm">
-                        Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
-                    </div>
-                    <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
-                   { formatIndianPrice(property.rentPerMonth)}
-                        {/* ₹<b>{recentProperty.rentPerMonth}</b> */}
+        {recentProperties.map((recentProperty, index) => {
+            let imageUrl = defaultImage;
+            if (recentProperty.multiplePropertyImages) {
+                let images = recentProperty.multiplePropertyImages;
+                if (typeof images === 'string') {
+                    try {
+                        images = JSON.parse(images);
+                    } catch (e) {
+                        images = [];
+                    }
+                }
+                if (Array.isArray(images) && images.length > 0) {
+                    imageUrl = `https://cfrecpune.com/${images[0]}`;
+                }
+            }
+            return (
+                <div
+                    key={index}
+                    className="flex items-center p-4 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
+                    onClick={() => handlePropertyClick(recentProperty.slug)}
+                >
+                    <img
+                        src={imageUrl}
+                        alt={recentProperty.title}
+                        className="md:w-24 w-20 h-20 md:h-24 object-cover rounded-md mr-4"
+                    />
+                    <div>
+                        <div className="md:text-lg text-sm font-bold text-gray-800">
+                            {recentProperty.carpetArea} sq.ft
+                        </div>
+                        <div className="text-gray-600 md:text-lg text-sm">
+                            Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
+                        </div>
+                        <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
+                            {formatIndianPrice(property.rentPerMonth)}
+                        </div>
                     </div>
                 </div>
-            </div>
-        ))}
+            );
+        })}
     </div>
 </div>
 

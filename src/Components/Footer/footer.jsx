@@ -121,9 +121,9 @@ const Footer = () => {
 
             {/* Footer Bottom */}
             <div className="bg-gray-800 text-center py-4 mt-8">
-                {/* <p className="text-white md:text-sm text-xs">
+                <p className="text-white md:text-sm text-xs">
                     &copy; {new Date().getFullYear()} CFRE Realty. All rights reserved. 
-                    Crafted with care by 
+                    {/* Crafted with care by 
                     <a 
                         href="https://digitalizetheglobe.com/" 
                         className="text-[#d84a48] hover:text-white transition ml-1"
@@ -131,8 +131,8 @@ const Footer = () => {
                         rel="noopener noreferrer"
                     >
                         Digitalize The Globe
-                    </a>.
-                </p> */}
+                    </a>. */}
+                </p>
             </div>
         </footer>
         </>
