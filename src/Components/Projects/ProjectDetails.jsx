@@ -344,9 +344,9 @@ const ProjectDetails = () => {
                     <tr className="bg-gray-100">
                       <th className="py-2 px-4 border border-gray-300">Type</th>
                       <th className="py-2 px-4 border border-gray-300">
-                        Unit Cost
+                         {project.availableFor}
                       </th>
-                      <th className="py-2 px-4 border border-gray-300">Area</th>
+                      <th className="py-2 px-4 border border-gray-300">Carpet Area</th>
                     </tr>
                   </thead>
                   <tbody>
