@@ -458,22 +458,22 @@ const ViewAllProjects = () => {
     
     
     
-    const handleDeleteClick = async (id) => {
+    const handleDeleteClick = async (slug) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this project?");
         if (confirmDelete) {
             try {
-                console.log(`Deleting project with id: ${id}`);
-    
-                const response = await fetch(`https://cfrecpune.com/cfreprojects/${id}`, {
+                console.log(`Deleting project with slug: ${slug}`);
+
+                const response = await fetch(`https://cfrecpune.com/cfreprojects/${slug}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,
                     },
                 });
-    
+
                 if (response.ok) {
                     // Remove project from state
-                    setProjects((prevProjects) => prevProjects.filter((project) => project.id !== id));
+                    setProjects((prevProjects) => prevProjects.filter((project) => project.slug !== slug));
                 } else {
                     throw new Error('Failed to delete the project.');
                 }
@@ -540,11 +540,11 @@ const ViewAllProjects = () => {
                     <i className="fas fa-edit"></i> Edit
                 </button>
                 <button
-                            onClick={() => handleDeleteClick(project.slug, index)}
-                            className="text-red-600 hover:text-red-900"
-                        >
-                            <i className="fas fa-trash"></i> Delete
-                        </button>
+                    onClick={() => handleDeleteClick(project.slug)}
+                    className="text-red-600 hover:text-red-900"
+                >
+                    <i className="fas fa-trash"></i> Delete
+                </button>
             </div>
         </div>
     ))}
