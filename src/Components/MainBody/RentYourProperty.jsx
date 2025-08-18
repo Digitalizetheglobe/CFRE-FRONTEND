@@ -153,7 +153,7 @@ const RentYourProperty = () => {
   
     try {
       const response = await axios.post(
-        'https://cfrecpune.com/api/customer-properties',
+        'https://api.cfrerealty.com/api/customer-properties',
         payload
       );
       console.log('Form submitted successfully:', response.data);

@@ -61,7 +61,7 @@ const BulkUploadForm = () => {
     formData.append('file', file);
 
     try {
-      await axios.post('https://cfrecpune.com/cfreproperties/bulk-upload', formData, {
+      await axios.post('https://api.cfrerealty.com/cfreproperties/bulk-upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setMessage('✅ File uploaded successfully.');

@@ -23,7 +23,7 @@ const Showroom = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
                 const showroomProperties = response.data.filter(property => property.propertyType === 'Showroom'); // Filter for Showroom properties
                 setProperties(showroomProperties);
                 setError(null); // Clear error if data fetch is successful

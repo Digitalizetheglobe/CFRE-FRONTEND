@@ -8,7 +8,7 @@ const ViewAllcoworking = () => {
     const [toggleStatus, setToggleStatus] = useState({}); // Store the toggle status for each property
     
     useEffect(() => {
-        fetch('https://cfrecpune.com/coworking')
+        fetch('https://api.cfrerealty.com/coworking')
             .then((response) => response.json())
             .then((data) => {
                 // Ensure data is processed based on 'id'
@@ -40,7 +40,7 @@ const ViewAllcoworking = () => {
             try {
                 console.log(`Deleting coworking space with id: ${id}`);
     
-                const response = await fetch(`https://cfrecpune.com/coworking/${id}`, {
+                const response = await fetch(`https://api.cfrerealty.com/coworking/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,

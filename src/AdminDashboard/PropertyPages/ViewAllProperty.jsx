@@ -97,7 +97,7 @@ const PropertyModal = ({ property, onSave, onClose }) => {
             {multiplePropertyImages?.map((image, index) => {
               // Handle both string paths and File objects
               const imageUrl = typeof image === "string"
-                ? `https://cfrecpune.com/${image}`
+                ? `https://api.cfrerealty.com/${image}`
                 : URL.createObjectURL(image);
 
               return (
@@ -608,7 +608,7 @@ const ViewAllProperty = () => {
     setError(null);
     
     try {
-      const response = await fetch('https://cfrecpune.com/cfreproperties');
+      const response = await fetch('https://api.cfrerealty.com/cfreproperties');
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -674,7 +674,7 @@ const ViewAllProperty = () => {
       // Handle existing images (as string paths)
       const existingImages = updatedProperty.multiplePropertyImages
         .filter(img => typeof img === "string")
-        .map(img => img.replace('https://cfrecpune.com/', ''));
+        .map(img => img.replace('https://api.cfrerealty.com/', ''));
       
       // Append existing images as JSON string
       formData.append("existingImages", JSON.stringify(existingImages));
@@ -689,7 +689,7 @@ const ViewAllProperty = () => {
       console.log("Existing images:", existingImages);
       console.log("New files count:", newFiles.length);
       
-      const response = await fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.id}`, {
+      const response = await fetch(`https://api.cfrerealty.com/cfreproperties/${updatedProperty.id}`, {
         method: "PUT",
         body: formData,
       });
@@ -722,7 +722,7 @@ const ViewAllProperty = () => {
     if (!id) return;
     
     try {
-      const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
+      const response = await fetch(`https://api.cfrerealty.com/cfreproperties/${id}`, {
         method: "DELETE",
       });
       

@@ -102,7 +102,7 @@ const ProjectDetails = () => {
     if (validateForm()) {
       try {
         const response = await axios.post(
-          "https://cfrecpune.com/contactform",
+          "https://api.cfrerealty.com/contactform",
           formData,
           {
             headers: { "Content-Type": "application/json" },
@@ -123,7 +123,7 @@ const ProjectDetails = () => {
     const fetchProject = async () => {
       try {
         const response = await axios.get(
-          `https://cfrecpune.com/cfreprojects/${slug}`
+          `https://api.cfrerealty.com/cfreprojects/${slug}`
         );
         setProject(response.data);
         console.log("Project Data:", response.data);
@@ -177,9 +177,9 @@ const ProjectDetails = () => {
                   {project?.ProjectImages?.length > 0 ? (
                     <Slider {...settings}>
                       {project.ProjectImages.map((image, index) => (
-                        <div key={index} onClick={() => setModalImage(`https://cfrecpune.com/${image}`)}>
+                        <div key={index} onClick={() => setModalImage(`https://api.cfrerealty.com/${image}`)}>
                           <img
-                            src={`https://cfrecpune.com/${image}`}
+                            src={`https://api.cfrerealty.com/${image}`}
                             alt={`Project ${index + 1}`}
                             className="w-full h-full object-cover rounded-lg shadow-md"
                             style={{ minHeight: 250, maxHeight: 400 }}
@@ -400,7 +400,7 @@ const ProjectDetails = () => {
                       {project.floorPlanImages.map((image, index) => (
                         <div key={index} className="flex-shrink-0">
                           <img
-                            src={`https://cfrecpune.com/${image}`}
+                            src={`https://api.cfrerealty.com/${image}`}
                             alt={`Project ${index + 1}`}
                             className="w-[300px] h-[220px] object-cover rounded-lg shadow-md"
                           />

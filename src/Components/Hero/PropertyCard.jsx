@@ -38,7 +38,7 @@ const PropertyCard = ({ property }) => {
             <Link to={`/property-detail/${property.slug}`} className="relative block">
                 <img
                     className="w-full h-48 object-cover cursor-pointer"
-                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : OfficeImage}
+                    src={images.length > 0 ? `https://api.cfrerealty.com/${images[0]}` : OfficeImage}
                     alt="Property"
                     onError={(e) => { e.target.src = OfficeImage; }} // Fallback to default image on error
                 />

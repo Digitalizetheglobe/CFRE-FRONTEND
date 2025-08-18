@@ -23,7 +23,7 @@ const PropertyDetail = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/projects/${slug}`);
+                const response = await axios.get(`https://api.cfrerealty.com/projects/${slug}`);
                 setProperty(response.data); // Assuming the API returns the property in the response.data
             } catch (error) {
                 console.error('Error fetching property:', error);

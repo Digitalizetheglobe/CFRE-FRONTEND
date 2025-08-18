@@ -34,7 +34,7 @@ const PropertyCardSale = ({ property, onEnquire }) => {
             <Link to={`/property-detail-invest-sale/${property.slug}`} className="relative">
                 <img
                     className="w-full md:h-48 h-32 object-cover"
-                    src={images.length > 0 ? `https://cfrecpune.com/${images[0]}` : Image} 
+                    src={images.length > 0 ? `https://api.cfrerealty.com/${images[0]}` : Image} 
                     alt="Property"
                 />
             </Link>

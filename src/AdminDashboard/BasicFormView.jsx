@@ -7,7 +7,7 @@ const BasicFormView = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get('https://cfrecpune.com/cfreproperties');
+        const response = await axios.get('https://api.cfrerealty.com/cfreproperties');
         setProperties(response.data);
       } catch (error) {
         console.error('Error fetching properties:', error);
@@ -29,7 +29,7 @@ const BasicFormView = () => {
             <div>
               <h3>Images:</h3>
               {property.multiplePropertyImages && property.multiplePropertyImages.map((image, index) => (
-                <img key={index} src={`https://cfrecpune.com/${image}`} alt={`Property ${index}`} style={{ width: '100px', height: '100px', margin: '5px' }} />
+                <img key={index} src={`https://api.cfrerealty.com/${image}`} alt={`Property ${index}`} style={{ width: '100px', height: '100px', margin: '5px' }} />
               ))}
             </div>
           </li>

@@ -14,7 +14,7 @@ const EnquiryDetails = () => {
   useEffect(() => {
     const fetchEnquiries = async () => {
       try {
-        const response = await axios.get('https://cfrecpune.com/contactforms');
+        const response = await axios.get('https://api.cfrerealty.com/contactforms');
         const sortedEnquiries = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setEnquiries(sortedEnquiries);
         setLoading(false);

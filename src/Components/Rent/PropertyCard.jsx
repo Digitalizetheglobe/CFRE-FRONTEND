@@ -17,7 +17,7 @@ const PropertyCard = ({ property = {}, onEnquire }) => {
     : property.multiplePropertyImages?.split(",") || [];
 
 // Get the first image or fallback image bhavik
-const firstImage = imageArray.length > 0 ? `https://cfrecpune.com/${imageArray[0].trim()}` : Image;
+const firstImage = imageArray.length > 0 ? `https://api.cfrerealty.com/${imageArray[0].trim()}` : Image;
 
 // Debugging (optional)
 console.log("Parsed Image Array:", imageArray);
@@ -40,7 +40,7 @@ console.log("Parsed Image Array:", imageArray);
                 <Link to={`/property-detail/${property.slug || property.id || ''}`}>
                     {/* <img
                         className="w-full md:h-48 h-36 object-cover"
-                        src={property.multiplePropertyImages && property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+                        src={property.multiplePropertyImages && property.multiplePropertyImages.length > 0 ? `https://api.cfrerealty.com/${property.multiplePropertyImages[0]}` : Image}
                         alt={title}
                     /> */}
                     <img className="w-full md:h-48 h-36 object-cover" src={firstImage} alt={title} />

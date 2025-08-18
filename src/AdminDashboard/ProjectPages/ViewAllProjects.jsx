@@ -82,7 +82,7 @@ const handleSave = async () => {
     });
 
     try {
-        const response = await fetch(`https://cfrecpune.com/cfreprojects/${editedProject.id}`, {
+        const response = await fetch(`https://api.cfrerealty.com/cfreprojects/${editedProject.id}`, {
             method: 'PUT',
             body: formData,
         });
@@ -387,7 +387,7 @@ const ViewAllProjects = () => {
     const [showModal, setShowModal] = useState(false); // Modal visibility state
 
     useEffect(() => {
-        fetch('https://cfrecpune.com/cfreprojects/')
+        fetch('https://api.cfrerealty.com/cfreprojects/')
             .then((response) => response.json())
             .then((data) => {
                 // Ensure data is processed based on 'id'
@@ -430,7 +430,7 @@ const ViewAllProjects = () => {
         }
     
         try {
-            const response = await fetch(`https://cfrecpune.com/cfreprojects/${updatedProject.project.id}`, {
+            const response = await fetch(`https://api.cfrerealty.com/cfreprojects/${updatedProject.project.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', // Removed 'Authorization' header
@@ -464,7 +464,7 @@ const ViewAllProjects = () => {
             try {
                 console.log(`Deleting project with slug: ${slug}`);
 
-                const response = await fetch(`https://cfrecpune.com/cfreprojects/${slug}`, {
+                const response = await fetch(`https://api.cfrerealty.com/cfreprojects/${slug}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`,

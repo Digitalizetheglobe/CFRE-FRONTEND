@@ -8,7 +8,7 @@ const PropertyDetails = () => {
 
   // Fetch all properties on component mount
   useEffect(() => {
-    fetch('https://cfrecpune.com/api/customer-properties')
+    fetch('https://api.cfrerealty.com/api/customer-properties')
       .then((response) => response.json())
       .then((data) => setProperties(data))
       .catch((error) => setError('Failed to fetch properties.'));
@@ -17,7 +17,7 @@ const PropertyDetails = () => {
   // Fetch property details by ID
   const fetchPropertyDetailsById = (id) => {
     setLoading(true);
-    fetch(`https://cfrecpune.com/api/customer-properties/${id}`)
+    fetch(`https://api.cfrerealty.com/api/customer-properties/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setSelectedProperty(data);

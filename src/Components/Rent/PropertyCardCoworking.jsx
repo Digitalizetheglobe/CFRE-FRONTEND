@@ -38,7 +38,7 @@ const PropertyCardCoworking = ({ property = {}, onEnquire }) => {
 
     // Extract the first image correctly
     const firstImage = imageArray.length > 0 
-    ? `https://cfrecpune.com/${encodeURI(imageArray[0])}` 
+    ? `https://api.cfrerealty.com/${encodeURI(imageArray[0])}` 
     : Image;
 
 
@@ -47,7 +47,7 @@ const PropertyCardCoworking = ({ property = {}, onEnquire }) => {
 
     const handleViewDetails = (pdfUrl) => {
         if (pdfUrl) {
-            const fullUrl = `https://cfrecpune.com/${pdfUrl}`;
+            const fullUrl = `https://api.cfrerealty.com/${pdfUrl}`;
             window.open(fullUrl, "_blank");
         } else {
             alert("PDF not available");

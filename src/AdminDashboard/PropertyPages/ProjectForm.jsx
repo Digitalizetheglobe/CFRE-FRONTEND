@@ -151,7 +151,7 @@ const handleSubmit = async (e) => {
         });
 
         // Send data using fetch
-        const response = await fetch('https://cfrecpune.com/cfreprojects/', {
+        const response = await fetch('https://api.cfrerealty.com/cfreprojects/', {
             method: 'POST',
             body: formDataToSend,
         });

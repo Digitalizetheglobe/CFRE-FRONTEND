@@ -70,7 +70,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
+                const response = await axios.get(`https://api.cfrerealty.com/cfreproperties/${slug}`);
                 const data = response.data;
     
                 // Parse multiplePropertyImages if it's a string
@@ -93,7 +93,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
     
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
                 // Filter properties to only those available for Rent, sort by 'createdAt', and take the latest 5
                 const filteredProperties = response.data
                     .filter((property) => property.availableFor === 'Rent')
@@ -219,7 +219,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
       {property.multiplePropertyImages.map((image, index) => (
         <div key={index} onClick={() => openModal(index)}>
           <img
-            src={`https://cfrecpune.com/${image}`}
+            src={`https://api.cfrerealty.com/${image}`}
             alt={`Property ${index + 1}`}
             className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md cursor-pointer"
           />
@@ -249,7 +249,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
             {property.multiplePropertyImages.map((image, index) => (
               <div key={index} className="flex items-center justify-center">
                 <img
-                  src={`https://cfrecpune.com/${image}`}
+                  src={`https://api.cfrerealty.com/${image}`}
                   alt={`Property ${index + 1}`}
                   className="object-contain w-full max-w-[600px] h-auto max-h-[70vh] rounded-lg"
                   style={{ margin: '0 auto' }}
@@ -419,7 +419,7 @@ const PropertyDetailInRent = ({fallbackImage }) => {
                     images = [];
                 }
             }
-            const firstImage = Array.isArray(images) && images.length > 0 ? `https://cfrecpune.com/${images[0]}` : defaultImage;
+            const firstImage = Array.isArray(images) && images.length > 0 ? `https://api.cfrerealty.com/${images[0]}` : defaultImage;
             return (
                 <div
                     key={index}

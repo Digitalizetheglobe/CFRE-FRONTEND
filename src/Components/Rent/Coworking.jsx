@@ -16,7 +16,7 @@ const Coworking = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get("https://cfrecpune.com/coworking");
+                const response = await axios.get("https://api.cfrerealty.com/coworking");
                 setProperties(response.data); // Store all properties
             } catch (err) {
                 setError("Error fetching properties");

@@ -14,7 +14,7 @@ function ProjectProperty() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreprojects/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreprojects/');
                 setProjects(response.data);
                 setError(null);
             } catch (error) {

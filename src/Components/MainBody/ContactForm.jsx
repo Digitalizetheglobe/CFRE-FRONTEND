@@ -51,7 +51,7 @@
 //         console.log('Form data to be sent:', formData); // Step 3: Check form data before submission
 
 //         try {
-//             const response = await axios.post('https://cfrecpune.com/contactform ', formData, {
+//             const response = await axios.post('https://api.cfrerealty.com/contactform ', formData, {
 //                 headers: {
 //                     'Content-Type': 'application/json',
 //                 },
@@ -230,7 +230,7 @@ const ContactForm = ({ onClose }) => {
         }
 
         try {
-            const response = await axios.post('https://cfrecpune.com/contactform ', formData, {
+            const response = await axios.post('https://api.cfrerealty.com/contactform ', formData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

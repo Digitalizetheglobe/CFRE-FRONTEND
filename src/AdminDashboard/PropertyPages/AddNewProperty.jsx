@@ -122,7 +122,7 @@ const AddNewProperty = () => {
 
   try {
     const response = await axios.post(
-      "https://cfrecpune.com/cfreproperties",
+      "https://api.cfrerealty.com/cfreproperties",
       formDataToSend,
       {
         headers: {

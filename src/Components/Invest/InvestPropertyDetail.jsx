@@ -61,7 +61,7 @@ const InvestPropertyDetail = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
+                const response = await axios.get(`https://api.cfrerealty.com/cfreproperties/${slug}`);
                 const propertyData = response.data;
     
                 // Check if the multiplePropertyImages is a string and parse it
@@ -77,7 +77,7 @@ const InvestPropertyDetail = () => {
     
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
                 // Filter properties based on required conditions
                 const filteredProperties = response.data
                     .filter(
@@ -212,7 +212,7 @@ const filteredDetails = allDetails.filter(
       {property.multiplePropertyImages.map((image, index) => (
         <div key={index} onClick={() => openModal(index)} className="cursor-pointer">
           <img
-            src={`https://cfrecpune.com/${image}`}
+            src={`https://api.cfrerealty.com/${image}`}
             alt={`Property ${index + 1}`}
             className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md"
           />
@@ -221,7 +221,7 @@ const filteredDetails = allDetails.filter(
     </Slider>
   ) : property?.multiplePropertyImages?.length === 1 ? (
     <img
-      src={`https://cfrecpune.com/${property.multiplePropertyImages[0]}`}
+      src={`https://api.cfrerealty.com/${property.multiplePropertyImages[0]}`}
       alt="Property"
       className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md"
     />
@@ -267,7 +267,7 @@ const filteredDetails = allDetails.filter(
             {property.multiplePropertyImages.map((image, index) => (
               <div key={index}>
                 <img
-                  src={`https://cfrecpune.com/${image}`}
+                  src={`https://api.cfrerealty.com/${image}`}
                   alt={`Property ${index + 1}`}
                   className="w-full h-full object-cover"
                 />
@@ -431,7 +431,7 @@ const filteredDetails = allDetails.filter(
                     }
                 }
                 if (Array.isArray(images) && images.length > 0) {
-                    imageUrl = `https://cfrecpune.com/${images[0]}`;
+                    imageUrl = `https://api.cfrerealty.com/${images[0]}`;
                 }
             }
             return (

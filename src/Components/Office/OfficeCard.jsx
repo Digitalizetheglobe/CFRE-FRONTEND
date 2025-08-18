@@ -13,7 +13,7 @@ const OfficeCard = ({ property, onEnquireClick }) => {
         return null; // Skip rendering this property
     }
 
-    const shareUrl = `https://cfrecpune.com/cfreproperties/${property.slug}`;
+    const shareUrl = `https://api.cfrerealty.com/cfreproperties/${property.slug}`;
     const title = property.title;
 
     const handleWhatsAppClick = () => {
@@ -38,7 +38,7 @@ const OfficeCard = ({ property, onEnquireClick }) => {
                 <Link to={`/property-detail/${property.slug}`}> {/* Link to the property details page */}
                     <img
                         className="w-full md:h-48 h-40 object-cover"
-                        src={property.multiplePropertyImages.length > 0 ? `https://cfrecpune.com/${property.multiplePropertyImages[0]}` : Image}
+                        src={property.multiplePropertyImages.length > 0 ? `https://api.cfrerealty.com/${property.multiplePropertyImages[0]}` : Image}
                         alt="Office"
                     />
                 </Link>

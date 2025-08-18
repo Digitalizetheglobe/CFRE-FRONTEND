@@ -63,7 +63,7 @@ const SaleInvestPropertyDetail = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`https://cfrecpune.com/cfreproperties/${slug}`);
+                const response = await axios.get(`https://api.cfrerealty.com/cfreproperties/${slug}`);
                 const propertyData = response.data;
     
                 // Check if the multiplePropertyImages is a string and parse it
@@ -79,7 +79,7 @@ const SaleInvestPropertyDetail = () => {
     
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
                 // Filter properties based on required conditions
                 const filteredProperties = response.data
                     .filter(
@@ -216,7 +216,7 @@ const SaleInvestPropertyDetail = () => {
       {property.multiplePropertyImages.map((image, index) => (
         <div key={index} onClick={() => openModal(index)}>
           <img
-            src={`https://cfrecpune.com/${image}`}
+            src={`https://api.cfrerealty.com/${image}`}
             alt={`Property ${index + 1}`}
             className="w-full h-48 md:h-72 object-cover rounded-lg shadow-md cursor-pointer"
           />
@@ -254,7 +254,7 @@ const SaleInvestPropertyDetail = () => {
               {property.multiplePropertyImages.map((image, index) => (
                 <div key={index}>
                   <img
-                    src={`https://cfrecpune.com/${image}`}
+                    src={`https://api.cfrerealty.com/${image}`}
                     alt={`Property ${index + 1}`}
                     className="w-full h-full object-cover rounded-lg"
                   />

@@ -25,7 +25,7 @@ const ListProperty = ({ id }) => {
 
   const fetchPropertyDetails = async (propertyId) => {
     try {
-      const response = await axios.get(`https://cfrecpune.com/api/customer-properties/${propertyId}`);
+      const response = await axios.get(`https://api.cfrerealty.com/api/customer-properties/${propertyId}`);
       setPropertyDetails(response.data);
     } catch (err) {
       console.error('Failed to fetch property details:', err);
@@ -35,7 +35,7 @@ const ListProperty = ({ id }) => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get('https://cfrecpune.com/api/customer-properties');
+        const response = await axios.get('https://api.cfrerealty.com/api/customer-properties');
         const sortedProperties = Array.isArray(response.data) ? response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) : [];
         setProperties(sortedProperties);
         setLoading(false);

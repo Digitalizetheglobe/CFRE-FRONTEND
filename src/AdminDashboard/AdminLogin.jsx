@@ -11,7 +11,7 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://cfrecpune.com/admin/login', {
+      const response = await axios.post('https://api.cfrerealty.com/admin/login', {
         email,
         password,
       });

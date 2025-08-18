@@ -361,7 +361,7 @@ function MobileSearchBarComponent() {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
                 setProperties(response.data);
                 console.log('11111==>', response.data);
 

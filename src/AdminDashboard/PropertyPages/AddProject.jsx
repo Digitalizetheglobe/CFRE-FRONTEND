@@ -32,7 +32,7 @@ const AddProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://cfrecpune.com/projects', formData);
+      const response = await axios.post('https://api.cfrerealty.com/projects', formData);
       console.log('Project created successfully:', response.data);
       // Reset form
       setFormData({

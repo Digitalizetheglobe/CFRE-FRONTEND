@@ -9,12 +9,12 @@ const ProjectCard = ({ project }) => {
     return text.slice(0, maxLength) + '...';
   };
 
-  const shareUrl = `https://cfrecpune.com/cfreprojects/${project.slug}`;
+  const shareUrl = `https://api.cfrerealty.com/cfreprojects/${project.slug}`;
   const title = project.title;
   
   // Get the first image from ProjectImages array or use default
   const displayImage = project?.ProjectImages?.length > 0 
-    ? `https://cfrecpune.com/${project.ProjectImages[0]}`
+    ? `https://api.cfrerealty.com/${project.ProjectImages[0]}`
     : defaultImage;
 
   return (

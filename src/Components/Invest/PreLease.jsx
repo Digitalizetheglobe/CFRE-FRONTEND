@@ -29,7 +29,7 @@ const Prelease = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
                 
                 // Sort properties by date (latest first) without filtering
                 const allProperties = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));

@@ -67,7 +67,7 @@ const TestNewproject = () => {
     }
 
     try {
-      const res = await axios.post('https://cfrecpune.com/cfreprojects/', form, {
+      const res = await axios.post('https://api.cfrerealty.com/cfreprojects/', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

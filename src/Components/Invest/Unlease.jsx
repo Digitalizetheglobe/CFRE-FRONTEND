@@ -26,7 +26,7 @@ const Prelease = () => {
     useEffect(() => {
         const fetchProperties = async () => {
             try {
-                const response = await axios.get('https://cfrecpune.com/cfreproperties/');
+                const response = await axios.get('https://api.cfrerealty.com/cfreproperties/');
     
                 // Filter only un-leased properties and sort by date (latest first)
                 const unLeasedProperties = response.data

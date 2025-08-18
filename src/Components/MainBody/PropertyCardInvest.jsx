@@ -37,7 +37,7 @@ function PropertyCardInvest({ property }) {
     
         // Ensure it's an array and pick the first valid image
         if (Array.isArray(images) && images.length > 0) {
-            return `https://cfrecpune.com/${images[0]}`;
+            return `https://api.cfrerealty.com/${images[0]}`;
         }
     
         return Image; // Fallback image
@@ -133,7 +133,7 @@ function PropertyCardInvestList() {
         const fetchProperties = async () => {
             try {
                 const response = await axios.get(
-                    "https://cfrecpune.com/cfreproperties/"
+                    "https://api.cfrerealty.com/cfreproperties/"
                 );
                 console.log("Fetched properties:", response.data); // Debugging
                 

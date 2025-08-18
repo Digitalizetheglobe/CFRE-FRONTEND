@@ -48,7 +48,7 @@ const CoworkingProperty = () => {
     });
 
     try {
-      const response = await axios.post("https://cfrecpune.com/coworking/add", data, {
+      const response = await axios.post("https://api.cfrerealty.com/coworking/add", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMessage(response.data.message);

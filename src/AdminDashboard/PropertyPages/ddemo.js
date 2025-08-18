@@ -126,7 +126,7 @@ const PropertyModal = ({ property, onSave, onClose }) => {
             const imageUrl =
               image instanceof File
                 ? URL.createObjectURL(image)
-                : `https://cfrecpune.com/${image}`;
+                : `https://api.cfrerealty.com/${image}`;
 
             return (
               <div
@@ -692,7 +692,7 @@ const ViewAllProperty = () => {
   const [searchQuery, setSearchQuery] = useState(""); // Search query
 
   useEffect(() => {
-    fetch("https://cfrecpune.com/cfreproperties")
+    fetch("https://api.cfrerealty.com/cfreproperties")
       .then((response) => response.json())
       .then((data) => {
         setProperties(data); // Set the full list of properties
@@ -761,7 +761,7 @@ const ViewAllProperty = () => {
 }
 const deletePropertyById = async (id) => {
   try {
-    const response = await fetch(`https://cfrecpune.com/cfreproperties/${id}`, {
+    const response = await fetch(`https://api.cfrerealty.com/cfreproperties/${id}`, {
       method: "DELETE",
     });
     if (response.ok) {
@@ -779,7 +779,7 @@ const deletePropertyById = async (id) => {
   }
 };
 const handleSaveChanges = (updatedProperty) => {
-  fetch(`https://cfrecpune.com/cfreproperties/${updatedProperty.get('id')}`, {
+  fetch(`https://api.cfrerealty.com/cfreproperties/${updatedProperty.get('id')}`, {
     method: "PUT",
     body: updatedProperty, // Use FormData directly
   })
