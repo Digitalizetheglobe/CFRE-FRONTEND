@@ -126,34 +126,41 @@ const handleSubmit = async (e) => {
     }
 
     try {
-        // Create FormData object
-        const formDataToSend = new FormData();
+        // Prepare JSON data matching the API structure
+        const jsonData = {
+            projectName: formData.projectName,
+            reraRegdNo: formData.reraRegdNo,
+            builderName: formData.builderName,
+            projectDetails: formData.projectDetails,
+            price: formData.price,
+            projectArea: formData.projectArea,
+            possession: formData.possession,
+            city: formData.city,
+            location: formData.location,
+            commencementCertificate: formData.commencementCertificate,
+            occupancyCertificate: formData.occupancyCertificate,
+            approvedBy: formData.approvedBy,
+            specification: formData.specification,
+            projectPlans: formData.projectPlans.map(plan => ({
+                type: plan.type,
+                unitCost: plan.unitCost,
+                area: plan.area
+            })),
+            slug: formData.slug,
+            video: formData.video,
+            virtualVideoTour: formData.virtualVideoTour,
+            ProjectImages: [], // Empty array for now - handle file uploads separately if needed
+            floorPlanImages: [], // Empty array for now - handle file uploads separately if needed
+            availableFor: formData.availableFor
+        };
 
-        // Append text fields
-        Object.keys(formData).forEach((key) => {
-            if (key !== "floorPlanImages" && key !== "ProjectImages") {
-                if (key === "projectPlans") {
-                    // Convert projectPlans array to JSON string
-                    formDataToSend.append(key, JSON.stringify(formData[key]));
-                } else {
-                    formDataToSend.append(key, formData[key]);
-                }
-            }
-        });
-
-        // Append images
-        floorPlanImages.forEach((image) => {
-            formDataToSend.append('floorPlanImages', image.file);
-        });
-
-        images.forEach((image) => {
-            formDataToSend.append('ProjectImages', image.file);
-        });
-
-        // Send data using fetch
+        // Send data using fetch with JSON
         const response = await fetch('https://api.cfrerealty.com/cfreprojects/', {
             method: 'POST',
-            body: formDataToSend,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(jsonData),
         });
 
         const responseData = await response.json();
@@ -186,25 +193,44 @@ const handleSubmit = async (e) => {
                 {[
                 { label: 'Project Name', name: 'projectName' },
                 { label: 'RERA Registration No', name: 'reraRegdNo' },
+                { label: 'Builder Name', name: 'builderName' },
                 { label: 'Project Details', name: 'projectDetails' },
-                { label: 'Specification', name: 'specification' },
+                { label: 'Price', name: 'price' },
+                { label: 'Project Area', name: 'projectArea', type: 'number' },
+                { label: 'Possession Date', name: 'possession' },
                 { label: 'City', name: 'city' },
                 { label: 'Location', name: 'location' },
-                { label: 'Project Area', name: 'projectArea', type: 'number' },
+                { label: 'Commencement Certificate', name: 'commencementCertificate' },
+                { label: 'Occupancy Certificate', name: 'occupancyCertificate' },
+                { label: 'Approved By', name: 'approvedBy' },
+                { label: 'Specification', name: 'specification' },
                 { label: 'Slug', name: 'slug' },
+                { label: 'Video URL', name: 'video' },
+                { label: 'Virtual Video Tour URL', name: 'virtualVideoTour' },
                 { label: 'SEO Title', name: 'seoTitle' },
                 { label: 'SEO Description', name: 'seoDescription' },
                 { label: 'SEO Keywords', name: 'seoKeywords' },
             ].map(({ label, name, type = 'text' }) => (
                 <div key={name} className="mb-4">
                     <label className="block text-sm font-semibold mb-2">{label}:</label>
-                    <input
-                        type={type}
-                        name={name}
-                        value={formData[name]}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:border-indigo-300"
-                    />
+                    {name === 'projectDetails' || name === 'specification' ? (
+                        <textarea
+                            name={name}
+                            value={formData[name]}
+                            onChange={handleChange}
+                            rows={4}
+                            className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:border-indigo-300"
+                            placeholder={`Enter ${label.toLowerCase()}...`}
+                        />
+                    ) : (
+                        <input
+                            type={type}
+                            name={name}
+                            value={formData[name]}
+                            onChange={handleChange}
+                            className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:border-indigo-300"
+                        />
+                    )}
                 </div>
             ))}
 
@@ -332,8 +358,8 @@ const handleSubmit = async (e) => {
     // required
     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
   >
-    <option value="">Select Available For - Sale / Rent</option>
-    <option value="Unit-Cost"> Sale</option>
+    <option value="">Select Available For - Unit Cost / Rent</option>
+    <option value="Unit-Cost"> Unit Cost</option>
     <option value="Rent">Rent</option>
   </select>
 </div>

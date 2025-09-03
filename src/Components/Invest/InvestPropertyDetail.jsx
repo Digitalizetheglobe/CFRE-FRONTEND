@@ -107,7 +107,7 @@ const InvestPropertyDetail = () => {
     const handlePropertyClick = (propertySlug) => {
         setLoading(true); // Set loading to true
         setTimeout(() => {
-            navigate(`/property-detail/${propertySlug}`);
+            navigate(`/property-detail-invest/${propertySlug}`);
             setLoading(false); // Set loading to false after navigation
         }, 2000); // Delay of 2 seconds (2000 ms)
     };
@@ -235,64 +235,90 @@ const filteredDetails = allDetails.filter(
 </div>
 
 
-      {/* Modal for Enlarged Images */}
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        contentLabel="Enlarged Property Images"
-        style={{
-          overlay: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
-          content: {
-            width: "700px",
-            height: "400px",
-            margin: "auto",
-            marginTop: "100px",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "10px",
-            padding: "0",
-            overflow: "hidden",
-          },
-        }}
-      >
-        {property?.multiplePropertyImages?.length > 0 && (
-          <Slider
+    
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          contentLabel="Enlarged Property Images"
+          style={{
+            overlay: { 
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1000
+            },
+            content: {
+              width: "90vw",
+              maxWidth: "700px",
+              height: window.innerWidth >= 768 ? "80vh" : "46vh",
+              maxHeight: "500px",
+              margin: "0",
+              padding: "0",
+              border: "none",
+              borderRadius: "10px",
+              overflow: "hidden",
+              position: "relative",
+              top: "auto",
+              left: "auto",
+              right: "auto",
+              bottom: "auto",
+              transform: "none"
+            },
+          }}
+        >
+          {property?.multiplePropertyImages?.length > 0 && (
+            <Slider
             dots={true}
             infinite={true}
             speed={500}
             slidesToShow={1}
             slidesToScroll={1}
-            initialSlide={selectedImageIndex} // Move inside return block to avoid issues
-          >
+            initialSlide={selectedImageIndex}
+            responsive={[
+              {
+                breakpoint: 768,
+                settings: {
+                dots: true,
+                arrows: false,
+                swipeToSlide: true,
+                }
+              }
+            ]}
+            >
             {property.multiplePropertyImages.map((image, index) => (
               <div key={index}>
                 <img
-                  src={`https://api.cfrerealty.com/${image}`}
-                  alt={`Property ${index + 1}`}
-                  className="w-full h-full object-cover"
+                src={`https://api.cfrerealty.com/${image}`}
+                alt={`Property ${index + 1}`}
+                className="w-full h-full object-cover"
                 />
               </div>
             ))}
-          </Slider>
-        )}
-        <button onClick={closeModal} className="absolute top-2 right-2 text-white bg-black p-2 rounded-full">
-          ✕
-        </button>
-      </Modal>
-    </div>
+            </Slider>
+          )}
+          <button 
+            onClick={closeModal} 
+            className="absolute top-2 right-2 text-white bg-black bg-opacity-80 hover:bg-opacity-100 p-2 md:p-3 rounded-full z-10 transition-all duration-200"
+            style={{ minWidth: "40px", minHeight: "40px" }}
+          >
+            ✕
+          </button>
+        </Modal>
+        </div>
 
 
-                            <div className="w-full lg:w-1/2">
-                                {/* <div className="md:text-2xl font-bold text-gray-900 mb-4">
-                                    {property?.rentPerMonthRsPerSqFt && (
-                                        <>
-                                            <span className="md:text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
-                                            <span className="bg-green-100 text-green-800 text-xs font-semibold ml-4 px-2.5 py-0.5 rounded">
-                                                Verified on Site
-                                            </span>
-                                        </>
-                                    )}
-                                </div> */}
+                        <div className="w-full lg:w-1/2">
+                          {/* <div className="md:text-2xl font-bold text-gray-900 mb-4">
+                            {property?.rentPerMonthRsPerSqFt && (
+                                <>
+                                  <span className="md:text-base font-normal">{property.rentPerMonthRsPerSqFt}/sqft</span>
+                                  <span className="bg-green-100 text-green-800 text-xs font-semibold ml-4 px-2.5 py-0.5 rounded">
+                                    Verified on Site
+                                  </span>
+                                </>
+                            )}
+                          </div> */}
 
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6  text-xs md:text-sm text-gray-700">
                                     {property?.buArea && (
@@ -453,7 +479,7 @@ const filteredDetails = allDetails.filter(
                             Available for <b>{recentProperty.availableFor}</b> in <b>{recentProperty.location}</b>
                         </div>
                         <div className="text-gray-900 font-semibold mt-2 md:text-lg text-sm">
-                            {formatIndianPrice(property.rentPerMonth)}
+                            {formatIndianPrice(recentProperty.rentPerMonth)}
                         </div>
                     </div>
                 </div>
